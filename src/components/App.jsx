@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import logo from '../logo.svg'
 import './css/App.css'
 import * as Ons from 'react-onsenui'
-import 'onsenui/css/onsenui.css';
-import 'onsenui/css/onsen-css-components.css';
+import 'onsenui/css/onsenui.css'
+import 'onsenui/css/onsen-css-components.css'
+import RightMenu from './RightMenu'
 
 class App extends Component {
   constructor(props) {
@@ -34,18 +34,31 @@ class App extends Component {
 
   }
 
+  rightMenu() {
+    return <RightMenu />
+  }
+
   render() {
     if (this.state.render) {
       return (
         <Ons.Page>
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to React</h1>
-            </header>
-            <p className="App-intro">
-              To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
+          <div className="toolbar">
+            <div className="toolbar__left">
+              <span className="toolbar-button">
+                <i className="ion-navicon" style={{
+                  fontSize: '32px',
+                  verticalAlign: '-6px'
+                  }}></i>
+              </span>
+            </div>
+            <div className="toolbar__center">
+              Обзор
+            </div>
+            <div className="toolbar__right">
+              <span className="toolbar-button toolbar-button--material" onClick={this.rightMenu}>
+                <i className="zmdi zmdi-more-vert"></i>
+              </span>
+            </div>
           </div>
         </Ons.Page>
       )
@@ -54,8 +67,8 @@ class App extends Component {
         <Ons.Page>
           <div style={{
             position: 'absolute',
-            top: 'calc(50% - 16px)',
-            left: 'calc(50% - 16px)',
+            top: 'calc(50% - 25px)',
+            left: 'calc(50% - 25px)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
@@ -63,13 +76,12 @@ class App extends Component {
             <Ons.ProgressCircular indeterminate />
             <span style={{
               color: '#0076ff'
-            }}>Loding ...</span>
+            }}>loading ...</span>
           </div>
         </Ons.Page>
       )
     }
   }
-
 }
 
 export default App
