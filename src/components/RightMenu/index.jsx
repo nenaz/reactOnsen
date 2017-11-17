@@ -10,19 +10,21 @@ class RightMenu extends Component {
     }
 
     render() {
-        return (
-            <ul className="list">
-                <li className="list-item">
-                    <div className="list-item__center">Dog</div>
-                </li>
-                <li className="list-item">
-                    <div className="list-item__center">Cat</div>
-                </li>
-                <li className="list-item">
-                    <div className="list-item__center">Hamster</div>
-                </li>
-            </ul>
-        )
+        if (this.props.action) {
+            return (
+                <ul className="list">
+                    <li className="list-item">
+                        <div className="list-item__center">Dog</div>
+                    </li>
+                    <li className="list-item">
+                        <div className="list-item__center">Cat</div>
+                    </li>
+                    <li className="list-item">
+                        <div className="list-item__center">Hamster</div>
+                    </li>
+                </ul>
+            )
+        } else return <b />
     }
 }
 
