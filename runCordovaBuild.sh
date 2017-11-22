@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# npm run build
+npm run build
 
 sed -i -e 's/=\"\//=\"/g' ./build/index.html
 

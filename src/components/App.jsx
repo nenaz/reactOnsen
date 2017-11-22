@@ -3,7 +3,9 @@ import './css/App.css'
 import * as Ons from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
-// import RightMenu from './RightMenu'
+import './css/ionicons.css'
+import ButtonAccount from './Button'
+import Utils from '../js/utils'
 
 class App extends Component {
   constructor(props) {
@@ -22,6 +24,7 @@ class App extends Component {
     this.getTarget = this.getTarget.bind(this)
     this.showLeftMenu = this.showLeftMenu.bind(this)
     this.hideLeftMenu = this.hideLeftMenu.bind(this)
+    this.handleAddClick = this.handleAddClick.bind(this)
   }
 
   componentDidMount() {
@@ -68,6 +71,10 @@ class App extends Component {
 
   hideLeftMenu() {
     this.setState({ isOpenLeftMenu: false });
+  }
+
+  handleAddClick() {
+    
   }
 
   render() {
@@ -118,7 +125,7 @@ class App extends Component {
             <Ons.Splitter>
               <Ons.SplitterSide
                 style={{
-                  boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
+                  borderRight: '1px solid rgba(212, 215, 216, 0.1)'
                 }}
                 side='left'
                 width={200}
@@ -139,7 +146,9 @@ class App extends Component {
               </Ons.SplitterSide>
               <Ons.SplitterContent>
                 <Ons.Page renderToolbar={this.renderToolbar}>
-                  <ons-toolbar>
+                  <ons-toolbar style={{
+                    position: 'relative'
+                  }}>
                     <div className="left">
                       <ons-toolbar-button onClick={this.showLeftMenu}>
                         <ons-icon icon="ion-android-menu, material:md-menu"></ons-icon>
@@ -148,15 +157,52 @@ class App extends Component {
                     <div className="center">Center</div>
                     <div className="right">
                       <ons-toolbar-button onClick={this.showPopover} ref='button'>
-                        <ons-icon icon="ion-android-more-horizontal, material:md-more"></ons-icon>
+                        <ons-icon icon="ion-android-more-vertical"></ons-icon>
                       </ons-toolbar-button>
                     </div>
                   </ons-toolbar>
-                  <section style={{ margin: '16px' }}>
-                    <p>
-                      Swipe right to open the menu.
-                    </p>
+                  <section style={{ margin: '8px' }}>
+                    <div style={{
+                      backgroundColor: 'white',
+                      border: '1px solid #f0f0f0'
+                    }}>
+                      <div style={{ margin: '8px' }}  >
+                        <span style={{
+                          margin: '5px',
+                          display: 'inline-block',
+                          fontSize: '13px',
+                          width: '100%',
+                          marginBottom: '10px',
+                          marginTop: '0'
+                        }}>Список счетов</span>
+                        <div style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          flexWrap: 'wrap',
+                          justifyContent: 'space-between'
+                        }}>
+                          <ButtonAccount params={Utils.selectButtonsParams()}/>
+                          <ButtonAccount params={Utils.selectButtonsParams('AccountsButtonAdd')}/>
+                          <ButtonAccount params={Utils.selectButtonsParams('AccountButton')}/>
+                          <ButtonAccount params={Utils.selectButtonsParams('AccountButton')}/>
+                        </div>
+                      </div>
+                    </div>
                   </section>
+                  <section style={{ margin: '16px' }}>
+                    <div style={{
+                      height: '200px',
+                      backgroundColor: 'white',
+                      border: '1px solid #f0f0f0'
+                    }}></div>
+                  </section>
+                  <ons-fab style={{
+                    position: 'absolute',
+                    top: '85%',
+                    left: '85%'
+                  }} onClick={this.handleAddClick}>
+                    <ons-icon icon="md-plus"></ons-icon>
+                  </ons-fab>
                 </Ons.Page>
               </Ons.SplitterContent>
             </Ons.Splitter>
@@ -177,7 +223,7 @@ class App extends Component {
             <Ons.ProgressCircular indeterminate />
             <span style={{
               color: '#0076ff'
-            }}>loading ...</span>
+            }}></span>
           </div>
         </Ons.Page>
       )
