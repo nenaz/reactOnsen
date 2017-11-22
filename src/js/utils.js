@@ -30,8 +30,24 @@ const selectButtonsParams = (name) => {
     }
 }
 
+const selectSectionsParams = (name) => {
+    switch(name) {
+        case 'Balance': return {
+            title: "Баланс",
+            defaultButtons: false,
+        }
+        default: return {
+            title: "Список счетов",
+            defaultButtons: true,
+            defautlButtonsCount: 2,
+            defaultButtonsArr: ['', 'AccountsButtonAdd']
+        }
+    }
+}
+
 var utils = {
-    selectButtonsParams
+    selectButtonsParams,
+    selectSectionsParams
 }
 
 export default utils

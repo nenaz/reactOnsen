@@ -4,8 +4,7 @@ import * as Ons from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import './css/ionicons.css'
-import ButtonAccount from './Button'
-import Utils from '../js/utils'
+import Section from './pageWidget'
 
 class App extends Component {
   constructor(props) {
@@ -161,41 +160,8 @@ class App extends Component {
                       </ons-toolbar-button>
                     </div>
                   </ons-toolbar>
-                  <section style={{ margin: '8px' }}>
-                    <div style={{
-                      backgroundColor: 'white',
-                      border: '1px solid #f0f0f0'
-                    }}>
-                      <div style={{ margin: '8px' }}  >
-                        <span style={{
-                          margin: '5px',
-                          display: 'inline-block',
-                          fontSize: '13px',
-                          width: '100%',
-                          marginBottom: '10px',
-                          marginTop: '0'
-                        }}>Список счетов</span>
-                        <div style={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          flexWrap: 'wrap',
-                          justifyContent: 'space-between'
-                        }}>
-                          <ButtonAccount params={Utils.selectButtonsParams()}/>
-                          <ButtonAccount params={Utils.selectButtonsParams('AccountsButtonAdd')}/>
-                          <ButtonAccount params={Utils.selectButtonsParams('AccountButton')}/>
-                          <ButtonAccount params={Utils.selectButtonsParams('AccountButton')}/>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                  <section style={{ margin: '16px' }}>
-                    <div style={{
-                      height: '200px',
-                      backgroundColor: 'white',
-                      border: '1px solid #f0f0f0'
-                    }}></div>
-                  </section>
+                  <Section name="AccountsList" />
+                  <Section name="Balance" />
                   <ons-fab style={{
                     position: 'absolute',
                     top: '85%',
