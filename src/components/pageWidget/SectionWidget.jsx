@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import WidgetTitle from './widgetTitle'
 import WidgetButtonsSection from '../Button'
+import WidgetBalanceSection from '../Button'
 import Utils from '../../js/utils'
 
 class SectionWidget extends Component {
@@ -13,16 +14,16 @@ class SectionWidget extends Component {
     }
 
     componentWillMount() {
-        debugger
         this.setState({
             sectionParams: Utils.selectSectionsParams(this.props.name)
         })
     }
 
     renderButtons() {
-        
         if (this.state.sectionParams.defaultButtons) {
             return <WidgetButtonsSection />
+        } else if (this.state.sectionParams.balance) {
+            return <WidgetBalanceSection />
         } else {
             return <div />
         }

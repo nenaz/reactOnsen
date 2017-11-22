@@ -18,8 +18,8 @@ class ButtonsSection extends Component {
             }}>
                 <ButtonAccount params={Utils.selectButtonsParams()} />
                 <ButtonAccount params={Utils.selectButtonsParams('AccountsButtonAdd')} />
-                <ButtonAccount params={Utils.selectButtonsParams('AccountButton')} />
-                <ButtonAccount params={Utils.selectButtonsParams('AccountButton')} />
+                {/* <ButtonAccount params={Utils.selectButtonsParams('AccountButton')} />
+                <ButtonAccount params={Utils.selectButtonsParams('AccountButton')} /> */}
             </div>
         )
     }
