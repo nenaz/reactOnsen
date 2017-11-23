@@ -1,13 +1,29 @@
 import React, { Component } from 'react'
 import ButtonAccount from './Button'
 import Utils from '../../js/utils'
+// import { connect } from 'react-redux'
+// import { changeAnimationState } from '../../AC'
 
 class ButtonsSection extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            params: {}
+        }
+
+        // this.handlerButtonClick = this.handlerButtonClick.bind(this)
     }
-    
+
+    // handlerButtonClick() {
+    //     this.props.changeAnimationState('left-to-right')
+    // }
+
+    componentWillMount() {
+        this.setState({
+            params: Utils.selectButtonsParams('AccountsButtonAdd')
+        })
+    }
+
     render() {
         return (
             <div style={{
@@ -17,9 +33,7 @@ class ButtonsSection extends Component {
                 justifyContent: 'space-between'
             }}>
                 <ButtonAccount params={Utils.selectButtonsParams()} />
-                <ButtonAccount params={Utils.selectButtonsParams('AccountsButtonAdd')} />
-                {/* <ButtonAccount params={Utils.selectButtonsParams('AccountButton')} />
-                <ButtonAccount params={Utils.selectButtonsParams('AccountButton')} /> */}
+                <ButtonAccount params={Utils.selectButtonsParams(this.state.params.pname)} />
             </div>
         )
     }
