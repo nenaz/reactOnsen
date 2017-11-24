@@ -101,8 +101,15 @@ class AddAccount extends Component{
                             modifier='underbar'
                             float
                             placeholder="Начальное значение"
+                            style={{
+                                alignContent: 'space-around',
+                                margin: '10px'
+                            }}
                         />
-                        <Select id="choose-sel" value={this.state.modifier} modifier={this.state.modifier} onChange={this.editSelects}>
+                        <Select id="choose-sel" style={{
+                            alignContent: 'space-around',
+                            margin: '0 10px 10px 10px'
+                        }} value={this.state.modifier} modifier={this.state.modifier} onChange={this.editSelects}>
                             <option value="basic">Basic</option>
                             <option value="material">Material</option>
                             <option value="underbar">Underbar</option>
