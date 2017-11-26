@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class WidgetBalanceSection extends Component {
     constructor(props) {
@@ -6,11 +7,21 @@ class WidgetBalanceSection extends Component {
         this.state = {}
     }
 
+    allBalance() {
+        let balance = this.props.changeAccountsList.map((item) => {
+            console.log(balance)
+            return item.balance
+        })
+        return balance
+    }
+
     render() {
         return (
-            <div></div>
+            <div>{this.allBalance()}</div>
         )
     }
 }
 
-export default WidgetBalanceSection
+export default connect((state) => ({
+    changeAccountsList: state.changeAccountsList
+}))(WidgetBalanceSection)
