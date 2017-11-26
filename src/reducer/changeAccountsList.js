@@ -5,7 +5,8 @@ import {
 
 const addItem = (array,item) => {
     let newarray = array.slice()
-    return newarray.splice(newarray.length, 0, item)
+    newarray.push(item)
+    return newarray
 }
 
 const removeItem = (array, item) => {
@@ -13,7 +14,12 @@ const removeItem = (array, item) => {
     return (array.slice(0, numItem)).concat(array.slice(numItem + 1))
 }
 
-export default (accountsList = [], action) => {
+export default (accountsList = [{
+    name: 'Наличные',
+    balance: 0.00,
+    currency: 'RUB',
+    pname: ''
+}], action) => {
     const { type, payload } = action
     switch (type) {
         case ADDACCOUNTTOLIST: return addItem(accountsList, payload)

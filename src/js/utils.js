@@ -15,8 +15,6 @@ const selectButtonsParams = (name) => {
         }
         case 'AccountButton': return {
             pname: 'AccountButton',
-            name: '40702840500001015401',
-            balance: '0 руб.',
             backgroundColor: 'yellow',
             textColor: '#250606',
             textSize: '8.5px',

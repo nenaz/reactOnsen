@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ButtonAccount from './Button'
 import Utils from '../../js/utils'
+import { connect } from 'react-redux'
 // import { connect } from 'react-redux'
 // import { changeAnimationState } from '../../AC'
 
@@ -32,11 +33,17 @@ class ButtonsSection extends Component {
                 flexWrap: 'wrap',
                 justifyContent: 'space-between'
             }}>
-                <ButtonAccount params={Utils.selectButtonsParams()} />
+                {this.props.changeAccountsList.map((item) => {
+                    let param = Utils.selectButtonsParams(item.pname)
+                    Object.assign(param, item)
+                    return <ButtonAccount params={param} />
+                })}
                 <ButtonAccount params={Utils.selectButtonsParams(this.state.params.pname)} />
             </div>
         )
     }
 }
 
-export default ButtonsSection
+export default connect((state) => ({
+    changeAccountsList: state.changeAccountsList
+}))(ButtonsSection)

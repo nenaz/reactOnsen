@@ -10,7 +10,7 @@ import {
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import { connect } from 'react-redux'
-import { changeAnimationState } from '../../AC'
+import { changeAnimationState, addAccountToList } from '../../AC'
 import { Link } from 'react-router-dom'
 
 class AddAccount extends Component{
@@ -23,12 +23,13 @@ class AddAccount extends Component{
         }
 
         this.renderToolbar = this.renderToolbar.bind(this)
-        this.handlerButtonClick = this.handlerButtonClick.bind(this)
+        this.handlerCanselClick = this.handlerCanselClick.bind(this)
         this.handleAccountNameChange = this.handleAccountNameChange.bind(this)
         this.handleAmountChange = this.handleAmountChange.bind(this)
+        this.handlerOkClick = this.handlerOkClick.bind(this)
     }
 
-    handlerButtonClick() {
+    handlerCanselClick() {
         this.props.changeAnimationState('backMainFromNewAccount')
         setTimeout(() => {
             this.props.changeAnimationState('')
@@ -51,13 +52,22 @@ class AddAccount extends Component{
         this.setState({ modifier: e.target.value });
     }
 
+    handlerOkClick(e) {
+        this.props.addAccountToList({
+            name: this.state.accountName,
+            balance: this.state.amount,
+            currency: 'RUB',
+            pname: 'AccountButton'
+        })
+    }
+
     renderToolbar() {
         return (
             <Toolbar style={{
                 position: 'relative'
             }}>
                 <div className="left">
-                    <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerButtonClick}>
+                    <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
                         <ToolbarButton >
                             <Icon icon="ion-close" />
                         </ToolbarButton>
@@ -65,7 +75,7 @@ class AddAccount extends Component{
                 </div>
                 <div className="center">New Account</div>
                 <div className="right">
-                    <ToolbarButton onClick={this.showPopover} ref='button'>
+                    <ToolbarButton ref='button' onClick={this.handlerOkClick}>
                         <Icon icon="ion-checkmark" />
                     </ToolbarButton>
                 </div>
@@ -122,5 +132,6 @@ class AddAccount extends Component{
 }
 
 export default connect(null,{
-    changeAnimationState
+    changeAnimationState,
+    addAccountToList
 })(AddAccount)

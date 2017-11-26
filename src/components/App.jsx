@@ -5,8 +5,7 @@ import Loading from './Loading'
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
-  Link
+  Redirect  
 } from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import store from '../store'
@@ -15,7 +14,6 @@ import AddAccount from './addAccount'
 import MainPage from './mainPage'
 import Utils from '../js/utils'
 import { connect } from 'react-redux'
-import { changeAnimationState } from '../AC'
 
 class App extends Component {
   constructor(props) {
