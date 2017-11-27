@@ -8,9 +8,11 @@ class WidgetBalanceSection extends Component {
     }
 
     allBalance() {
-        let balance = this.props.changeAccountsList.map((item) => {
+        let balance = 0
+        this.props.changeAccountsList.map((item) => {
             console.log(balance)
-            return item.balance
+            balance += (item.balance * 1)
+            return item
         })
         return balance
     }

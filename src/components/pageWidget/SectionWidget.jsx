@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import WidgetTitle from './widgetTitle'
 import WidgetButtonsSection from '../Button'
-import WidgetBalanceSection from '../Button'
+import WidgetBalanceSection from './widgetBalance'
+import WidgetChartSection from './widgetChart'
+import WidgetLastSection from './widgetLastOperations'
 import Utils from '../../js/utils'
 
 class SectionWidget extends Component {
@@ -24,6 +26,10 @@ class SectionWidget extends Component {
             return <WidgetButtonsSection />
         } else if (this.state.sectionParams.balance) {
             return <WidgetBalanceSection />
+        } else if (this.state.sectionParams.chart) {
+            return <WidgetChartSection />
+        } else if (this.state.sectionParams.last) {
+            return <WidgetLastSection />
         } else {
             return <div />
         }

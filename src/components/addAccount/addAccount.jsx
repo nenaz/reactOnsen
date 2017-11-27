@@ -10,7 +10,10 @@ import {
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import { connect } from 'react-redux'
-import { changeAnimationState, addAccountToList } from '../../AC'
+import {
+    changeAnimationState,
+    addAccountToList
+} from '../../AC'
 import { Link } from 'react-router-dom'
 
 class AddAccount extends Component{
@@ -59,6 +62,8 @@ class AddAccount extends Component{
             currency: 'RUB',
             pname: 'AccountButton'
         })
+        window.history.back()
+        this.handlerCanselClick()
     }
 
     renderToolbar() {

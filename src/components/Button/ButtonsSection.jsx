@@ -33,10 +33,10 @@ class ButtonsSection extends Component {
                 flexWrap: 'wrap',
                 justifyContent: 'space-between'
             }}>
-                {this.props.changeAccountsList.map((item) => {
+                {this.props.changeAccountsList.map((item, key) => {
                     let param = Utils.selectButtonsParams(item.pname)
                     Object.assign(param, item)
-                    return <ButtonAccount params={param} />
+                    return <ButtonAccount params={param} key={key}/>
                 })}
                 <ButtonAccount params={Utils.selectButtonsParams(this.state.params.pname)} />
             </div>

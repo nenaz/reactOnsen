@@ -40,6 +40,17 @@ const selectSectionsParams = (name) => {
     switch(name) {
         case 'Balance': return {
             title: "Баланс",
+            balance: true,
+            defaultButtons: false,
+        }
+        case 'Chart': return {
+            title: "Расходы",
+            chart: true,
+            defaultButtons: false,
+        }
+        case 'LastOperations': return {
+            title: "Последние операции",
+            last: true,
             defaultButtons: false,
         }
         default: return {
@@ -52,7 +63,6 @@ const selectSectionsParams = (name) => {
 }
 
 const selectAnimationClassForPage = (param) => {
-    // debugger
     switch(param) {
         case 'backMainFromNewAccount': return {
             'enter': 'exp-enter-left-to-right',

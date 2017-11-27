@@ -140,6 +140,8 @@ class MainPage extends Component{
                             </Toolbar>
                             <Section name="AccountsList" />
                             <Section name="Balance" />
+                            {/* <Section name="Chart" /> */}
+                            <Section name="LastOperations" />
                         </Page>
                     </SplitterContent>
                 </Splitter>
