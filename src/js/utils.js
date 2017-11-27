@@ -79,10 +79,18 @@ const selectAnimationClassForPage = (param) => {
     }
 }
 
+const addAccountFindError = (name) => {
+    return {
+        errorMes: '',
+        errorCode: 0
+    }
+}
+
 var utils = {
     selectButtonsParams,
     selectSectionsParams,
-    selectAnimationClassForPage
+    selectAnimationClassForPage,
+    addAccountFindError
 }
 
 export default utils

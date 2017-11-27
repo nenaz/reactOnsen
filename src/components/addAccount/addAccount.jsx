@@ -5,7 +5,8 @@ import {
     ToolbarButton,
     Icon,
     Input,
-    Select
+    Select,
+    Toast
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
@@ -15,6 +16,7 @@ import {
     addAccountToList
 } from '../../AC'
 import { Link } from 'react-router-dom'
+import Utils from '../../js/utils'
 
 class AddAccount extends Component{
     constructor(props){
@@ -22,7 +24,9 @@ class AddAccount extends Component{
         this.state ={
             accountName: '',
             amount: '',
-            modifier: ''
+            modifier: '',
+            toastShown: false,
+            error: false
         }
 
         this.renderToolbar = this.renderToolbar.bind(this)
@@ -30,6 +34,8 @@ class AddAccount extends Component{
         this.handleAccountNameChange = this.handleAccountNameChange.bind(this)
         this.handleAmountChange = this.handleAmountChange.bind(this)
         this.handlerOkClick = this.handlerOkClick.bind(this)
+        this.handleShow = this.handleShow.bind(this)
+        this.handleDismiss = this.handleDismiss.bind(this)
     }
 
     handlerCanselClick() {
@@ -40,15 +46,22 @@ class AddAccount extends Component{
     }
 
     handleAccountNameChange(e) {
+        // debugger
         this.setState({ 
             accountName: e.target.value
         });
     }
     
     handleAmountChange(e) {
+        let noError = (e && e.data) ? e.data.match(/\d/) : null
+        if (noError === null) {
+            this.setState({
+                error: true
+            })
+        }
         this.setState({ 
             amount: e.target.value
-        });
+        })
     }
 
     handleEditSelects(e) {
@@ -64,6 +77,18 @@ class AddAccount extends Component{
         })
         window.history.back()
         this.handlerCanselClick()
+    }
+
+    handleDismiss() {
+        this.setState({
+            toastShown: false 
+        })
+    }
+
+    handleShow() {
+        this.setState({
+            toastShown: true
+        })
     }
 
     renderToolbar() {
@@ -131,6 +156,14 @@ class AddAccount extends Component{
                         </Select>
                     </div>
                 </div>
+                <Toast isOpen={this.state.toastShown}>
+                    <div className="message">
+                        An error has occurred!
+                    </div>
+                    <button onClick={this.handleDismiss}>
+                        Dismiss
+                    </button>
+                </Toast>
             </Page>
         )
     }
