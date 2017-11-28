@@ -23,112 +23,100 @@
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
+
 
 /* ++ new page ++ */
 .exp-enter-right-to-left {
   transform: translate3d(100%, 0, 0);
   position: absolute;
-  z-index: 15;
+  z-index: 15
 }
 
 .exp-enter-right-to-left.exp-enter-active-right-to-left {
   transform: translate3d(0, 0, 0);
   transition: all 550ms ease-in-out;
   position: absolute;
-  z-index: 15;
+  z-index: 15
 }
-
 /* -- new page -- */
+
 /* ++ old page ++ */
 .exp-leave-right-to-left {
   transform: translate3d(0, 0, 0);
   position: absolute;
-  z-index: 10;
+  z-index: 10
 }
 
 .exp-leave-right-to-left.exp-leave-active-right-to-left {
   transform: translate3d(-30%, 0, 0);
   transition: all 550ms ease-in-out;
   position: absolute;
-  z-index: 10;
+  z-index: 10
 }
-
 /* -- old page -- */
+
 /* ++ new page ++ */
 .exp-enter-left-to-right {
   transform: translate3d(-30%, 0, 0);
   position: absolute;
-  z-index: 10;
+  z-index: 10
 }
 
 .exp-enter-left-to-right.exp-enter-active-left-to-right {
   transform: translate3d(0%, 0, 0);
   transition: all 550ms ease-in-out;
   position: absolute;
-  z-index: 10;
+  z-index: 10
 }
-
 /* -- new page -- */
+
 /* ++ old page ++ */
 .exp-leave-left-to-right {
   transform: translate3d(0%, 0, 0);
   position: absolute;
-  z-index: 15;
+  z-index: 15
 }
 
 .exp-leave-left-to-right.exp-leave-active-left-to-right {
   transform: translate3d(100%, 0, 0);
   transition: all 550ms ease-in-out;
   position: absolute;
-  z-index: 15;
+  z-index: 15
 }
-
 /* -- old page -- */
-.keyboard {
+
+.keyboard{
   display: flex;
   position: absolute;
   width: 100%;
   bottom: 0;
+  .nzButtonsBlock1{
+    width: 100%;
+    .nzButtonRow{
+      display: flex;
+      flex-direction: row-reverse;
+      .nzButton{
+        margin: 1px;
+        background-color: #c3bbbb;
+        color: white;
+        width: 33%;
+        height:45.5px;
+      }
+    }
+  }
+  .nzButtonsBlock2{
+    width: 20%;
+    .nzButtonCol{
+      display: flex;
+      flex-direction: column;
+      .nzButton{
+        margin: 1px;
+        background-color: #c3bbbb;
+        color: white;
+      }
+    }
+  }
 }
-
-.keyboard .nzButtonsBlock1 {
-  width: 100%;
-}
-
-.keyboard .nzButtonsBlock1 .nzButtonRow {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.keyboard .nzButtonsBlock1 .nzButtonRow .nzButton {
-  margin: 1px;
-  background-color: #c3bbbb;
-  color: white;
-  width: 33%;
-  height: 45.5px;
-}
-
-.keyboard .nzButtonsBlock2 {
-  width: 20%;
-}
-
-.keyboard .nzButtonsBlock2 .nzButtonCol {
-  display: flex;
-  flex-direction: column;
-}
-
-.keyboard .nzButtonsBlock2 .nzButtonCol .nzButton {
-  margin: 1px;
-  background-color: #c3bbbb;
-  color: white;
-}
- 
-
- /*# sourceMappingURL= App.css.map */

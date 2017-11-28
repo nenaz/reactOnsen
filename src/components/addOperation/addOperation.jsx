@@ -3,7 +3,8 @@ import {
     Page,
     Toolbar,
     Icon,
-    ToolbarButton
+    ToolbarButton,
+    Button
 } from 'react-onsenui'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -59,26 +60,36 @@ class AddOperation extends Component{
                 <div className="amountInput"></div>
                 <div className="fromToText"></div>
                 <div className='keyboard'>
-                    <div>
-                        <div className="button">Доход</div>
-                        <div>Расход</div>
-                        <div>Перевод</div>
-                        <div>Доход</div>
-                        <div>Расход</div>
-                        <div>Перевод</div>
-                        <div>Доход</div>
-                        <div>Расход</div>
-                        <div>Перевод</div>
-                        <div>Доход</div>
-                        <div>Расход</div>
-                        <div>Перевод</div>
+                    <div className="nzButtonsBlock1">
+                        <div className="nzButtonRow">
+                            <Button class="nzButton" modifier='quiet'>9</Button>
+                            <Button class="nzButton" modifier='quiet'>8</Button>
+                            <Button class="nzButton" modifier='quiet'>7</Button>
+                        </div>
+                        <div className="nzButtonRow">
+                            <Button class="nzButton" modifier='quiet'>6</Button>
+                            <Button class="nzButton" modifier='quiet'>5</Button>
+                            <Button class="nzButton" modifier='quiet'>4</Button>
+                        </div>
+                        <div className="nzButtonRow">
+                            <Button class="nzButton" modifier='outline'>3</Button>
+                            <Button class="nzButton" modifier='outline'>2</Button>
+                            <Button class="nzButton" modifier='outline'>1</Button>
+                        </div>
+                        <div className="nzButtonRow">
+                            <Button class="nzButton" modifier='outline'>Back</Button>
+                            <Button class="nzButton" modifier='outline'>0</Button>
+                            <Button class="nzButton" modifier='outline'>,</Button>
+                        </div>
                     </div>
-                    <div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                    <div className="nzButtonsBlock2">
+                        <div className="nzButtonCol">
+                            <Button class="nzButton" modifier='outline'>/</Button>
+                            <Button class="nzButton" modifier='outline'>*</Button>
+                            <Button class="nzButton" modifier='outline'>-</Button>
+                            <Button class="nzButton" modifier='outline'>+</Button>
+                            <Button class="nzButton" modifier='outline'>=</Button>
+                        </div>
                     </div>
                 </div>
             </Page>

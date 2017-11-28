@@ -5,7 +5,9 @@ import { List, ListItem } from 'react-onsenui'
 class WaigetLastOperations extends Component{
     constructor(props){
         super(props)
-        this.state ={}
+        this.state ={
+            moreFive: false
+        }
     }
 
     renderRow(row, index) {
@@ -17,12 +19,19 @@ class WaigetLastOperations extends Component{
         )
     }
 
+    renderMore(length) {
+        
+    }
+
     render(){
         return (
-            <List 
-                dataSource={this.props.operations.slice(0,5)}
-                renderRow={this.renderRow}
-            />
+            <div>
+                <List 
+                    dataSource={this.props.operations.slice(0,5)}
+                    renderRow={this.renderRow}
+                />
+                {this.renderMore(this.props.operations.length)}
+            </div>
         )
     }
 }
