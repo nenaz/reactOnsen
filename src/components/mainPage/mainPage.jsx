@@ -27,6 +27,7 @@ class MainPage extends Component{
             isOpenLeftMenu: false
         }
 
+        this.renderToolbar = this.renderToolbar.bind(this)
         this.showPopover = this.showPopover.bind(this)
         this.hidePopover = this.hidePopover.bind(this)
         this.canselPopover = this.canselPopover.bind(this)
@@ -66,9 +67,29 @@ class MainPage extends Component{
         // this.props.changeAnimationState('')
     }
 
+    renderToolbar() {
+        return (
+            <Toolbar style={{
+                position: 'relative'
+            }}>
+                <div className="left">
+                    <ToolbarButton onClick={this.showLeftMenu}>
+                        <Icon icon="ion-android-menu, material:md-menu"></Icon>
+                    </ToolbarButton>
+                </div>
+                <div className="center">Center</div>
+                <div className="right">
+                    <ToolbarButton onClick={this.showPopover} ref='button'>
+                        <Icon icon="ion-android-more-vertical"></Icon>
+                    </ToolbarButton>
+                </div>
+            </Toolbar>
+        )
+    }
+
     render(){
         return (
-            <Page>
+            <Page renderToolbar={this.renderToolbar}>
                 <Popover
                     isOpen={this.state.isOpenPopover}
                     onOpen={this.showPopover}
@@ -129,22 +150,7 @@ class MainPage extends Component{
                         </Page>
                     </SplitterSide>
                     <SplitterContent>
-                        <Page renderToolbar={this.renderToolbar}>
-                            <Toolbar style={{
-                                position: 'relative'
-                            }}>
-                                <div className="left">
-                                    <ToolbarButton onClick={this.showLeftMenu}>
-                                        <Icon icon="ion-android-menu, material:md-menu"></Icon>
-                                    </ToolbarButton>
-                                </div>
-                                <div className="center">Center</div>
-                                <div className="right">
-                                    <ToolbarButton onClick={this.showPopover} ref='button'>
-                                        <Icon icon="ion-android-more-vertical"></Icon>
-                                    </ToolbarButton>
-                                </div>
-                            </Toolbar>
+                        <Page >
                             <Section name="AccountsList" />
                             <Section name="Balance" />
                             {/* <Section name="Chart" /> */}

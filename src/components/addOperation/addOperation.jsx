@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { changeAnimationState } from '../../AC'
+import '../../css/App.css'
 
 class AddOperation extends Component{
     constructor(props){
@@ -50,7 +51,36 @@ class AddOperation extends Component{
     render(){
         return (
             <Page renderToolbar={this.renderToolbar}>
-
+                <div>
+                    <div>Доход</div>
+                    <div>Расход</div>
+                    <div>Перевод</div>
+                </div>
+                <div className="amountInput"></div>
+                <div className="fromToText"></div>
+                <div className='keyboard'>
+                    <div>
+                        <div className="button">Доход</div>
+                        <div>Расход</div>
+                        <div>Перевод</div>
+                        <div>Доход</div>
+                        <div>Расход</div>
+                        <div>Перевод</div>
+                        <div>Доход</div>
+                        <div>Расход</div>
+                        <div>Перевод</div>
+                        <div>Доход</div>
+                        <div>Расход</div>
+                        <div>Перевод</div>
+                    </div>
+                    <div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
             </Page>
         )
     }
