@@ -11,11 +11,13 @@ import {
     SplitterSide,
     Toolbar,
     ToolbarButton,
-    Icon
+    Icon,
+    Fab
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import Section from '../pageWidget'
+import { Link } from 'react-router-dom'
 
 class MainPage extends Component{
     constructor(props){
@@ -31,6 +33,7 @@ class MainPage extends Component{
         this.getTarget = this.getTarget.bind(this)
         this.showLeftMenu = this.showLeftMenu.bind(this)
         this.hideLeftMenu = this.hideLeftMenu.bind(this)
+        this.handleAddOperationClick = this.handleAddOperationClick.bind(this)
     }
 
     getTarget() {
@@ -57,6 +60,10 @@ class MainPage extends Component{
 
     hideLeftMenu() {
         this.setState({ isOpenLeftMenu: false });
+    }
+
+    handleAddOperationClick(e) {
+        // this.props.changeAnimationState('')
     }
 
     render(){
@@ -142,9 +149,13 @@ class MainPage extends Component{
                             <Section name="Balance" />
                             {/* <Section name="Chart" /> */}
                             <Section name="LastOperations" />
+                            <Section name="LastOperations" />
                         </Page>
                     </SplitterContent>
                 </Splitter>
+                <Fab position='bottom right'>
+                    <Link to='/addOperation' style={{ textDecoration: 'none' }}>+</Link>
+                </Fab>
             </Page>
         )
     }

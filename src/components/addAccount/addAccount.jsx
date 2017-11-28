@@ -46,7 +46,6 @@ class AddAccount extends Component{
     }
 
     handleAccountNameChange(e) {
-        // debugger
         this.setState({ 
             accountName: e.target.value
         });

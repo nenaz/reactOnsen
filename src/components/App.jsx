@@ -5,7 +5,8 @@ import Loading from './Loading'
 import {
   BrowserRouter as Router,
   Route,
-  Redirect  
+  Redirect,
+  Link
 } from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import store from '../store'
@@ -14,6 +15,7 @@ import AddAccount from './addAccount'
 import MainPage from './mainPage'
 import Utils from '../js/utils'
 import { connect } from 'react-redux'
+import AddOperation from './addOperation'
 
 class App extends Component {
   constructor(props) {
@@ -36,7 +38,7 @@ class App extends Component {
   renderPage({ match: { params } }) {
     switch (params.name) {
       case 'addAccount': return <AddAccount />
-      // case 'final': return <Page3 />
+      case 'addOperation': return <AddOperation />
       default: return <MainPage />
     }
   }

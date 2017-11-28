@@ -14,7 +14,7 @@ class WidgetBalanceSection extends Component {
             balance += (item.balance * 1)
             return item
         })
-        return balance
+        return balance.toFixed(2)
     }
 
     render() {
