@@ -131,14 +131,14 @@ class AddOperation extends Component{
                             <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>4</Button>
                         </div>
                         <div className="nzButtonRow">
-                            <Button class="nzButton" modifier='outline' onClick={this.handlerClickCalcButton}>3</Button>
-                            <Button class="nzButton" modifier='outline' onClick={this.handlerClickCalcButton}>2</Button>
-                            <Button class="nzButton" modifier='outline' onClick={this.handlerClickCalcButton}>1</Button>
+                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>3</Button>
+                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>2</Button>
+                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>1</Button>
                         </div>
                         <div className="nzButtonRow">
-                            <Button class="nzButton" modifier='outline' onClick={this.handlerClickBackButton}>Back</Button>
-                            <Button class="nzButton" modifier='outline' onClick={this.handlerClickCalcButton}>0</Button>
-                            <Button class="nzButton" modifier='outline' onClick={this.handlerClickCommaButton}>,</Button>
+                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickBackButton}>Back</Button>
+                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>0</Button>
+                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCommaButton}>,</Button>
                         </div>
                     </div>
                     <div className="nzButtonsBlock2">

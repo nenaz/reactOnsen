@@ -89,9 +89,8 @@
   position: absolute;
   z-index: 15;
 }
+
 /* -- old page -- */
-
-
 .keyboard {
   display: flex;
   position: absolute;
@@ -106,15 +105,15 @@
 .keyboard .nzButtonsBlock1 .nzButtonRow {
   display: flex;
   flex-direction: row-reverse;
+  height: 25%;
 }
 
 .keyboard .nzButtonsBlock1 .nzButtonRow .nzButton {
   margin: 1px;
-  background-color: #45209b;
+  background-color: #3b2ea7;
   color: white;
   width: 33%;
-  height: 45.5px;
-  line-height: 46px;
+  height: 95%;
 }
 
 .keyboard .nzButtonsBlock2 {

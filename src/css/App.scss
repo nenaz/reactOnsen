@@ -98,12 +98,13 @@
     .nzButtonRow{
       display: flex;
       flex-direction: row-reverse;
+      height: 25%;
       .nzButton{
         margin: 1px;
-        background-color: #c3bbbb;
+        background-color: #3b2ea7;
         color: white;
         width: 33%;
-        height:45.5px;
+        height: 95%;
       }
     }
   }
