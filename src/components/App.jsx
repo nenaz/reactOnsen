@@ -56,8 +56,8 @@ class App extends Component {
                 )} />
                 <div >
                   <ReactCSSTransitionGroup transitionName={Utils.selectAnimationClassForPage(this.props.changeAnimationState)}
-                    transitionEnterTimeout={650}
-                    transitionLeaveTimeout={650}>
+                    transitionEnterTimeout={1250}
+                    transitionLeaveTimeout={1250}>
                     <Route
                       location={location}
                       key={location.key}
@@ -65,7 +65,7 @@ class App extends Component {
                       component={this.renderPage}
                     />
                   </ReactCSSTransitionGroup>
-                </div>
+                </div>        
               </div>
             )} />
           </Router>

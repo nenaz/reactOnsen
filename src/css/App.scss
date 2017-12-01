@@ -37,7 +37,7 @@
 
 .exp-enter-right-to-left.exp-enter-active-right-to-left {
   transform: translate3d(0, 0, 0);
-  transition: all 550ms ease-in-out;
+  transition: all 850ms ease-in-out;
   position: absolute;
   z-index: 15
 }
@@ -51,8 +51,8 @@
 }
 
 .exp-leave-right-to-left.exp-leave-active-right-to-left {
-  transform: translate3d(-30%, 0, 0);
-  transition: all 550ms ease-in-out;
+  transform: translate3d(0%, 0, 0);
+  transition: all 850ms ease-in-out;
   position: absolute;
   z-index: 10
 }
@@ -60,14 +60,14 @@
 
 /* ++ new page ++ */
 .exp-enter-left-to-right {
-  transform: translate3d(-30%, 0, 0);
+  transform: translate3d(0%, 0, 0);
   position: absolute;
   z-index: 10
 }
 
 .exp-enter-left-to-right.exp-enter-active-left-to-right {
   transform: translate3d(0%, 0, 0);
-  transition: all 550ms ease-in-out;
+  transition: all 850ms ease-in-out;
   position: absolute;
   z-index: 10
 }
@@ -82,7 +82,7 @@
 
 .exp-leave-left-to-right.exp-leave-active-left-to-right {
   transform: translate3d(100%, 0, 0);
-  transition: all 550ms ease-in-out;
+  transition: all 850ms ease-in-out;
   position: absolute;
   z-index: 15
 }
