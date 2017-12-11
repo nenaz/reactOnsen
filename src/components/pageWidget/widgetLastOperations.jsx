@@ -11,9 +11,23 @@ class WaigetLastOperations extends Component{
     }
 
     renderRow(row, index) {
+        const x = 40 + Math.round(5 * (Math.random() - 0.5)),
+            y = 40 + Math.round(5 * (Math.random() - 0.5));
+
         return (
             <ListItem key={index} tapBackgroundColor="#0f0f0f" tappable={true}>
-                <div>item
+                <div className='left'>
+                    <img alt="" src={`http://placekitten.com/g/${x}/${y}`}
+                        className='list-item__thumbnail'
+                    />
+                </div>
+                <div  className="center">
+                    <span>{row.amount}</span>
+                    <span>{row.currency}</span>
+                    <div>
+                        <span>{row.data.date}</span>
+                        <span>{row.data.time}</span>
+                    </div>
                 </div>
             </ListItem>
         )

@@ -6,7 +6,7 @@ const addItem = (array, item) => {
     return newarray
 }
 
-export default (operationsList = [1,2,3,4,5,6,7], action) => {
+export default (operationsList = [], action) => {
     const {type, payload} = action
     switch(type) {
         case ADDOPERATIONTOLIST: return addItem(operationsList, payload)

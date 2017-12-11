@@ -91,44 +91,69 @@
 }
 
 /* -- old page -- */
-.keyboard {
+.nzKeyboard {
   display: flex;
   position: absolute;
   width: 100%;
   bottom: 0;
 }
 
-.keyboard .nzButtonsBlock1 {
+.nzKeyboard .nzButtonsBlock1 {
   width: 100%;
 }
 
-.keyboard .nzButtonsBlock1 .nzButtonRow {
+.nzKeyboard .nzButtonsBlock1 .nzButtonRow {
   display: flex;
   flex-direction: row-reverse;
   height: 25%;
 }
 
-.keyboard .nzButtonsBlock1 .nzButtonRow .nzButton {
+.nzKeyboard .nzButtonsBlock1 .nzButtonRow .nzButton {
   margin: 1px;
   background-color: #3b2ea7;
   color: white;
   width: 33%;
-  height: 95%;
 }
 
-.keyboard .nzButtonsBlock2 {
+.nzKeyboard .nzButtonsBlock2 {
   width: 20%;
 }
 
-.keyboard .nzButtonsBlock2 .nzButtonCol {
+.nzKeyboard .nzButtonsBlock2 .nzButtonCol {
   display: flex;
   flex-direction: column;
 }
 
-.keyboard .nzButtonsBlock2 .nzButtonCol .nzButton {
+.nzKeyboard .nzButtonsBlock2 .nzButtonCol .nzButton {
   margin: 1px;
   background-color: #c3bbbb;
   color: white;
+}
+
+.nzTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 50px;
+  align-items: center;
+  color: white;
+}
+
+.nzTitle .nzTitleCol {
+  width: 33%;
+}
+
+.nzAmountInput .nzAmountTextBlock {
+  font-size: 50px;
+}
+
+.nzFromToText select {
+  border: 0px;
+  background-color: #2979ff;
+  width: 100%;
+  height: 50px;
+  color: white;
+  font-size: 30px;
 }
  
 

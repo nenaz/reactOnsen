@@ -155,7 +155,7 @@ class MainPage extends Component{
                             <Section name="Balance" />
                             {/* <Section name="Chart" /> */}
                             <Section name="LastOperations" />
-                            <Section name="LastOperations" />
+
                         </Page>
                     </SplitterContent>
                 </Splitter>

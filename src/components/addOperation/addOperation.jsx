@@ -4,12 +4,14 @@ import {
     Toolbar,
     Icon,
     ToolbarButton,
-    Button
+    Button,
+    Select
 } from 'react-onsenui'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { changeAnimationState } from '../../AC'
+import { changeAnimationState, addOperationToList } from '../../AC'
 import '../../css/App.css'
+import Utils from '../../js/utils'
 
 class AddOperation extends Component{
     constructor(props){
@@ -18,15 +20,30 @@ class AddOperation extends Component{
             inputAmount: '0',
             CD: '',
             comma: false,
-            part: '00'
+            part: '00',
+            accountBalance: '0,00',
+            accountName: props.changeAccountsList[0].name,
         }
 
         this.renderToolbar = this.renderToolbar.bind(this)
+        this.handlerOkClick = this.handlerOkClick.bind(this)
         this.handlerCanselClick = this.handlerCanselClick.bind(this)
         this.handlerClickCalcButton = this.handlerClickCalcButton.bind(this)
         this.handlerMathOperationClick = this.handlerMathOperationClick.bind(this)
         this.handlerClickBackButton = this.handlerClickBackButton.bind(this)
         this.handlerClickCommaButton = this.handlerClickCommaButton.bind(this)
+        this.handleChangeSelect = this.handleChangeSelect.bind(this)
+    }
+
+    handlerOkClick(e) {
+        this.props.addOperationToList({
+            amount: `${this.state.inputAmount},${this.state.part}`,
+            currency: 'RUB',
+            data: Utils.nowDate(true),
+            account: ''
+        })
+        window.history.back()
+        this.handlerCanselClick()
     }
 
     handlerCanselClick() {
@@ -96,29 +113,47 @@ class AddOperation extends Component{
         }
     }
 
-     handlerClickCommaButton() {
+    handlerClickCommaButton() {
         this.setState({
             comma: true
         })
-     }
+    }
+
+    handleChangeSelect(event) {
+        this.setState({
+            accountName: event.target.value,
+            accountBalance: event.target.selectedOptions[0].getAttribute('balance')
+        });
+    }
 
     render(){
         return (
             <Page renderToolbar={this.renderToolbar}>
-                <div>
-                    <div>Доход</div>
-                    <div>Расход</div>
-                    <div>Перевод</div>
+                <div className="nzTitle">
+                    <Button className="nzTitleCol">Доход</Button>
+                    <Button className="nzTitleCol">Расход</Button>
+                    <Button className="nzTitleCol">Перевод</Button>
                 </div>
-                <div className="amountInput">
+                <div className="nzAmountInput">
                     <span>{this.state.CD}</span>
                     <div className="nzAmountTextBlock">
-                        <span>{this.state.inputAmount}{(this.state.comma) ? ',' : ''}{(this.state.comma) ? this.state.part : ''}</span>
+                        <span>{this.state.inputAmount}{(this.state.comma) ? ',' : ''}{(this.state.comma) ?
+                            this.state.part : ''}</span>
                     </div>
                     <span>RUB</span>
                 </div>
-                <div className="fromToText"></div>
-                <div className='keyboard'>
+                <div className="nzFromToText">
+                    <select onChange={this.handleChangeSelect}>
+                        {this.props.changeAccountsList.map((item, key) => {
+                            return <option selected={(item.name === this.state.accountName) ? "selected" : ""}
+                                value={item.name} balance={item.balance}>
+                                {item.name}
+                            </option>
+                        })}
+                    </select>
+                    <span>{this.state.accountBalance}</span>
+                </div>
+                <div className='nzKeyboard'>
                     <div className="nzButtonsBlock1">
                         <div className="nzButtonRow">
                             <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>9</Button>
@@ -156,6 +191,9 @@ class AddOperation extends Component{
     }
 }
 
-export default connect(null, {
-    changeAnimationState
+export default connect((state) => ({
+    changeAccountsList: state.changeAccountsList,
+}), {
+    changeAnimationState,
+    addOperationToList
 })(AddOperation)

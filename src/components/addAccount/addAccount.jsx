@@ -16,7 +16,7 @@ import {
     addAccountToList
 } from '../../AC'
 import { Link } from 'react-router-dom'
-import Utils from '../../js/utils'
+// import Utils from '../../js/utils'
 
 class AddAccount extends Component{
     constructor(props){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ButtonAccount from './Button'
+import ButtonAccount from './ButtonAccount'
 import Utils from '../../js/utils'
 import { connect } from 'react-redux'
 // import { connect } from 'react-redux'

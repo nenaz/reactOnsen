@@ -86,11 +86,36 @@ const addAccountFindError = (name) => {
     }
 }
 
+const formatDate = (str) => {
+    return ('0' + str).slice(-2)
+}
+
+const nowDate = (returnObject) => {
+    let ddd = new Date()
+    const year = ddd.getUTCFullYear(),
+        month = formatDate(ddd.getMonth() + 1),
+        day = formatDate(ddd.getDate()),
+        hour = formatDate(ddd.getHours()),
+        min = formatDate(ddd.getMinutes()),
+        sec = formatDate(ddd.getSeconds())
+    let date = ''
+    if (returnObject) {
+        date = {
+            date: day + '.' + month + '.' + year,
+            time: hour + ':' + min + ':' + sec
+        }
+    } else {
+        date = day + ' ' + month + ' ' + year + ', ' + hour + ':' + min + ':' + sec
+    }
+    return date
+}
+
 var utils = {
     selectButtonsParams,
     selectSectionsParams,
     selectAnimationClassForPage,
-    addAccountFindError
+    addAccountFindError,
+    nowDate
 }
 
 export default utils
