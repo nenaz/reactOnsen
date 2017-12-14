@@ -1,4 +1,5 @@
 export const BACKMAINFROMNEWACCOUNT = 'backMainFromNewAccount'
 export const ADDACCOUNTTOLIST = 'addAccountToList'
+export const EDITACCOUNTINLIST = 'editAccountInList'
 export const REMOVEACCOUNTROMLIST = 'removeAccountFromList'
 export const ADDOPERATIONTOLIST = 'AddOperationToList'

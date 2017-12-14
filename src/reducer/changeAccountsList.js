@@ -1,11 +1,25 @@
+import _ from 'underscore'
 import { 
     ADDACCOUNTTOLIST,
+    EDITACCOUNTINLIST,
     REMOVEACCOUNTROMLIST
 } from '../js/consts'
 
 const addItem = (array,item) => {
     let newarray = array.slice()
     newarray.push(item)
+    return newarray
+}
+
+const editItem = (array, obj) => {
+    const newarray = _.map(array, (item) => {
+        if (obj.accountName === item.name) {
+            item.balance -= obj.accountBalance * 1
+            return item
+        } else {
+            return item
+        }
+    })
     return newarray
 }
 
@@ -55,6 +69,7 @@ export default (accountsList = [
     const { type, payload } = action
     switch (type) {
         case ADDACCOUNTTOLIST: return addItem(accountsList, payload)
+        case EDITACCOUNTINLIST: return editItem(accountsList, payload)
         case REMOVEACCOUNTROMLIST: return removeItem(accountsList, payload)
         default: return accountsList
     }

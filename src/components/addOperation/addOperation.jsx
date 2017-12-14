@@ -4,12 +4,11 @@ import {
     Toolbar,
     Icon,
     ToolbarButton,
-    Button,
-    Select
+    Button
 } from 'react-onsenui'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { changeAnimationState, addOperationToList } from '../../AC'
+import { changeAnimationState, addOperationToList, editAccountInList } from '../../AC'
 import '../../css/App.css'
 import Utils from '../../js/utils'
 
@@ -40,7 +39,11 @@ class AddOperation extends Component{
             amount: `${this.state.inputAmount},${this.state.part}`,
             currency: 'RUB',
             data: Utils.nowDate(true),
-            account: ''
+            account: this.state.accountName
+        })
+        this.props.editAccountInList({
+            accountBalance: `${this.state.inputAmount},${this.state.part}`,
+            accountName: this.state.accountName
         })
         window.history.back()
         this.handlerCanselClick()
@@ -145,7 +148,7 @@ class AddOperation extends Component{
                 <div className="nzFromToText">
                     <select onChange={this.handleChangeSelect}>
                         {this.props.changeAccountsList.map((item, key) => {
-                            return <option selected={(item.name === this.state.accountName) ? "selected" : ""}
+                            return <option key={key} defaultValue={(item.name === this.state.accountName) ? this.state.accountName : ""}
                                 value={item.name} balance={item.balance}>
                                 {item.name}
                             </option>
@@ -195,5 +198,6 @@ export default connect((state) => ({
     changeAccountsList: state.changeAccountsList,
 }), {
     changeAnimationState,
-    addOperationToList
+    addOperationToList,
+    editAccountInList
 })(AddOperation)
