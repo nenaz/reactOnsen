@@ -110,12 +110,21 @@ const nowDate = (returnObject) => {
     return date
 }
 
+const convertTypeOperation = (value) => {
+    switch (value) {
+        case "1": return "+";
+        case "-1": return "";
+        default: return "-";
+    }
+}
+
 var utils = {
     selectButtonsParams,
     selectSectionsParams,
     selectAnimationClassForPage,
     addAccountFindError,
-    nowDate
+    nowDate,
+    convertTypeOperation
 }
 
 export default utils

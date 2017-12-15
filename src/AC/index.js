@@ -2,7 +2,8 @@ import {
     BACKMAINFROMNEWACCOUNT,
     ADDACCOUNTTOLIST,
     ADDOPERATIONTOLIST,
-    EDITACCOUNTINLIST
+    EDITACCOUNTINLIST,
+    SELECTTYPEOPERATION
 } from '../js/consts'
 
 export function changeAnimationState(value) {
@@ -29,6 +30,13 @@ export function editAccountInList(value) {
 export function addOperationToList(value) {
     return {
         type: ADDOPERATIONTOLIST,
+        payload: value
+    }
+}
+
+export function selectTypeOperation(value) {
+    return {
+        type: SELECTTYPEOPERATION,
         payload: value
     }
 }

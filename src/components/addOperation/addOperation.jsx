@@ -11,13 +11,15 @@ import { connect } from 'react-redux'
 import { changeAnimationState, addOperationToList, editAccountInList } from '../../AC'
 import '../../css/App.css'
 import Utils from '../../js/utils'
+import KeyboardMain from '../Keyboard'
+import TypeOperation from './typeOperation'
 
 class AddOperation extends Component{
     constructor(props){
         super(props)
         this.state ={
             inputAmount: '0',
-            CD: '',
+            typeOperation: this.props.typeOperation || "0",
             comma: false,
             part: '00',
             accountBalance: '0,00',
@@ -36,13 +38,13 @@ class AddOperation extends Component{
 
     handlerOkClick(e) {
         this.props.addOperationToList({
-            amount: `${this.state.inputAmount},${this.state.part}`,
+            amount: `${this.state.inputAmount}.${this.state.part}`,
             currency: 'RUB',
             data: Utils.nowDate(true),
             account: this.state.accountName
         })
         this.props.editAccountInList({
-            accountBalance: `${this.state.inputAmount},${this.state.part}`,
+            accountBalance: `${this.state.inputAmount}.${this.state.part}`,
             accountName: this.state.accountName
         })
         window.history.back()
@@ -59,19 +61,26 @@ class AddOperation extends Component{
     renderToolbar() {
         return (
             <Toolbar style={{
-                position: 'relative'
+                position: 'relative',
+                backgroundColor: 'rgb(0, 140, 164)'
             }}>
                 <div className="left">
                     <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
                         <ToolbarButton >
-                            <Icon icon="ion-close" />
+                            <Icon icon="ion-close" style={{
+                                color: 'white'
+                            }}/>
                         </ToolbarButton>
                     </Link>
                 </div>
-                <div className="center">New Operation</div>
+                <div className="center" style={{
+                    color: 'white'
+                }}></div>
                 <div className="right">
                     <ToolbarButton ref='button' onClick={this.handlerOkClick}>
-                        <Icon icon="ion-checkmark" />
+                        <Icon icon="ion-checkmark" style={{
+                            color: 'white'
+                        }}/>
                     </ToolbarButton>
                 </div>
             </Toolbar>
@@ -132,18 +141,18 @@ class AddOperation extends Component{
     render(){
         return (
             <Page renderToolbar={this.renderToolbar}>
-                <div className="nzTitle">
-                    <Button className="nzTitleCol">Доход</Button>
-                    <Button className="nzTitleCol">Расход</Button>
-                    <Button className="nzTitleCol">Перевод</Button>
-                </div>
+                <TypeOperation typeOperation={this.props.typeOperation}/>
                 <div className="nzAmountInput">
-                    <span>{this.state.CD}</span>
-                    <div className="nzAmountTextBlock">
+                    <div className="nzAmountItem nzTypeOperation">
+                        <span>{Utils.convertTypeOperation(this.props.typeOperation)}</span>
+                    </div>
+                    <div className="nzAmountItem nzAmountTextBlock">
                         <span>{this.state.inputAmount}{(this.state.comma) ? ',' : ''}{(this.state.comma) ?
                             this.state.part : ''}</span>
                     </div>
-                    <span>RUB</span>
+                    <div className="nzAmountItem nzCurrency">
+                        <span>RUB</span>
+                    </div>
                 </div>
                 <div className="nzFromToText">
                     <select onChange={this.handleChangeSelect}>
@@ -156,39 +165,14 @@ class AddOperation extends Component{
                     </select>
                     <span>{this.state.accountBalance}</span>
                 </div>
-                <div className='nzKeyboard'>
-                    <div className="nzButtonsBlock1">
-                        <div className="nzButtonRow">
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>9</Button>
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>8</Button>
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>7</Button>
-                        </div>
-                        <div className="nzButtonRow">
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>6</Button>
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>5</Button>
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>4</Button>
-                        </div>
-                        <div className="nzButtonRow">
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>3</Button>
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>2</Button>
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>1</Button>
-                        </div>
-                        <div className="nzButtonRow">
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickBackButton}>Back</Button>
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCalcButton}>0</Button>
-                            <Button class="nzButton" modifier='quiet' onClick={this.handlerClickCommaButton}>,</Button>
-                        </div>
-                    </div>
-                    <div className="nzButtonsBlock2">
-                        <div className="nzButtonCol">
-                            <Button class="nzButton" modifier='outline' onClick={this.handlerMathOperationClick}>/</Button>
-                            <Button class="nzButton" modifier='outline'>*</Button>
-                            <Button class="nzButton" modifier='outline'>-</Button>
-                            <Button class="nzButton" modifier='outline'>+</Button>
-                            <Button class="nzButton" modifier='outline'>=</Button>
-                        </div>
-                    </div>
-                </div>
+                
+                <Button className="" modifier='outline large'>Шаблоны</Button>
+                <KeyboardMain
+                    handlerClickCalcButton={this.handlerClickCalcButton}
+                    handlerClickBackButton={this.handlerClickBackButton}
+                    handlerClickCommaButton={this.handlerClickCommaButton}
+                    handlerMathOperationClick={this.handlerMathOperationClick}
+                />
             </Page>
         )
     }
@@ -196,6 +180,7 @@ class AddOperation extends Component{
 
 export default connect((state) => ({
     changeAccountsList: state.changeAccountsList,
+    typeOperation: state.changeTypeOperation
 }), {
     changeAnimationState,
     addOperationToList,

@@ -100,6 +100,7 @@
 
 .nzKeyboard .nzButtonsBlock1 {
   width: 100%;
+  background-color: #fff;
 }
 
 .nzKeyboard .nzButtonsBlock1 .nzButtonRow {
@@ -109,10 +110,11 @@
 }
 
 .nzKeyboard .nzButtonsBlock1 .nzButtonRow .nzButton {
-  margin: 1px;
-  background-color: #3b2ea7;
-  color: white;
+  color: #606060;
   width: 33%;
+  font-size: 25px;
+  height: 45px;
+  line-height: 45px;
 }
 
 .nzKeyboard .nzButtonsBlock2 {
@@ -126,25 +128,55 @@
 
 .nzKeyboard .nzButtonsBlock2 .nzButtonCol .nzButton {
   margin: 1px;
-  background-color: #c3bbbb;
-  color: white;
+  font-size: 20px;
+  color: #606060;
 }
 
 .nzTitle {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  height: 50px;
+  background-color: #009ac4;
   align-items: center;
+  border-bottom: 1px solid #007689;
   color: white;
 }
 
 .nzTitle .nzTitleCol {
   width: 33%;
+  height: 50px;
+  line-height: 50px;
+  color: white;
 }
 
-.nzAmountInput .nzAmountTextBlock {
-  font-size: 50px;
+.nzTitle .nzTitleCol.nzActive {
+  background-color: #008ca4;
+}
+
+.nzTitle .nzTitleCol.nzCenterButton {
+  border-left: 1px solid #007689;
+  border-right: 1px solid #007689;
+}
+
+.nzAmountInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
+  background-color: #009ac4;
+  color: white;
+}
+
+.nzAmountInput .nzAmountItem {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.nzAmountInput .nzAmountItem.nzAmountTextBlock {
+  font-size: 100px;
+}
+
+.nzAmountInput .nzAmountItem.nzTypeOperation {
+  font-size: 35px;
 }
 
 .nzFromToText select {

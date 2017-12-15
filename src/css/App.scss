@@ -95,16 +95,17 @@
   bottom: 0;
   .nzButtonsBlock1{
     width: 100%;
+    background-color: #fff;
     .nzButtonRow{
       display: flex;
       flex-direction: row-reverse;
       height: 25%;
       .nzButton{
-        margin: 1px;
-        background-color: #3b2ea7;
-        color: white;
+        color: rgb(96, 96, 96);
         width: 33%;
-        // height: 95%;
+        font-size: 25px;
+        height: 45px;
+        line-height: 45px;
       }
     }
   }
@@ -115,8 +116,8 @@
       flex-direction: column;
       .nzButton{
         margin: 1px;
-        background-color: #c3bbbb;
-        color: white;
+        font-size: 20px;
+        color: rgb(96, 96, 96);
       }
     }
   }
@@ -124,21 +125,42 @@
 
 .nzTitle{
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  height: 50px;
+  background-color: rgb(0,154,196);
   align-items: center;
-  // background: #3b2ea7;
+  border-bottom: 1px solid rgb(0,118,137);
   color: white;
   .nzTitleCol{
     width: 33%;
-    // height: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    &.nzActive{
+      background-color: rgb(0,140,164);
+    }
+    &.nzCenterButton{
+      border-left: 1px solid rgb(0,118,137);
+      border-right: 1px solid rgb(0,118,137);
+    }
   }
 }
 
 .nzAmountInput{
-  .nzAmountTextBlock{
-    font-size: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
+  background-color: rgb(0,154,196);
+  color: white;
+  .nzAmountItem{
+    flex-grow: 1;
+    text-align: center;
+    &.nzAmountTextBlock{
+      font-size: 100px;
+    }
+    &.nzTypeOperation{
+      font-size: 35px;
+    }
   }
 }
 .nzFromToText{
