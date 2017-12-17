@@ -17,10 +17,9 @@ export default class Requester {
 
     send(url, type, params) {
         return new Promise(function (resolve, reject) {
-
             var xhr = new XMLHttpRequest();
             xhr.open(type, url, true);
-
+            xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = function () {
                 if (this.status === 200) {
                     resolve(this.response);
@@ -30,11 +29,9 @@ export default class Requester {
                     reject(error);
                 }
             };
-
             xhr.onerror = function () {
                 reject(new Error("Network Error"));
             };
-
             xhr.send(JSON.stringify(params));
         });
     }

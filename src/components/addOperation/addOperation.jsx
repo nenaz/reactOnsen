@@ -143,6 +143,12 @@ class AddOperation extends Component{
         });
     }
 
+    componentDidMount() {
+        const elem = document.getElementsByClassName('nzAmountTextBlock')[0]
+        const width = elem.offsetWidth
+        elem.style.maxWidth = width + 'px'
+    }
+
     render(){
         return (
             <Page renderToolbar={this.renderToolbar}>

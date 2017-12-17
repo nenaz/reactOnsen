@@ -2,7 +2,7 @@ import { ADDOPERATIONTOLIST } from '../js/consts'
 
 const addItem = (array, item) => {
     let newarray = array.slice()
-    newarray.push(item)
+    newarray.unshift(item)
     return newarray
 }
 

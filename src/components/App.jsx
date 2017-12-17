@@ -50,7 +50,7 @@ class App extends Component {
       const req = new Requester()
       req.send('http://127.0.0.1:8000/getLastFive', 'POST').then(result => {
         console.log(result)
-        const arrOper = JSON.parse(result)
+        const arrOper = (JSON.parse(result)).reverse()
         arrOper.map((item) => {
           this.props.addOperationToList(item)
         })

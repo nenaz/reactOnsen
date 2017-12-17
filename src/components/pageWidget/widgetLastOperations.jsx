@@ -1,8 +1,6 @@
 import React,{ Component} from 'react'
 import { connect } from 'react-redux'
 import { List, ListItem } from 'react-onsenui'
-// import Requester from '../../js/requester'
-import { addOperationToList } from '../../AC'
 
 class WaigetLastOperations extends Component{
     constructor(props){
@@ -39,23 +37,11 @@ class WaigetLastOperations extends Component{
         
     }
 
-    // componentWillMount() {
-    //     if (this.props.operations) {
-    //     const req = new Requester()
-    //     req.send('http://127.0.0.1:8000/getLastFive', 'POST').then(result => {
-    //         console.log(result)
-    //         const arrOper = JSON.parse(result)
-    //         arrOper.map((item) => {
-    //             this.props.addOperationToList(item)
-    //         })
-    //     })
-    // }
-
     render(){
         return (
             <div>
                 <List 
-                    dataSource={this.props.operations.slice(-5)}
+                    dataSource={this.props.operations.slice(0,5)}
                     renderRow={this.renderRow}
                 />
                 {this.renderMore(this.props.operations.length)}
@@ -66,6 +52,4 @@ class WaigetLastOperations extends Component{
 
 export default connect((state) => ({
     operations: state.changeLastOperations
-}),{
-    addOperationToList
-})(WaigetLastOperations)
+}))(WaigetLastOperations)

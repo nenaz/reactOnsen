@@ -118,12 +118,14 @@ const convertTypeOperation = (value) => {
     }
 }
 
-// const avtoEditedTextSize = (value) => {
-//     let textCount = value.split('').length
-    // if () {
-        
+const avtoEditedTextSize = (value) => {
+    // let textCount = value.split('').length
+    // if (value.length <= 3) {
+    //     return 100
+    // } else if (value.length === 4) {
+    //     return 89 71 59 51
     // }
-// }
+}
 
 var utils = {
     selectButtonsParams,

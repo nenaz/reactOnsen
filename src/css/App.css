@@ -173,6 +173,9 @@
 
 .nzAmountInput .nzAmountItem.nzAmountTextBlock {
   font-size: 100px;
+  flex-grow: 3;
+  text-align: right;
+  min-width: 200px;
 }
 
 .nzAmountInput .nzAmountItem.nzTypeOperation {
