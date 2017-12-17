@@ -24,6 +24,7 @@ class KeyboardMain extends Component{
                                 let callback = this.props.handlerClickCalcButton
                                 if (isNaN(num)) {
                                     callback = (num === 'Back') ? this.props.handlerClickBackButton : this.props.handlerClickCommaButton
+                                    // callback = (num === 'Back') ? this.request : this.props.handlerClickCommaButton
                                 }
                                 return <Button key={key} class="nzButton" modifier='outline' onClick={callback}>{num}</Button>
                             })}

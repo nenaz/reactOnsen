@@ -14,11 +14,13 @@ const addItem = (array,item) => {
 const editItem = (array, obj) => {
     const newarray = _.map(array, (item) => {
         if (obj.accountName === item.name) {
-            item.balance -= obj.accountBalance * 1
-            return item
-        } else {
-            return item
+            if (obj.CD === '0') {
+                item.balance -= obj.accountBalance * 1
+            } else if (obj.CD === '1') {
+                item.balance += obj.accountBalance * 1
+            }
         }
+        return item
     })
     return newarray
 }

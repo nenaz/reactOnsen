@@ -13,6 +13,7 @@ import '../../css/App.css'
 import Utils from '../../js/utils'
 import KeyboardMain from '../Keyboard'
 import TypeOperation from './typeOperation'
+import Requester from '../../js/requester'
 
 class AddOperation extends Component{
     constructor(props){
@@ -26,6 +27,8 @@ class AddOperation extends Component{
             accountName: props.changeAccountsList[0].name,
         }
 
+        this.req = new Requester()
+
         this.renderToolbar = this.renderToolbar.bind(this)
         this.handlerOkClick = this.handlerOkClick.bind(this)
         this.handlerCanselClick = this.handlerCanselClick.bind(this)
@@ -37,16 +40,18 @@ class AddOperation extends Component{
     }
 
     handlerOkClick(e) {
-        this.props.addOperationToList({
+        const addObject = {
             amount: `${this.state.inputAmount}.${this.state.part}`,
             currency: 'RUB',
             data: Utils.nowDate(true),
             account: this.state.accountName
-        })
+        }
+        this.props.addOperationToList(addObject)
         this.props.editAccountInList({
-            accountBalance: `${this.state.inputAmount}.${this.state.part}`,
-            accountName: this.state.accountName
+            accountBalance: addObject.amount,
+            accountName: addObject.account
         })
+        this.req.send('http://127.0.0.1:8000/addOperation', 'POST', addObject)
         window.history.back()
         this.handlerCanselClick()
     }

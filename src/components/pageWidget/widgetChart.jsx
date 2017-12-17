@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import {Line as LineChart} from 'react-chartjs'
-import Chart from 'chart.js' 
+// import Chart from 'chart.js' 
 
 class WidgetChart extends Component{
     constructor(props){

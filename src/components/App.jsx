@@ -6,7 +6,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Link
+  // Link
 } from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import store from '../store'
@@ -16,6 +16,8 @@ import MainPage from './mainPage'
 import Utils from '../js/utils'
 import { connect } from 'react-redux'
 import AddOperation from './addOperation'
+import { addOperationToList } from '../AC'
+import Requester from '../js/requester'
 
 class App extends Component {
   constructor(props) {
@@ -42,6 +44,18 @@ class App extends Component {
       default: return <MainPage />
     }
   }
+
+  componentWillMount() {
+    // if (this.props.operations) {
+      const req = new Requester()
+      req.send('http://127.0.0.1:8000/getLastFive', 'POST').then(result => {
+        console.log(result)
+        const arrOper = JSON.parse(result)
+        arrOper.map((item) => {
+          this.props.addOperationToList(item)
+        })
+      })
+    }
 
   render() {
     console.log(this.props.changeAnimationState)
@@ -79,6 +93,8 @@ class App extends Component {
   }
 }
 
-export default connect((state => ({
+export default connect((state) => ({
   changeAnimationState: state.changeAnimationState
-})))(App)
+}), {
+  addOperationToList
+})(App)
