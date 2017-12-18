@@ -51,7 +51,7 @@ class AddOperation extends Component{
             accountBalance: addObject.amount,
             accountName: addObject.account
         })
-        this.req.send('http://127.0.0.1:8000/addOperation', 'POST', addObject)
+        this.req.send('addOperation', 'POST', addObject)
         window.history.back()
         this.handlerCanselClick()
     }

@@ -15,10 +15,10 @@ export default class Requester {
     //     this.xhr.send(JSON.stringify(params))
     // }
 
-    send(url, type, params) {
+    send(name, type, params) {
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
-            xhr.open(type, url, true);
+            xhr.open(type, 'https://guarded-sea-48553.herokuapp.com/' + name, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = function () {
                 if (this.status === 200) {
