@@ -1,24 +1,10 @@
+import { SERVERURL } from './consts'
+
 export default class Requester {
-    // constructor() {
-        // this.xhr = new XMLHttpRequest()
-    // }
-
-    // send(url, type, params) {
-    //     this.xhr.open(type, url, true);
-    //     this.xhr.setRequestHeader('Content-Type', 'application/json');
-        
-    //     this.xhr.onreadystatechange = function () {
-    //         if (this.readyState !== 4) return;
-    //         console.log(this.responseText);
-    //         return this.responseText
-    //     }
-    //     this.xhr.send(JSON.stringify(params))
-    // }
-
     send(name, type, params) {
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
-            xhr.open(type, 'https://guarded-sea-48553.herokuapp.com/' + name, true);
+            xhr.open(type, SERVERURL + name, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = function () {
                 if (this.status === 200) {

@@ -25,6 +25,7 @@ class AddOperation extends Component{
             part: '00',
             accountBalance: '0,00',
             accountName: props.changeAccountsList[0].name,
+            id: this.props.changeAccountsList[0]._id
         }
 
         this.req = new Requester()
@@ -44,14 +45,19 @@ class AddOperation extends Component{
             amount: `${this.state.inputAmount}.${this.state.part}`,
             currency: 'RUB',
             data: Utils.nowDate(true),
-            account: this.state.accountName
+            // account: this.state.accountName
+            accountId: this.state.id
+        }
+        const updateObj = {
+            accountBalance: addObject.amount,
+            // accountName: addObject.account,
+            typeOperation: this.state.typeOperation,
+            id: this.state.id
         }
         this.props.addOperationToList(addObject)
-        this.props.editAccountInList({
-            accountBalance: addObject.amount,
-            accountName: addObject.account
-        })
+        this.props.editAccountInList(updateObj)
         this.req.send('addOperation', 'POST', addObject)
+        this.req.send('updateAccount', 'POST', updateObj)
         window.history.back()
         this.handlerCanselClick()
     }
@@ -138,8 +144,9 @@ class AddOperation extends Component{
 
     handleChangeSelect(event) {
         this.setState({
-            accountName: event.target.value,
-            accountBalance: event.target.selectedOptions[0].getAttribute('balance')
+            // accountName: event.target.value,
+            // accountBalance: event.target.selectedOptions[0].getAttribute('balance')
+            id: event.target.selectedOptions[0].getAttribute('_id')
         });
     }
 
@@ -168,7 +175,7 @@ class AddOperation extends Component{
                 <div className="nzFromToText">
                     <select onChange={this.handleChangeSelect}>
                         {this.props.changeAccountsList.map((item, key) => {
-                            return <option key={key} defaultValue={(item.name === this.state.accountName) ? this.state.accountName : ""}
+                            return <option key={key} id={item._id} defaultValue={(item.name === this.state.accountName) ? this.state.accountName : ""}
                                 value={item.name} balance={item.balance}>
                                 {item.name}
                             </option>

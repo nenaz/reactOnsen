@@ -48,7 +48,7 @@ class ButtonAccount extends Component {
                 border: '1px solid ' + this.props.params.borderColor,
                 boxSizing: 'border-box',
                 margin: '1px 0'
-            }}>
+            }} id={this.props.params._id}>
                 <span>{this.props.params.name}</span>
                 {this.renderIcon()}
             </div>

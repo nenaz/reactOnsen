@@ -13,10 +13,10 @@ const addItem = (array,item) => {
 
 const editItem = (array, obj) => {
     const newarray = _.map(array, (item) => {
-        if (obj.accountName === item.name) {
-            if (obj.CD === '0') {
+        if (obj.id === item._id) {
+            if (obj.typeOperation === '0') {
                 item.balance -= obj.accountBalance * 1
-            } else if (obj.CD === '1') {
+            } else if (obj.typeOperation === '1') {
                 item.balance += obj.accountBalance * 1
             }
         }
@@ -31,42 +31,42 @@ const removeItem = (array, item) => {
 }
 
 export default (accountsList = [
-    {
-        name: 'Наличные',
-        balance: 0.00,
-        currency: 'RUB',
-        pname: ''
-    },
-    {
-        name: 'Тинькоф',
-        balance: 64506.77,
-        currency: 'RUB',
-        pname: ''
-    },
-    {
-        name: 'Сбер',
-        balance: 3947.25,
-        currency: 'RUB',
-        pname: ''
-    },
-    {
-        name: 'Открытие',
-        balance: 28825.96,
-        currency: 'RUB',
-        pname: ''
-    },
-    {
-        name: 'Номос',
-        balance: 12402.94,
-        currency: 'RUB',
-        pname: ''
-    },
-    {
-        name: 'Рокет',
-        balance: 10000.00,
-        currency: 'RUB',
-        pname: ''
-    }
+    // {
+    //     name: 'Наличные',
+    //     balance: 0.00,
+    //     currency: 'RUB',
+    //     pname: ''
+    // },
+    // {
+    //     name: 'Тинькоф',
+    //     balance: 64506.77,
+    //     currency: 'RUB',
+    //     pname: ''
+    // },
+    // {
+    //     name: 'Сбер',
+    //     balance: 3947.25,
+    //     currency: 'RUB',
+    //     pname: ''
+    // },
+    // {
+    //     name: 'Открытие',
+    //     balance: 28825.96,
+    //     currency: 'RUB',
+    //     pname: ''
+    // },
+    // {
+    //     name: 'Номос',
+    //     balance: 12402.94,
+    //     currency: 'RUB',
+    //     pname: ''
+    // },
+    // {
+    //     name: 'Рокет',
+    //     balance: 10000.00,
+    //     currency: 'RUB',
+    //     pname: ''
+    // }
     ], action) => {
     const { type, payload } = action
     switch (type) {

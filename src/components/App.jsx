@@ -16,7 +16,7 @@ import MainPage from './mainPage'
 import Utils from '../js/utils'
 import { connect } from 'react-redux'
 import AddOperation from './addOperation'
-import { addOperationToList } from '../AC'
+import { addOperationToList, addAccountToList } from '../AC'
 import Requester from '../js/requester'
 
 class App extends Component {
@@ -27,6 +27,8 @@ class App extends Component {
     }
 
     this.renderPage = this.renderPage.bind(this)
+    this.getOperations = this.getOperations.bind(this)
+    this.getAccounts = this.getAccounts.bind(this)
   }
 
   componentDidMount() {
@@ -45,16 +47,34 @@ class App extends Component {
     }
   }
 
+  getOperations(req) {
+    req.send('getLastFive', 'POST').then(result => {
+      // console.log(result)
+      const arrOper = (JSON.parse(result)).reverse()
+      arrOper.map(item => this.props.addOperationToList(item))
+    })
+  }
+
+  getAccounts(req) {
+    req.send('getAccounts', 'POST').then(result => {
+      console.log(result)
+      const arrAcc = (JSON.parse(result)).reverse()
+      arrAcc.map(item => this.props.addAccountToList(item))
+    })
+  }
+
   componentWillMount() {
     // if (this.props.operations) {
       const req = new Requester()
-      req.send('getLastFive', 'POST').then(result => {
-        console.log(result)
-        const arrOper = (JSON.parse(result)).reverse()
-        arrOper.map((item) => {
-          this.props.addOperationToList(item)
-        })
-      })
+      // req.send('getLastFive', 'POST').then(result => {
+      //   console.log(result)
+      //   const arrOper = (JSON.parse(result)).reverse()
+      //   arrOper.map((item) => {
+      //     this.props.addOperationToList(item)
+      //   })
+      // })
+      this.getOperations(req)
+      this.getAccounts(req)
     }
 
   render() {
@@ -96,5 +116,6 @@ class App extends Component {
 export default connect((state) => ({
   changeAnimationState: state.changeAnimationState
 }), {
-  addOperationToList
+  addOperationToList,
+  addAccountToList
 })(App)

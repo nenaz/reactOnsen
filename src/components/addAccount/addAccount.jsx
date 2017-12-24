@@ -6,7 +6,8 @@ import {
     Icon,
     Input,
     Select,
-    Toast
+    Toast,
+    Fab
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
@@ -16,7 +17,7 @@ import {
     addAccountToList
 } from '../../AC'
 import { Link } from 'react-router-dom'
-// import Utils from '../../js/utils'
+import Requester from '../../js/requester'
 
 class AddAccount extends Component{
     constructor(props){
@@ -28,6 +29,8 @@ class AddAccount extends Component{
             toastShown: false,
             error: false
         }
+
+        this.req = new Requester()
 
         this.renderToolbar = this.renderToolbar.bind(this)
         this.handlerCanselClick = this.handlerCanselClick.bind(this)
@@ -68,12 +71,14 @@ class AddAccount extends Component{
     }
 
     handlerOkClick(e) {
-        this.props.addAccountToList({
+        const addObject = {
             name: this.state.accountName,
             balance: this.state.amount,
             currency: 'RUB',
             pname: 'AccountButton'
-        })
+        }
+        this.props.addAccountToList(addObject)
+        this.req.send('addAccount', 'POST', addObject)
         window.history.back()
         this.handlerCanselClick()
     }
@@ -111,6 +116,16 @@ class AddAccount extends Component{
             </Toolbar>
         )
     }
+    
+    // renderBottomTollbar() {
+    //     return (
+    //         <div className="right">
+    //             <ToolbarButton ref='button' onClick={this.handlerOkClick}>
+    //                 <Icon icon="ion-checkmark" />
+    //             </ToolbarButton>
+    //         </div>
+    //     );
+    // }
 
     render(){
         return (
@@ -163,6 +178,13 @@ class AddAccount extends Component{
                         Dismiss
                     </button>
                 </Toast>
+                <Fab position='bottom right' onClick={this.handlerOkClick}>
+                    <Icon icon="ion-checkmark" style={{
+                        position: 'relative',
+                        top: '-3px',
+                        left: '1px'
+                    }}/>
+                </Fab>
             </Page>
         )
     }
