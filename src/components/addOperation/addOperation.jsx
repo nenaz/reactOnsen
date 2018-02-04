@@ -15,6 +15,11 @@ import KeyboardMain from '../Keyboard'
 import TypeOperation from './typeOperation'
 import Requester from '../../js/requester'
 
+
+const COEFFICIENT = 0.46;
+// const FORMULA = `calc(1rem + ((1vw - ${this.generateAmountFontSize()}) * 20))`;
+
+
 class AddOperation extends Component{
     constructor(props){
         super(props)
@@ -25,7 +30,8 @@ class AddOperation extends Component{
             part: '00',
             accountBalance: '0,00',
             accountName: props.changeAccountsList[0].name,
-            id: this.props.changeAccountsList[0]._id
+            id: this.props.changeAccountsList[0]._id,
+            amountfontSize: 'calc(1rem + (1vw - 0px) * 20)',
         }
 
         this.req = new Requester()
@@ -38,6 +44,7 @@ class AddOperation extends Component{
         this.handlerClickBackButton = this.handlerClickBackButton.bind(this)
         this.handlerClickCommaButton = this.handlerClickCommaButton.bind(this)
         this.handleChangeSelect = this.handleChangeSelect.bind(this)
+        this.generateAmountFontSize = this.generateAmountFontSize.bind(this)
     }
 
     handlerOkClick(e) {
@@ -107,8 +114,10 @@ class AddOperation extends Component{
             })
         } else {
             this.setState({
-                inputAmount: amount + e.target.textContent
-            })
+                inputAmount: amount + e.target.textContent,
+            }, () => {
+                this.generateAmountFontSize();
+            });
         }
     }
 
@@ -132,7 +141,9 @@ class AddOperation extends Component{
         } else {
             this.setState({
                 inputAmount: amount.substring(0, amount.length - 1)
-            })
+            }, () => {
+                this.generateAmountFontSize();
+            });
         }
     }
 
@@ -156,6 +167,19 @@ class AddOperation extends Component{
         elem.style.maxWidth = width + 'px'
     }
 
+    generateAmountFontSize() {
+        const nowLength = this.state.inputAmount.length - 5;
+        let res;
+        if (nowLength > 0) {
+            res = COEFFICIENT * nowLength;
+        } else {
+            res = 0;
+        }
+        this.setState({
+            amountfontSize: `calc(1rem + (1vw - ${res}px) * 20)`,
+        });
+    }
+
     render(){
         return (
             <Page renderToolbar={this.renderToolbar}>
@@ -165,7 +189,9 @@ class AddOperation extends Component{
                         <span>{Utils.convertTypeOperation(this.props.typeOperation)}</span>
                     </div>
                     <div className="nzAmountItem nzAmountTextBlock">
-                        <span>{this.state.inputAmount}{(this.state.comma) ? ',' : ''}{(this.state.comma) ?
+                        <span style={{
+                            fontSize: this.state.amountfontSize,
+                        }}>{this.state.inputAmount}{(this.state.comma) ? ',' : ''}{(this.state.comma) ?
                             this.state.part : ''}</span>
                     </div>
                     <div className="nzAmountItem nzCurrency">
