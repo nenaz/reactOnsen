@@ -77,7 +77,7 @@ class MainPage extends Component{
                         <Icon icon="ion-android-menu, material:md-menu"></Icon>
                     </ToolbarButton>
                 </div>
-                <div className="center">Center</div>
+                <div className="center">Текущее состояние</div>
                 <div className="right">
                     <ToolbarButton onClick={this.showPopover} ref='button'>
                         <Icon icon="ion-android-more-vertical"></Icon>

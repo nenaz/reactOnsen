@@ -21,10 +21,23 @@ class WaigetLastOperations extends Component{
                         className='list-item__thumbnail'
                     />
                 </div>
-                <div  className="center">
-                    <span>{row.amount}</span>
-                    <span>{row.currency}</span>
-                    <div>
+                <div className="center" style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                }}>
+                    <div style={{
+                        flexGrow: 1,
+                        justifyContent: 'space-around',
+                        display: 'flex'
+                }}>
+                        <span style={{ paddingRight: '7px' }}>{row.amount}</span>
+                        {/* <span>{row.currency}</span> */}
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}>
                         <span>{row.data.date}</span>
                         <span>{row.data.time}</span>
                     </div>
