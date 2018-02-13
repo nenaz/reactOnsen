@@ -19,11 +19,16 @@ import { Link } from 'react-router-dom'
 class EditAccount extends Component{
     constructor(props){
         super(props)
-        this.state ={}
+        this.state = {}
 
         this.renderToolbar = this.renderToolbar.bind(this)
         this.handlerCanselClick = this.handlerCanselClick.bind(this)
+        this.handlerOkClick = this.handlerOkClick.bind(this)
     }
+
+    // componentWillMount() {
+
+    // }
 
     handlerCanselClick() {
         this.props.changeAnimationState('backMainFromNewAccount')
@@ -50,12 +55,21 @@ class EditAccount extends Component{
         )
     }
 
+    handlerOkClick(e) {
+
+    }
+
     render() {
         return (
             <Page renderToolbar={this.renderToolbar}>
                 <div style={{
                     margin: '8px'
                 }}>
+                    <section>
+                        
+                    </section>
+                    
+                    
                     <div style={{
                         margin: '8px',
                         display: 'flex',
@@ -119,7 +133,9 @@ class EditAccount extends Component{
     }
 }
 
-export default connect(null, {
+export default connect((state) => ({
+    accountToEdit: state.changeAccountToEdit
+}), {
     changeAnimationState,
     addAccountToList
 })(EditAccount)

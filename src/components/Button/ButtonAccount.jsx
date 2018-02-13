@@ -4,8 +4,10 @@ import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { changeAnimationState } from '../../AC'
-// import PropTypes from 'prop-types'
+import {
+    changeAnimationState,
+    accountToEdit
+} from '../../AC'
 
 class ButtonAccount extends Component {
     constructor(props) {
@@ -14,10 +16,15 @@ class ButtonAccount extends Component {
 
         this.renderIcon = this.renderIcon.bind(this)
         this.handlerButtonClick = this.handlerButtonClick.bind(this)
+        this.handleEditAccount = this.handleEditAccount.bind(this)
     }
 
-    handlerButtonClick() {
-        this.props.changeAnimationState('')
+    handlerButtonClick(event) {
+        this.state.changeAnimationState('')
+    }
+
+    handleEditAccount(e) {
+        this.props.accountToEdit(this.props.params._id);
     }
 
     renderIcon() {
@@ -35,7 +42,12 @@ class ButtonAccount extends Component {
             if (this.props.params.linkEnable) {
                 const link = '/' + this.props.params.link
                 return (
-                    <Link to={link} style={{ textDecoration: 'none' }}>
+                    <Link to={{
+                        pathname: link,
+                        state: {
+                                fromDashboard: true
+                            }
+                        }} style={{ textDecoration: 'none' }} onClick={this.handleEditAccount}>
                         <Ons.Icon icon={this.props.params.icon} />
                     </Link>
                 )
@@ -66,11 +78,7 @@ class ButtonAccount extends Component {
     }
 }
 
-// ButtonAccount.propsType = {
-//     changeAnimationState: PropTypes.func,
-//     editAccount: PropTypes.func,
-// }
-
-export default connect((state => ({
+export default connect(null, {
+    accountToEdit,
     changeAnimationState
-})))(ButtonAccount)
+})(ButtonAccount)
