@@ -5,6 +5,7 @@ import 'onsenui/css/onsen-css-components.css'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { changeAnimationState } from '../../AC'
+// import PropTypes from 'prop-types'
 
 class ButtonAccount extends Component {
     constructor(props) {
@@ -29,7 +30,16 @@ class ButtonAccount extends Component {
                     </Link>
                 )
             }
-            return <Ons.Icon icon={this.props.params.icon} />
+            return <Ons.Icon icon={this.props.params.icon} onClick={this.props.editAccount}/>
+        } else {
+            if (this.props.params.linkEnable) {
+                const link = '/' + this.props.params.link
+                return (
+                    <Link to={link} style={{ textDecoration: 'none' }}>
+                        <Ons.Icon icon={this.props.params.icon} />
+                    </Link>
+                )
+            }
         }
         return <span>{this.props.params.balance}</span>
     }
@@ -55,6 +65,11 @@ class ButtonAccount extends Component {
         )
     }
 }
+
+// ButtonAccount.propsType = {
+//     changeAnimationState: PropTypes.func,
+//     editAccount: PropTypes.func,
+// }
 
 export default connect((state => ({
     changeAnimationState

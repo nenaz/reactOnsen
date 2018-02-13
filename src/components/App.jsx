@@ -12,6 +12,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import store from '../store'
 import { Provider } from 'react-redux'
 import AddAccount from './addAccount'
+import EditAccount from './EditAccount'
 import MainPage from './mainPage'
 import Utils from '../js/utils'
 import { connect } from 'react-redux'
@@ -43,6 +44,7 @@ class App extends Component {
     switch (params.name) {
       case 'addAccount': return <AddAccount />
       case 'addOperation': return <AddOperation />
+      case 'editAccount': return <EditAccount />
       default: return <MainPage />
     }
   }

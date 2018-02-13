@@ -20,7 +20,8 @@ const selectButtonsParams = (name) => {
             textSize: '8.5px',
             borderColor: '#939687',
             iconEnable: false,
-            linkEnable: false,
+            linkEnable: true,
+            link: 'editAccount'
         }
         default: return {
             pname: 'default',
@@ -116,15 +117,6 @@ const convertTypeOperation = (value) => {
         case "-1": return "";
         default: return "-";
     }
-}
-
-const avtoEditedTextSize = (value) => {
-    // let textCount = value.split('').length
-    // if (value.length <= 3) {
-    //     return 100
-    // } else if (value.length === 4) {
-    //     return 89 71 59 51
-    // }
 }
 
 var utils = {
