@@ -24,7 +24,7 @@ class ButtonAccount extends Component {
     }
 
     handleEditAccount(e) {
-        this.props.accountToEdit(this.props.params._id);
+        this.props.accountToEdit(this.props.params);
     }
 
     renderIcon() {

@@ -1,9 +1,9 @@
 import { ACCOUNTTOEDIT } from '../js/consts'
 
-export default (id = '', action) => {
+export default (obj = {}, action) => {
     const { type, payload } = action
     switch (type) {
         case ACCOUNTTOEDIT: return payload
-        default: return id
+        default: return obj
     }
 }
