@@ -14,10 +14,15 @@ const addItem = (array,item) => {
 const editItem = (array, obj) => {
     const newarray = _.map(array, (item) => {
         if (obj.id === item._id) {
-            if (obj.typeOperation === '0') {
-                item.balance -= obj.accountBalance * 1
-            } else if (obj.typeOperation === '1') {
-                item.balance += obj.accountBalance * 1
+            if (obj.typeOperation) {
+                if (obj.typeOperation === '0') {
+                    item.balance -= obj.accountBalance * 1
+                } else if (obj.typeOperation === '1') {
+                    item.balance += obj.accountBalance * 1
+                }
+            } else {
+                item.balance = obj.accountBalance
+                item.name = obj.name
             }
         }
         return item
@@ -30,44 +35,7 @@ const removeItem = (array, item) => {
     return (array.slice(0, numItem)).concat(array.slice(numItem + 1))
 }
 
-export default (accountsList = [
-    // {
-    //     name: 'Наличные',
-    //     balance: 0.00,
-    //     currency: 'RUB',
-    //     pname: ''
-    // },
-    // {
-    //     name: 'Тинькоф',
-    //     balance: 64506.77,
-    //     currency: 'RUB',
-    //     pname: ''
-    // },
-    // {
-    //     name: 'Сбер',
-    //     balance: 3947.25,
-    //     currency: 'RUB',
-    //     pname: ''
-    // },
-    // {
-    //     name: 'Открытие',
-    //     balance: 28825.96,
-    //     currency: 'RUB',
-    //     pname: ''
-    // },
-    // {
-    //     name: 'Номос',
-    //     balance: 12402.94,
-    //     currency: 'RUB',
-    //     pname: ''
-    // },
-    // {
-    //     name: 'Рокет',
-    //     balance: 10000.00,
-    //     currency: 'RUB',
-    //     pname: ''
-    // }
-    ], action) => {
+export default (accountsList = [], action) => {
     const { type, payload } = action
     switch (type) {
         case ADDACCOUNTTOLIST: return addItem(accountsList, payload)

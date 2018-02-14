@@ -16,11 +16,14 @@ import {
     editAccountInList
 } from '../../AC'
 import { Link } from 'react-router-dom'
+import Requester from '../../js/requester'
 
 class EditAccount extends Component{
     constructor(props){
         super(props)
         this.state = {}
+        
+        this.req = new Requester()
 
         this.renderToolbar = this.renderToolbar.bind(this)
         this.handlerCanselClick = this.handlerCanselClick.bind(this)
@@ -63,9 +66,16 @@ class EditAccount extends Component{
     }
 
     handlerOkClick(e) {
-        // this.props.editAccountInList({
-        //     i
-        // })
+        const updateObj = {
+            id: this.props.accountToEdit._id,
+            name: this.state.accountName,
+            accountBalance: this.state.amount
+        }
+        this.props.editAccountInList(updateObj);
+        this.req.send('updateAccount', 'POST', updateObj)// edit account
+        // this.req.send('updateAccount', 'POST', updateObj) // update all accounts
+        window.history.back()
+        this.handlerCanselClick()
     }
 
     render() {
@@ -80,7 +90,7 @@ class EditAccount extends Component{
                             onChange={this.handleAccountNameChange}
                             modifier='underbar'
                             float
-                            placeholder={this.props.accountToEdit.name}
+                            placeholder={this.props.accountToEdit.name || 'Название счета'}
                             style={{
                                 alignContent: 'space-around',
                                 margin: '10px'
@@ -93,7 +103,7 @@ class EditAccount extends Component{
                             onChange={this.handleAmountChange}
                             modifier='underbar'
                             float
-                            placeholder={this.props.accountToEdit.balance}
+                            placeholder={this.props.accountToEdit.balance || '0'}
                             style={{
                                 alignContent: 'space-around',
                                 margin: '10px'
