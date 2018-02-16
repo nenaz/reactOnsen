@@ -75,7 +75,6 @@ class AddOperation extends Component{
             amount: obj.balance,
             accountId: obj._id
         }
-        // this.props.editAccountInList(updateObj)
         this.req.send('updateAccountAmount', 'POST', updateObj)
     }
 
@@ -165,9 +164,7 @@ class AddOperation extends Component{
 
     handleChangeSelect(event) {
         this.setState({
-            // accountName: event.target.value,
-            // accountBalance: event.target.selectedOptions[0].getAttribute('balance')
-            id: event.target.selectedOptions[0].getAttribute('_id')
+            id: event.target.selectedOptions[0].getAttribute('id')
         });
     }
 
@@ -211,7 +208,7 @@ class AddOperation extends Component{
                 <div className="nzFromToText">
                     <select onChange={this.handleChangeSelect}>
                         {this.props.changeAccountsList.map((item, key) => {
-                            return <option key={key} id={item._id} defaultValue={(item.name === this.state.accountName) ? this.state.accountName : ""}
+                            return <option key={item._id} id={item._id} defaultValue={(item.name === this.state.accountName) ? this.state.accountName : ""}
                                 value={item.name} balance={item.balance}>
                                 {item.name}
                             </option>

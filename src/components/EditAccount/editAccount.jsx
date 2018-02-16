@@ -30,6 +30,7 @@ class EditAccount extends Component{
         this.handlerOkClick = this.handlerOkClick.bind(this)
         this.handleAmountChange = this.handleAmountChange.bind(this)
         this.handleAccountNameChange = this.handleAccountNameChange.bind(this)
+        this.editAccountInList = this.editAccountInList.bind(this)
     }
 
     handleAmountChange(e) {
@@ -66,16 +67,27 @@ class EditAccount extends Component{
     }
 
     handlerOkClick(e) {
-        const updateObj = {
-            id: this.props.accountToEdit._id,
-            name: this.state.accountName,
-            accountBalance: this.state.amount
-        }
-        this.props.editAccountInList(updateObj);
-        this.req.send('updateAccountAmount', 'POST', updateObj) // edit account
+        // const updateObj = {
+        //     id: this.props.accountToEdit._id,
+        //     name: this.state.accountName,
+        //     accountBalance: this.state.amount
+        // }
+        // this.props.editAccountInList(updateObj);
+        // this.req.send('updateAccountAmount', 'POST', updateObj) // edit account
         // this.req.send('updateAccount', 'POST', updateObj) // update all accounts
+        this.editAccountInList();
         window.history.back()
         this.handlerCanselClick()
+    }
+
+    editAccountInList() {
+        const updateObj = {
+            amount: this.state.amount,
+            accountId: this.props.accountToEdit._id,
+            name: this.state.accountName
+        }
+        this.props.editAccountInList(updateObj)
+        this.req.send('updateAccountAmount', 'POST', updateObj)
     }
 
     render() {
