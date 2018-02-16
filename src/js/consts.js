@@ -6,6 +6,6 @@ export const ADDOPERATIONTOLIST = 'AddOperationToList'
 export const SELECTTYPEOPERATION = 'selectTypeOperation'
 export const ACCOUNTTOEDIT = 'accountToEdit'
 
-export const SERVERURL = 'https://guarded-sea-48553.herokuapp.com/'
+// export const SERVERURL = 'https://guarded-sea-48553.herokuapp.com/'
 // export const SERVERURL = 'http://127.0.0.1:8000/'
-// export const SERVERURL = 'http://127.0.0.1:5000/'
+export const SERVERURL = 'http://127.0.0.1:5000/'

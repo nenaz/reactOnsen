@@ -5,8 +5,8 @@ import {
     ToolbarButton,
     Icon,
     Input,
-    Select,
-    Toast,
+    // Select,
+    // Toast,
     Fab
 } from 'react-onsenui'
 import { connect } from 'react-redux'
@@ -72,7 +72,7 @@ class EditAccount extends Component{
             accountBalance: this.state.amount
         }
         this.props.editAccountInList(updateObj);
-        this.req.send('updateAccount', 'POST', updateObj)// edit account
+        this.req.send('updateAccountAmount', 'POST', updateObj) // edit account
         // this.req.send('updateAccount', 'POST', updateObj) // update all accounts
         window.history.back()
         this.handlerCanselClick()
@@ -111,14 +111,6 @@ class EditAccount extends Component{
                         />
                     </section>
                 </div>
-                <Toast isOpen={this.state.toastShown}>
-                    <div className="message">
-                        An error has occurred!
-                    </div>
-                    <button onClick={this.handleDismiss}>
-                        Dismiss
-                    </button>
-                </Toast>
                 <Fab position='bottom right' onClick={this.handlerOkClick}>
                     <Icon icon="ion-checkmark" style={{
                         position: 'relative',

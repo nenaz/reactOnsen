@@ -51,7 +51,6 @@ class App extends Component {
 
   getOperations(req) {
     req.send('getLastFive', 'POST').then(result => {
-      // console.log(result)
       const arrOper = (JSON.parse(result)).reverse()
       arrOper.map(item => this.props.addOperationToList(item))
     })
@@ -59,7 +58,6 @@ class App extends Component {
 
   getAccounts(req) {
     req.send('getAccounts', 'POST').then(result => {
-      console.log(result)
       const arrAcc = (JSON.parse(result)).reverse()
       arrAcc.map(item => this.props.addAccountToList(item))
     })
@@ -69,7 +67,6 @@ class App extends Component {
     // if (this.props.operations) {
       const req = new Requester()
       // req.send('getLastFive', 'POST').then(result => {
-      //   console.log(result)
       //   const arrOper = (JSON.parse(result)).reverse()
       //   arrOper.map((item) => {
       //     this.props.addOperationToList(item)
@@ -80,7 +77,6 @@ class App extends Component {
     }
 
   render() {
-    console.log(this.props.changeAnimationState)
     if (this.state.render) {
       return (
         <Provider store={store}>

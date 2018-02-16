@@ -45,28 +45,38 @@ class AddOperation extends Component{
         this.handlerClickCommaButton = this.handlerClickCommaButton.bind(this)
         this.handleChangeSelect = this.handleChangeSelect.bind(this)
         this.generateAmountFontSize = this.generateAmountFontSize.bind(this)
+        this.addOperationToList = this.addOperationToList.bind(this)
+        this.editAccountInList = this.editAccountInList.bind(this)
     }
 
-    handlerOkClick(e) {
+    handlerOkClick() {
+        this.addOperationToList()
+        this.editAccountInList()
+        window.history.back()
+        this.handlerCanselClick()
+    }
+
+    addOperationToList() {
         const addObject = {
             amount: `${this.state.inputAmount}.${this.state.part}`,
             currency: 'RUB',
             data: Utils.nowDate(true),
-            // account: this.state.accountName
+            typeOperation: this.state.typeOperation,
             accountId: this.state.id
         }
-        const updateObj = {
-            accountBalance: addObject.amount,
-            // accountName: addObject.account,
-            typeOperation: this.state.typeOperation,
-            id: this.state.id
-        }
         this.props.addOperationToList(addObject)
-        this.props.editAccountInList(updateObj)
+        this.props.editAccountInList(addObject)
         this.req.send('addOperation', 'POST', addObject)
-        this.req.send('updateAccount', 'POST', updateObj)
-        window.history.back()
-        this.handlerCanselClick()
+    }
+
+    editAccountInList() {
+        const obj = this.props.changeAccountsList.find(item => { return item._id === this.state.id })
+        const updateObj = {
+            amount: obj.balance,
+            accountId: obj._id
+        }
+        // this.props.editAccountInList(updateObj)
+        this.req.send('updateAccountAmount', 'POST', updateObj)
     }
 
     handlerCanselClick() {

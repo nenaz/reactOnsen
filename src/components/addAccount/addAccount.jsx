@@ -190,7 +190,7 @@ class AddAccount extends Component{
     }
 }
 
-export default connect(null,{
+export default connect(null, {
     changeAnimationState,
     addAccountToList
 })(AddAccount)

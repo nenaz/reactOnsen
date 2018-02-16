@@ -20,7 +20,7 @@ class ButtonAccount extends Component {
     }
 
     handlerButtonClick(event) {
-        this.state.changeAnimationState('')
+        this.props.changeAnimationState('')
     }
 
     handleEditAccount(e) {
@@ -49,6 +49,7 @@ class ButtonAccount extends Component {
                             }
                         }} style={{ textDecoration: 'none' }} onClick={this.handleEditAccount}>
                         <Ons.Icon icon={this.props.params.icon} />
+                        <span>{this.props.params.balance}</span>
                     </Link>
                 )
             }
