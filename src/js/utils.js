@@ -6,18 +6,19 @@ const selectButtonsParams = (name) => {
             balance: '0 руб.',
             backgroundColor: 'transparent',
             textColor: '#250606',
-            textSize: null,
+            // textSize: null,
             borderColor: '#939687',
             iconEnable: true,
             icon: 'ion-plus',
             linkEnable: true,
-            link: 'addAccount'
+            link: 'addAccount',
+            textSize: '9.5px',
         }
         case 'AccountButton': return {
             pname: 'AccountButton',
-            backgroundColor: 'yellow',
-            textColor: '#250606',
-            textSize: '8.5px',
+            backgroundColor: '#9a9a9a',
+            textColor: '#fff',
+            textSize: '9.5px',
             borderColor: '#939687',
             iconEnable: false,
             linkEnable: true,
@@ -27,11 +28,13 @@ const selectButtonsParams = (name) => {
             pname: 'default',
             name: 'Наличные',
             balance: '0 руб.',
-            backgroundColor: '#939687',
-            textColor: 'white',
+            backgroundColor: '#808c50',
+            textColor: '#fff',
             borderColor: '#939687',
             iconEnable: false,
-            linkEnable: false,
+            linkEnable: true,
+            link: 'editAccount',
+            textSize: '9.5px',
         }
 
     }

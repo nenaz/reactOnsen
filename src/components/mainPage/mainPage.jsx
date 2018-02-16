@@ -35,6 +35,7 @@ class MainPage extends Component{
         this.showLeftMenu = this.showLeftMenu.bind(this)
         this.hideLeftMenu = this.hideLeftMenu.bind(this)
         this.handleAddOperationClick = this.handleAddOperationClick.bind(this)
+        this.handleSelectLeftMenuItem = this.handleSelectLeftMenuItem.bind(this)
     }
 
     getTarget() {
@@ -78,13 +79,14 @@ class MainPage extends Component{
                     </ToolbarButton>
                 </div>
                 <div className="center">Текущее состояние</div>
-                <div className="right">
-                    <ToolbarButton onClick={this.showPopover} ref='button'>
-                        <Icon icon="ion-android-more-vertical"></Icon>
-                    </ToolbarButton>
-                </div>
+                <div className="right" />
             </Toolbar>
         )
+    }
+
+    handleSelectLeftMenuItem(e) {
+        console.log(e.target.value)
+        this.hideLeftMenu()
     }
 
     render(){
@@ -141,10 +143,10 @@ class MainPage extends Component{
                         onOpen={this.showLeftMenu}
                     >
                         <Page>
-                            <List 
-                                dataSource={['Profile', 'Followers', 'Settings']}
+                            <List
+                                dataSource={['Отчет', 'Настройки', 'Выход']}
                                 renderRow={(title) => (
-                                    <ListItem key={title} onClick={this.hideLeftMenu} tappable>{title}</ListItem>
+                                    <ListItem key={title} onClick={this.handleSelectLeftMenuItem} tappable>{title}</ListItem>
                                 )}
                             />
                         </Page>

@@ -18,7 +18,11 @@ class WidgetBalanceSection extends Component {
 
     render() {
         return (
-            <div>{this.allBalance()}</div>
+            <div style={{
+                fontSize: '25px',
+                textAlign: 'center',
+                color: '#1f1f21'
+            }}>{this.allBalance()}</div>
         )
     }
 }

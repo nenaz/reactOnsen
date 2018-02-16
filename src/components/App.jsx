@@ -19,6 +19,7 @@ import { connect } from 'react-redux'
 import AddOperation from './addOperation'
 import { addOperationToList, addAccountToList } from '../AC'
 import Requester from '../js/requester'
+import Login from './Login'
 
 class App extends Component {
   constructor(props) {
@@ -33,11 +34,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        render: true
-      })
-    }, 2000)
+    // setTimeout(() => {
+    //   this.setState({
+    //     render: true
+    //   })
+    // }, 2000)
   }
 
   renderPage({ match: { params } }) {
@@ -105,7 +106,8 @@ class App extends Component {
       )
     } else {
       return (
-        <Loading />
+        // <Loading />
+        <Login />
       )
     }
   }

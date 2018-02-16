@@ -91,6 +91,7 @@ class EditAccount extends Component{
     }
 
     render() {
+        const disabled = (this.props.accountToEdit.pname === 'default') ? true : false
         return (
             <Page renderToolbar={this.renderToolbar}>
                 <div style={{
@@ -98,6 +99,7 @@ class EditAccount extends Component{
                 }}>
                     <section>
                         <Input
+                            disabled={disabled}
                             value={this.state.accountName}
                             onChange={this.handleAccountNameChange}
                             modifier='underbar'

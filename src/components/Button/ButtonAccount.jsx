@@ -32,7 +32,10 @@ class ButtonAccount extends Component {
             if (this.props.params.linkEnable) {
                 const link = '/' + this.props.params.link
                 return (
-                    <Link to={link} style={{ textDecoration: 'none' }} onClick={this.handlerButtonClick}>
+                    <Link to={link} style={{
+                            textDecoration: 'none',
+                            color: this.props.params.textColor
+                        }} onClick={this.handlerButtonClick}>
                         <Ons.Icon icon={this.props.params.icon} />
                     </Link>
                 )
@@ -42,12 +45,10 @@ class ButtonAccount extends Component {
             if (this.props.params.linkEnable) {
                 const link = '/' + this.props.params.link
                 return (
-                    <Link to={{
-                        pathname: link,
-                        state: {
-                                fromDashboard: true
-                            }
-                        }} style={{ textDecoration: 'none' }} onClick={this.handleEditAccount}>
+                    <Link to={link} style={{
+                        textDecoration: 'none',
+                        color: this.props.params.textColor
+                    }} onClick={this.handleEditAccount}>
                         <Ons.Icon icon={this.props.params.icon} />
                         <span>{this.props.params.balance}</span>
                     </Link>
