@@ -9,6 +9,13 @@ export default class Requester {
             xhr.onload = function () {
                 if (this.status === 200) {
                     resolve(this.response);
+                } else if (this.status === 401) {
+                    var obj = {
+                        result: false,
+                        statusText:  this.statusText,
+                        status: this.status
+                    }
+                    resolve(JSON.stringify(obj));
                 } else {
                     var error = new Error(this.statusText);
                     error.code = this.status;

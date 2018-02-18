@@ -19,18 +19,22 @@ import { connect } from 'react-redux'
 import AddOperation from './addOperation'
 import { addOperationToList, addAccountToList } from '../AC'
 import Requester from '../js/requester'
-import Login from './Login'
+import Logon from './Logon'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      render: false
+      render: false,
+      logon: false,
+      errorLogonText: '',
+      errorLogonStatus: ''
     }
 
     this.renderPage = this.renderPage.bind(this)
     this.getOperations = this.getOperations.bind(this)
     this.getAccounts = this.getAccounts.bind(this)
+    this.changeLogonStatus = this.changeLogonStatus.bind(this)
   }
 
   componentDidMount() {
@@ -65,20 +69,38 @@ class App extends Component {
   }
 
   componentWillMount() {
-    // if (this.props.operations) {
+    const req = new Requester()
+    // req.send('getLastFive', 'POST').then(result => {
+    //   const arrOper = (JSON.parse(result)).reverse()
+    //   arrOper.map((item) => {
+    //     this.props.addOperationToList(item)
+    //   })
+    // // })
+    // this.getOperations(req)
+    // this.getAccounts(req)
+  }
+
+  changeLogonStatus(obj) {
+    const resultObj = JSON.parse(obj)
+    const logon = resultObj.result
+    if (logon) {
       const req = new Requester()
-      // req.send('getLastFive', 'POST').then(result => {
-      //   const arrOper = (JSON.parse(result)).reverse()
-      //   arrOper.map((item) => {
-      //     this.props.addOperationToList(item)
-      //   })
-      // })
       this.getOperations(req)
       this.getAccounts(req)
+      this.setState({
+        logon,
+        render: true
+      })
+    } else {
+      this.setState({
+        errorLogonStatus: resultObj.status,
+        errorLogonText: resultObj.statusText
+      })
     }
+  }
 
   render() {
-    if (this.state.render) {
+    if (this.state.render && this.state.logon) {
       return (
         <Provider store={store}>
           <Router >
@@ -106,8 +128,11 @@ class App extends Component {
       )
     } else {
       return (
-        // <Loading />
-        <Login />
+        <Logon
+          changeLogonStatus={this.changeLogonStatus}
+          errorLogonStatus={this.state.errorLogonStatus}
+          errorLogonText={this.state.errorLogonText}
+        />
       )
     }
   }
