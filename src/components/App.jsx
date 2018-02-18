@@ -68,18 +68,6 @@ class App extends Component {
     })
   }
 
-  componentWillMount() {
-    const req = new Requester()
-    // req.send('getLastFive', 'POST').then(result => {
-    //   const arrOper = (JSON.parse(result)).reverse()
-    //   arrOper.map((item) => {
-    //     this.props.addOperationToList(item)
-    //   })
-    // // })
-    // this.getOperations(req)
-    // this.getAccounts(req)
-  }
-
   changeLogonStatus(obj) {
     const resultObj = JSON.parse(obj)
     const logon = resultObj.result

@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import {
     Button,
-    Input
+    Input,
+    Page,
+    Modal
 } from 'react-onsenui'
 import Requester from '../js/requester'
+import NewUser from './NewUser'
 
 class Logon extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            modalOpen: false
         }
 
         this.req = new Requester()
@@ -18,6 +22,8 @@ class Logon extends Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
         this.handleUsernameChange = this.handleUsernameChange.bind(this)
         this.handleLogon = this.handleLogon.bind(this)
+        this.handleModalOpen = this.handleModalOpen.bind(this)
+        this.handleModalClose = this.handleModalClose.bind(this)
     }
 
     handleUsernameChange(e) {
@@ -42,20 +48,36 @@ class Logon extends Component {
         })
     }
 
+    handleModalOpen() {
+        this.setState({ modalOpen: true })
+    }
+
+    handleModalClose() {
+        this.setState({ modalOpen: false })
+    }
+
     render() {
         return (
-            <div>
+            <Page
+                renderModal={() => (
+                    <Modal
+                        isOpen={this.state.modalOpen}
+                    >
+                        <NewUser handleModalClose={this.handleModalClose} />
+                    </Modal>
+                )}
+            >
                 <section>
                     <div>
-                        <p>
+                        <section>
                             <Input
                                 value={this.state.username}
                                 onChange={this.handleUsernameChange}
                                 modifier='underbar'
                                 float
                                 placeholder='Username' />
-                        </p>
-                        <p>
+                        </section>
+                        <section>
                             <Input
                                 value={this.state.password}
                                 onChange={this.handlePasswordChange}
@@ -63,20 +85,32 @@ class Logon extends Component {
                                 type='password'
                                 float
                                 placeholder='Password' />
-                        </p>
-                        <Button label="Submit" primary={true} 
-                            onClick={this.handleLogon}/>
-                        <p>
+                        </section>
+                        <section>
+                            <Button
+                                label="Submit"
+                                primary={true}
+                                onClick={this.handleLogon}
+                                modifier='large'
+                            >Войти</Button>
+                            <Button
+                                label="Submit"
+                                primary={true}
+                                onClick={this.handleModalOpen}
+                                modifier='large'    
+                            >Зарегистрироваться</Button>
+                        </section>
+                        <section>
                             <div>
                                 <span>{this.props.errorLogonStatus}</span>
                             </div>
                             <div>
                                 <span>{this.props.errorLogonText}</span>
                             </div>
-                        </p>
+                        </section>
                     </div>
                 </section>
-            </div>
+            </Page>
         )
     }
 }
