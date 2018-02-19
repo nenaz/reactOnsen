@@ -28,4 +28,30 @@ export default class Requester {
             xhr.send(JSON.stringify(params));
         });
     }
+
+    initialize() {
+        if (localStorage) {
+            if (!localStorage.hasOwnProperty('localUserName')) {
+                this.setLocal('localUserName', {})
+            }
+            if (!localStorage.hasOwnProperty('localAccounts')) {
+                this.setLocal('localAccounts', {})
+            }
+            if (!localStorage.hasOwnProperty('localItems')) {
+                this.setLocal('localItems', {})
+            }
+        } else {
+            console.log('error')
+        }
+    }
+
+    setLocal(name, value) {
+        console.log('setLocal = ' + name)
+        localStorage.setItem(name, JSON.stringify(value))
+    }
+
+    getLocal(name) {
+        console.log('getLocal = ' + name)
+        return JSON.parse(localStorage.getItem(name))
+    }
 }

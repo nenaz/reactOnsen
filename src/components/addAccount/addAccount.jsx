@@ -18,6 +18,7 @@ import {
 } from '../../AC'
 import { Link } from 'react-router-dom'
 import Requester from '../../js/requester'
+import Utils from '../../js/utils'
 
 class AddAccount extends Component{
     constructor(props){
@@ -75,10 +76,11 @@ class AddAccount extends Component{
             name: this.state.accountName,
             balance: this.state.amount,
             currency: 'RUB',
-            pname: 'AccountButton'
+            pname: 'AccountButton',
+            id: Utils.getRandomId
         }
         this.props.addAccountToList(addObject)
-        this.req.send('addAccount', 'POST', addObject)
+        this.req.setLocal('addAccount', addObject)
         window.history.back()
         this.handlerCanselClick()
     }

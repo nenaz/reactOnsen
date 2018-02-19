@@ -31,59 +31,67 @@ class App extends Component {
       errorLogonStatus: ''
     }
 
+    this.req = new Requester()
+
     this.renderPage = this.renderPage.bind(this)
     this.getOperations = this.getOperations.bind(this)
     this.getAccounts = this.getAccounts.bind(this)
     this.changeLogonStatus = this.changeLogonStatus.bind(this)
   }
 
-  componentDidMount() {
+  // componentDidMount() {
     // setTimeout(() => {
     //   this.setState({
     //     render: true
     //   })
     // }, 2000)
+  // }
+  componentWillMount() {
+    this.req.initialize();
   }
 
   renderPage({ match: { params } }) {
     let name = params.name
-    name = (this.state.logon) ? 'main' : 'logon'
+    // name = (this.state.logon) ? 'main' : 'logon'
     switch (name) {
       case 'addAccount': return <AddAccount />
       case 'addOperation': return <AddOperation />
       case 'editAccount': return <EditAccount />
-      case 'logon': return (
-        <Logon
-          changeLogonStatus={this.changeLogonStatus}
-          errorLogonStatus={this.state.errorLogonStatus}
-          errorLogonText={this.state.errorLogonText}
-        />
-      )
+      // case 'logon': return (
+      //   <Logon
+      //     changeLogonStatus={this.changeLogonStatus}
+      //     errorLogonStatus={this.state.errorLogonStatus}
+      //     errorLogonText={this.state.errorLogonText}
+      //   />
+      // )
       default: return <MainPage changeLogonStatus={this.changeLogonStatus} />
     }
   }
 
   getOperations(req) {
-    req.send('getLastFive', 'POST').then(result => {
-      const arrOper = (JSON.parse(result)).reverse()
-      arrOper.map(item => this.props.addOperationToList(item))
-    })
+    // req.send('getLastFive', 'POST').then(result => {
+    //   const arrOper = (JSON.parse(result)).reverse()
+    //   arrOper.map(item => this.props.addOperationToList(item))
+    // })
+    const arrOper = (req.getLocal('getLastFive')).reverse()
+    arrOper.map(item => this.props.addOperationToList(item))
   }
 
   getAccounts(req) {
-    req.send('getAccounts', 'POST').then(result => {
-      const arrAcc = (JSON.parse(result)).reverse()
-      arrAcc.map(item => this.props.addAccountToList(item))
-    })
+    // req.send('getAccounts', 'POST').then(result => {
+    //   const arrAcc = (JSON.parse(result)).reverse()
+    //   arrAcc.map(item => this.props.addAccountToList(item))
+    // })
+    const arrAcc = req.get('getAccounts')
+    arrAcc.map(item => this.props.addAccountToList(item))
   }
 
   changeLogonStatus(obj) {
     const resultObj = JSON.parse(obj)
     const logon = resultObj.result
     if (logon) {
-      const req = new Requester()
-      this.getOperations(req)
-      this.getAccounts(req)
+      this.getOperations(this.req)
+      this.getAccounts(this.req)
       this.setState({
         logon,
         render: true
@@ -97,41 +105,32 @@ class App extends Component {
   }
 
   render() {
-    // if (this.state.render && this.state.logon) {
-      return (
-        <Provider store={store}>
-          <Router >
-            <Route render={({ location }) => (
-              <div>
-                <Route exact path="/" render={() => (
-                  <Redirect to="/logon" />
-                )} />
-                <div >
-                  <ReactCSSTransitionGroup transitionName={Utils.selectAnimationClassForPage(this.props.changeAnimationState)}
-                    transitionEnterTimeout={1250}
-                    transitionLeaveTimeout={1250}>
-                    <Route
-                      location={location}
-                      key={location.key}
-                      path="/:name"
-                      component={this.renderPage}
-                    />
-                  </ReactCSSTransitionGroup>
-                </div>        
-              </div>
-            )} />
-          </Router>
-        </Provider>
-      )
-    // } else {
-    //   return (
-    //     <Logon
-    //       changeLogonStatus={this.changeLogonStatus}
-    //       errorLogonStatus={this.state.errorLogonStatus}
-    //       errorLogonText={this.state.errorLogonText}
-    //     />
-    //   )
-    // }
+    return (
+      <Provider store={store}>
+        <Router >
+          <Route render={({ location }) => (
+            <div>
+              <Route exact path="/" render={() => (
+                // <Redirect to="/logon" />
+                <Redirect to="/main" />
+              )} />
+              <div >
+                <ReactCSSTransitionGroup transitionName={Utils.selectAnimationClassForPage(this.props.changeAnimationState)}
+                  transitionEnterTimeout={1250}
+                  transitionLeaveTimeout={1250}>
+                  <Route
+                    location={location}
+                    key={location.key}
+                    path="/:name"
+                    component={this.renderPage}
+                  />
+                </ReactCSSTransitionGroup>
+              </div>        
+            </div>
+          )} />
+        </Router>
+      </Provider>
+    )
   }
 }
 

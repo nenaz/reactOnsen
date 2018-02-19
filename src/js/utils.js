@@ -122,13 +122,23 @@ const convertTypeOperation = (value) => {
     }
 }
 
-var utils = {
+const getRandomId = () => {
+    let text = "";
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (let i = 0; i < 15; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
+const utils = {
     selectButtonsParams,
     selectSectionsParams,
     selectAnimationClassForPage,
     addAccountFindError,
     nowDate,
-    convertTypeOperation
+    convertTypeOperation,
+    getRandomId
 }
 
 export default utils
