@@ -32,26 +32,38 @@ export default class Requester {
     initialize() {
         if (localStorage) {
             if (!localStorage.hasOwnProperty('localUserName')) {
-                this.setLocal('localUserName', {})
+                this.setLocal('localUserName', [], true)
             }
             if (!localStorage.hasOwnProperty('localAccounts')) {
-                this.setLocal('localAccounts', {})
+                this.setLocal('localAccounts', [], true)
             }
             if (!localStorage.hasOwnProperty('localItems')) {
-                this.setLocal('localItems', {})
+                this.setLocal('localItems', [], true)
             }
         } else {
             console.log('error')
         }
     }
 
-    setLocal(name, value) {
+    setLocal(name, value, initialize) {
         console.log('setLocal = ' + name)
-        localStorage.setItem(name, JSON.stringify(value))
+        let arr
+        if (initialize) {
+            arr = value
+        } else {
+            arr = this.getLocal(name)
+            arr.push(value)
+        }
+        localStorage.setItem(name, JSON.stringify(arr))
     }
 
     getLocal(name) {
         console.log('getLocal = ' + name)
         return JSON.parse(localStorage.getItem(name))
+    }
+
+    getItem(name, id) {
+        const arr = this.getLocal(name)
+
     }
 }

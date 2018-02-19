@@ -77,10 +77,10 @@ class AddAccount extends Component{
             balance: this.state.amount,
             currency: 'RUB',
             pname: 'AccountButton',
-            id: Utils.getRandomId
+            id: Utils.getRandomId()
         }
         this.props.addAccountToList(addObject)
-        this.req.setLocal('addAccount', addObject)
+        this.req.setLocal('localAccounts', addObject)
         window.history.back()
         this.handlerCanselClick()
     }
@@ -162,14 +162,14 @@ class AddAccount extends Component{
                                 margin: '10px'
                             }}
                         />
-                        <Select id="choose-sel" style={{
+                        {/* <Select id="choose-sel" style={{
                             alignContent: 'space-around',
                             margin: '0 10px 10px 10px'
                         }} value={this.state.modifier} modifier={this.state.modifier} onChange={this.editSelects}>
                             <option value="basic">Basic</option>
                             <option value="material">Material</option>
                             <option value="underbar">Underbar</option>
-                        </Select>
+                        </Select> */}
                     </div>
                 </div>
                 <Toast isOpen={this.state.toastShown}>
