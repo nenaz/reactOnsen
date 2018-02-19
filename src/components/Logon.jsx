@@ -76,7 +76,7 @@ class Logon extends Component {
                                 onChange={this.handleUsernameChange}
                                 modifier='underbar'
                                 float
-                                placeholder='Username' />
+                                placeholder='Логин' />
                         </section>
                         <section>
                             <Input
@@ -85,7 +85,7 @@ class Logon extends Component {
                                 modifier='underbar'
                                 type='password'
                                 float
-                                placeholder='Password' />
+                                placeholder='Пароль' />
                         </section>
                         <section>
                             <Button
