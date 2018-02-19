@@ -66,9 +66,10 @@ class Logon extends Component {
                         <NewUser handleModalClose={this.handleModalClose} />
                     </Modal>
                 )}
+                className='logonForm'
             >
-                <section>
-                    <div>
+                <section className="logonSection">
+                    {/* <div> */}
                         <section>
                             <Input
                                 value={this.state.username}
@@ -108,7 +109,7 @@ class Logon extends Component {
                                 <span>{this.props.errorLogonText}</span>
                             </div>
                         </section>
-                    </div>
+                    {/* </div> */}
                 </section>
             </Page>
         )

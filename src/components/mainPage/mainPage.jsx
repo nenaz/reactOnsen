@@ -36,6 +36,7 @@ class MainPage extends Component{
         this.hideLeftMenu = this.hideLeftMenu.bind(this)
         this.handleAddOperationClick = this.handleAddOperationClick.bind(this)
         this.handleSelectLeftMenuItem = this.handleSelectLeftMenuItem.bind(this)
+        this.renderRow = this.renderRow.bind(this)
     }
 
     getTarget() {
@@ -87,6 +88,26 @@ class MainPage extends Component{
     handleSelectLeftMenuItem(e) {
         console.log(e.target.value)
         this.hideLeftMenu()
+    }
+
+    renderRow(row, index) {
+        switch(row.name) {
+            case 'exit':
+                return (
+                    <ListItem key={row.name}>
+                        <Link
+                            to='/logon'
+                            style={{
+                                textDecoration: 'none',
+                            }}
+                            onClick={this.props.changeLogonStatus}
+                        >
+                            {row.text}
+                        </Link>
+                    </ListItem>    
+                )
+            default: return(<ListItem key={row.name} onClick={this.handleSelectLeftMenuItem} tappable>{row.text}</ListItem>)
+        }
     }
 
     render(){
@@ -144,10 +165,12 @@ class MainPage extends Component{
                     >
                         <Page>
                             <List
-                                dataSource={['Отчет', 'Настройки', 'Выход']}
-                                renderRow={(title) => (
-                                    <ListItem key={title} onClick={this.handleSelectLeftMenuItem} tappable>{title}</ListItem>
-                                )}
+                                dataSource={[
+                                    { name: 'report', text: 'Отчет' },
+                                    { name: 'options', text: 'Настройки' },
+                                    { name: 'exit', text: 'Выход' },
+                                ]}
+                                renderRow={this.renderRow}
                             />
                         </Page>
                     </SplitterSide>

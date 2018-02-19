@@ -189,4 +189,29 @@
   color: white;
   font-size: 30px;
 }
+
+.logonForm div.page__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logonSection {
+  padding: 10px;
+  background: #fff;
+  margin: 10px;
+  height: 250px;
+}
+
+.logonSection section {
+  padding: 10px;
+}
+
+.logonSection section ons-input {
+  width: 100%;
+}
+
+.logonSection section ons-button {
+  margin: 10px 0;
+}
 /*# sourceMappingURL=App.css.map */

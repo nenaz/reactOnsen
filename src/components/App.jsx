@@ -46,11 +46,20 @@ class App extends Component {
   }
 
   renderPage({ match: { params } }) {
-    switch (params.name) {
+    let name = params.name
+    name = (this.state.logon) ? 'main' : 'logon'
+    switch (name) {
       case 'addAccount': return <AddAccount />
       case 'addOperation': return <AddOperation />
       case 'editAccount': return <EditAccount />
-      default: return <MainPage />
+      case 'logon': return (
+        <Logon
+          changeLogonStatus={this.changeLogonStatus}
+          errorLogonStatus={this.state.errorLogonStatus}
+          errorLogonText={this.state.errorLogonText}
+        />
+      )
+      default: return <MainPage changeLogonStatus={this.changeLogonStatus} />
     }
   }
 
@@ -88,14 +97,14 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.render && this.state.logon) {
+    // if (this.state.render && this.state.logon) {
       return (
         <Provider store={store}>
           <Router >
             <Route render={({ location }) => (
               <div>
                 <Route exact path="/" render={() => (
-                  <Redirect to="/main" />
+                  <Redirect to="/logon" />
                 )} />
                 <div >
                   <ReactCSSTransitionGroup transitionName={Utils.selectAnimationClassForPage(this.props.changeAnimationState)}
@@ -114,15 +123,15 @@ class App extends Component {
           </Router>
         </Provider>
       )
-    } else {
-      return (
-        <Logon
-          changeLogonStatus={this.changeLogonStatus}
-          errorLogonStatus={this.state.errorLogonStatus}
-          errorLogonText={this.state.errorLogonText}
-        />
-      )
-    }
+    // } else {
+    //   return (
+    //     <Logon
+    //       changeLogonStatus={this.changeLogonStatus}
+    //       errorLogonStatus={this.state.errorLogonStatus}
+    //       errorLogonText={this.state.errorLogonText}
+    //     />
+    //   )
+    // }
   }
 }
 

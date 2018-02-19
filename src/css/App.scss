@@ -176,3 +176,24 @@
     font-size: 30px;
   }
 }
+
+.logonForm div.page__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.logonSection{
+  padding: 10px;
+  background: #fff;
+  margin: 10px;
+  height: 250px;
+  section{
+    padding: 10px;
+    ons-input{
+      width: 100%;
+    }
+    ons-button{
+      margin: 10px 0;
+    }
+  }
+}
