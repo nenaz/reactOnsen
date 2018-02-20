@@ -11,7 +11,6 @@ import {
     SplitterSide,
     Toolbar,
     ToolbarButton,
-    // Icon,
     Modal,
     Fab
 } from 'react-onsenui'
@@ -19,10 +18,9 @@ import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import Section from '../pageWidget'
 import { Link } from 'react-router-dom'
-import iconMenu from '../../img/menu.svg'
 import About from '../About'
 import Icon from '../Icon';
-import iconPlus from '../../img/plus-symbol.svg';
+import { ICONPLUS, ICONMENU } from '../../js/consts';
 
 class MainPage extends Component{
     constructor(props){
@@ -84,9 +82,11 @@ class MainPage extends Component{
             }}>
                 <div className="left">
                     <ToolbarButton onClick={this.showLeftMenu}>
-                        <Icon iconUrl={iconMenu} objstyle={{
-                            top: '30%'
-                        }}/>
+                        <Icon iconBase64={ICONMENU} styleObj={{
+                            width: '25px',
+                            top: '10%',
+                            position: 'relative'
+                        }} />
                     </ToolbarButton>
                 </div>
                 <div className="center">Текущее состояние</div>
@@ -224,10 +224,11 @@ class MainPage extends Component{
                 </Splitter>
                 <Fab position='bottom right'>
                     <Link to='/addOperation' style={{ textDecoration: 'none' }}>
-                        <Icon iconUrl={iconPlus} objstyle={{
-                            display: 'inline-block',
-                            top: '6%'
-                        }}/>
+                        <Icon iconBase64={ICONPLUS} styleObj={{
+                            width: '25px',
+                            top: '10%',
+                            position: 'relative'
+                        }} />
                     </Link>
                 </Fab>
             </Page>

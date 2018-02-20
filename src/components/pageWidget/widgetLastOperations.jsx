@@ -1,8 +1,7 @@
 import React,{ Component} from 'react'
 import { connect } from 'react-redux'
 import { List, ListItem } from 'react-onsenui'
-import iconUpCash from '../../img/payment-in.svg'
-import iconDownCash from '../../img/payment-out.svg'
+import { ICONCAHMINUS, ICONCAHPLUS } from '../../js/consts'
 import Icon from '../Icon'
 
 class WaigetLastOperations extends Component{
@@ -14,16 +13,13 @@ class WaigetLastOperations extends Component{
     }
 
     renderRow(row, index) {
-        const icon = (row.typeOperation === "1") ? iconUpCash : iconDownCash
+        const icon = (row.typeOperation === "1") ? ICONCAHPLUS : ICONCAHMINUS
         return (
             <ListItem key={index} tapBackgroundColor="#0f0f0f" tappable={true}>
                 <div className="left">
-                    <Icon iconUrl={icon} objstyle={{
-                        height: '37px',
-                        width: '42px',
-                        top: '0%',
-                        backgroundSize: 'contain'
-                    }}/>
+                    <Icon iconBase64={icon} styleObj={{
+                        width: '40px'
+                    }} />
                 </div>
                 <div className="center" style={{
                     display: 'flex',
@@ -35,7 +31,6 @@ class WaigetLastOperations extends Component{
                         display: 'flex'
                 }}>
                         <span style={{ paddingRight: '7px' }}>{row.balance}</span>
-                        {/* <span>{row.currency}</span> */}
                     </div>
                     <div style={{
                         display: 'flex',

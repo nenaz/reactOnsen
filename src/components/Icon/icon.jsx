@@ -1,5 +1,4 @@
 import React,{ Component} from 'react'
-import Utils from '../../js/utils'
 
 class Icon extends Component{
     constructor(props){
@@ -11,28 +10,21 @@ class Icon extends Component{
 
     addStyles() {
         const obj = {
-            height: '20px',
-            width: '20px',
-            opacity: 1,
-            fontSize: '16px',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            position: 'relative',
-            top: '30%'
+            width: '25px',
+            top: '10%',
+            position: 'relative'
         }
-        if (this.props.objstyle) {
-            for (let key in this.props.objstyle) {
-                obj[key] = this.props.objstyle[key]
+        if (this.props.styleObj) {
+            for (let key in this.props.styleObj) {
+                obj[key] = this.props.styleObj[key]
             }
         }
-        obj.backgroundImage = `url(${Utils.deleteFirstSymbol(this.props.iconUrl)})`
         return obj
     }
 
     render(){
-        console.log(this.addStyles())
         return (
-            <div style={this.addStyles()}></div>
+            <img alt="" src={this.props.iconBase64} style={this.addStyles()} />
         )
     }
 }

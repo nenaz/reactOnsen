@@ -3,10 +3,7 @@ import {
     Page,
     Toolbar,
     ToolbarButton,
-    Icon,
     Input,
-    // Select,
-    // Toast,
     Fab
 } from 'react-onsenui'
 import { connect } from 'react-redux'
@@ -17,6 +14,9 @@ import {
 } from '../../AC'
 import { Link } from 'react-router-dom'
 import Requester from '../../js/requester'
+import { ICONCHECKING, ICONCANCEL } from '../../js/consts'
+import Icon from '../Icon'
+
 
 class EditAccount extends Component{
     constructor(props){
@@ -58,7 +58,7 @@ class EditAccount extends Component{
                 <div className="right">
                     <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
                         <ToolbarButton ref='button'>
-                            <Icon icon="ion-close" />
+                            <Icon iconBase64={ICONCANCEL} />
                         </ToolbarButton>
                     </Link>
                 </div>
@@ -118,11 +118,7 @@ class EditAccount extends Component{
                     </section>
                 </div>
                 <Fab position='bottom right' onClick={this.handlerOkClick}>
-                    <Icon icon="ion-checkmark" style={{
-                        position: 'relative',
-                        top: '-3px',
-                        left: '1px'
-                    }} />
+                    <Icon iconBase64={ICONCHECKING} />
                 </Fab>
             </Page>
         )

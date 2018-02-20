@@ -2,7 +2,6 @@ import React,{ Component} from 'react'
 import {
     Page,
     Toolbar,
-    // Icon,
     ToolbarButton,
     Button
 } from 'react-onsenui'
@@ -14,8 +13,7 @@ import Utils from '../../js/utils'
 import KeyboardMain from '../Keyboard'
 import TypeOperation from './typeOperation'
 import Requester from '../../js/requester'
-import iconChecking from '../../img/checking.svg'
-import iconCancel from '../../img/cancel.svg'
+import { ICONCHECKING, ICONCANCEL } from '../../js/consts'
 import Icon from '../Icon'
 
 const COEFFICIENT = 0.46;
@@ -96,9 +94,7 @@ class AddOperation extends Component{
                 <div className="left">
                     <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
                         <ToolbarButton >
-                            <Icon iconUrl={iconCancel} objstyle={{
-                                color: 'white'
-                            }}/>
+                            <Icon iconBase64={ICONCANCEL} />
                         </ToolbarButton>
                     </Link>
                 </div>
@@ -107,9 +103,7 @@ class AddOperation extends Component{
                 }}></div>
                 <div className="right">
                     <ToolbarButton ref='button' onClick={this.handlerOkClick}>
-                        <Icon iconUrl={iconChecking} objstyle={{
-                            color: 'white'
-                        }}/>
+                        <Icon iconBase64={ICONCHECKING} />
                     </ToolbarButton>
                 </div>
             </Toolbar>

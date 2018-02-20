@@ -18,8 +18,7 @@ import {
 import { Link } from 'react-router-dom'
 import Requester from '../../js/requester'
 import Utils from '../../js/utils'
-import iconChecking from '../../img/checking.svg'
-import iconCancel from '../../img/cancel.svg'
+import { ICONCHECKING, ICONCANCEL} from '../../js/consts'
 import Icon from '../Icon'
 
 class AddAccount extends Component{
@@ -107,14 +106,14 @@ class AddAccount extends Component{
                 <div className="left">
                     <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
                         <ToolbarButton >
-                            <Icon iconUrl={iconCancel} />
+                            <Icon iconBase64={ICONCANCEL} />
                         </ToolbarButton>
                     </Link>
                 </div>
                 <div className="center">New Account</div>
                 <div className="right">
                     <ToolbarButton ref='button' onClick={this.handlerOkClick}>
-                        <Icon iconUrl={iconChecking} />
+                        <Icon iconBase64={ICONCHECKING} />
                     </ToolbarButton>
                 </div>
             </Toolbar>
@@ -165,10 +164,7 @@ class AddAccount extends Component{
                     </button>
                 </Toast>
                 <Fab position='bottom right' onClick={this.handlerOkClick}>
-                    <Icon iconUrl={iconChecking} objstyle={{
-                        display: 'inline-block',
-                        top: '0%'
-                    }}/>
+                    <Icon iconBase64={ICONCHECKING} />
                 </Fab>
             </Page>
         )
