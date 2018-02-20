@@ -2,7 +2,7 @@ import React,{ Component} from 'react'
 import {
     Page,
     Toolbar,
-    Icon,
+    // Icon,
     ToolbarButton,
     Button
 } from 'react-onsenui'
@@ -14,7 +14,9 @@ import Utils from '../../js/utils'
 import KeyboardMain from '../Keyboard'
 import TypeOperation from './typeOperation'
 import Requester from '../../js/requester'
-
+import iconChecking from '../../img/checking.svg'
+import iconCancel from '../../img/cancel.svg'
+import Icon from '../Icon'
 
 const COEFFICIENT = 0.46;
 // const FORMULA = `calc(1rem + ((1vw - ${this.generateAmountFontSize()}) * 20))`;
@@ -94,7 +96,7 @@ class AddOperation extends Component{
                 <div className="left">
                     <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
                         <ToolbarButton >
-                            <Icon icon="ion-close" style={{
+                            <Icon iconUrl={iconCancel} objstyle={{
                                 color: 'white'
                             }}/>
                         </ToolbarButton>
@@ -105,7 +107,7 @@ class AddOperation extends Component{
                 }}></div>
                 <div className="right">
                     <ToolbarButton ref='button' onClick={this.handlerOkClick}>
-                        <Icon icon="ion-checkmark" style={{
+                        <Icon iconUrl={iconChecking} objstyle={{
                             color: 'white'
                         }}/>
                     </ToolbarButton>

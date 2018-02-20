@@ -19,8 +19,10 @@ import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import Section from '../pageWidget'
 import { Link } from 'react-router-dom'
-import linkedin from '../../img/menu.svg'
+import iconMenu from '../../img/menu.svg'
 import About from '../About'
+import Icon from '../Icon';
+import iconPlus from '../../img/plus-symbol.svg';
 
 class MainPage extends Component{
     constructor(props){
@@ -82,17 +84,9 @@ class MainPage extends Component{
             }}>
                 <div className="left">
                     <ToolbarButton onClick={this.showLeftMenu}>
-                        <div style={{
-                            height: '20px',
-                            width: '20px',
-                            opacity: 1,
-                            fontSize: '16px',
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundImage: 'url(/static/media/menu.d392bcd9.svg)',
-                            position: 'relative',
-                            top: '30%',
-                        }}></div>
+                        <Icon iconUrl={iconMenu} objstyle={{
+                            top: '30%'
+                        }}/>
                     </ToolbarButton>
                 </div>
                 <div className="center">Текущее состояние</div>
@@ -137,6 +131,7 @@ class MainPage extends Component{
 
     handleModalOpen() {
         this.setState({ modalOpen: true })
+        this.hideLeftMenu()
     }
 
     handleModalClose() {
@@ -228,7 +223,12 @@ class MainPage extends Component{
                     </SplitterContent>
                 </Splitter>
                 <Fab position='bottom right'>
-                    <Link to='/addOperation' style={{ textDecoration: 'none' }}>+</Link>
+                    <Link to='/addOperation' style={{ textDecoration: 'none' }}>
+                        <Icon iconUrl={iconPlus} objstyle={{
+                            display: 'inline-block',
+                            top: '6%'
+                        }}/>
+                    </Link>
                 </Fab>
             </Page>
         )

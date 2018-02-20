@@ -3,7 +3,6 @@ import {
     Page,
     Toolbar,
     ToolbarButton,
-    Icon,
     Input,
     Select,
     Toast,
@@ -19,6 +18,9 @@ import {
 import { Link } from 'react-router-dom'
 import Requester from '../../js/requester'
 import Utils from '../../js/utils'
+import iconChecking from '../../img/checking.svg'
+import iconCancel from '../../img/cancel.svg'
+import Icon from '../Icon'
 
 class AddAccount extends Component{
     constructor(props){
@@ -105,29 +107,19 @@ class AddAccount extends Component{
                 <div className="left">
                     <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
                         <ToolbarButton >
-                            <Icon icon="ion-close" />
+                            <Icon iconUrl={iconCancel} />
                         </ToolbarButton>
                     </Link>
                 </div>
                 <div className="center">New Account</div>
                 <div className="right">
                     <ToolbarButton ref='button' onClick={this.handlerOkClick}>
-                        <Icon icon="ion-checkmark" />
+                        <Icon iconUrl={iconChecking} />
                     </ToolbarButton>
                 </div>
             </Toolbar>
         )
     }
-    
-    // renderBottomTollbar() {
-    //     return (
-    //         <div className="right">
-    //             <ToolbarButton ref='button' onClick={this.handlerOkClick}>
-    //                 <Icon icon="ion-checkmark" />
-    //             </ToolbarButton>
-    //         </div>
-    //     );
-    // }
 
     render(){
         return (
@@ -162,14 +154,6 @@ class AddAccount extends Component{
                                 margin: '10px'
                             }}
                         />
-                        {/* <Select id="choose-sel" style={{
-                            alignContent: 'space-around',
-                            margin: '0 10px 10px 10px'
-                        }} value={this.state.modifier} modifier={this.state.modifier} onChange={this.editSelects}>
-                            <option value="basic">Basic</option>
-                            <option value="material">Material</option>
-                            <option value="underbar">Underbar</option>
-                        </Select> */}
                     </div>
                 </div>
                 <Toast isOpen={this.state.toastShown}>
@@ -181,10 +165,9 @@ class AddAccount extends Component{
                     </button>
                 </Toast>
                 <Fab position='bottom right' onClick={this.handlerOkClick}>
-                    <Icon icon="ion-checkmark" style={{
-                        position: 'relative',
-                        top: '-3px',
-                        left: '1px'
+                    <Icon iconUrl={iconChecking} objstyle={{
+                        display: 'inline-block',
+                        top: '0%'
                     }}/>
                 </Fab>
             </Page>
