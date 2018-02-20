@@ -131,6 +131,10 @@ const getRandomId = () => {
     return text;
 }
 
+const deleteFirstSymbol = (value) => {
+    return value.slice(1);
+}
+
 const utils = {
     selectButtonsParams,
     selectSectionsParams,
@@ -138,7 +142,8 @@ const utils = {
     addAccountFindError,
     nowDate,
     convertTypeOperation,
-    getRandomId
+    getRandomId,
+    deleteFirstSymbol
 }
 
 export default utils

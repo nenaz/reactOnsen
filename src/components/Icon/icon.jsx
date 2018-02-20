@@ -1,4 +1,5 @@
 import React,{ Component} from 'react'
+import Utils from '../../js/utils'
 
 class Icon extends Component{
     constructor(props){
@@ -24,7 +25,7 @@ class Icon extends Component{
                 obj[key] = this.props.objstyle[key]
             }
         }
-        obj.backgroundImage = `url(${this.props.iconUrl})`
+        obj.backgroundImage = `url(${Utils.deleteFirstSymbol(this.props.iconUrl)})`
         return obj
     }
 
