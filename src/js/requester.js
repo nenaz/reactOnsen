@@ -62,8 +62,18 @@ export default class Requester {
         return JSON.parse(localStorage.getItem(name))
     }
 
-    getItem(name, id) {
+    updateItem(name, value) {
         const arr = this.getLocal(name)
-
+        const one = arr.map((item, count) => {
+            if (item._id === value._id) {
+                for(let key in item) {
+                    if (value[key]) {
+                        item[key] = value[key]
+                    }
+                }
+            }
+            return item
+        })
+        localStorage.setItem(name, JSON.stringify(one))
     }
 }

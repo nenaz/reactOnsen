@@ -67,14 +67,6 @@ class EditAccount extends Component{
     }
 
     handlerOkClick(e) {
-        // const updateObj = {
-        //     id: this.props.accountToEdit._id,
-        //     name: this.state.accountName,
-        //     accountBalance: this.state.amount
-        // }
-        // this.props.editAccountInList(updateObj);
-        // this.req.send('updateAccountAmount', 'POST', updateObj) // edit account
-        // this.req.send('updateAccount', 'POST', updateObj) // update all accounts
         this.editAccountInList();
         window.history.back()
         this.handlerCanselClick()
@@ -82,12 +74,12 @@ class EditAccount extends Component{
 
     editAccountInList() {
         const updateObj = {
-            amount: this.state.amount,
-            accountId: this.props.accountToEdit._id,
+            balance: this.state.amount,
+            _id: this.props.accountToEdit._id,
             name: this.state.accountName
         }
         this.props.editAccountInList(updateObj)
-        this.req.send('updateAccountAmount', 'POST', updateObj)
+        this.req.updateItem('localAccounts', updateObj)
     }
 
     render() {
@@ -117,7 +109,7 @@ class EditAccount extends Component{
                             onChange={this.handleAmountChange}
                             modifier='underbar'
                             float
-                            placeholder={this.props.accountToEdit.balance || '0'}
+                            placeholder={`${this.props.accountToEdit.balance}` || '0'}
                             style={{
                                 alignContent: 'space-around',
                                 margin: '10px'

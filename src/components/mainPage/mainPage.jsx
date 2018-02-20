@@ -151,29 +151,6 @@ class MainPage extends Component{
                     </List>
                 </Popover>
                 <Splitter>
-                    <SplitterSide
-                        style={{
-                        borderRight: '1px solid rgba(212, 215, 216, 0.1)'
-                        }}
-                        side='left'
-                        width={200}
-                        collapse={true}
-                        swipeable={true}
-                        isOpen={this.state.isOpenLeftMenu}
-                        onClose={this.hideLeftMenu}
-                        onOpen={this.showLeftMenu}
-                    >
-                        <Page>
-                            <List
-                                dataSource={[
-                                    { name: 'report', text: 'Отчет' },
-                                    { name: 'options', text: 'Настройки' },
-                                    { name: 'exit', text: 'Выход' },
-                                ]}
-                                renderRow={this.renderRow}
-                            />
-                        </Page>
-                    </SplitterSide>
                     <SplitterContent>
                         <Page >
                             <Section name="AccountsList" />

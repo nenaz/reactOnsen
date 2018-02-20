@@ -77,7 +77,7 @@ class AddAccount extends Component{
             balance: this.state.amount,
             currency: 'RUB',
             pname: 'AccountButton',
-            id: Utils.getRandomId()
+            _id: Utils.getRandomId()
         }
         this.props.addAccountToList(addObject)
         this.req.setLocal('localAccounts', addObject)

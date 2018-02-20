@@ -30,7 +30,7 @@ class WaigetLastOperations extends Component{
                         justifyContent: 'space-around',
                         display: 'flex'
                 }}>
-                        <span style={{ paddingRight: '7px' }}>{row.amount}</span>
+                        <span style={{ paddingRight: '7px' }}>{row.balance}</span>
                         {/* <span>{row.currency}</span> */}
                     </div>
                     <div style={{

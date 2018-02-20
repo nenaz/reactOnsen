@@ -50,39 +50,28 @@ class App extends Component {
     this.req.initialize();
   }
 
+  componentDidMount() {
+    this.getAccounts(this.req)
+    this.getOperations(this.req)
+  }
+
   renderPage({ match: { params } }) {
     let name = params.name
-    // name = (this.state.logon) ? 'main' : 'logon'
     switch (name) {
       case 'addAccount': return <AddAccount />
       case 'addOperation': return <AddOperation />
       case 'editAccount': return <EditAccount />
-      // case 'logon': return (
-      //   <Logon
-      //     changeLogonStatus={this.changeLogonStatus}
-      //     errorLogonStatus={this.state.errorLogonStatus}
-      //     errorLogonText={this.state.errorLogonText}
-      //   />
-      // )
       default: return <MainPage changeLogonStatus={this.changeLogonStatus} />
     }
   }
 
   getOperations(req) {
-    // req.send('getLastFive', 'POST').then(result => {
-    //   const arrOper = (JSON.parse(result)).reverse()
-    //   arrOper.map(item => this.props.addOperationToList(item))
-    // })
-    const arrOper = (req.getLocal('getLastFive')).reverse()
+    const arrOper = (req.getLocal('localItems')).reverse()
     arrOper.map(item => this.props.addOperationToList(item))
   }
 
   getAccounts(req) {
-    // req.send('getAccounts', 'POST').then(result => {
-    //   const arrAcc = (JSON.parse(result)).reverse()
-    //   arrAcc.map(item => this.props.addAccountToList(item))
-    // })
-    const arrAcc = req.get('getAccounts')
+    const arrAcc = req.getLocal('localAccounts')
     arrAcc.map(item => this.props.addAccountToList(item))
   }
 
@@ -111,7 +100,6 @@ class App extends Component {
           <Route render={({ location }) => (
             <div>
               <Route exact path="/" render={() => (
-                // <Redirect to="/logon" />
                 <Redirect to="/main" />
               )} />
               <div >

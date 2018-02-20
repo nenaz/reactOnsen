@@ -13,15 +13,15 @@ const addItem = (array,item) => {
 
 const editItem = (array, obj) => {
     const newarray = _.map(array, (item) => {
-        if (obj.accountId === item._id) {
+        if (obj._id === item._id) {
             if (obj.typeOperation) {
                 if (obj.typeOperation === '0') {
-                    item.balance -= obj.amount * 1
+                    item.balance -= obj.balance * 1
                 } else if (obj.typeOperation === '1') {
-                    item.balance += obj.amount * 1
+                    item.balance += obj.balance * 1
                 }
             } else {
-                item.balance = obj.amount
+                item.balance = obj.balance
                 item.name = (obj.name) ? obj.name : item.name
             }
         }

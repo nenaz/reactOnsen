@@ -58,24 +58,24 @@ class AddOperation extends Component{
 
     addOperationToList() {
         const addObject = {
-            amount: `${this.state.inputAmount}.${this.state.part}`,
+            balance: `${this.state.inputAmount}.${this.state.part}`,
             currency: 'RUB',
             data: Utils.nowDate(true),
             typeOperation: this.state.typeOperation,
-            accountId: this.state.id
+            _id: this.state.id
         }
         this.props.addOperationToList(addObject)
+        this.req.setLocal('localItems', addObject)
         this.props.editAccountInList(addObject)
-        this.req.send('addOperation', 'POST', addObject)
     }
 
     editAccountInList() {
         const obj = this.props.changeAccountsList.find(item => { return item._id === this.state.id })
         const updateObj = {
-            amount: obj.balance,
-            accountId: obj._id
+            balance: obj.balance,
+            _id: obj._id
         }
-        this.req.send('updateAccountAmount', 'POST', updateObj)
+        this.req.updateItem('localAccounts', updateObj)
     }
 
     handlerCanselClick() {
