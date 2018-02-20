@@ -11,20 +11,24 @@ import {
     SplitterSide,
     Toolbar,
     ToolbarButton,
-    Icon,
+    // Icon,
+    Modal,
     Fab
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import Section from '../pageWidget'
 import { Link } from 'react-router-dom'
+import linkedin from '../../img/menu.svg'
+import About from '../About'
 
 class MainPage extends Component{
     constructor(props){
         super(props)
         this.state ={
             isOpenPopover: false,
-            isOpenLeftMenu: false
+            isOpenLeftMenu: false,
+            modalOpen: false
         }
 
         this.renderToolbar = this.renderToolbar.bind(this)
@@ -37,6 +41,8 @@ class MainPage extends Component{
         this.handleAddOperationClick = this.handleAddOperationClick.bind(this)
         this.handleSelectLeftMenuItem = this.handleSelectLeftMenuItem.bind(this)
         this.renderRow = this.renderRow.bind(this)
+        this.handleModalOpen = this.handleModalOpen.bind(this)
+        this.handleModalClose = this.handleModalClose.bind(this)
     }
 
     getTarget() {
@@ -76,7 +82,17 @@ class MainPage extends Component{
             }}>
                 <div className="left">
                     <ToolbarButton onClick={this.showLeftMenu}>
-                        <Icon icon="ion-android-menu, material:md-menu"></Icon>
+                        <div style={{
+                            height: '20px',
+                            width: '20px',
+                            opacity: 1,
+                            fontSize: '16px',
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
+                            backgroundImage: 'url(/static/media/menu.d392bcd9.svg)',
+                            position: 'relative',
+                            top: '30%',
+                        }}></div>
                     </ToolbarButton>
                 </div>
                 <div className="center">Текущее состояние</div>
@@ -106,13 +122,39 @@ class MainPage extends Component{
                         </Link>
                     </ListItem>    
                 )
+            case 'about': 
+                return (
+                    <ListItem
+                        key={row.name}
+                        onClick={row.onClick}
+                    >
+                        {row.text}
+                    </ListItem>
+                )
             default: return(<ListItem key={row.name} onClick={this.handleSelectLeftMenuItem} tappable>{row.text}</ListItem>)
         }
     }
 
+    handleModalOpen() {
+        this.setState({ modalOpen: true })
+    }
+
+    handleModalClose() {
+        this.setState({ modalOpen: false })
+    }
+
     render(){
         return (
-            <Page renderToolbar={this.renderToolbar}>
+            <Page
+                renderToolbar={this.renderToolbar}
+                renderModal={() => (
+                    <Modal
+                        isOpen={this.state.modalOpen}
+                    >
+                        <About handleModalClose={this.handleModalClose}/>
+                    </Modal>
+                )}
+            >
                 <Popover
                     isOpen={this.state.isOpenPopover}
                     onOpen={this.showPopover}
@@ -151,6 +193,30 @@ class MainPage extends Component{
                     </List>
                 </Popover>
                 <Splitter>
+                    <SplitterSide
+                        style={{
+                        borderRight: '1px solid rgba(212, 215, 216, 0.1)'
+                        }}
+                        side='left'
+                        width={200}
+                        collapse={true}
+                        swipeable={true}
+                        isOpen={this.state.isOpenLeftMenu}
+                        onClose={this.hideLeftMenu}
+                        onOpen={this.showLeftMenu}
+                    >
+                        <Page>
+                            <List
+                                dataSource={[
+                                    { name: 'report', text: 'Отчет' },
+                                    { name: 'options', text: 'Настройки' },
+                                    { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
+                                    { name: 'exit', text: 'Выход' },
+                                ]}
+                                renderRow={this.renderRow}
+                            />
+                        </Page>
+                    </SplitterSide>
                     <SplitterContent>
                         <Page >
                             <Section name="AccountsList" />

@@ -36,7 +36,7 @@ class ButtonAccount extends Component {
                             textDecoration: 'none',
                             color: this.props.params.textColor
                         }} onClick={this.handlerButtonClick}>
-                        <Ons.Icon icon={this.props.params.icon} />
+                        <span>+</span>
                     </Link>
                 )
             }
