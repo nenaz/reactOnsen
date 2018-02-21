@@ -114,7 +114,7 @@ class MainPage extends Component{
                         >
                             {row.text}
                         </Link>
-                    </ListItem>    
+                    </ListItem>
                 )
             case 'about': 
                 return (
@@ -123,6 +123,17 @@ class MainPage extends Component{
                         onClick={row.onClick}
                     >
                         {row.text}
+                    </ListItem>
+                )
+            case 'download':
+                return (
+                    <ListItem key={row.name}>
+                        <Link to={'/download'} style={{
+                            textDecoration: 'none',
+                            color: '#250606'
+                        }}>
+                            {row.text}
+                        </Link>
                     </ListItem>
                 )
             default: return(<ListItem key={row.name} onClick={this.handleSelectLeftMenuItem} tappable>{row.text}</ListItem>)
@@ -204,6 +215,7 @@ class MainPage extends Component{
                             <List
                                 dataSource={[
                                     { name: 'report', text: 'Отчет' },
+                                    { name: 'download', text: 'Скачать PDF' },
                                     { name: 'options', text: 'Настройки' },
                                     { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
                                     { name: 'exit', text: 'Выход' },

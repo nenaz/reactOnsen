@@ -1,10 +1,10 @@
 import React,{ Component} from 'react'
 import {
     Page,
-    Toolbar,
-    ToolbarButton,
+    // Toolbar,
+    // ToolbarButton,
     Input,
-    Select,
+    // Select,
     Toast,
     Fab
 } from 'react-onsenui'
@@ -15,11 +15,12 @@ import {
     changeAnimationState,
     addAccountToList
 } from '../../AC'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Requester from '../../js/requester'
 import Utils from '../../js/utils'
-import { ICONCHECKING, ICONCANCEL} from '../../js/consts'
+import { ICONCHECKING } from '../../js/consts'
 import Icon from '../Icon'
+import ToolbarC from '../Toolbar'
 
 class AddAccount extends Component{
     constructor(props){
@@ -100,23 +101,10 @@ class AddAccount extends Component{
 
     renderToolbar() {
         return (
-            <Toolbar style={{
-                position: 'relative'
-            }}>
-                <div className="left">
-                    <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
-                        <ToolbarButton >
-                            <Icon iconBase64={ICONCANCEL} />
-                        </ToolbarButton>
-                    </Link>
-                </div>
-                <div className="center">New Account</div>
-                <div className="right">
-                    <ToolbarButton ref='button' onClick={this.handlerOkClick}>
-                        <Icon iconBase64={ICONCHECKING} />
-                    </ToolbarButton>
-                </div>
-            </Toolbar>
+            <ToolbarC
+                title='Добавить счет'
+                handlerCanselClick={this.handlerCanselClick}
+            />
         )
     }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../css/App.css'
 import '../css/ionicons.css'
-import Loading from './Loading'
+import DownloadPDF from './DownloadPDF'
 import {
   BrowserRouter as Router,
   Route,
@@ -19,7 +19,7 @@ import { connect } from 'react-redux'
 import AddOperation from './addOperation'
 import { addOperationToList, addAccountToList } from '../AC'
 import Requester from '../js/requester'
-import Logon from './Logon'
+// import Logon from './Logon'
 
 class App extends Component {
   constructor(props) {
@@ -61,6 +61,7 @@ class App extends Component {
       case 'addAccount': return <AddAccount />
       case 'addOperation': return <AddOperation />
       case 'editAccount': return <EditAccount />
+      case 'download': return <DownloadPDF />
       default: return <MainPage changeLogonStatus={this.changeLogonStatus} />
     }
   }
