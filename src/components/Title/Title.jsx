@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TItleWidget = (props) => {
+const TitleWidget = (props) => {
     return (
         <span style={{
             margin: '5px',
@@ -13,4 +13,4 @@ const TItleWidget = (props) => {
     )
 }
 
-export default TItleWidget
+export default TitleWidget

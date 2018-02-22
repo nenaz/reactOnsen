@@ -1,10 +1,7 @@
 import React,{ Component} from 'react'
 import {
     Page,
-    // Toolbar,
-    // ToolbarButton,
     Input,
-    // Select,
     Toast,
     Fab
 } from 'react-onsenui'
@@ -15,7 +12,6 @@ import {
     changeAnimationState,
     addAccountToList
 } from '../../AC'
-// import { Link } from 'react-router-dom'
 import Requester from '../../js/requester'
 import Utils from '../../js/utils'
 import { ICONCHECKING } from '../../js/consts'

@@ -4,12 +4,18 @@ import { List, ListItem } from 'react-onsenui'
 import { ICONCAHMINUS, ICONCAHPLUS } from '../../js/consts'
 import Icon from '../Icon'
 
+import TitleSelect from '../TitleSelect'
+import { LISTCATEGORY } from '../../js/consts'
+
 class WaigetLastOperations extends Component{
     constructor(props){
         super(props)
         this.state ={
-            moreFive: false
+            moreFive: false,
+            filter: 'last5'
         }
+        this.filterOperations = this.filterOperations.bind(this)
+        this.handleChangeSelect = this.handleChangeSelect.bind(this)
     }
 
     renderRow(row, index) {
@@ -45,18 +51,27 @@ class WaigetLastOperations extends Component{
         )
     }
 
-    renderMore(length) {
-        
+    handleChangeSelect(e) {
+        this.setState({
+            filter: e.target.value
+        })
+    }
+
+    filterOperations() {
+        switch(this.state.filter) {
+            case 'last5': return this.props.operations.slice(0, 5)
+            default: return this.props.operations
+        }
     }
 
     render(){
         return (
             <div>
+                <TitleSelect data={LISTCATEGORY} handleChangeSelect={this.handleChangeSelect} />
                 <List 
-                    dataSource={this.props.operations.slice(0,5)}
+                    dataSource={this.filterOperations()}
                     renderRow={this.renderRow}
                 />
-                {this.renderMore(this.props.operations.length)}
             </div>
         )
     }

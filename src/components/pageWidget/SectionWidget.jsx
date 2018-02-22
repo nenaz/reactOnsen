@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import WidgetTitle from './widgetTitle'
-import WidgetButtonsSection from '../Button'
+import WidgetButtonsSection from '../ButtonSection'
 import WidgetBalanceSection from './widgetBalance'
 import WidgetChartSection from './widgetChart'
 import WidgetLastSection from './widgetLastOperations'
 import Utils from '../../js/utils'
+import WidgetTemplate from './widgetTemplate';
 
 class SectionWidget extends Component {
     constructor(props) {
@@ -23,13 +23,14 @@ class SectionWidget extends Component {
 
     renderButtons() {
         if (this.state.sectionParams.defaultButtons) {
-            return <WidgetButtonsSection />
+            return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetButtonsSection />} />
         } else if (this.state.sectionParams.balance) {
-            return <WidgetBalanceSection />
+            return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetBalanceSection />} />
         } else if (this.state.sectionParams.chart) {
-            return <WidgetChartSection />
+            return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetChartSection />} />
         } else if (this.state.sectionParams.last) {
-            return <WidgetLastSection />
+            return <WidgetTemplate selectTitle titleType={1} children={<WidgetLastSection />}
+                />
         } else {
             return <div />
         }
@@ -42,10 +43,7 @@ class SectionWidget extends Component {
                     backgroundColor: 'white',
                     border: '1px solid #f0f0f0'
                 }}>
-                    <div style={{ margin: '8px' }}  >
-                        <WidgetTitle title={this.state.sectionParams.title} />
-                        {this.renderButtons()}
-                    </div>
+                    {this.renderButtons()}
                 </div>
             </section>
         )

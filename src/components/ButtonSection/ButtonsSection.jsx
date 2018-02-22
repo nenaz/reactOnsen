@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import ButtonAccount from './ButtonAccount'
 import Utils from '../../js/utils'
 import { connect } from 'react-redux'
-// import { connect } from 'react-redux'
-// import { changeAnimationState } from '../../AC'
 
 class ButtonsSection extends Component {
     constructor(props) {
@@ -12,12 +10,7 @@ class ButtonsSection extends Component {
             params: {}
         }
 
-        // this.handlerButtonClick = this.handlerButtonClick.bind(this)
     }
-
-    // handlerButtonClick() {
-    //     this.props.changeAnimationState('left-to-right')
-    // }
 
     componentWillMount() {
         this.setState({
@@ -27,12 +20,7 @@ class ButtonsSection extends Component {
 
     render() {
         return (
-            <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between'
-            }}>
+            <div className="buttonsPosition">
                 {this.props.changeAccountsList.map((item, key) => {
                     let param = Utils.selectButtonsParams(item.pname)
                     Object.assign(param, item)
