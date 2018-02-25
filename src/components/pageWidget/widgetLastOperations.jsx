@@ -72,6 +72,10 @@ class WaigetLastOperations extends Component{
             <div>
                 <TitleSelect data={LISTCATEGORY} handleChangeSelect={this.handleChangeSelect} />
                 <List 
+                    style={{
+                        overflowY: 'scroll',
+                        maxHeight: '55vh'
+                    }}
                     dataSource={this.filterOperations()}
                     renderRow={this.renderRow}
                 />
