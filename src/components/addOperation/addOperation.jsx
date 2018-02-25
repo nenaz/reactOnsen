@@ -16,9 +16,11 @@ import Utils from '../../js/utils'
 import KeyboardMain from '../Keyboard'
 import TypeOperation from './typeOperation'
 import Requester from '../../js/requester'
-import { ICONCHECKING, ICONCANCEL } from '../../js/consts'
+import { ICONCHECKING, ICONCANCEL, ICONBACK } from '../../js/consts'
 import Icon from '../Icon'
 import AmountInput from './AmountInput'
+import PageAccounts from './pageAccounts'
+import PageTemplate from './pageTemplate'
 
 const COEFFICIENT = 0.46;
 // const FORMULA = `calc(1rem + ((1vw - ${this.generateAmountFontSize()}) * 20))`;
@@ -39,7 +41,9 @@ class AddOperation extends Component{
                 this.props.changeAccountsList[0]._id : '',
             amountfontSize: 'calc(1rem + (1vw - 0px) * 20)',
             section1Class: '',
-            section2Class: ''
+            section2Class: '',
+            showPageAccounts: false,
+            showPageCategory: false
         }
 
         this.req = new Requester()
@@ -57,6 +61,13 @@ class AddOperation extends Component{
         this.editAccountInList = this.editAccountInList.bind(this)
         this.renderRowRadio = this.renderRowRadio.bind(this)
         this.handleRunAnimation = this.handleRunAnimation.bind(this)
+        this.handlerBackClick = this.handlerBackClick.bind(this)
+    }
+
+    componentDidMount() {
+        const elem = document.getElementsByClassName('nzAmountTextBlock')[0]
+        const width = elem.offsetWidth
+        elem.style.maxWidth = width + 'px'
     }
 
     handlerOkClick() {
@@ -120,6 +131,29 @@ class AddOperation extends Component{
         )
     }
 
+    renderToolbar2() {
+        return (
+            <Toolbar style={{
+                position: 'relative',
+                backgroundColor: 'rgb(0, 140, 164)'
+            }}>
+                <div className="left">
+                    <ToolbarButton onClick={this.handlerBackClick}>
+                        <Icon iconBase64={ICONBACK} />
+                    </ToolbarButton>
+                </div>
+                <div className="center" style={{
+                    color: 'white'
+                }}></div>
+                <div className="right">
+                    <ToolbarButton ref='button' onClick={this.handlerOkClick}>
+                        {/*<Icon iconBase64={ICONCHECKING} />*/}
+                    </ToolbarButton>
+                </div>
+            </Toolbar>
+        )
+    }
+
     handlerClickCalcButton(e) {
         const amount = (this.state.inputAmount === '0') ? '' : this.state.inputAmount
         const part = (this.state.part === '00') ? '' : this.state.part
@@ -174,12 +208,6 @@ class AddOperation extends Component{
         });
     }
 
-    componentDidMount() {
-        const elem = document.getElementsByClassName('nzAmountTextBlock')[0]
-        const width = elem.offsetWidth
-        elem.style.maxWidth = width + 'px'
-    }
-
     generateAmountFontSize() {
         const nowLength = this.state.inputAmount.length - 5;
         let res;
@@ -208,29 +236,65 @@ class AddOperation extends Component{
         this.setState({
             section1Class: 'section1Class transition',
             section2Class: 'section2Class transition',
+            showPageAccounts: true
         })
     }
 
-    render(){
+    handlerBackClick() {
+        this.setState({
+            section1Class: '',
+            section2Class: '',
+            showPageAccounts: false
+        })
+    }
+
+    render() {
+        const pageAcc = (this.state.showPageAccounts) ?
+            (
+                <section
+                    style={{
+                        position: 'relative',
+                        zIndex: 0,
+                        height: '100%',
+                        top: '-100%'
+                    }}
+                >
+                    <PageTemplate />
+                </section> 
+            ) : ''
         return (
-            <Page renderToolbar={this.renderToolbar} style={{
+            <Page renderToolbar={(!this.state.showPageAccounts) ?
+                this.renderToolbar :
+                this.renderToolbar2
+            } style={{
                 overflow: 'hidden'
             }}>
-                <section className={`sectionClass ${this.state.section1Class}`}>
-                    <TypeOperation typeOperation={this.props.typeOperation} />
-                    <AmountInput
-                        typeOperation={this.props.typeOperation}
-                        handleRunAnimation={this.handleRunAnimation}
-                    />
-                </section>
-                <section className={`sectionClass ${this.state.section2Class}`}>
-                    <KeyboardMain
-                        handlerClickCalcButton={this.handlerClickCalcButton}
-                        handlerClickBackButton={this.handlerClickBackButton}
-                        handlerClickCommaButton={this.handlerClickCommaButton}
-                        handlerMathOperationClick={this.handlerMathOperationClick}
-                    />
-                </section>
+            <section className={`sectionClass ${this.state.section1Class}`}
+                style={{
+                    position: 'relative',
+                    zIndex: 1
+                }}
+            >
+                <TypeOperation typeOperation={this.props.typeOperation} />
+                <AmountInput
+                    typeOperation={this.props.typeOperation}
+                    handleRunAnimation={this.handleRunAnimation}
+                />
+            </section>
+            <section className={`sectionClass ${this.state.section2Class}`}
+                style={{
+                    position: 'relative',
+                    zIndex: 1
+                }}
+            >
+                <KeyboardMain
+                    handlerClickCalcButton={this.handlerClickCalcButton}
+                    handlerClickBackButton={this.handlerClickBackButton}
+                    handlerClickCommaButton={this.handlerClickCommaButton}
+                    handlerMathOperationClick={this.handlerMathOperationClick}
+                />
+            </section>
+            {pageAcc}
             </Page>
         )
     }
