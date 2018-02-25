@@ -58,10 +58,13 @@ class WaigetLastOperations extends Component{
     }
 
     filterOperations() {
+        let result = []
         switch(this.state.filter) {
-            case 'last5': return this.props.operations.slice(0, 5)
-            default: return this.props.operations
+            case 'last5': result = this.props.operations.slice(0, 5)
+                break
+            default: result = this.props.operations
         }
+        return result.reverse()
     }
 
     render(){

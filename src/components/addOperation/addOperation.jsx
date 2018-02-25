@@ -3,7 +3,7 @@ import {
     Page,
     Toolbar,
     ToolbarButton,
-    Button
+    Select
 } from 'react-onsenui'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -210,10 +210,14 @@ class AddOperation extends Component{
                             </option>
                         })}
                     </select>
-                    <span>{this.state.accountBalance}</span>
                 </div>
-                
-                <Button className="" modifier='outline large'>Шаблоны</Button>
+                <section>
+                    <Select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </Select>
+                </section>
                 <KeyboardMain
                     handlerClickCalcButton={this.handlerClickCalcButton}
                     handlerClickBackButton={this.handlerClickBackButton}
