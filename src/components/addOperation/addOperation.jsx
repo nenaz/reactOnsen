@@ -3,7 +3,10 @@ import {
     Page,
     Toolbar,
     ToolbarButton,
-    Select
+    Select,
+    Radio,
+    List,
+    ListItem
 } from 'react-onsenui'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -15,6 +18,7 @@ import TypeOperation from './typeOperation'
 import Requester from '../../js/requester'
 import { ICONCHECKING, ICONCANCEL } from '../../js/consts'
 import Icon from '../Icon'
+import AmountInput from './AmountInput'
 
 const COEFFICIENT = 0.46;
 // const FORMULA = `calc(1rem + ((1vw - ${this.generateAmountFontSize()}) * 20))`;
@@ -29,9 +33,13 @@ class AddOperation extends Component{
             comma: false,
             part: '00',
             accountBalance: '0,00',
-            accountName: props.changeAccountsList[0].name,
-            id: this.props.changeAccountsList[0]._id,
+            accountName: (props.changeAccountsList.length) ?
+                props.changeAccountsList[0].name : '',
+            id: (props.changeAccountsList.length) ?
+                this.props.changeAccountsList[0]._id : '',
             amountfontSize: 'calc(1rem + (1vw - 0px) * 20)',
+            section1Class: '',
+            section2Class: ''
         }
 
         this.req = new Requester()
@@ -47,6 +55,8 @@ class AddOperation extends Component{
         this.generateAmountFontSize = this.generateAmountFontSize.bind(this)
         this.addOperationToList = this.addOperationToList.bind(this)
         this.editAccountInList = this.editAccountInList.bind(this)
+        this.renderRowRadio = this.renderRowRadio.bind(this)
+        this.handleRunAnimation = this.handleRunAnimation.bind(this)
     }
 
     handlerOkClick() {
@@ -183,47 +193,44 @@ class AddOperation extends Component{
         });
     }
 
+    renderRowRadio(row) {
+        return (
+            <ListItem key={row.id}>
+                <label className='left'>
+                    <Radio />
+                </label>
+                <label className='center'>{row.text}</label>
+            </ListItem>
+        )
+    }
+
+    handleRunAnimation() {
+        this.setState({
+            section1Class: 'section1Class transition',
+            section2Class: 'section2Class transition',
+        })
+    }
+
     render(){
         return (
-            <Page renderToolbar={this.renderToolbar}>
-                <TypeOperation typeOperation={this.props.typeOperation}/>
-                <div className="nzAmountInput">
-                    <div className="nzAmountItem nzTypeOperation">
-                        <span>{Utils.convertTypeOperation(this.props.typeOperation)}</span>
-                    </div>
-                    <div className="nzAmountItem nzAmountTextBlock">
-                        <span style={{
-                            fontSize: this.state.amountfontSize,
-                        }}>{this.state.inputAmount}{(this.state.comma) ? ',' : ''}{(this.state.comma) ?
-                            this.state.part : ''}</span>
-                    </div>
-                    <div className="nzAmountItem nzCurrency">
-                        <span>RUB</span>
-                    </div>
-                </div>
-                <div className="nzFromToText">
-                    <select onChange={this.handleChangeSelect}>
-                        {this.props.changeAccountsList.map((item, key) => {
-                            return <option key={item._id} id={item._id} defaultValue={(item.name === this.state.accountName) ? this.state.accountName : ""}
-                                value={item.name} balance={item.balance}>
-                                {item.name}
-                            </option>
-                        })}
-                    </select>
-                </div>
-                <section>
-                    <Select>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </Select>
+            <Page renderToolbar={this.renderToolbar} style={{
+                overflow: 'hidden'
+            }}>
+                <section className={`sectionClass ${this.state.section1Class}`}>
+                    <TypeOperation typeOperation={this.props.typeOperation} />
+                    <AmountInput
+                        typeOperation={this.props.typeOperation}
+                        handleRunAnimation={this.handleRunAnimation}
+                    />
                 </section>
-                <KeyboardMain
-                    handlerClickCalcButton={this.handlerClickCalcButton}
-                    handlerClickBackButton={this.handlerClickBackButton}
-                    handlerClickCommaButton={this.handlerClickCommaButton}
-                    handlerMathOperationClick={this.handlerMathOperationClick}
-                />
+                <section className={`sectionClass ${this.state.section2Class}`}>
+                    <KeyboardMain
+                        handlerClickCalcButton={this.handlerClickCalcButton}
+                        handlerClickBackButton={this.handlerClickBackButton}
+                        handlerClickCommaButton={this.handlerClickCommaButton}
+                        handlerMathOperationClick={this.handlerMathOperationClick}
+                    />
+                </section>
             </Page>
         )
     }

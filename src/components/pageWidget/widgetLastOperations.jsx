@@ -23,9 +23,11 @@ class WaigetLastOperations extends Component{
         return (
             <ListItem key={index} tapBackgroundColor="#0f0f0f" tappable={true}>
                 <div className="left">
-                    <Icon iconBase64={icon} styleObj={{
-                        width: '40px'
-                    }} />
+                    <Icon
+                        iconBase64={icon} styleObj={{
+                            width: '40px'
+                        }}
+                    />
                 </div>
                 <div className="center" style={{
                     display: 'flex',
