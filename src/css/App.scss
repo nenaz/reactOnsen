@@ -93,6 +93,7 @@
   position: absolute;
   width: 100%;
   bottom: 0;
+  height: 100%;
   .nzButtonsBlock1{
     width: 100%;
     background-color: #fff;
@@ -100,6 +101,7 @@
       display: flex;
       flex-direction: row-reverse;
       height: 25%;
+      align-items: center;
       .nzButton{
         color: rgb(96, 96, 96);
         width: 33%;
@@ -144,25 +146,49 @@
   }
 }
 
-.nzAmountInput{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 80%;
+.nzAmountSection{
   background-color: rgb(0,154,196);
-  color: white;
-  .nzAmountItem{
-    flex-grow: 1;
-    text-align: center;
-    &.nzAmountTextBlock{
-      // font-size: 100px;
-      flex-grow: 3;
-      text-align: right;
-      min-width: 200px;
+  height: calc(100% - 50px);
+  .nzAmountInput{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    
+    color: white;
+    .nzAmountItem{
+      flex-grow: 1;
+      text-align: center;
+      &.nzAmountTextBlock{
+        // font-size: 100px;
+        flex-grow: 3;
+        text-align: right;
+        min-width: 200px;
+      }
+      &.nzTypeOperation{
+        font-size: 35px;
+      }
     }
-    &.nzTypeOperation{
-      font-size: 35px;
+  }
+  .nzAmountSelect{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    div{
+      color: #fff;
+      text-align: center;
+      span{
+        display: inline-block;
+        width: 100%;
+      }
+      .nzAmountSelectTitle{
+        font-size: 12px;
+      }
+      .nzAmountSelectText{
+        font-size: 16px;
+        font-weight: bold;
+      }
     }
   }
 }
@@ -249,6 +275,6 @@
   transform: translateY(105%);
 }
 
-.page__content {
+.page__content.page--material__content {
   overflow: hidden;
 }

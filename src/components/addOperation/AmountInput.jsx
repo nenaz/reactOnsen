@@ -10,26 +10,35 @@ class AmountInput extends Component {
 
     render() {
         return (
-            <div className="nzAmountInput">
-
-                <div className="nzAmountItem nzTypeOperation">
-                    <span>{Utils.convertTypeOperation(this.props.typeOperation)}</span>
+            <div className="nzAmountSection">
+                <div className="nzAmountInput">
+                    <div className="nzAmountItem nzTypeOperation">
+                        <span>{Utils.convertTypeOperation(this.props.typeOperation)}</span>
+                    </div>
+                    <div className="nzAmountItem nzAmountTextBlock">
+                        <span style={{
+                            fontSize: this.props.amountfontSize,
+                        }}>{this.props.inputAmount}{(this.props.comma) ? ',' : ''}{(this.props.comma) ?
+                                this.props.part : ''}</span>
+                    </div>
+                    <div className="nzAmountItem nzCurrency">
+                        <span>RUB</span>
+                    </div>
                 </div>
-                <div className="nzAmountItem nzAmountTextBlock">
-                    <span style={{
-                        fontSize: this.state.amountfontSize,
-                    }}>{this.state.inputAmount}{(this.state.comma) ? ',' : ''}{(this.state.comma) ?
-                        this.state.part : ''}</span>
+                <div className="nzAmountSelect">
+                    <div onClick={() => {
+                        this.props.handleRunAnimation(0)
+                    }}>
+                        <span className="nzAmountSelectTitle">Счет</span>
+                        <span className="nzAmountSelectText">Открытие</span>
+                    </div>
+                    <div onClick={() => {
+                        this.props.handleRunAnimation(1)
+                    }}>
+                        <span className="nzAmountSelectTitle">Категория</span>
+                        <span className="nzAmountSelectText">Еда</span>
+                    </div>
                 </div>
-                <div className="nzAmountItem nzCurrency">
-                    <span>RUB</span>
-                </div>
-                <section>
-                    <span
-                        onClick={this.props.handleRunAnimation}
-                    > Выбрать счет </span>
-                    {/*<PageCategory />*/}
-                </section>
             </div>
         )
     }

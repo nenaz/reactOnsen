@@ -51,7 +51,6 @@ class KeyboardMain extends Component{
         return (
             <div className='nzKeyboard'>
                 {this.renderItemNum()}
-                {this.renderMathButton()}
             </div>
         )
     }

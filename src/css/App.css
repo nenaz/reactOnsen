@@ -96,6 +96,7 @@
   position: absolute;
   width: 100%;
   bottom: 0;
+  height: 100%;
 }
 
 .nzKeyboard .nzButtonsBlock1 {
@@ -107,6 +108,7 @@
   display: flex;
   flex-direction: row-reverse;
   height: 25%;
+  align-items: center;
 }
 
 .nzKeyboard .nzButtonsBlock1 .nzButtonRow .nzButton {
@@ -156,29 +158,58 @@
   border-right: 1px solid #007689;
 }
 
-.nzAmountInput {
+.nzAmountSection {
+  background-color: #009ac4;
+  height: calc(100% - 50px);
+}
+
+.nzAmountSection .nzAmountInput {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 80%;
-  background-color: #009ac4;
   color: white;
 }
 
-.nzAmountInput .nzAmountItem {
+.nzAmountSection .nzAmountInput .nzAmountItem {
   flex-grow: 1;
   text-align: center;
 }
 
-.nzAmountInput .nzAmountItem.nzAmountTextBlock {
+.nzAmountSection .nzAmountInput .nzAmountItem.nzAmountTextBlock {
   flex-grow: 3;
   text-align: right;
   min-width: 200px;
 }
 
-.nzAmountInput .nzAmountItem.nzTypeOperation {
+.nzAmountSection .nzAmountInput .nzAmountItem.nzTypeOperation {
   font-size: 35px;
+}
+
+.nzAmountSection .nzAmountSelect {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.nzAmountSection .nzAmountSelect div {
+  color: #fff;
+  text-align: center;
+}
+
+.nzAmountSection .nzAmountSelect div span {
+  display: inline-block;
+  width: 100%;
+}
+
+.nzAmountSection .nzAmountSelect div .nzAmountSelectTitle {
+  font-size: 12px;
+}
+
+.nzAmountSection .nzAmountSelect div .nzAmountSelectText {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .nzFromToText select {
@@ -271,7 +302,7 @@
   transform: translateY(105%);
 }
 
-.page__content {
+.page__content.page--material__content {
   overflow: hidden;
 }
 /*# sourceMappingURL=App.css.map */

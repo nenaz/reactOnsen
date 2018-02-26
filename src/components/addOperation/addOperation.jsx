@@ -20,7 +20,7 @@ import { ICONCHECKING, ICONCANCEL, ICONBACK } from '../../js/consts'
 import Icon from '../Icon'
 import AmountInput from './AmountInput'
 import PageAccounts from './pageAccounts'
-import PageTemplate from './pageTemplate'
+import PageCategory from './pageCategory'
 
 const COEFFICIENT = 0.46;
 // const FORMULA = `calc(1rem + ((1vw - ${this.generateAmountFontSize()}) * 20))`;
@@ -62,6 +62,9 @@ class AddOperation extends Component{
         this.renderRowRadio = this.renderRowRadio.bind(this)
         this.handleRunAnimation = this.handleRunAnimation.bind(this)
         this.handlerBackClick = this.handlerBackClick.bind(this)
+        this.renderToolbarForSelect = this.renderToolbarForSelect.bind(this)
+        this.selectTooltipForRendering = this.selectTooltipForRendering.bind(this)
+        this.selectRenderBackgroundPage = this.selectRenderBackgroundPage.bind(this)
     }
 
     componentDidMount() {
@@ -106,6 +109,13 @@ class AddOperation extends Component{
         }, 500);
     }
 
+    selectTooltipForRendering() {
+        if (this.state.showPageAccounts || this.state.showPageCategory) {
+            return this.renderToolbarForSelect()
+        }
+        return this.renderToolbar()
+    }
+
     renderToolbar() {
         return (
             <Toolbar style={{
@@ -131,24 +141,22 @@ class AddOperation extends Component{
         )
     }
 
-    renderToolbar2() {
+    renderToolbarForSelect() {
         return (
             <Toolbar style={{
                 position: 'relative',
                 backgroundColor: 'rgb(0, 140, 164)'
             }}>
                 <div className="left">
-                    <ToolbarButton onClick={this.handlerBackClick}>
-                        <Icon iconBase64={ICONBACK} />
+                    <ToolbarButton ref='button' onClick={this.handlerBackClick}>
+                        <Icon iconBase64={ICONBACK}/>
                     </ToolbarButton>
                 </div>
                 <div className="center" style={{
                     color: 'white'
                 }}></div>
                 <div className="right">
-                    <ToolbarButton ref='button' onClick={this.handlerOkClick}>
-                        {/*<Icon iconBase64={ICONCHECKING} />*/}
-                    </ToolbarButton>
+                    <ToolbarButton ref='button' onClick={this.handlerOkClick} />
                 </div>
             </Toolbar>
         )
@@ -232,41 +240,62 @@ class AddOperation extends Component{
         )
     }
 
-    handleRunAnimation() {
+    handleRunAnimation(type) {
         this.setState({
             section1Class: 'section1Class transition',
-            section2Class: 'section2Class transition',
-            showPageAccounts: true
+            section2Class: 'section2Class transition'
         })
+        if (!type) {
+            this.setState({
+                showPageAccounts: true
+            })
+        } else {
+            this.setState({
+                showPageCategory: true
+            })
+        }
     }
 
     handlerBackClick() {
         this.setState({
             section1Class: '',
             section2Class: '',
-            showPageAccounts: false
+            showPageAccounts: false,
+            showPageCategory: false
         })
     }
 
+    selectRenderBackgroundPage() {
+        if (this.state.showPageAccounts) {
+            return <section
+                style={{
+                    position: 'relative',
+                    zIndex: 0,
+                    height: '100%',
+                    top: '-100%'
+                }}
+            >
+                <PageAccounts />
+            </section>
+        } else if (this.state.showPageCategory) {
+            return <section
+                style={{
+                    position: 'relative',
+                    zIndex: 0,
+                    height: '100%',
+                    top: '-100%'
+                }}
+            >
+                <PageCategory />
+            </section>
+        }
+        return ''
+    }
+
     render() {
-        const pageAcc = (this.state.showPageAccounts) ?
-            (
-                <section
-                    style={{
-                        position: 'relative',
-                        zIndex: 0,
-                        height: '100%',
-                        top: '-100%'
-                    }}
-                >
-                    <PageTemplate />
-                </section> 
-            ) : ''
+        const pageAcc = this.selectRenderBackgroundPage()
         return (
-            <Page renderToolbar={(!this.state.showPageAccounts) ?
-                this.renderToolbar :
-                this.renderToolbar2
-            } style={{
+            <Page renderToolbar={this.selectTooltipForRendering} style={{
                 overflow: 'hidden'
             }}>
             <section className={`sectionClass ${this.state.section1Class}`}
@@ -279,6 +308,10 @@ class AddOperation extends Component{
                 <AmountInput
                     typeOperation={this.props.typeOperation}
                     handleRunAnimation={this.handleRunAnimation}
+                    inputAmount={this.state.inputAmount}
+                    comma={this.state.comma}
+                    part={this.state.part}
+                    amountfontSize={this.state.amountfontSize}
                 />
             </section>
             <section className={`sectionClass ${this.state.section2Class}`}

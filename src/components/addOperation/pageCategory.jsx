@@ -6,7 +6,7 @@ import {
     ListItem
 } from 'react-onsenui'
 
-class PageTemplate extends Component {
+class PageCategory extends Component {
     constructor(props) {
         super(props)
         this.state = {}
@@ -16,7 +16,7 @@ class PageTemplate extends Component {
 
     renderRow(row) {
         return (
-            <ListItem>
+            <ListItem key={row}>
                 <span>{row}</span>
             </ListItem>
         )
@@ -26,7 +26,7 @@ class PageTemplate extends Component {
         return (
             <Page>
                 <List
-                    dataSource={[1,2,3,4,5]}
+                    dataSource={['a', 'b', 'c', 'd', 'e']}
                     renderRow={this.renderRow}
                 />
             </Page>
@@ -34,4 +34,4 @@ class PageTemplate extends Component {
     }
 }
 
-export default PageTemplate
+export default PageCategory
