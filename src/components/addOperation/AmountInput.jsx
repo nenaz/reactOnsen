@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PageAccounts from './pageAccounts'
 import Utils from '../../js/utils'
 
 class AmountInput extends Component {
@@ -30,7 +29,7 @@ class AmountInput extends Component {
                         this.props.handleRunAnimation(0)
                     }}>
                         <span className="nzAmountSelectTitle">Счет</span>
-                        <span className="nzAmountSelectText">Открытие</span>
+                        <span className="nzAmountSelectText">{this.props.accountName}</span>
                     </div>
                     <div onClick={() => {
                         this.props.handleRunAnimation(1)

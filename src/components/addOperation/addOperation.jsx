@@ -3,10 +3,6 @@ import {
     Page,
     Toolbar,
     ToolbarButton,
-    Select,
-    Radio,
-    List,
-    ListItem
 } from 'react-onsenui'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -59,12 +55,12 @@ class AddOperation extends Component{
         this.generateAmountFontSize = this.generateAmountFontSize.bind(this)
         this.addOperationToList = this.addOperationToList.bind(this)
         this.editAccountInList = this.editAccountInList.bind(this)
-        this.renderRowRadio = this.renderRowRadio.bind(this)
         this.handleRunAnimation = this.handleRunAnimation.bind(this)
         this.handlerBackClick = this.handlerBackClick.bind(this)
         this.renderToolbarForSelect = this.renderToolbarForSelect.bind(this)
         this.selectTooltipForRendering = this.selectTooltipForRendering.bind(this)
         this.selectRenderBackgroundPage = this.selectRenderBackgroundPage.bind(this)
+        this.handleSelectItem = this.handleSelectItem.bind(this)
     }
 
     componentDidMount() {
@@ -229,17 +225,6 @@ class AddOperation extends Component{
         });
     }
 
-    renderRowRadio(row) {
-        return (
-            <ListItem key={row.id}>
-                <label className='left'>
-                    <Radio />
-                </label>
-                <label className='center'>{row.text}</label>
-            </ListItem>
-        )
-    }
-
     handleRunAnimation(type) {
         this.setState({
             section1Class: 'section1Class transition',
@@ -275,7 +260,7 @@ class AddOperation extends Component{
                     top: '-100%'
                 }}
             >
-                <PageAccounts />
+                <PageAccounts handleSelectItem={this.handleSelectItem} />
             </section>
         } else if (this.state.showPageCategory) {
             return <section
@@ -290,6 +275,14 @@ class AddOperation extends Component{
             </section>
         }
         return ''
+    }
+
+    handleSelectItem(e) {
+        this.setState({
+            id: e.currentTarget.getAttribute('value'),
+            accountName: e.currentTarget.getAttribute('name')
+        })
+        this.handlerBackClick()
     }
 
     render() {
@@ -312,6 +305,7 @@ class AddOperation extends Component{
                     comma={this.state.comma}
                     part={this.state.part}
                     amountfontSize={this.state.amountfontSize}
+                    accountName={this.state.accountName}
                 />
             </section>
             <section className={`sectionClass ${this.state.section2Class}`}
