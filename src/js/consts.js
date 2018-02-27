@@ -24,7 +24,7 @@ export const ICONCHECKING = "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0i
 
 export const ICONBACK = "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDMxLjQ5NCAzMS40OTQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMxLjQ5NCAzMS40OTQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTI4cHgiIGhlaWdodD0iMTI4cHgiPgo8cGF0aCBkPSJNMTAuMjczLDUuMDA5YzAuNDQ0LTAuNDQ0LDEuMTQzLTAuNDQ0LDEuNTg3LDBjMC40MjksMC40MjksMC40MjksMS4xNDMsMCwxLjU3MWwtOC4wNDcsOC4wNDdoMjYuNTU0ICBjMC42MTksMCwxLjEyNywwLjQ5MiwxLjEyNywxLjExMWMwLDAuNjE5LTAuNTA4LDEuMTI3LTEuMTI3LDEuMTI3SDMuODEzbDguMDQ3LDguMDMyYzAuNDI5LDAuNDQ0LDAuNDI5LDEuMTU5LDAsMS41ODcgIGMtMC40NDQsMC40NDQtMS4xNDMsMC40NDQtMS41ODcsMGwtOS45NTItOS45NTJjLTAuNDI5LTAuNDI5LTAuNDI5LTEuMTQzLDAtMS41NzFMMTAuMjczLDUuMDA5eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"
 
-export const LISTCATEGORY = [
+export const FILTERLIST = [
     {
         value: 'last5',
         title: 'Последние 5'
@@ -40,5 +40,321 @@ export const LISTCATEGORY = [
     {
         value: 'category',
         title: 'По категории'
+    },
+];
+
+export const LISTCATEGORY = [
+    {
+        value: 0,
+        title: 'Еда и напитки',
+        data: [
+            { value: 0, title: 'Еда и напитки - прочее'},
+            { value: 1, title: 'Бар, кафе'},
+            { value: 2, title: 'Продукты'},
+            { value: 3, title: 'Ресторан, фаст-фуд'},
+        ],
+    },
+    {
+        value: 1,
+        title: 'Покупки',
+        data: [
+            { value: 0, title: 'Покупки - прочее'},
+            { value: 1, title: 'Аптека'},
+            { value: 2, title: 'Дети'},
+            { value: 3, title: 'Дом и сад'},
+            { value: 4, title: 'Домашние животные, питомцы'},
+            { value: 5, title: 'Канцелярские принадлежности'},
+            { value: 6, title: 'Красота и здоровье'},
+            { value: 7, title: 'Одежда и обувь'},
+            { value: 8, title: 'Отдых'},
+            { value: 9, title: 'Подарки'},
+            { value: 10, title: 'Электроника и аксессуары'},
+            { value: 11, title: 'Ювелирные изделия, аксессуры'},
+        ],
+    },
+    {
+        value: 2,
+        title: 'Жилье',
+        data: [
+            {
+                value: 0,
+                title: 'Жилье - прочее'
+            },{
+                value: 1,
+                title: 'Аренда'
+            },{
+                value: 2,
+                title: 'Ипотека'
+            },{
+                value: 3,
+                title: 'Страхование имущества'
+            },{
+                value: 4,
+                title: 'Технообслуживание, ремонт'
+            },{
+                value: 5,
+                title: 'Услуги'
+            },{
+                value: 6,
+                title: 'Элекстричество, коммунальные платежи'
+            },
+        ],
+    },
+    {
+        value: 3,
+        title: 'Транспорт',
+        data: [
+            {
+                value: 0,
+                title: 'Транспорт - прочее'
+            },
+            {
+                value: 1,
+                title: 'Дальние поездки'
+            },
+            {
+                value: 2,
+                title: 'Деловые поездки'
+            },
+            {
+                value: 3,
+                title: 'Общественный транспорт'
+            },
+            {
+                value: 4,
+                title: 'Такси'
+            },
+        ],
+    },
+    {
+        value: 4,
+        title: 'Транспортное средство',
+        data: [
+            {
+                value: 0,
+                title: 'Транспортное средство - прочее'
+            },
+            {
+                value: 1,
+                title: 'Аренда'
+            },
+            {
+                value: 2,
+                title: 'Бензин'
+            },
+            {
+                value: 3,
+                title: 'Лизинг'
+            },
+            {
+                value: 4,
+                title: 'Парковка'
+            },
+            {
+                value: 5,
+                title: 'Страхование'
+            },
+            {
+                value: 6,
+                title: 'Техобслуживание'
+            },
+        ],
+    },
+    {
+        value: 5,
+        title: 'Жизнь и развлечения',
+        data: [
+            {
+                value: 0,
+                title: 'Жизнь и развлечения - прочее'
+            },
+            {
+                value: 1,
+                title: 'Алкоголь, табак'
+            },
+            {
+                value: 2,
+                title: 'Благотворительность, подарки'
+            },
+            {
+                value: 3,
+                title: 'Здравоохранение, врач'
+            },
+            {
+                value: 4,
+                title: 'Значимые события'
+            },
+            {
+                value: 5,
+                title: 'Книги, аудио, подписки'
+            },
+            {
+                value: 6,
+                title: 'Культура, спортивные мероприятия'
+            },
+            {
+                value: 7,
+                title: 'Лотереи, азартные игры'
+            },
+            {
+                value: 8,
+                title: 'Образование, развитие'
+            },
+            {
+                value: 9,
+                title: 'Оздоровление, красота'
+            },
+            {
+                value: 10,
+                title: 'Отпуск, поездки, отели'
+            },
+            {
+                value: 11,
+                title: 'Спорт, фитнес'
+            },
+            {
+                value: 12,
+                title: 'ТВ и потоковое вещание'
+            },
+            {
+                value: 13,
+                title: 'Хобби'
+            },
+        ],
+    },
+    {
+        value: 6,
+        title: 'Связь, ПК',
+        data: [
+            {
+                value: 0,
+                title: 'Связь, ПК - прочее'
+            },
+            {
+                value: 1,
+                title: 'Интернет'
+            },
+            {
+                value: 2,
+                title: 'Почтовые услуги'
+            },
+            {
+                value: 3,
+                title: 'Программы, игры'
+            },
+            {
+                value: 4,
+                title: 'Телефон'
+            },
+        ],
+    },
+    {
+        value: 7,
+        title: 'Финансовые расходы',
+        data: [
+            {
+                value: 0,
+                title: 'Финансовые расходы - прочее'
+            }, {
+                value: 1,
+                title: 'Алименты'
+            }, {
+                value: 2,
+                title: 'Займы, проценты'
+            }, {
+                value: 3,
+                title: 'Консультации'
+            }, {
+                value: 4,
+                title: 'Налоги'
+            }, {
+                value: 5,
+                title: 'Сборы, платы'
+            }, {
+                value: 6,
+                title: 'Страхование'
+            }, {
+                value: 7,
+                title: 'Штрафы'
+            },
+        ],
+    },
+    {
+        value: 8,
+        title: 'Инвестиции',
+        data: [
+            {
+                value: 0,
+                title: 'Инвестиции - прочее'
+            }, {
+                value: 1,
+                title: 'Коллекции'
+            }, {
+                value: 2,
+                title: 'Недвижимость'
+            }, {
+                value: 3,
+                title: 'Сбережения'
+            }, {
+                value: 4,
+                title: 'Транпортные средства'
+            }, {
+                value: 5,
+                title: 'Финансовые инвестиции'
+            },
+        ],
+    },
+    {
+        value: 9,
+        title: 'Доход',
+        data: [
+            {
+                value: 0,
+                title: 'Доход - прочее'
+            }, {
+                value: 1,
+                title: 'Алименты'
+            }, {
+                value: 2,
+                title: 'Возврат денег(налогЮ покупка)'
+            }, {
+                value: 3,
+                title: 'Доход от аренды'
+            }, {
+                value: 4,
+                title: 'Зарплата, счета-фактуры'
+            }, {
+                value: 5,
+                title: 'Интересы, дивиденды'
+            }, {
+                value: 6,
+                title: 'Кредит, аренда'
+            }, {
+                value: 7,
+                title: 'Лотереи, азартные игры'
+            }, {
+                value: 8,
+                title: 'Подарки'
+            }, {
+                value: 9,
+                title: 'Продажа'
+            }, {
+                value: 10,
+                title: 'Чеки, купоны'
+            }, {
+                value: 11,
+                title: 'Членские взносы'
+            },
+        ],
+    },
+    {
+        value: 10,
+        title: 'Прочее',
+        data: [
+            {
+                value: 0,
+                title: 'Прочее - прочее'
+            },
+        ],
     },
 ];

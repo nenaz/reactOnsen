@@ -5,7 +5,7 @@ import { ICONCAHMINUS, ICONCAHPLUS } from '../../js/consts'
 import Icon from '../Icon'
 
 import TitleSelect from '../TitleSelect'
-import { LISTCATEGORY } from '../../js/consts'
+import { FILTERLIST } from '../../js/consts'
 
 class WaigetLastOperations extends Component{
     constructor(props){
@@ -72,7 +72,7 @@ class WaigetLastOperations extends Component{
     render(){
         return (
             <div>
-                <TitleSelect data={LISTCATEGORY} handleChangeSelect={this.handleChangeSelect} />
+                <TitleSelect data={FILTERLIST} handleChangeSelect={this.handleChangeSelect} />
                 <List 
                     style={{
                         overflowY: 'scroll',
