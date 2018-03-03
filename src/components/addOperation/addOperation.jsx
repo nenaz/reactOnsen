@@ -39,7 +39,8 @@ class AddOperation extends Component{
             section1Class: '',
             section2Class: '',
             showPageAccounts: false,
-            showPageCategory: false
+            showPageCategory: false,
+            categoryId: null
         }
 
         this.req = new Requester()
@@ -61,6 +62,7 @@ class AddOperation extends Component{
         this.selectTooltipForRendering = this.selectTooltipForRendering.bind(this)
         this.selectRenderBackgroundPage = this.selectRenderBackgroundPage.bind(this)
         this.handleSelectItem = this.handleSelectItem.bind(this)
+        this.handleSelectCategoty = this.handleSelectCategoty.bind(this)
     }
 
     componentDidMount() {
@@ -271,7 +273,7 @@ class AddOperation extends Component{
                     top: '-100%'
                 }}
             >
-                <PageCategory />
+                <PageCategory handleSelectCategoty={this.handleSelectCategoty} />
             </section>
         }
         return ''
@@ -281,6 +283,14 @@ class AddOperation extends Component{
         this.setState({
             id: e.currentTarget.getAttribute('value'),
             accountName: e.currentTarget.getAttribute('name')
+        })
+        this.handlerBackClick()
+    }
+
+    handleSelectCategoty(e) {
+        console.log(e.currentTarget.getAttribute('value'))
+        this.setState({
+            categoryId: e.currentTarget.getAttribute('value')
         })
         this.handlerBackClick()
     }

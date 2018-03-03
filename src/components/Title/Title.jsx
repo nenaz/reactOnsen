@@ -3,12 +3,11 @@ import React from 'react'
 const TitleWidget = (props) => {
     return (
         <span style={{
-            margin: '5px',
+            paddingLeft: '15px',
             display: 'inline-block',
             fontSize: '13px',
-            width: '100%',
-            marginBottom: '10px',
-            marginTop: '0'
+            height: '30px',
+            lineHeight: '30px'
         }}>{props.title}</span>
     )
 }
