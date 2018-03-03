@@ -66,7 +66,7 @@ class WaigetLastOperations extends Component{
                 break
             default: result = this.props.operations
         }
-        return result.reverse()
+        return result
     }
 
     render(){

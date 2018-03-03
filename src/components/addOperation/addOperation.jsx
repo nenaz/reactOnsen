@@ -288,9 +288,9 @@ class AddOperation extends Component{
     }
 
     handleSelectCategoty(e) {
-        console.log(e.currentTarget.getAttribute('value'))
+        console.log(e.currentTarget.getAttribute('id'))
         this.setState({
-            categoryId: e.currentTarget.getAttribute('value')
+            typeOperation: e.currentTarget.getAttribute('id')
         })
         this.handlerBackClick()
     }
