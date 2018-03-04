@@ -29,7 +29,7 @@ export default class Requester {
         });
     }
 
-    initialize() {
+    initialize(value) {
         if (localStorage) {
             if (!localStorage.hasOwnProperty('localUserName')) {
                 this.setLocal('localUserName', [], true)

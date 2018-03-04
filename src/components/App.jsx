@@ -67,7 +67,7 @@ class App extends Component {
   }
 
   getOperations(req) {
-    const arrOper = (req.getLocal('localItems')).reverse()
+    const arrOper = (req.getLocal('localItems'))
     arrOper.map(item => this.props.addOperationToList(item))
   }
 
