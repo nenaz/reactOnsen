@@ -10,6 +10,8 @@ import {
 import Title from "../Title";
 import { LISTCATEGORY } from '../../js/consts'
 import PageSubCategory from './pageSubCategory'
+import { connect } from 'react-redux'
+import Utils from '../../js/utils'
 
 class PageCategory extends Component {
     constructor(props) {
@@ -25,6 +27,7 @@ class PageCategory extends Component {
         this.showSubCategory = this.showSubCategory.bind(this)
         this.renderModal = this.renderModal.bind(this)
         this.setValue = this.setValue.bind(this)
+        this.getTopCategory = this.getTopCategory.bind(this)
     }
 
     renderRowTopCategory(row) {
@@ -91,7 +94,13 @@ class PageCategory extends Component {
         }
     }
 
+    getTopCategory() {
+        return Utils.createTopCategory(this.props.topOperations)
+    }
+
     render() {
+        const dataTop = this.getTopCategory()
+        console.log(dataTop)
         return (
             <Page className="test"
                 renderModal={this.renderModal}
@@ -99,7 +108,7 @@ class PageCategory extends Component {
                 <section>
                     <Title title="Частые категории"/>
                     <List
-                        dataSource={[1,2,3,4]}
+                        dataSource={[1]}
                         renderRow={this.renderRowTopCategory}
                     />
                 </section>
@@ -119,7 +128,9 @@ class PageCategory extends Component {
     }
 }
 
-export default PageCategory
+export default connect((state) => ({
+    topOperations: state.changeCategoryStatistic
+}))(PageCategory)
 
 PageCategory.propTypes = {
     handleSelectCategoty: PropTypes.func,

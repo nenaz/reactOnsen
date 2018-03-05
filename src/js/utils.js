@@ -135,6 +135,38 @@ const deleteFirstSymbol = (value) => {
     return value.slice(1);
 }
 
+const createTopCategory = (arr) => {
+    const newArr = [];
+    // arr.map((item) => {
+    //     return item.data.map((one) => {
+    //         newArr.push({
+    //             count: one.count,
+    //             id: item.value + '-' + one.value
+    //         });
+    //     })
+    // })
+    for (let i = 0; i < arr.length; i += 1) {
+        arr[i].data.map((item) => {
+            let node = {
+                count: item.count,
+                id: arr[i].value + '-' + item.value
+            }
+            newArr.push(node)
+            return node
+        })
+    }
+
+    const jj = arr.map((item) => {
+        return item.data.map((one) => {
+            return {
+                count: one.count,
+                id: item.value + '-' + one.value
+            };
+        })
+    })
+    return [];
+}
+
 const utils = {
     selectButtonsParams,
     selectSectionsParams,
@@ -143,7 +175,8 @@ const utils = {
     nowDate,
     convertTypeOperation,
     getRandomId,
-    deleteFirstSymbol
+    deleteFirstSymbol,
+    createTopCategory
 }
 
 export default utils

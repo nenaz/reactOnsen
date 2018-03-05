@@ -40,6 +40,9 @@ export default class Requester {
             if (!localStorage.hasOwnProperty('localItems')) {
                 this.setLocal('localItems', [], true)
             }
+            if (!localStorage.hasOwnProperty('localItemsStatistic')) {
+                this.setLocal('localItemsStatistic', [], true)
+            }
         } else {
             console.log('error')
         }

@@ -76,7 +76,8 @@ class WaigetLastOperations extends Component{
                 <List 
                     style={{
                         overflowY: 'scroll',
-                        maxHeight: '55vh'
+                        maxHeight: '55vh',
+                        minHeight: '55vh'
                     }}
                     dataSource={this.filterOperations()}
                     renderRow={this.renderRow}

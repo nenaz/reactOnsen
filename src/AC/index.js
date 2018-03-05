@@ -4,7 +4,8 @@ import {
     ADDOPERATIONTOLIST,
     EDITACCOUNTINLIST,
     SELECTTYPEOPERATION,
-    ACCOUNTTOEDIT
+    ACCOUNTTOEDIT,
+    CHANGECATEGORYSTATISTIC
 } from '../js/consts'
 
 export function changeAnimationState(value) {
@@ -45,6 +46,13 @@ export function selectTypeOperation(value) {
 export function accountToEdit(id) {
     return {
         type: ACCOUNTTOEDIT,
+        payload: id
+    }
+}
+
+export function changeCategoryStatistic(id) {
+    return {
+        type: CHANGECATEGORYSTATISTIC,
         payload: id
     }
 }
