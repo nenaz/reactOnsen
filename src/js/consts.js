@@ -45,55 +45,46 @@ export const LISTCATEGORY = [
         value: 0,
         title: 'Еда и напитки',
         data: [
-            { value: 0, title: 'Еда и напитки - прочее', count: 1},
-            { value: 1, title: 'Бар, кафе', count: 2},
-            { value: 2, title: 'Продукты', count: 3},
-            { value: 3, title: 'Ресторан, фаст-фуд', count: 4},
+            { value: 0, title: 'Еда и напитки - прочее', count: 0},
+            { value: 1, title: 'Бар, кафе', count: 1},
+            { value: 2, title: 'Продукты', count: 2},
+            { value: 3, title: 'Ресторан, фаст-фуд', count: 3},
         ],
     },
     {
         value: 1,
         title: 'Покупки',
         data: [
-            { value: 0, title: 'Покупки - прочее', count: 0},
-            { value: 1, title: 'Аптека', count: 0},
-            { value: 2, title: 'Дети', count: 0},
-            { value: 3, title: 'Дом и сад', count: 0},
-            { value: 4, title: 'Домашние животные, питомцы', count: 0},
-            { value: 5, title: 'Канцелярские принадлежности', count: 0},
-            { value: 6, title: 'Красота и здоровье', count: 0},
-            { value: 7, title: 'Одежда и обувь', count: 0},
-            { value: 8, title: 'Отдых', count: 0},
-            { value: 9, title: 'Подарки', count: 0},
-            { value: 10, title: 'Электроника и аксессуары', count: 0},
-            { value: 11, title: 'Ювелирные изделия, аксессуры', count: 0},
+            { value: 0, title: 'Покупки - прочее', count: 4},
+            { value: 1, title: 'Аптека', count: 5},
+            { value: 2, title: 'Дети', count: 6},
+            { value: 3, title: 'Дом и сад', count: 7},
+            { value: 4, title: 'Домашние животные, питомцы', count: 8},
+            { value: 5, title: 'Канцелярские принадлежности', count: 9},
+            { value: 6, title: 'Красота и здоровье', count: 10},
+            { value: 7, title: 'Одежда и обувь', count: 11},
+            { value: 8, title: 'Отдых', count: 12},
+            { value: 9, title: 'Подарки', count: 16},
+            { value: 10, title: 'Электроника и аксессуары', count: 14},
+            { value: 11, title: 'Ювелирные изделия, аксессуры', count: 15},
         ],
     },
     {
         value: 2,
         title: 'Жилье',
         data: [
-            {
-                value: 0,
-                title: 'Жилье - прочее', count: 0
-            },{
-                value: 1,
-                title: 'Аренда', count: 0
-            },{
-                value: 2,
-                title: 'Ипотека', count: 0
-            },{
-                value: 3,
-                title: 'Страхование имущества', count: 0
-            },{
-                value: 4,
-                title: 'Технообслуживание, ремонт', count: 0
-            },{
-                value: 5,
-                title: 'Услуги', count: 0
-            },{
-                value: 6,
-                title: 'Элекстричество, коммунальные платежи', count: 0
+            {value: 0,title: 'Жилье - прочее', count: 0
+            },{value: 1,title: 'Аренда', count: 0
+            }, {
+                value: 2, title: 'Ипотека', count: 0
+            }, {
+                value: 3, title: 'Страхование имущества', count: 0
+            }, {
+                value: 4, title: 'Технообслуживание, ремонт', count: 21
+            }, {
+                value: 5, title: 'Услуги', count: 0
+            }, {
+                value: 6, title: 'Элекстричество, коммунальные платежи', count: 0
             },
         ],
     },
@@ -102,24 +93,15 @@ export const LISTCATEGORY = [
         title: 'Транспорт',
         data: [
             {
-                value: 0,
-                title: 'Транспорт - прочее'
-            },
-            {
-                value: 1,
-                title: 'Дальние поездки'
-            },
-            {
-                value: 2,
-                title: 'Деловые поездки'
-            },
-            {
-                value: 3,
-                title: 'Общественный транспорт'
-            },
-            {
-                value: 4,
-                title: 'Такси'
+                value: 0, title: 'Транспорт - прочее', count: 0
+            }, {
+                value: 1, title: 'Дальние поездки', count: 0
+            }, {
+                value: 2, title: 'Деловые поездки', count: 0
+            }, {
+                value: 3, title: 'Общественный транспорт', count: 0
+            }, {
+                value: 4, title: 'Такси', count: 0
             },
         ],
     },
@@ -128,32 +110,19 @@ export const LISTCATEGORY = [
         title: 'Транспортное средство',
         data: [
             {
-                value: 0,
-                title: 'Транспортное средство - прочее'
-            },
-            {
-                value: 1,
-                title: 'Аренда'
-            },
-            {
-                value: 2,
-                title: 'Бензин'
-            },
-            {
-                value: 3,
-                title: 'Лизинг'
-            },
-            {
-                value: 4,
-                title: 'Парковка'
-            },
-            {
-                value: 5,
-                title: 'Страхование'
-            },
-            {
-                value: 6,
-                title: 'Техобслуживание'
+                value: 0, title: 'Транспортное средство - прочее', count: 0
+            }, {
+                value: 1, title: 'Аренда', count: 0
+            }, {
+                value: 2, title: 'Бензин', count: 0
+            }, {
+                value: 3, title: 'Лизинг', count: 0
+            }, {
+                value: 4, title: 'Парковка', count: 0
+            }, {
+                value: 5, title: 'Страхование', count: 0
+            }, {
+                value: 6, title: 'Техобслуживание', count: 0
             },
         ],
     },
@@ -162,60 +131,33 @@ export const LISTCATEGORY = [
         title: 'Жизнь и развлечения',
         data: [
             {
-                value: 0,
-                title: 'Жизнь и развлечения - прочее'
-            },
-            {
-                value: 1,
-                title: 'Алкоголь, табак'
-            },
-            {
-                value: 2,
-                title: 'Благотворительность, подарки'
-            },
-            {
-                value: 3,
-                title: 'Здравоохранение, врач'
-            },
-            {
-                value: 4,
-                title: 'Значимые события'
-            },
-            {
-                value: 5,
-                title: 'Книги, аудио, подписки'
-            },
-            {
-                value: 6,
-                title: 'Культура, спортивные мероприятия'
-            },
-            {
-                value: 7,
-                title: 'Лотереи, азартные игры'
-            },
-            {
-                value: 8,
-                title: 'Образование, развитие'
-            },
-            {
-                value: 9,
-                title: 'Оздоровление, красота'
-            },
-            {
-                value: 10,
-                title: 'Отпуск, поездки, отели'
-            },
-            {
-                value: 11,
-                title: 'Спорт, фитнес'
-            },
-            {
-                value: 12,
-                title: 'ТВ и потоковое вещание'
-            },
-            {
-                value: 13,
-                title: 'Хобби'
+                value: 0, title: 'Жизнь и развлечения - прочее', count: 0
+            }, {
+                value: 1, title: 'Алкоголь, табак', count: 0
+            }, {
+                value: 2, title: 'Благотворительность, подарки', count: 0
+            }, {
+                value: 3, title: 'Здравоохранение, врач', count: 0
+            }, {
+                value: 4, title: 'Значимые события', count: 0
+            }, {
+                value: 5, title: 'Книги, аудио, подписки', count: 0
+            }, {
+                value: 6, title: 'Культура, спортивные мероприятия', count: 0
+            }, {
+                value: 7, title: 'Лотереи, азартные игры', count: 0
+            }, {
+                value: 8, title: 'Образование, развитие', count: 0
+            }, {
+                value: 9, title: 'Оздоровление, красота', count: 0
+            }, {
+                value: 10, title: 'Отпуск, поездки, отели', count: 0
+            }, {
+                value: 11, title: 'Спорт, фитнес', count: 0
+            }, {
+                value: 12, title: 'ТВ и потоковое вещание', count: 0
+            }, {
+                value: 13, title: 'Хобби', count: 0
             },
         ],
     },
@@ -224,24 +166,19 @@ export const LISTCATEGORY = [
         title: 'Связь, ПК',
         data: [
             {
-                value: 0,
-                title: 'Связь, ПК - прочее'
+                value: 0, title: 'Связь, ПК - прочее', count: 0
             },
             {
-                value: 1,
-                title: 'Интернет'
+                value: 1, title: 'Интернет', count: 0
             },
             {
-                value: 2,
-                title: 'Почтовые услуги'
+                value: 2, title: 'Почтовые услуги', count: 0
             },
             {
-                value: 3,
-                title: 'Программы, игры'
+                value: 3, title: 'Программы, игры', count: 0
             },
             {
-                value: 4,
-                title: 'Телефон'
+                value: 4, title: 'Телефон', count: 0
             },
         ],
     },
@@ -250,29 +187,21 @@ export const LISTCATEGORY = [
         title: 'Финансовые расходы',
         data: [
             {
-                value: 0,
-                title: 'Финансовые расходы - прочее'
+                value: 0, title: 'Финансовые расходы - прочее', count: 0
             }, {
-                value: 1,
-                title: 'Алименты'
+                value: 1, title: 'Алименты', count: 0
             }, {
-                value: 2,
-                title: 'Займы, проценты'
+                value: 2, title: 'Займы, проценты', count: 0
             }, {
-                value: 3,
-                title: 'Консультации'
+                value: 3, title: 'Консультации', count: 0
             }, {
-                value: 4,
-                title: 'Налоги'
+                value: 4, title: 'Налоги', count: 0
             }, {
-                value: 5,
-                title: 'Сборы, платы'
+                value: 5, title: 'Сборы, платы', count: 0
             }, {
-                value: 6,
-                title: 'Страхование'
+                value: 6, title: 'Страхование', count: 0
             }, {
-                value: 7,
-                title: 'Штрафы'
+                value: 7, title: 'Штрафы', count: 0
             },
         ],
     },
@@ -281,23 +210,17 @@ export const LISTCATEGORY = [
         title: 'Инвестиции',
         data: [
             {
-                value: 0,
-                title: 'Инвестиции - прочее'
+                value: 0, title: 'Инвестиции - прочее', count: 0
             }, {
-                value: 1,
-                title: 'Коллекции'
+                value: 1, title: 'Коллекции', count: 0
             }, {
-                value: 2,
-                title: 'Недвижимость'
+                value: 2, title: 'Недвижимость', count: 0
             }, {
-                value: 3,
-                title: 'Сбережения'
+                value: 3, title: 'Сбережения', count: 0
             }, {
-                value: 4,
-                title: 'Транпортные средства'
+                value: 4, title: 'Транпортные средства', count: 0
             }, {
-                value: 5,
-                title: 'Финансовые инвестиции'
+                value: 5, title: 'Финансовые инвестиции', count: 0
             },
         ],
     },
@@ -306,41 +229,29 @@ export const LISTCATEGORY = [
         title: 'Доход',
         data: [
             {
-                value: 0,
-                title: 'Доход - прочее'
+                value: 0, title: 'Доход - прочее', count: 0
             }, {
-                value: 1,
-                title: 'Алименты'
+                value: 1, title: 'Алименты', count: 0
             }, {
-                value: 2,
-                title: 'Возврат денег(налогЮ покупка)'
+                value: 2, title: 'Возврат денег(налогЮ покупка)', count: 0
             }, {
-                value: 3,
-                title: 'Доход от аренды'
+                value: 3, title: 'Доход от аренды', count: 0
             }, {
-                value: 4,
-                title: 'Зарплата, счета-фактуры'
+                value: 4, title: 'Зарплата, счета-фактуры', count: 0
             }, {
-                value: 5,
-                title: 'Интересы, дивиденды'
+                value: 5, title: 'Интересы, дивиденды', count: 0
             }, {
-                value: 6,
-                title: 'Кредит, аренда'
+                value: 6, title: 'Кредит, аренда', count: 0
             }, {
-                value: 7,
-                title: 'Лотереи, азартные игры'
+                value: 7, title: 'Лотереи, азартные игры', count: 0
             }, {
-                value: 8,
-                title: 'Подарки'
+                value: 8, title: 'Подарки', count: 0
             }, {
-                value: 9,
-                title: 'Продажа'
+                value: 9, title: 'Продажа', count: 0
             }, {
-                value: 10,
-                title: 'Чеки, купоны'
+                value: 10, title: 'Чеки, купоны', count: 0
             }, {
-                value: 11,
-                title: 'Членские взносы'
+                value: 11, title: 'Членские взносы', count: 0
             },
         ],
     },
@@ -349,8 +260,7 @@ export const LISTCATEGORY = [
         title: 'Прочее',
         data: [
             {
-                value: 0,
-                title: 'Прочее - прочее'
+                value: 0, title: 'Прочее - прочее', count: 0
             },
         ],
     },

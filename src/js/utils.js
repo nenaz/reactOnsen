@@ -135,36 +135,22 @@ const deleteFirstSymbol = (value) => {
     return value.slice(1);
 }
 
-const createTopCategory = (arr) => {
-    const newArr = [];
-    // arr.map((item) => {
-    //     return item.data.map((one) => {
-    //         newArr.push({
-    //             count: one.count,
-    //             id: item.value + '-' + one.value
-    //         });
-    //     })
-    // })
-    for (let i = 0; i < arr.length; i += 1) {
-        arr[i].data.map((item) => {
-            let node = {
+const createTopCategorys = (data) => {
+    const arr = [];
+    for(let i = 0; i < data.length; i += 1) {
+        data[i].data.map((item) => {
+            arr.push({
+                value: `${data[i].value}-${item.value}`,
                 count: item.count,
-                id: arr[i].value + '-' + item.value
-            }
-            newArr.push(node)
-            return node
+                title: item.title
+            })
+            return true;
         })
     }
-
-    const jj = arr.map((item) => {
-        return item.data.map((one) => {
-            return {
-                count: one.count,
-                id: item.value + '-' + one.value
-            };
-        })
+    const newarr = arr.sort((a, b) => {
+        return b.count - a.count;
     })
-    return [];
+    return newarr.slice(0,4);
 }
 
 const utils = {
@@ -176,7 +162,7 @@ const utils = {
     convertTypeOperation,
     getRandomId,
     deleteFirstSymbol,
-    createTopCategory
+    createTopCategorys
 }
 
 export default utils
