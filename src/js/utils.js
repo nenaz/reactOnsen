@@ -135,6 +135,24 @@ const deleteFirstSymbol = (value) => {
     return value.slice(1);
 }
 
+const createTopCategorys = (data) => {
+    const arr = [];
+    for(let i = 0; i < data.length; i += 1) {
+        data[i].data.map((item) => {
+            arr.push({
+                value: `${data[i].value}-${item.value}`,
+                count: item.count,
+                title: item.title
+            })
+            return true;
+        })
+    }
+    const newarr = arr.sort((a, b) => {
+        return b.count - a.count;
+    })
+    return newarr.slice(0,4);
+}
+
 const utils = {
     selectButtonsParams,
     selectSectionsParams,
@@ -143,7 +161,8 @@ const utils = {
     nowDate,
     convertTypeOperation,
     getRandomId,
-    deleteFirstSymbol
+    deleteFirstSymbol,
+    createTopCategorys
 }
 
 export default utils

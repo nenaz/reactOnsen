@@ -5,11 +5,11 @@ import {
     List,
     ListItem,
     Modal,
-    Button
 } from 'react-onsenui'
 import Title from "../Title";
 import { LISTCATEGORY } from '../../js/consts'
 import PageSubCategory from './pageSubCategory'
+import Utils from '../../js/utils'
 
 class PageCategory extends Component {
     constructor(props) {
@@ -30,13 +30,15 @@ class PageCategory extends Component {
     renderRowTopCategory(row) {
         return (
             <ListItem
-                key={row}
+                key={row.value}
                 style={{
                     borderBottom: '1px solid #eceff1'
                 }}
                 tappable
+                onClick={this.props.handleSelectCategoty}
+                id={row.value}
             >
-                <span>{row}</span>
+                <span>{row.title}</span>
             </ListItem>
         )
     }
@@ -92,6 +94,7 @@ class PageCategory extends Component {
     }
 
     render() {
+        const data = Utils.createTopCategorys(LISTCATEGORY)
         return (
             <Page className="test"
                 renderModal={this.renderModal}
@@ -99,7 +102,7 @@ class PageCategory extends Component {
                 <section>
                     <Title title="Частые категории"/>
                     <List
-                        dataSource={[1,2,3,4]}
+                        dataSource={data}
                         renderRow={this.renderRowTopCategory}
                     />
                 </section>

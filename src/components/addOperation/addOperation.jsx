@@ -116,10 +116,7 @@ class AddOperation extends Component{
 
     renderToolbar() {
         return (
-            <Toolbar style={{
-                position: 'relative',
-                backgroundColor: 'rgb(0, 140, 164)'
-            }}>
+            <Toolbar className="nzNewItemToolbar">
                 <div className="left">
                     <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
                         <ToolbarButton >
@@ -127,9 +124,7 @@ class AddOperation extends Component{
                         </ToolbarButton>
                     </Link>
                 </div>
-                <div className="center" style={{
-                    color: 'white'
-                }}></div>
+                <div className="center" />
                 <div className="right">
                     <ToolbarButton ref='button' onClick={this.handlerOkClick}>
                         <Icon iconBase64={ICONCHECKING} />
@@ -141,20 +136,15 @@ class AddOperation extends Component{
 
     renderToolbarForSelect() {
         return (
-            <Toolbar style={{
-                position: 'relative',
-                backgroundColor: 'rgb(0, 140, 164)'
-            }}>
+            <Toolbar className="nzCatToolbar">
                 <div className="left">
                     <ToolbarButton ref='button' onClick={this.handlerBackClick}>
                         <Icon iconBase64={ICONBACK}/>
                     </ToolbarButton>
                 </div>
-                <div className="center" style={{
-                    color: 'white'
-                }}></div>
+                <div className="center" />
                 <div className="right">
-                    <ToolbarButton ref='button' onClick={this.handlerOkClick} />
+                    <ToolbarButton ref='button' />
                 </div>
             </Toolbar>
         )
@@ -253,30 +243,10 @@ class AddOperation extends Component{
     }
 
     selectRenderBackgroundPage() {
-        if (this.state.showPageAccounts) {
-            return <section
-                style={{
-                    position: 'relative',
-                    zIndex: 0,
-                    height: '100%',
-                    top: '-100%'
-                }}
-            >
-                <PageAccounts handleSelectItem={this.handleSelectItem} />
-            </section>
-        } else if (this.state.showPageCategory) {
-            return <section
-                style={{
-                    position: 'relative',
-                    zIndex: 0,
-                    height: '100%',
-                    top: '-100%'
-                }}
-            >
+        return (this.state.showPageCategory) ?
+            (<section className="sectionClass sectionCategory">
                 <PageCategory handleSelectCategoty={this.handleSelectCategoty} />
-            </section>
-        }
-        return ''
+            </section>) : ''
     }
 
     handleSelectItem(e) {
@@ -298,15 +268,8 @@ class AddOperation extends Component{
     render() {
         const pageAcc = this.selectRenderBackgroundPage()
         return (
-            <Page renderToolbar={this.selectTooltipForRendering} style={{
-                overflow: 'hidden'
-            }}>
-            <section className={`sectionClass ${this.state.section1Class}`}
-                style={{
-                    position: 'relative',
-                    zIndex: 1
-                }}
-            >
+            <Page className="nzPageNewItem" renderToolbar={this.selectTooltipForRendering}>
+            <section className={`sectionClass sectionBlock ${this.state.section1Class}`}>
                 <TypeOperation typeOperation={this.props.typeOperation} />
                 <AmountInput
                     typeOperation={this.props.typeOperation}
@@ -318,12 +281,7 @@ class AddOperation extends Component{
                     accountName={this.state.accountName}
                 />
             </section>
-            <section className={`sectionClass ${this.state.section2Class}`}
-                style={{
-                    position: 'relative',
-                    zIndex: 1
-                }}
-            >
+            <section className={`sectionClass sectionBlock ${this.state.section2Class}`}>
                 <KeyboardMain
                     handlerClickCalcButton={this.handlerClickCalcButton}
                     handlerClickBackButton={this.handlerClickBackButton}
