@@ -215,6 +215,7 @@ class MainPage extends Component{
                             <List
                                 dataSource={[
                                     { name: 'report', text: 'Отчет' },
+                                    { name: 'operations', text: 'Операции' },
                                     { name: 'download', text: 'Скачать PDF' },
                                     { name: 'options', text: 'Настройки' },
                                     { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
