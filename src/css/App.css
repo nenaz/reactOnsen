@@ -329,4 +329,29 @@
   height: 100%;
   top: -100%;
 }
+
+.page.page--material .nzBalance .nzBalanceTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page.page--material .nzBalance .nzBalanceData {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-shadow: 1px 1px 1px #b39595;
+}
+
+.page.page--material .nzBalance .nzBalanceData .nzBalanceRed {
+  color: red;
+}
+
+.page.page--material .nzBalance .nzBalanceData .nzBalanceGreen {
+  color: green;
+}
+
+.page.page--material .nzBalance .nzBalanceData .nzBalanceBig {
+  font-size: 25px;
+  text-align: center;
+}
 /*# sourceMappingURL=App.css.map */

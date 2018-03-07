@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { List, ListItem } from 'react-onsenui'
 import { ICONCAHMINUS, ICONCAHPLUS } from '../../js/consts'
 import Icon from '../Icon'
-import StatementBalanc from '../StatementBalance'
 
 import TitleSelect from '../TitleSelect'
 // import Title from '../Title'
@@ -76,7 +75,6 @@ class WaigetLastOperations extends Component{
             <div>
                 <TitleSelect data={FILTERLIST} handleChangeSelect={this.handleChangeSelect} />
                 {/* <Title title={FILTERLIST[0].title} /> */}
-                <StatementBalanc />
                 <List 
                     style={{
                         overflowY: 'scroll',

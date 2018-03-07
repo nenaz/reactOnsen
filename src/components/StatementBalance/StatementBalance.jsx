@@ -1,5 +1,6 @@
 import React,{ Component} from 'react'
 import Balance from './Balance'
+import PropTypes from 'prop-types'
 
 class StatementBalance extends Component{
     constructor(props){
@@ -9,16 +10,17 @@ class StatementBalance extends Component{
 
     render(){
         return (
-            <section style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                borderBottom: '1px solid #f7e5e5'
-            }}>
-                <Balance amount="999" separator />
-                <Balance amount="1000" />
+            <section className="nzBalanceData">
+                <Balance amount="999" />
+                <Balance amount={this.props.balance} typeBalance/>
+                <Balance amount="1000" separator />
             </section>
         )
     }
+}
+
+StatementBalance.propTypes = {
+    balance: PropTypes.string
 }
 
 export default StatementBalance

@@ -296,4 +296,27 @@
       }
     }
   }
+  .nzBalance{
+    .nzBalanceTitle{
+      display: flex;
+      justify-content: space-between;
+    }
+    .nzBalanceData{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      text-shadow: 1px 1px 1px #b39595;
+      .nzBalanceRed{
+        color: red;
+      }
+      .nzBalanceGreen{
+        color: green;
+      }
+      .nzBalanceBig{
+        font-size: 25px;
+        text-align: center;
+        // color: #1f1f21;
+      }
+    }
+  }
 }

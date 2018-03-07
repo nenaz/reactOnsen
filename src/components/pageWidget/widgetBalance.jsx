@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import StatementBalanc from '../StatementBalance'
+import BalanceTitle from '../StatementBalance/balanceTitle'
 
 class WidgetBalanceSection extends Component {
     constructor(props) {
@@ -18,11 +20,10 @@ class WidgetBalanceSection extends Component {
 
     render() {
         return (
-            <div style={{
-                fontSize: '25px',
-                textAlign: 'center',
-                color: '#1f1f21'
-            }}>{this.allBalance()}</div>
+            <section className="nzBalance">
+                <BalanceTitle />
+                <StatementBalanc balance={this.allBalance()}/>
+            </section>
         )
     }
 }

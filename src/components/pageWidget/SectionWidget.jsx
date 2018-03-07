@@ -25,7 +25,7 @@ class SectionWidget extends Component {
         if (this.state.sectionParams.defaultButtons) {
             return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetButtonsSection />} />
         } else if (this.state.sectionParams.balance) {
-            return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetBalanceSection />} />
+            return <WidgetTemplate selectTitle title={this.state.sectionParams.title} children={<WidgetBalanceSection />} />
         } else if (this.state.sectionParams.chart) {
             return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetChartSection />} />
         } else if (this.state.sectionParams.last) {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Title from '../Title'
 
 class WidgetTemplate extends Component{
@@ -22,6 +23,12 @@ class WidgetTemplate extends Component{
             </div>
         )
     }
+}
+
+WidgetTemplate.propTypes = {
+    title: PropTypes.string,
+    selectTitle: PropTypes.bool,
+    children: PropTypes.object,
 }
 
 export default WidgetTemplate
