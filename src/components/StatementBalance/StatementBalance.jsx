@@ -2,6 +2,7 @@ import React,{ Component} from 'react'
 import Balance from './Balance'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Utils from '../../js/utils'
 
 class StatementBalance extends Component{
     constructor(props){
@@ -12,19 +13,15 @@ class StatementBalance extends Component{
     }
 
     getTodayBalance() {
-        let amountUp = 0
-        let amountDown = 0
         const itemUp = this.props.operations.filter((item) => {
             return item.typeOperation === "1"
         })
         const itemDown = this.props.operations.filter((item) => {
             return item.typeOperation === "0"
         })
-        itemUp.map(item => amountUp += item.balance * 1)
-        itemDown.map(item => amountDown += item.balance * 1)
         return ({
-            amountUp,
-            amountDown
+            amountUp: Utils.dailyCounting(itemUp),
+            amountDown: Utils.dailyCounting(itemDown)
         })
     }
 

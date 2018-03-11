@@ -106,7 +106,8 @@ const nowDate = (returnObject) => {
     if (returnObject) {
         date = {
             date: day + '.' + month + '.' + year,
-            time: hour + ':' + min + ':' + sec
+            time: hour + ':' + min + ':' + sec,
+            dateObj: ddd,
         }
     } else {
         date = day + ' ' + month + ' ' + year + ', ' + hour + ':' + min + ':' + sec
@@ -153,6 +154,20 @@ const createTopCategorys = (data) => {
     return newarr.slice(0,4);
 }
 
+const dailyCounting = (data) => {
+    let count = 0;
+    const date = new Date()
+    const nowDate = new Date(`${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`)
+    data.map(item => {
+        if (item.data && item.data.dateObj) {
+            count += (new Date(item.data.dateObj) > nowDate) ?
+                item.balance * 1 : 0
+        }
+        return true
+    })
+    return count;
+}
+
 const utils = {
     selectButtonsParams,
     selectSectionsParams,
@@ -162,7 +177,8 @@ const utils = {
     convertTypeOperation,
     getRandomId,
     deleteFirstSymbol,
-    createTopCategorys
+    createTopCategorys,
+    dailyCounting
 }
 
 export default utils
