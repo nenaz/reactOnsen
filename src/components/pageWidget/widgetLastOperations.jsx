@@ -1,28 +1,66 @@
 import React,{ Component} from 'react'
 import { connect } from 'react-redux'
-import { List, ListItem } from 'react-onsenui'
+import { List, ListItem, Modal, Button } from 'react-onsenui'
 import { ICONCAHMINUS, ICONCAHPLUS } from '../../js/consts'
 import Icon from '../Icon'
 
 import TitleSelect from '../TitleSelect'
 // import Title from '../Title'
 import { FILTERLIST } from '../../js/consts'
+import { Map, Marker } from 'yandex-map-react';
 
 class WaigetLastOperations extends Component{
     constructor(props){
         super(props)
         this.state ={
             moreFive: false,
-            filter: 'last5'
+            filter: 'last5',
+            modalOpen: false,
         }
         this.filterOperations = this.filterOperations.bind(this)
         this.handleChangeSelect = this.handleChangeSelect.bind(this)
+        this.renderRow = this.renderRow.bind(this)
+        this.showDetails = this.showDetails.bind(this)
+        this.handleHideModal = this.handleHideModal.bind(this)
+        this.getCoord = this.getCoord.bind(this)
+
+        
+    }
+
+    componentWillMount() {
+        // this.positionObj = this.getCoord()
+        this.getCoord().then((obj) => {
+            this.setState({
+                lat: obj.coords.latitude,
+                lon: obj.coords.longitude
+            })
+        })
+    }
+
+    componentDidMount() {
+        // const map = new ymaps.Map("map", {
+        //     center: [55.76, 37.64],
+        //     zoom: 7
+        // });
+    }
+
+    showDetails() {
+        this.setState({ modalOpen: true });
+    }
+
+    handleHideModal() {
+        this.setState({ modalOpen: false });
     }
 
     renderRow(row, index) {
         const icon = (row.typeOperation === "1") ? ICONCAHPLUS : ICONCAHMINUS
         return (
-            <ListItem key={index} tapBackgroundColor="#0f0f0f" tappable={true}>
+            <ListItem
+                key={index}
+                tapBackgroundColor="#0f0f0f"
+                tappable
+                onClick={this.showDetails}
+            >
                 <div className="left">
                     <Icon
                         iconBase64={icon} styleObj={{
@@ -70,7 +108,20 @@ class WaigetLastOperations extends Component{
         return result
     }
 
+    getCoord() {
+        return new Promise(function(resolve, reject) {
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                console.log(pos);
+                resolve(pos);
+            }, function(error) {
+                console.log(error)
+                reject(error)
+            });
+        })
+    }
+
     render(){
+        // console.log(this.positionObj)
         return (
             <div>
                 <TitleSelect data={FILTERLIST} handleChangeSelect={this.handleChangeSelect} />
@@ -84,6 +135,29 @@ class WaigetLastOperations extends Component{
                     dataSource={this.filterOperations()}
                     renderRow={this.renderRow}
                 />
+                <Modal isOpen={this.state.modalOpen}>
+                    <section style={{
+                        margin: '15px',
+                        backgroundColor: '#eceff1',
+                        color: 'black'
+                    }}>
+                        {this.state.lon && (
+                            <Map className="nzYM"
+                                onAPIAvailable={function () { console.log('API loaded'); }} center={[this.state.lat, this.state.lon]} zoom={17}
+                                width="100%" height="280px"
+                            >
+                                <Marker lat={this.state.lat} lon={this.state.lon} />
+                            </Map>)}
+                        <Button
+                            onClick={() => {
+                                this.handleHideModal()
+                            }}
+                            modifier='quiet large'
+                        >
+                            Close
+                        </Button>
+                    </section>
+                </Modal>
             </div>
         )
     }
