@@ -65,8 +65,8 @@ class WaigetLastOperations extends Component{
                 key={index}
                 tapBackgroundColor="#0f0f0f"
                 tappable
-                latitude={(row.operCoord && row.operCoord.coords) ? row.operCoord.coords.latitude : 0}
-                longitude={(row.operCoord && row.operCoord.coords) ? row.operCoord.coords.longitude : 0}
+                latitude={(row.operCoord) ? row.operCoord.lat : 0}
+                longitude={(row.operCoord) ? row.operCoord.lon : 0}
                 onClick={this.showDetails}
             >
                 <div className="left">

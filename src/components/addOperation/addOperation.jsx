@@ -8,10 +8,11 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { changeAnimationState, addOperationToList, editAccountInList } from '../../AC'
 import '../../css/App.css'
-import Utils, { GetCoord } from '../../js/utils'
+import Utils from '../../js/utils'
 import KeyboardMain from '../Keyboard'
 import TypeOperation from './typeOperation'
 import Requester from '../../js/requester'
+import GetCoord from '../../js/coorditates'
 import { ICONCHECKING, ICONCANCEL, ICONBACK } from '../../js/consts'
 import Icon from '../Icon'
 import AmountInput from './AmountInput'
@@ -73,7 +74,10 @@ class AddOperation extends Component{
     }
 
     handlerOkClick() {
-        this.Pos.getPosition().then((coord) => {
+        this.Pos.getPositions().then((coord) => {
+        //     debugger;
+        // })
+        // this.Pos.getPosition().then((coord) => {
             this.addOperationToList(coord)
             this.editAccountInList()
             window.history.back()
@@ -81,9 +85,9 @@ class AddOperation extends Component{
         })
     }
 
-    getPosition() {
+    // getPosition() {
 
-    }
+    // }
 
     addOperationToList(coord) {
         const addObject = {
@@ -92,7 +96,10 @@ class AddOperation extends Component{
             data: Utils.nowDate(true),
             typeOperation: this.state.typeOperation,
             _id: this.state.id,
-            operCoord: coord
+            operCoord: {
+                lat: coord.coords.latitude,
+                lon: coord.coords.longitude
+            }
         }
         this.props.addOperationToList(addObject)
         this.req.setLocal('localItems', addObject)
