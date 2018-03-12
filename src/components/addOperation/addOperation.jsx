@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { changeAnimationState, addOperationToList, editAccountInList } from '../../AC'
 import '../../css/App.css'
-import Utils from '../../js/utils'
+import Utils, { GetCoord } from '../../js/utils'
 import KeyboardMain from '../Keyboard'
 import TypeOperation from './typeOperation'
 import Requester from '../../js/requester'
@@ -44,6 +44,7 @@ class AddOperation extends Component{
         }
 
         this.req = new Requester()
+        this.Pos = new GetCoord()
 
         this.renderToolbar = this.renderToolbar.bind(this)
         this.handlerOkClick = this.handlerOkClick.bind(this)
@@ -72,19 +73,26 @@ class AddOperation extends Component{
     }
 
     handlerOkClick() {
-        this.addOperationToList()
-        this.editAccountInList()
-        window.history.back()
-        this.handlerCanselClick()
+        this.Pos.getPosition().then((coord) => {
+            this.addOperationToList(coord)
+            this.editAccountInList()
+            window.history.back()
+            this.handlerCanselClick()
+        })
     }
 
-    addOperationToList() {
+    getPosition() {
+
+    }
+
+    addOperationToList(coord) {
         const addObject = {
             balance: `${this.state.inputAmount}.${this.state.part}`,
             currency: 'RUB',
             data: Utils.nowDate(true),
             typeOperation: this.state.typeOperation,
-            _id: this.state.id
+            _id: this.state.id,
+            operCoord: coord
         }
         this.props.addOperationToList(addObject)
         this.req.setLocal('localItems', addObject)

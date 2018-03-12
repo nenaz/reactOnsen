@@ -7,7 +7,7 @@ import Icon from '../Icon'
 import TitleSelect from '../TitleSelect'
 // import Title from '../Title'
 import { FILTERLIST } from '../../js/consts'
-import { Map, Marker } from 'yandex-map-react';
+import YandexMap from '../YM'
 
 class WaigetLastOperations extends Component{
     constructor(props){
@@ -22,19 +22,19 @@ class WaigetLastOperations extends Component{
         this.renderRow = this.renderRow.bind(this)
         this.showDetails = this.showDetails.bind(this)
         this.handleHideModal = this.handleHideModal.bind(this)
-        this.getCoord = this.getCoord.bind(this)
+        // this.getCoord = this.getCoord.bind(this)
 
         
     }
 
     componentWillMount() {
         // this.positionObj = this.getCoord()
-        this.getCoord().then((obj) => {
-            this.setState({
-                lat: obj.coords.latitude,
-                lon: obj.coords.longitude
-            })
-        })
+        // this.getCoord().then((obj) => {
+        //     this.setState({
+        //         lat: obj.coords.latitude,
+        //         lon: obj.coords.longitude
+        //     })
+        // })
     }
 
     componentDidMount() {
@@ -44,8 +44,14 @@ class WaigetLastOperations extends Component{
         // });
     }
 
-    showDetails() {
-        this.setState({ modalOpen: true });
+    showDetails(e) {
+        debugger
+        this.setState({
+            coord: {
+                latitude: e.currentTarget.getAttribute('latitude'),
+                longitude: e.currentTarget.getAttribute('longitude'),
+            },
+            modalOpen: true });
     }
 
     handleHideModal() {
@@ -59,6 +65,8 @@ class WaigetLastOperations extends Component{
                 key={index}
                 tapBackgroundColor="#0f0f0f"
                 tappable
+                latitude={(row.operCoord && row.operCoord.coords) ? row.operCoord.coords.latitude : 0}
+                longitude={(row.operCoord && row.operCoord.coords) ? row.operCoord.coords.longitude : 0}
                 onClick={this.showDetails}
             >
                 <div className="left">
@@ -108,18 +116,6 @@ class WaigetLastOperations extends Component{
         return result
     }
 
-    getCoord() {
-        return new Promise(function(resolve, reject) {
-            navigator.geolocation.getCurrentPosition(function (pos) {
-                console.log(pos);
-                resolve(pos);
-            }, function(error) {
-                console.log(error)
-                reject(error)
-            });
-        })
-    }
-
     render(){
         // console.log(this.positionObj)
         return (
@@ -141,13 +137,7 @@ class WaigetLastOperations extends Component{
                         backgroundColor: '#eceff1',
                         color: 'black'
                     }}>
-                        {this.state.lon && (
-                            <Map className="nzYM"
-                                onAPIAvailable={function () { console.log('API loaded'); }} center={[this.state.lat, this.state.lon]} zoom={17}
-                                width="100%" height="280px"
-                            >
-                                <Marker lat={this.state.lat} lon={this.state.lon} />
-                            </Map>)}
+                        <YandexMap coord={this.state.coord} />
                         <Button
                             onClick={() => {
                                 this.handleHideModal()

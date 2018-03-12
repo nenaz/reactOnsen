@@ -168,6 +168,20 @@ const dailyCounting = (data) => {
     return count;
 }
 
+export class GetCoord {
+    getPositions() {
+        return new Promise(function (resolve, reject) {
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                console.log(pos);
+                resolve(pos);
+            }, function (error) {
+                console.log(error)
+                reject(error)
+            });
+        })
+    }
+}
+
 const utils = {
     selectButtonsParams,
     selectSectionsParams,
@@ -178,7 +192,8 @@ const utils = {
     getRandomId,
     deleteFirstSymbol,
     createTopCategorys,
-    dailyCounting
+    dailyCounting,
+    // GetCoord
 }
 
 export default utils
