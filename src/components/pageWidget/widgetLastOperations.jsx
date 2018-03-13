@@ -7,7 +7,7 @@ import Icon from '../Icon'
 import TitleSelect from '../TitleSelect'
 // import Title from '../Title'
 import { FILTERLIST } from '../../js/consts'
-import YandexMap from '../YM'
+import ShowOperDetails from '../ShowOperDetails/showOperDetails';
 
 class WaigetLastOperations extends Component{
     constructor(props){
@@ -22,36 +22,13 @@ class WaigetLastOperations extends Component{
         this.renderRow = this.renderRow.bind(this)
         this.showDetails = this.showDetails.bind(this)
         this.handleHideModal = this.handleHideModal.bind(this)
-        // this.getCoord = this.getCoord.bind(this)
-
-        
-    }
-
-    componentWillMount() {
-        // this.positionObj = this.getCoord()
-        // this.getCoord().then((obj) => {
-        //     this.setState({
-        //         lat: obj.coords.latitude,
-        //         lon: obj.coords.longitude
-        //     })
-        // })
-    }
-
-    componentDidMount() {
-        // const map = new ymaps.Map("map", {
-        //     center: [55.76, 37.64],
-        //     zoom: 7
-        // });
     }
 
     showDetails(e) {
-        debugger
         this.setState({
-            coord: {
-                latitude: e.currentTarget.getAttribute('latitude'),
-                longitude: e.currentTarget.getAttribute('longitude'),
-            },
-            modalOpen: true });
+            _id: e.currentTarget.getAttribute('_id'),
+            modalOpen: true
+        });
     }
 
     handleHideModal() {
@@ -65,8 +42,7 @@ class WaigetLastOperations extends Component{
                 key={index}
                 tapBackgroundColor="#0f0f0f"
                 tappable
-                latitude={(row.operCoord) ? row.operCoord.lat : 0}
-                longitude={(row.operCoord) ? row.operCoord.lon : 0}
+                _id={row._id}
                 onClick={this.showDetails}
             >
                 <div className="left">
@@ -117,7 +93,6 @@ class WaigetLastOperations extends Component{
     }
 
     render(){
-        // console.log(this.positionObj)
         return (
             <div>
                 <TitleSelect data={FILTERLIST} handleChangeSelect={this.handleChangeSelect} />
@@ -132,21 +107,10 @@ class WaigetLastOperations extends Component{
                     renderRow={this.renderRow}
                 />
                 <Modal isOpen={this.state.modalOpen}>
-                    <section style={{
-                        margin: '15px',
-                        backgroundColor: '#eceff1',
-                        color: 'black'
-                    }}>
-                        <YandexMap coord={this.state.coord} />
-                        <Button
-                            onClick={() => {
-                                this.handleHideModal()
-                            }}
-                            modifier='quiet large'
-                        >
-                            Close
-                        </Button>
-                    </section>
+                    <ShowOperDetails
+                        _id={this.state._id}
+                        handleHideModal={this.handleHideModal}
+                    />
                 </Modal>
             </div>
         )

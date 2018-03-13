@@ -16,13 +16,13 @@ class YandexMap extends Component{
                         console.log('API loaded');
                     }}
                     center={[
-                        this.props.coord.latitude,
-                        this.props.coord.longitude
+                        this.props.coord.lat,
+                        this.props.coord.lon
                     ]}
                     zoom={17}
                     width="100%" height="280px"
                 >
-                    <Marker lat={this.props.coord.latitude} lon={this.props.coord.longitude} />
+                    <Marker lat={+this.props.coord.lat} lon={+this.props.coord.lon} />
                 </Map>
             )
         } else {

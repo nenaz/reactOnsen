@@ -40,6 +40,8 @@ export const FILTERLIST = [{
     },
 ];
 
+export const OPERATIONDETAILS = ['Место','Дата','Сумма', 'Валюта'];
+
 export const LISTCATEGORY = [
     {
         value: 0,

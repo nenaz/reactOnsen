@@ -5,8 +5,7 @@ import DownloadPDF from './DownloadPDF'
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
-  // Link
+  Redirect
 } from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import store from '../store'
@@ -19,7 +18,7 @@ import { connect } from 'react-redux'
 import AddOperation from './addOperation'
 import { addOperationToList, addAccountToList } from '../AC'
 import Requester from '../js/requester'
-// import Logon from './Logon'
+import { ProgressCircular } from 'react-onsenui'
 
 class App extends Component {
   constructor(props) {
@@ -53,6 +52,11 @@ class App extends Component {
   componentDidMount() {
     this.getAccounts(this.req)
     this.getOperations(this.req)
+    setTimeout(() => {
+      this.setState({
+        render: true
+      })
+    }, 2000)
   }
 
   renderPage({ match: { params } }) {
@@ -95,31 +99,35 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <Provider store={store}>
-        <Router >
-          <Route render={({ location }) => (
-            <div>
-              <Route exact path="/" render={() => (
-                <Redirect to="/main" />
-              )} />
-              <div >
-                <ReactCSSTransitionGroup transitionName={Utils.selectAnimationClassForPage(this.props.changeAnimationState)}
-                  transitionEnterTimeout={1250}
-                  transitionLeaveTimeout={1250}>
-                  <Route
-                    location={location}
-                    key={location.key}
-                    path="/:name"
-                    component={this.renderPage}
-                  />
-                </ReactCSSTransitionGroup>
-              </div>        
-            </div>
-          )} />
-        </Router>
-      </Provider>
-    )
+    if (this.state.render) {
+      return (
+        <Provider store={store}>
+          <Router >
+            <Route render={({ location }) => (
+              <div>
+                <Route exact path="/" render={() => (
+                  <Redirect to="/main" />
+                )} />
+                <div >
+                  <ReactCSSTransitionGroup transitionName={Utils.selectAnimationClassForPage(this.props.changeAnimationState)}
+                    transitionEnterTimeout={1250}
+                    transitionLeaveTimeout={1250}>
+                    <Route
+                      location={location}
+                      key={location.key}
+                      path="/:name"
+                      component={this.renderPage}
+                    />
+                  </ReactCSSTransitionGroup>
+                </div>        
+              </div>
+            )} />
+          </Router>
+        </Provider>
+      )
+    } else {
+      return <ProgressCircular indeterminate className="nzProgressC" />
+    }
   }
 }
 

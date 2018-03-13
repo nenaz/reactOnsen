@@ -354,4 +354,29 @@
   font-size: 25px;
   text-align: center;
 }
+
+.nzProgressC {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+}
+
+.nzProgressC circle {
+  stroke-width: 3%;
+}
+
+.nzProgressAddOper {
+  width: 60px;
+  height: 60px;
+}
+
+.nzProgressAddOper circle {
+  stroke-width: 3%;
+}
+
+.nzProgressAddOper .progress-circular--material__primary {
+  stroke: #fff;
+}
 /*# sourceMappingURL=App.css.map */

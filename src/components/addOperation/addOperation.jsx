@@ -3,6 +3,8 @@ import {
     Page,
     Toolbar,
     ToolbarButton,
+    Modal,
+    ProgressCircular,
 } from 'react-onsenui'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -16,7 +18,6 @@ import GetCoord from '../../js/coorditates'
 import { ICONCHECKING, ICONCANCEL, ICONBACK } from '../../js/consts'
 import Icon from '../Icon'
 import AmountInput from './AmountInput'
-import PageAccounts from './pageAccounts'
 import PageCategory from './pageCategory'
 
 const COEFFICIENT = 0.46;
@@ -41,7 +42,9 @@ class AddOperation extends Component{
             section2Class: '',
             showPageAccounts: false,
             showPageCategory: false,
-            categoryId: null
+            categoryId: null,
+            showProcess: false,
+            modalOpen: false,
         }
 
         this.req = new Requester()
@@ -65,6 +68,7 @@ class AddOperation extends Component{
         this.selectRenderBackgroundPage = this.selectRenderBackgroundPage.bind(this)
         this.handleSelectItem = this.handleSelectItem.bind(this)
         this.handleSelectCategoty = this.handleSelectCategoty.bind(this)
+        this.renderModal = this.renderModal.bind(this)
     }
 
     componentDidMount() {
@@ -74,20 +78,17 @@ class AddOperation extends Component{
     }
 
     handlerOkClick() {
-        this.Pos.getPositions().then((coord) => {
-        //     debugger;
-        // })
-        // this.Pos.getPosition().then((coord) => {
-            this.addOperationToList(coord)
-            this.editAccountInList()
-            window.history.back()
-            this.handlerCanselClick()
+        this.setState({
+            modalOpen: true
+        }, () => {
+            this.Pos.getPositions().then((coord) => {
+                this.addOperationToList(coord)
+                this.editAccountInList()
+                window.history.back()
+                this.handlerCanselClick()
+            })
         })
     }
-
-    // getPosition() {
-
-    // }
 
     addOperationToList(coord) {
         const addObject = {
@@ -95,7 +96,7 @@ class AddOperation extends Component{
             currency: 'RUB',
             data: Utils.nowDate(true),
             typeOperation: this.state.typeOperation,
-            _id: this.state.id,
+            _id: Utils.getRandomId(),
             operCoord: {
                 lat: coord.coords.latitude,
                 lon: coord.coords.longitude
@@ -116,10 +117,15 @@ class AddOperation extends Component{
     }
 
     handlerCanselClick() {
+        
         this.props.changeAnimationState('backMainFromNewAccount')
         setTimeout(() => {
             this.props.changeAnimationState('')
+            this.setState({
+                modalOpen: false
+            })
         }, 500);
+        
     }
 
     selectTooltipForRendering() {
@@ -280,10 +286,22 @@ class AddOperation extends Component{
         this.handlerBackClick()
     }
 
+    renderModal() {
+        return (
+            <Modal isOpen={this.state.modalOpen}>
+                <ProgressCircular indeterminate className="nzProgressAddOper" />
+            </Modal>
+        )
+    }
+
     render() {
         const pageAcc = this.selectRenderBackgroundPage()
         return (
-            <Page className="nzPageNewItem" renderToolbar={this.selectTooltipForRendering}>
+            <Page
+                className="nzPageNewItem"
+                renderToolbar={this.selectTooltipForRendering}
+                renderModal={this.renderModal}
+            >
             <section className={`sectionClass sectionBlock ${this.state.section1Class}`}>
                 <TypeOperation typeOperation={this.props.typeOperation} />
                 <AmountInput
