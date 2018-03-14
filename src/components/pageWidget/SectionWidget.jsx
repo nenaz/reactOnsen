@@ -38,11 +38,8 @@ class SectionWidget extends Component {
 
     render() {
         return (
-            <section style={{ margin: '8px' }}>
-                <div style={{
-                    backgroundColor: 'white',
-                    border: '1px solid #f0f0f0'
-                }}>
+            <section className="nzWidgetSection">
+                <div className="nzWidgetBlock">
                     {this.renderButtons()}
                 </div>
             </section>

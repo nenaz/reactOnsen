@@ -152,6 +152,7 @@ class MainPage extends Component{
     render(){
         return (
             <Page
+                className="nzPage"
                 renderToolbar={this.renderToolbar}
                 renderModal={() => (
                     <Modal

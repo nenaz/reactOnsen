@@ -17,7 +17,7 @@ class WidgetTemplate extends Component{
     render(){
         const title = this.selectTypeTitle()
         return (
-            <div className="widgetMarginAll">
+            <div className="nzWidgetMarginAll">
                 {title}
                 {this.props.children}
             </div>

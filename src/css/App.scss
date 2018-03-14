@@ -235,15 +235,7 @@
   top: 30%;
 }
 
-.widgetMarginAll {
-  margin: 8px;
-  .buttonsPosition {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-}
+
 
 #choose-sel{
   width: 100%;
@@ -265,6 +257,54 @@
 
 /* PAGE CATEGORY */
 .page.page--material{
+  .page__background.page--material__background{
+    background-color: rgb(44,44,44);
+  }
+  .nzWidgetSection{
+    margin: 8px;
+    .nzWidgetBlock{
+      background-color: rgb(64,64,64);
+      .nzWidgetMarginAll {
+        margin: 8px;
+        .nzWidgetTitle{
+          font-size: 15px;
+          height: 30px;
+          line-height: 30px;
+          color: #fff;
+        }
+        .buttonsPosition {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+        .nzBalance{
+          .nzBalanceTitle{
+            display: flex;
+            justify-content: space-between;
+            color: #fff;
+          }
+          .nzBalanceData{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            text-shadow: 1px 1px 1px #b39595;
+            .nzBalanceRed{
+              color: red;
+            }
+            .nzBalanceGreen{
+              color: green;
+            }
+            .nzBalanceBig{
+              font-size: 25px;
+              text-align: center;
+              // color: #1f1f21;
+            }
+          }
+        }
+      }
+    }
+  }
   &.nzPageNewItem{
     overflow: hidden;
     .nzNewItemToolbar,
@@ -296,29 +336,7 @@
       }
     }
   }
-  .nzBalance{
-    .nzBalanceTitle{
-      display: flex;
-      justify-content: space-between;
-    }
-    .nzBalanceData{
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      text-shadow: 1px 1px 1px #b39595;
-      .nzBalanceRed{
-        color: red;
-      }
-      .nzBalanceGreen{
-        color: green;
-      }
-      .nzBalanceBig{
-        font-size: 25px;
-        text-align: center;
-        // color: #1f1f21;
-      }
-    }
-  }
+  
 }
 
 .nzProgressC {

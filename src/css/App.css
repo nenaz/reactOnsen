@@ -257,17 +257,6 @@
   top: 30%;
 }
 
-.widgetMarginAll {
-  margin: 8px;
-}
-
-.widgetMarginAll .buttonsPosition {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 #choose-sel {
   width: 100%;
 }
@@ -290,6 +279,62 @@
 }
 
 /* PAGE CATEGORY */
+.page.page--material .page__background.page--material__background {
+  background-color: #2c2c2c;
+}
+
+.page.page--material .nzWidgetSection {
+  margin: 8px;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock {
+  background-color: #404040;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll {
+  margin: 8px;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetTitle {
+  font-size: 15px;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .buttonsPosition {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzBalance .nzBalanceTitle {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzBalance .nzBalanceData {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-shadow: 1px 1px 1px #b39595;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzBalance .nzBalanceData .nzBalanceRed {
+  color: red;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzBalance .nzBalanceData .nzBalanceGreen {
+  color: green;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzBalance .nzBalanceData .nzBalanceBig {
+  font-size: 25px;
+  text-align: center;
+}
+
 .page.page--material.nzPageNewItem {
   overflow: hidden;
 }
@@ -328,31 +373,6 @@
   z-index: 0;
   height: 100%;
   top: -100%;
-}
-
-.page.page--material .nzBalance .nzBalanceTitle {
-  display: flex;
-  justify-content: space-between;
-}
-
-.page.page--material .nzBalance .nzBalanceData {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  text-shadow: 1px 1px 1px #b39595;
-}
-
-.page.page--material .nzBalance .nzBalanceData .nzBalanceRed {
-  color: red;
-}
-
-.page.page--material .nzBalance .nzBalanceData .nzBalanceGreen {
-  color: green;
-}
-
-.page.page--material .nzBalance .nzBalanceData .nzBalanceBig {
-  font-size: 25px;
-  text-align: center;
 }
 
 .nzProgressC {
