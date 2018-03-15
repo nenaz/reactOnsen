@@ -263,7 +263,8 @@
   .nzWidgetSection{
     margin: 8px;
     .nzWidgetBlock{
-      background-color: rgb(64,64,64);
+      // background-color: rgb(64,64,64);
+      background-color: rgb(44,44,44);
       .nzWidgetMarginAll {
         margin: 8px;
         .nzWidgetTitle{
@@ -272,17 +273,77 @@
           line-height: 30px;
           color: #fff;
         }
-        .buttonsPosition {
+        .nzButtonsPosition {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
-          justify-content: space-between;
+          // justify-content: space-between;
+          background-color: rgb(44,44,44);
+          .nzAccountButton{
+            display: flex;
+            flex-direction: column;
+            // font-size: (this.props.params.textSize) ? this.props.params.textSize : '10px',
+            font-size: 10px;
+            // backgroundColor: this.props.params.backgroundColor,
+            background-color: transparent;
+            width: 33%;
+            padding: 5px;
+            // color: this.props.params.textColor,
+            border-radius: 2px;
+            // border: 1px solid ' + this.props.params.borderColor,
+            box-sizing: border-box;
+            margin: 1px 0;
+            color: white;
+            height: 85px;
+            width: 25%;
+            text-align: center;
+            background-color: rgb(64,64,64);
+            border: 1px solid rgb(44,44,44);
+          }
         }
         .nzBalance{
+          padding: 8px;
+          background-color: rgb(64,64,64);
           .nzBalanceTitle{
             display: flex;
-            justify-content: space-between;
+            // justify-content: space-between;
             color: #fff;
+            flex-direction: column;
+            .nzBalanceTitleRow{
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              .nzBalanceTitleColumn{
+                width: 33%;
+                text-align: right;
+                &.nzBalanceTitleColumnFirst{
+                  text-align: left;
+                }
+              }
+              &._balance{
+                .nzBalanceTitleColumn{
+                  &.nzBalanceTitleColumnFirst{
+                    line-height: 40px;
+                    display: inline-block;
+                  }
+                  &.nzBalanceTitleColumnSecond{
+                    width: 0;
+                  }
+                  &.nzBalanceTitleColumnThird{
+                    font-size: 35px;
+                    width: 66%;
+                  }
+                }
+              }
+              &._title{
+                margin-bottom: 10px;
+              }
+            }
+            .nzBalanceTitleLine{
+              width: 100%;
+              margin: 5px 0;
+              opacity: .4;
+            }
           }
           .nzBalanceData{
             display: flex;
@@ -298,6 +359,15 @@
             .nzBalanceBig{
               font-size: 25px;
               text-align: center;
+            }
+          }
+        }
+        .nzWidgetLastOperations{
+          background-color: rgb(64,64,64);
+          padding: 8px;
+          .nzTitleSelect{
+            select{
+              color: white;
             }
           }
         }

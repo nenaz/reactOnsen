@@ -94,14 +94,15 @@ class WaigetLastOperations extends Component{
 
     render(){
         return (
-            <div>
+            <div className="nzWidgetLastOperations">
                 <TitleSelect data={FILTERLIST} handleChangeSelect={this.handleChangeSelect} />
                 {/* <Title title={FILTERLIST[0].title} /> */}
                 <List 
                     style={{
                         overflowY: 'scroll',
                         maxHeight: '55vh',
-                        minHeight: '55vh'
+                        minHeight: '55vh',
+                        // backgroundColor: 'rgb(64,64,64)',
                     }}
                     dataSource={this.filterOperations()}
                     renderRow={this.renderRow}

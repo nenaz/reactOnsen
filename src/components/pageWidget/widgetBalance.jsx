@@ -21,8 +21,8 @@ class WidgetBalanceSection extends Component {
     render() {
         return (
             <section className="nzBalance">
-                <BalanceTitle />
-                <StatementBalanc balance={this.allBalance()}/>
+                {/* <StatementBalanc balance={this.allBalance()}/> */}
+                <BalanceTitle balance={this.allBalance()}/>
             </section>
         )
     }

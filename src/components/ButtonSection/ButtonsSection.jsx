@@ -20,7 +20,7 @@ class ButtonsSection extends Component {
 
     render() {
         return (
-            <div className="buttonsPosition">
+            <div className="nzButtonsPosition">
                 {this.props.changeAccountsList.map((item, key) => {
                     let param = Utils.selectButtonsParams(item.pname)
                     Object.assign(param, item)

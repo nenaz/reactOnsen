@@ -26,12 +26,12 @@ class StatementBalance extends Component{
     }
 
     render(){
-        const balanceObj = this.getTodayBalance()
+        // const balanceObj = this.getTodayBalance()
         return (
             <section className="nzBalanceData">
-                <Balance amount={balanceObj.amountUp} />
+                {/* <Balance amount={balanceObj.amountUp} /> */}
                 <Balance amount={this.props.balance} typeBalance/>
-                <Balance amount={balanceObj.amountDown} separator />
+                {/* <Balance amount={balanceObj.amountDown} separator /> */}
             </section>
         )
     }
