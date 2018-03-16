@@ -1,8 +1,6 @@
 import React,{ Component} from 'react'
 import { connect } from 'react-redux'
 import { List, ListItem, Modal, Button } from 'react-onsenui'
-import { ICONCAHMINUS, ICONCAHPLUS } from '../../js/consts'
-import Icon from '../Icon'
 
 import TitleSelect from '../TitleSelect'
 // import Title from '../Title'
@@ -36,7 +34,7 @@ class WaigetLastOperations extends Component{
     }
 
     renderRow(row, index) {
-        const icon = (row.typeOperation === "1") ? ICONCAHPLUS : ICONCAHMINUS
+        const icon = (row.typeOperation === "1") ? 'icon-payment_up' : 'icon-payment_dowm'
         return (
             <ListItem
                 key={index}
@@ -44,30 +42,16 @@ class WaigetLastOperations extends Component{
                 tappable
                 _id={row._id}
                 onClick={this.showDetails}
+                className="nzWidgetLastOperationsListItem"
             >
-                <div className="left">
-                    <Icon
-                        iconBase64={icon} styleObj={{
-                            width: '40px'
-                        }}
-                    />
+                <div className="left _left">
+                    <span className={icon} />
                 </div>
-                <div className="center" style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                }}>
-                    <div style={{
-                        flexGrow: 1,
-                        justifyContent: 'space-around',
-                        display: 'flex'
-                }}>
-                        <span style={{ paddingRight: '7px' }}>{row.balance}</span>
+                <div className="center _center">
+                    <div className="_centerTop">
+                        <span>{row.balance}</span>
                     </div>
-                    <div style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}>
+                    <div className="_centerBottom">
                         <span>{row.data.date}</span>
                         <span>{row.data.time}</span>
                     </div>
@@ -97,13 +81,7 @@ class WaigetLastOperations extends Component{
             <div className="nzWidgetLastOperations">
                 <TitleSelect data={FILTERLIST} handleChangeSelect={this.handleChangeSelect} />
                 {/* <Title title={FILTERLIST[0].title} /> */}
-                <List 
-                    style={{
-                        overflowY: 'scroll',
-                        maxHeight: '55vh',
-                        minHeight: '55vh',
-                        // backgroundColor: 'rgb(64,64,64)',
-                    }}
+                <List className="nzWidgetLastOperationsList"
                     dataSource={this.filterOperations()}
                     renderRow={this.renderRow}
                 />

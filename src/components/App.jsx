@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../css/App.css'
+import '../css/style.css'
 import '../css/ionicons.css'
 import DownloadPDF from './DownloadPDF'
 import {

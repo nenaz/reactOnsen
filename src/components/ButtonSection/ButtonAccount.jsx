@@ -30,47 +30,50 @@ class ButtonAccount extends Component {
     }
 
     renderIcon() {
-        // if (this.props.params.iconEnable) {
-        //     if (this.props.params.linkEnable) {
-        //         const link = '/' + this.props.params.link
-        //         return (
-        //             <Link to={link} style={{
-        //                     textDecoration: 'none',
-        //                     color: this.props.params.textColor
-        //                 }} onClick={this.handlerButtonClick}>
-        //                 <span>+</span>
-        //             </Link>
-        //         )
-        //     }
+        // debugger
+        const icon = (this.props.params.iconEnable) ? 'icon-plus' : 'icon-wallet'
+        if (this.props.params.iconEnable) {
+            // if (this.props.params.linkEnable) {
+                const link = '/' + this.props.params.link
+                return (
+                    <Link
+                        to={link}
+                        style={{
+                            textDecoration: 'none',
+                            color: this.props.params.textColor
+                        }}
+                        onClick={this.handlerButtonClick}
+                    >
+                        <span className={`nzAccountButtonItem ${icon}`} />
+                    </Link>
+                )
+            // }
         //     return <Ons.Icon icon={this.props.params.icon} onClick={this.props.editAccount}/>
-        // } else {
+        } else {
         //     if (this.props.params.linkEnable) {
-        //         const link = '/' + this.props.params.link
-        //         return (
-        //             <Link to={link} style={{
-        //                 textDecoration: 'none',
-        //                 color: this.props.params.textColor
-        //             }} onClick={this.handleEditAccount}>
-        //                 <Ons.Icon icon={this.props.params.icon} />
-        //                 <span>{this.props.params.balance}</span>
-        //             </Link>
-        //         )
+                const link = '/' + this.props.params.link
+                return (
+                    <Link to={link}
+                        style={{
+                            textDecoration: 'none',
+                            color: this.props.params.textColor
+                        }}
+                        onClick={this.handleEditAccount}
+                    >
+                        <span className={`nzAccountButtonItem ${icon}`} />
+                    </Link>
+                )
         //     }
-        // }
-        return <span>{this.props.params.balance}</span>
+        }
+        // return <span className={`nzAccountButtonItem ${icon}`} />
     }
 
     render() {
         return (
             <div className="nzAccountButton" id={this.props.params._id}>
-                <span>{this.props.params.name}</span>
-                <Icon iconBase64={ICONPURSE} styleObj={{
-                    width: '50%',
-                    left: '25%',
-                    top: '0',
-                    margin: '5px 0',
-                }}/>
+                <span className="nzAccountButtonItem _default">{this.props.params.name}</span>
                 {this.renderIcon()}
+                {!this.props.params.iconEnable && <span className="nzAccountButtonItem _default">{this.props.params.balance}</span>}
             </div>
         )
     }

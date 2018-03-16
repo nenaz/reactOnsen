@@ -327,6 +327,24 @@
   border: 1px solid #2c2c2c;
 }
 
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition .nzAccountButton .nzAccountButtonItem._default {
+  display: inline-block;
+  height: 15px;
+  line-height: 15px;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition .nzAccountButton .nzAccountButtonItem.icon-wallet {
+  font-size: 43px;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition .nzAccountButton .nzAccountButtonItem.icon-plus {
+  font-size: 30px;
+  height: 57px;
+  line-height: 57px;
+  color: white;
+  display: inline-block;
+}
+
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzBalance {
   padding: 8px;
   background-color: #404040;
@@ -404,6 +422,51 @@
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzTitleSelect select {
   color: white;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList {
+  overflow-y: auto;
+  max-height: 55vh;
+  min-height: 55vh;
+  background-color: #404040;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem {
+  color: white;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._left .icon-payment_up,
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._left .icon-payment_dowm {
+  font-size: 43px;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._left .icon-payment_up {
+  color: #18c118;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._left .icon-payment_dowm {
+  color: red;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._center {
+  display: flex;
+  flex-direction: row;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._center ._centerTop {
+  flex-grow: 1;
+  justify-content: space-around;
+  display: flex;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._center ._centerTop span {
+  padding-right: 7px;
+}
+
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._center ._centerBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .page.page--material.nzPageNewItem {

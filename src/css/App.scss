@@ -299,6 +299,23 @@
             text-align: center;
             background-color: rgb(64,64,64);
             border: 1px solid rgb(44,44,44);
+            .nzAccountButtonItem{
+              &._default{
+                display: inline-block;
+                height: 15px;
+                line-height: 15px;
+              }
+              &.icon-wallet{
+                font-size: 43px;
+              }
+              &.icon-plus{
+                font-size: 30px;
+                height: 57px;
+                line-height: 57px;
+                color: white;
+                display: inline-block;
+              }
+            }
           }
         }
         .nzBalance{
@@ -368,6 +385,44 @@
           .nzTitleSelect{
             select{
               color: white;
+            }
+          }
+          .nzWidgetLastOperationsList{
+            overflow-y: auto;
+            max-height: 55vh;
+            min-height: 55vh;
+            background-color: rgb(64,64,64);
+            .nzWidgetLastOperationsListItem{
+              color: white;
+              ._left{
+                .icon-payment_up,
+                .icon-payment_dowm{
+                  font-size: 43px;
+                }
+                .icon-payment_up{
+                  color: #18c118;
+                }
+                .icon-payment_dowm{
+                  color: red;
+                }
+              }
+              ._center{
+                display: flex;
+                flex-direction: row;
+                ._centerTop{
+                  flex-grow: 1;
+                  justify-content: space-around;
+                  display: flex;
+                  span{
+                    padding-right: 7px;
+                  }
+                }
+                ._centerBottom{
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                }
+              }
             }
           }
         }
