@@ -22,7 +22,20 @@ class ButtonAccount extends Component {
     }
 
     handlerButtonClick(event) {
-        this.props.changeAnimationState('')
+        // this.props.changeAnimationState('')
+        // event.currentTarget.
+        const elem = event.currentTarget
+        const width = event.target.getBoundingClientRect().width;        // elem.classList.add('nzAnimaion')
+        // debugger
+        setTimeout(() => {
+            elem.classList.add('nzNext')
+            // elem.style.width = "82px"
+            // elem.style.height = '85px'
+            // elem.classList.remove('nzAnimaion')
+        }, 100)
+        setTimeout(() => {
+            elem.classList.add('nzNext2')
+        }, 200);
     }
 
     handleEditAccount(e) {
@@ -30,22 +43,21 @@ class ButtonAccount extends Component {
     }
 
     renderIcon() {
-        // debugger
-        const icon = (this.props.params.iconEnable) ? 'icon-plus' : 'icon-wallet'
         if (this.props.params.iconEnable) {
             // if (this.props.params.linkEnable) {
                 const link = '/' + this.props.params.link
                 return (
-                    <Link
-                        to={link}
-                        style={{
-                            textDecoration: 'none',
-                            color: this.props.params.textColor
-                        }}
-                        onClick={this.handlerButtonClick}
-                    >
-                        <span className={`nzAccountButtonItem ${icon}`} />
-                    </Link>
+                    // <Link
+                    //     to={link}
+                    //     style={{
+                    //         textDecoration: 'none',
+                    //         color: this.props.params.textColor
+                    //     }}
+                    //     ref="addButton"
+                    //     // onClick={this.handlerButtonClick}
+                    // >
+                        <span className="nzAccountButtonItem icon-plus" />
+                    // </Link>
                 )
             // }
         //     return <Ons.Icon icon={this.props.params.icon} onClick={this.props.editAccount}/>
@@ -58,9 +70,9 @@ class ButtonAccount extends Component {
                             textDecoration: 'none',
                             color: this.props.params.textColor
                         }}
-                        onClick={this.handleEditAccount}
+                        // onClick={this.handleEditAccount}
                     >
-                        <span className={`nzAccountButtonItem ${icon}`} />
+                        <span className="nzAccountButtonItem icon-wallet" />
                     </Link>
                 )
         //     }
@@ -70,7 +82,9 @@ class ButtonAccount extends Component {
 
     render() {
         return (
-            <div className="nzAccountButton" id={this.props.params._id}>
+            <div className="nzAccountButton" id={this.props.params._id}
+                onClick={this.handlerButtonClick}
+            >
                 <span className="nzAccountButtonItem _default">{this.props.params.name}</span>
                 {this.renderIcon()}
                 {!this.props.params.iconEnable && <span className="nzAccountButtonItem _default">{this.props.params.balance}</span>}

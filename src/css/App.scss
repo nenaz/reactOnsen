@@ -299,6 +299,44 @@
             text-align: center;
             background-color: rgb(64,64,64);
             border: 1px solid rgb(44,44,44);
+            // transition: all 200ms linear;
+            top: 38px;
+            left: 180px;
+            &.nzAnimaion{
+
+// position: absolute;
+//     width: 80px;
+//     box-sizing: content-box;
+//     left: 200px;
+//     top: 38px;
+//     height: 73px;
+
+              position: relative;
+              left: -50vw;
+              top: -5.5vh;
+            }
+            &.nzNext{
+              position: absolute;
+              box-sizing: content-box;
+              width: 70px;
+              height: 73px;
+              // width: 82px;
+              // height: 85px;
+              // position: absolute;
+              // box-sizing: border-box;
+              // top: 39px; 
+              // left: 200px;
+              // width: 100vw;
+              // height: 100vh;
+              z-index: 100000;
+              &.nzNext2{
+                transition: all 200ms linear;
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0;
+              }
+            }
             .nzAccountButtonItem{
               &._default{
                 display: inline-block;
@@ -314,6 +352,9 @@
                 line-height: 57px;
                 color: white;
                 display: inline-block;
+                
+                // background-color: rgb(64,64,64);
+                // width: 25%;
               }
             }
           }
