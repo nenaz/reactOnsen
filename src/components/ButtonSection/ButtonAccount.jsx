@@ -22,20 +22,19 @@ class ButtonAccount extends Component {
     }
 
     handlerButtonClick(event) {
-        // this.props.changeAnimationState('')
-        // event.currentTarget.
-        const elem = event.currentTarget
-        const width = event.target.getBoundingClientRect().width;        // elem.classList.add('nzAnimaion')
-        // debugger
-        setTimeout(() => {
-            elem.classList.add('nzNext')
-            // elem.style.width = "82px"
-            // elem.style.height = '85px'
-            // elem.classList.remove('nzAnimaion')
-        }, 100)
-        setTimeout(() => {
-            elem.classList.add('nzNext2')
-        }, 200);
+        this.props.changeAnimationState('')
+
+        // const elem = event.currentTarget
+        // const elemBoundingCR = elem.getBoundingClientRect()
+        // elem.style.left = `${elemBoundingCR.left}px`
+        // setTimeout(() => {
+        //     elem.classList.add('nzAnimaion')
+        //     elem.style.width = `${elemBoundingCR.width}px`
+        // }, 100)
+        // setTimeout(() => {
+        //     elem.classList.add('nzAnimaionNext')
+        //     elem.style.left = '0px'
+        // }, 200);
     }
 
     handleEditAccount(e) {
@@ -47,17 +46,17 @@ class ButtonAccount extends Component {
             // if (this.props.params.linkEnable) {
                 const link = '/' + this.props.params.link
                 return (
-                    // <Link
-                    //     to={link}
-                    //     style={{
-                    //         textDecoration: 'none',
-                    //         color: this.props.params.textColor
-                    //     }}
-                    //     ref="addButton"
-                    //     // onClick={this.handlerButtonClick}
-                    // >
+                    <Link
+                        to={link}
+                        style={{
+                            textDecoration: 'none',
+                            color: this.props.params.textColor
+                        }}
+                        ref="addButton"
+                        onClick={this.handlerButtonClick}
+                    >
                         <span className="nzAccountButtonItem icon-plus" />
-                    // </Link>
+                    </Link>
                 )
             // }
         //     return <Ons.Icon icon={this.props.params.icon} onClick={this.props.editAccount}/>
@@ -80,10 +79,16 @@ class ButtonAccount extends Component {
         // return <span className={`nzAccountButtonItem ${icon}`} />
     }
 
+
+
     render() {
+        // const buttonPos = this.buttonPosition()
         return (
-            <div className="nzAccountButton" id={this.props.params._id}
-                onClick={this.handlerButtonClick}
+            <div
+                className="nzAccountButton"
+                id={this.props.params._id}
+                // onClick={this.handlerButtonClick}
+                // style={{}}
             >
                 <span className="nzAccountButtonItem _default">{this.props.params.name}</span>
                 {this.renderIcon()}

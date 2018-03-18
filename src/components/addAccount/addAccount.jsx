@@ -107,35 +107,23 @@ class AddAccount extends Component{
     render(){
         return (
             <Page renderToolbar={this.renderToolbar}>
-                <div style={{
-                    margin: '8px'
-                }}>
-                    <div style={{
-                        margin: '8px',
-                        display: 'flex',
-                        flexDirection: 'column'
-                    }}>
+                <div className="nzAddAccountPage">
+                    <div className="nzAddAccountPageInputBlock">
                         <Input
+                            className="nzNewAccountName"
                             value={this.state.accountName}
                             onChange={this.handleAccountNameChange}
                             modifier='underbar'
                             float
                             placeholder="Название счета"
-                            style={{
-                                alignContent: 'space-around',
-                                margin: '10px'
-                            }}
                         />
                         <Input
+                            className="nzNewAmountValue"
                             value={this.state.amount}
                             onChange={this.handleAmountChange}
                             modifier='underbar'
                             float
                             placeholder="Начальное значение"
-                            style={{
-                                alignContent: 'space-around',
-                                margin: '10px'
-                            }}
                         />
                     </div>
                 </div>

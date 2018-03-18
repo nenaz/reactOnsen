@@ -326,16 +326,9 @@
   background-color: #404040;
   border: 1px solid #2c2c2c;
   top: 38px;
-  left: 180px;
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition .nzAccountButton.nzAnimaion {
-  position: relative;
-  left: -50vw;
-  top: -5.5vh;
-}
-
-.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition .nzAccountButton.nzNext {
   position: absolute;
   box-sizing: content-box;
   width: 70px;
@@ -343,7 +336,7 @@
   z-index: 100000;
 }
 
-.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition .nzAccountButton.nzNext.nzNext2 {
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition .nzAccountButton.nzAnimaion.nzAnimaionNext {
   transition: all 200ms linear;
   width: 100vw;
   height: 100vh;
@@ -531,6 +524,27 @@
   z-index: 0;
   height: 100%;
   top: -100%;
+}
+
+.page.page--material .nzAddAccountPage {
+  margin: 8px;
+}
+
+.page.page--material .nzAddAccountPage .nzAddAccountPageInputBlock {
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.page.page--material .nzAddAccountPage .nzAddAccountPageInputBlock .nzNewAccountName,
+.page.page--material .nzAddAccountPage .nzAddAccountPageInputBlock .nzNewAmountValue {
+  align-content: space-around;
+  margin: 10px;
+}
+
+.page.page--material .nzAddAccountPage .nzAddAccountPageInputBlock .nzNewAccountName input,
+.page.page--material .nzAddAccountPage .nzAddAccountPageInputBlock .nzNewAmountValue input {
+  color: white;
 }
 
 .nzProgressC {
