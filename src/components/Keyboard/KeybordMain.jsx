@@ -26,7 +26,15 @@ class KeyboardMain extends Component{
                                     callback = (num === 'Back') ? this.props.handlerClickBackButton : this.props.handlerClickCommaButton
                                     // callback = (num === 'Back') ? this.request : this.props.handlerClickCommaButton
                                 }
-                                return <Button key={key} class="nzButton" modifier='outline' onClick={callback}>{num}</Button>
+                                const cl=(key === 1) ? 'nzButton' : 'nzButton nzButtonCenter'
+                                return (
+                                    <Button
+                                        key={key}
+                                        modifier='outline'
+                                        className={cl}
+                                        onClick={callback}
+                                    >{num}</Button>
+                                )
                             })}
                         </div>
                     )

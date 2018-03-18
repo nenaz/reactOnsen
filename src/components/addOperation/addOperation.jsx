@@ -5,6 +5,7 @@ import {
     ToolbarButton,
     Modal,
     ProgressCircular,
+    Fab
 } from 'react-onsenui'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -19,6 +20,7 @@ import { ICONCHECKING, ICONCANCEL, ICONBACK } from '../../js/consts'
 import Icon from '../Icon'
 import AmountInput from './AmountInput'
 import PageCategory from './pageCategory'
+import ToolbarC from '../Toolbar'
 
 const COEFFICIENT = 0.46;
 // const FORMULA = `calc(1rem + ((1vw - ${this.generateAmountFontSize()}) * 20))`;
@@ -137,21 +139,10 @@ class AddOperation extends Component{
 
     renderToolbar() {
         return (
-            <Toolbar className="nzNewItemToolbar">
-                <div className="left">
-                    <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
-                        <ToolbarButton >
-                            <Icon iconBase64={ICONCANCEL} />
-                        </ToolbarButton>
-                    </Link>
-                </div>
-                <div className="center" />
-                <div className="right">
-                    <ToolbarButton ref='button' onClick={this.handlerOkClick}>
-                        <Icon iconBase64={ICONCHECKING} />
-                    </ToolbarButton>
-                </div>
-            </Toolbar>
+            <ToolbarC
+                title = 'Добавить запись'
+                handlerCanselClick = { this.handlerCanselClick }
+            />
         )
     }
 
@@ -302,27 +293,40 @@ class AddOperation extends Component{
                 renderToolbar={this.selectTooltipForRendering}
                 renderModal={this.renderModal}
             >
-            <section className={`sectionClass sectionBlock ${this.state.section1Class}`}>
-                <TypeOperation typeOperation={this.props.typeOperation} />
-                <AmountInput
-                    typeOperation={this.props.typeOperation}
-                    handleRunAnimation={this.handleRunAnimation}
-                    inputAmount={this.state.inputAmount}
-                    comma={this.state.comma}
-                    part={this.state.part}
-                    amountfontSize={this.state.amountfontSize}
-                    accountName={this.state.accountName}
-                />
-            </section>
-            <section className={`sectionClass sectionBlock ${this.state.section2Class}`}>
-                <KeyboardMain
-                    handlerClickCalcButton={this.handlerClickCalcButton}
-                    handlerClickBackButton={this.handlerClickBackButton}
-                    handlerClickCommaButton={this.handlerClickCommaButton}
-                    handlerMathOperationClick={this.handlerMathOperationClick}
-                />
-            </section>
-            {pageAcc}
+                <section className={`sectionClass sectionBlock ${this.state.section1Class}`}>
+                    <TypeOperation typeOperation={this.props.typeOperation} />
+                    <AmountInput
+                        typeOperation={this.props.typeOperation}
+                        handleRunAnimation={this.handleRunAnimation}
+                        inputAmount={this.state.inputAmount}
+                        comma={this.state.comma}
+                        part={this.state.part}
+                        amountfontSize={this.state.amountfontSize}
+                        accountName={this.state.accountName}
+                    />
+                </section>
+                <section className={`sectionClass sectionBlock ${this.state.section2Class}`}>
+                    <KeyboardMain
+                        handlerClickCalcButton={this.handlerClickCalcButton}
+                        handlerClickBackButton={this.handlerClickBackButton}
+                        handlerClickCommaButton={this.handlerClickCommaButton}
+                        handlerMathOperationClick={this.handlerMathOperationClick}
+                    />
+                </section>
+                {pageAcc}
+                <Fab
+                    className="nzFabButtonCansel"
+                    modifier="mini"
+                    // onClick={this.handlerCanselClick}
+                >
+                    <span className="icon-cancel" />
+                </Fab>
+                <Fab
+                    position='bottom right'
+                    // onClick={this.handlerOkClick}
+                >
+                    <Icon iconBase64={ICONCHECKING} />
+                </Fab>
             </Page>
         )
     }
