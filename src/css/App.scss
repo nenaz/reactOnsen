@@ -92,8 +92,9 @@
   display: flex;
   position: absolute;
   width: 100%;
-  bottom: 0;
-  height: 100%;
+  // bottom: 0;
+  height: 70%;
+  // height: 100%;
   .nzButtonsBlock1{
     width: 100%;
     background-color:rgb(44,44,44);
@@ -114,6 +115,9 @@
         &.nzButtonCenter{
           border-left: 1px solid rgb(64,64,64);
           border-right: 1px solid rgb(64,64,64);
+        }
+        &.nzButtonClear{
+          color: #f9e918;
         }
       }
     }
@@ -165,8 +169,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 80%;
-    
+    height: 75%;
     color: white;
     .nzAmountItem{
       flex-grow: 1;
@@ -460,19 +463,21 @@
     }
   }
   &.nzPageNewItem{
-    overflow: hidden;
+    .page__content.page--material__content{
+      overflow: hidden;
+    }
     .nzNewItemToolbar,
     .nzCatToolbar{
       position: relative;
-      background-color: rgb(0, 140, 164);
+      background-color: rgb(255,255,255);
+      // background-color: rgb(0, 140, 164);
       .center{
         color: white;
       }
     }
     .sectionClass {
-      height: 42%;
-      // height: 50%;
-      transition: 200ms ease-out;
+      height: 50%;
+      transition: 300ms ease-out;
       &.sectionBlock{
         position: relative;
         z-index: 1;
@@ -485,9 +490,36 @@
       }
       &.sectionCategory{
         position: relative;
+        overflow: hidden;
         z-index: 0;
         height: 100%;
         top: -100%;
+        .nzPageCategory{
+          overflow: hidden;
+          .page__content{
+            overflow: hidden;
+          }
+          .nzTopCategory{
+            background-color: rgb(64,64,64);
+            .nzWidgetTitle{
+              padding-left: 8px;
+              font-size: 15px;
+              height: 30px;
+              line-height: 30px;
+              color: #fff;
+            }
+          }
+          .nzAllCategory{
+            background-color: rgb(64,64,64);
+            .nzWidgetTitle{
+              padding-left: 8px;
+              font-size: 15px;
+              height: 30px;
+              line-height: 30px;
+              color: #fff;
+            }
+          }
+        }
       }
     }
   }
@@ -512,9 +544,10 @@
     position: absolute;
     bottom: 26px;
     right: 100px;
-    background-color: #a00505;
-    color: white;
-    .icon-cancel{
+    // background-color: #a00505;
+    // color: white;
+    .icon-left-arrow{
+    // .icon-cancel{
       font-size: 20px;
       font-weight: bold;
     }

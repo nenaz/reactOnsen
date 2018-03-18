@@ -86,7 +86,6 @@ class AddOperation extends Component{
             this.Pos.getPositions().then((coord) => {
                 this.addOperationToList(coord)
                 this.editAccountInList()
-                window.history.back()
                 this.handlerCanselClick()
             })
         })
@@ -119,7 +118,7 @@ class AddOperation extends Component{
     }
 
     handlerCanselClick() {
-        
+        window.history.back()
         this.props.changeAnimationState('backMainFromNewAccount')
         setTimeout(() => {
             this.props.changeAnimationState('')
@@ -257,7 +256,9 @@ class AddOperation extends Component{
     selectRenderBackgroundPage() {
         return (this.state.showPageCategory) ?
             (<section className="sectionClass sectionCategory">
-                <PageCategory handleSelectCategoty={this.handleSelectCategoty} />
+                <PageCategory
+                    handleSelectCategoty={this.handleSelectCategoty}
+                />
             </section>) : ''
     }
 
@@ -312,21 +313,21 @@ class AddOperation extends Component{
                         handlerClickCommaButton={this.handlerClickCommaButton}
                         handlerMathOperationClick={this.handlerMathOperationClick}
                     />
+                    <Fab
+                        className="nzFabButtonCansel"
+                        modifier="mini"
+                        onClick={this.handlerCanselClick}
+                    >
+                        <span className="icon-left-arrow" />
+                    </Fab>
+                    <Fab
+                        position='bottom right'
+                        onClick={this.handlerOkClick}
+                    >
+                        <Icon iconBase64={ICONCHECKING} />
+                    </Fab>
                 </section>
                 {pageAcc}
-                <Fab
-                    className="nzFabButtonCansel"
-                    modifier="mini"
-                    // onClick={this.handlerCanselClick}
-                >
-                    <span className="icon-cancel" />
-                </Fab>
-                <Fab
-                    position='bottom right'
-                    // onClick={this.handlerOkClick}
-                >
-                    <Icon iconBase64={ICONCHECKING} />
-                </Fab>
             </Page>
         )
     }

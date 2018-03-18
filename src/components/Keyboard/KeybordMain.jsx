@@ -7,7 +7,7 @@ class KeyboardMain extends Component{
         super(props)
         this.state ={}
 
-        this.numButtons = [["9", "8", "7"], ["6", "5", "4"], ["3", "2", "1"], ["Back", "0", ","]]
+        this.numButtons = [["9", "8", "7"], ["6", "5", "4"], ["3", "2", "1"], ["C", "0", ","]]
         this.mathButtons = ["/","*","-","+","="]
 
         this.renderItemNum = this.renderItemNum.bind(this)
@@ -22,11 +22,15 @@ class KeyboardMain extends Component{
                         <div className="nzButtonRow" key={key}>
                             {item.map((num, key) => {
                                 let callback = this.props.handlerClickCalcButton
+                                let back = false
                                 if (isNaN(num)) {
-                                    callback = (num === 'Back') ? this.props.handlerClickBackButton : this.props.handlerClickCommaButton
-                                    // callback = (num === 'Back') ? this.request : this.props.handlerClickCommaButton
+                                    callback = (num === 'C') ?
+                                        this.props.handlerClickBackButton :
+                                        this.props.handlerClickCommaButton
+                                    back = (num === 'C') ? true : false
                                 }
-                                const cl=(key === 1) ? 'nzButton' : 'nzButton nzButtonCenter'
+                                let cl = (key === 1) ? 'nzButton' : 'nzButton nzButtonCenter'
+                                cl = (back) ? `${cl} nzButtonClear` : cl
                                 return (
                                     <Button
                                         key={key}

@@ -52,7 +52,7 @@ class PageSubCategory extends Component {
                     dataSource={this.props.dataSource.data}
                     renderRow={this.renderRowCategory}
                     style={{
-                        height: '59vh',
+                        height: '52vh',
                         overflowY: 'scroll'
                     }}
                 />

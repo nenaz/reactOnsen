@@ -102,23 +102,23 @@ class PageCategory extends Component {
     render() {
         const data = Utils.createTopCategorys(LISTCATEGORY)
         return (
-            <Page className="test"
+            <Page className="nzPageCategory"
                 renderModal={this.renderModal}
             >
-                <section>
+                <section className="nzTopCategory">
                     <Title title="Частые категории"/>
                     <List
                         dataSource={data}
                         renderRow={this.renderRowTopCategory}
                     />
                 </section>
-                <section>
+                <section className="nzAllCategory">
                     <Title title="Категории"/>
                     <List
                         dataSource={LISTCATEGORY}
                         renderRow={this.renderRowCategory}
                         style={{
-                            height: '59vh',
+                            minHeight: '52vh',
                             overflowY: 'scroll'
                         }}
                     />
