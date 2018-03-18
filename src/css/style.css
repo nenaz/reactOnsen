@@ -20,6 +20,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-cancel:before {
+  content: "\e904";
+}
+
 .icon-payment_up:before {
   content: "\e902";
 }

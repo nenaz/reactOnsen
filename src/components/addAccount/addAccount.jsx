@@ -41,6 +41,7 @@ class AddAccount extends Component{
     }
 
     handlerCanselClick() {
+        window.history.back()
         this.props.changeAnimationState('backMainFromNewAccount')
         setTimeout(() => {
             this.props.changeAnimationState('')
@@ -79,7 +80,7 @@ class AddAccount extends Component{
         }
         this.props.addAccountToList(addObject)
         this.req.setLocal('localAccounts', addObject)
-        window.history.back()
+        
         this.handlerCanselClick()
     }
 
@@ -108,7 +109,7 @@ class AddAccount extends Component{
         return (
             <Page renderToolbar={this.renderToolbar}>
                 <div className="nzAddAccountPage">
-                    <div className="nzAddAccountPageInputBlock">
+                    <div className="nzAccountPageInputBlock">
                         <Input
                             className="nzNewAccountName"
                             value={this.state.accountName}
@@ -135,7 +136,17 @@ class AddAccount extends Component{
                         Dismiss
                     </button>
                 </Toast>
-                <Fab position='bottom right' onClick={this.handlerOkClick}>
+                <Fab
+                    className="nzFabButtonCansel"
+                    modifier="mini"
+                    onClick={this.handlerCanselClick}
+                >
+                    <span className="icon-cancel"/>
+                </Fab>
+                <Fab
+                    position='bottom right'
+                    onClick={this.handlerOkClick}
+                >
                     <Icon iconBase64={ICONCHECKING} />
                 </Fab>
             </Page>

@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 import Requester from '../../js/requester'
 import { ICONCHECKING, ICONCANCEL } from '../../js/consts'
 import Icon from '../Icon'
+import ToolbarC from '../Toolbar'
 
 
 class EditAccount extends Component{
@@ -42,6 +43,7 @@ class EditAccount extends Component{
     }
 
     handlerCanselClick() {
+        window.history.back()
         this.props.changeAnimationState('backMainFromNewAccount')
         setTimeout(() => {
             this.props.changeAnimationState('')
@@ -50,25 +52,28 @@ class EditAccount extends Component{
 
     renderToolbar() {
         return (
-            <Toolbar style={{
-                position: 'relative'
-            }}>
-                <div className="left" />
-                <div className="center">Edit Account</div>
-                <div className="right">
-                    <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
-                        <ToolbarButton ref='button'>
-                            <Icon iconBase64={ICONCANCEL} />
-                        </ToolbarButton>
-                    </Link>
-                </div>
-            </Toolbar>
+            // <Toolbar style={{
+            //     position: 'relative'
+            // }}>
+            //     <div className="left" />
+            //     <div className="center">Edit Account</div>
+            //     <div className="right">
+            //         <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
+            //             <ToolbarButton ref='button'>
+            //                 <Icon iconBase64={ICONCANCEL} />
+            //             </ToolbarButton>
+            //         </Link>
+            //     </div>
+            // </Toolbar>
+            <ToolbarC
+                title='Изменить счет'
+                handlerCanselClick={this.handlerCanselClick}
+            />
         )
     }
 
     handlerOkClick(e) {
         this.editAccountInList();
-        window.history.back()
         this.handlerCanselClick()
     }
 
@@ -86,10 +91,8 @@ class EditAccount extends Component{
         const disabled = (this.props.accountToEdit.pname === 'default') ? true : false
         return (
             <Page renderToolbar={this.renderToolbar}>
-                <div style={{
-                    margin: '8px'
-                }}>
-                    <section>
+                <div className="nzEditAccountPage">
+                    <div className="nzAccountPageInputBlock">
                         <Input
                             disabled={disabled}
                             value={this.state.accountName}
@@ -97,27 +100,29 @@ class EditAccount extends Component{
                             modifier='underbar'
                             float
                             placeholder={this.props.accountToEdit.name || 'Название счета'}
-                            style={{
-                                alignContent: 'space-around',
-                                margin: '10px'
-                            }}
+                            className="nzNewAccountName"
                         />
-                    </section>
-                    <section>
                         <Input
                             value={this.state.amount}
                             onChange={this.handleAmountChange}
                             modifier='underbar'
                             float
                             placeholder={`${this.props.accountToEdit.balance}` || '0'}
-                            style={{
-                                alignContent: 'space-around',
-                                margin: '10px'
-                            }}
+                            className="nzNewAmountValue"
                         />
-                    </section>
+                    </div>
                 </div>
-                <Fab position='bottom right' onClick={this.handlerOkClick}>
+                <Fab
+                    onClick={this.handlerCanselClick}
+                    className="nzFabButtonCansel"
+                    modifier="mini"
+                >
+                    <span className="icon-cancel" />
+                </Fab>
+                <Fab
+                    position='bottom right'
+                    onClick={this.handlerOkClick}
+                >
                     <Icon iconBase64={ICONCHECKING} />
                 </Fab>
             </Page>

@@ -30,11 +30,12 @@ class ToolbarC extends Component{
                 </div>
                 <div className="center">{this.props.title}</div>
                 <div className="right">
-                    <Link to='/' style={{ textDecoration: 'none' }} onClick={this.props.handlerCanselClick}>
+                    <ToolbarButton />
+                    {/*<Link to='/' style={{ textDecoration: 'none' }} onClick={this.props.handlerCanselClick}>
                         <ToolbarButton ref='button'>
                             <Icon iconBase64={ICONCANCEL} />
                         </ToolbarButton>
-                    </Link>
+        </Link>*/}
                 </div>
             </Toolbar>
         )

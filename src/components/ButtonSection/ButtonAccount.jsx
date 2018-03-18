@@ -69,7 +69,7 @@ class ButtonAccount extends Component {
                             textDecoration: 'none',
                             color: this.props.params.textColor
                         }}
-                        // onClick={this.handleEditAccount}
+                        onClick={this.handleEditAccount}
                     >
                         <span className="nzAccountButtonItem icon-wallet" />
                     </Link>

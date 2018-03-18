@@ -526,25 +526,44 @@
   top: -100%;
 }
 
-.page.page--material .nzAddAccountPage {
+.page.page--material .nzAddAccountPage,
+.page.page--material .nzEditAccountPage {
   margin: 8px;
 }
 
-.page.page--material .nzAddAccountPage .nzAddAccountPageInputBlock {
+.page.page--material .nzAddAccountPage .nzAccountPageInputBlock,
+.page.page--material .nzEditAccountPage .nzAccountPageInputBlock {
   margin: 8px;
   display: flex;
   flex-direction: column;
 }
 
-.page.page--material .nzAddAccountPage .nzAddAccountPageInputBlock .nzNewAccountName,
-.page.page--material .nzAddAccountPage .nzAddAccountPageInputBlock .nzNewAmountValue {
+.page.page--material .nzAddAccountPage .nzAccountPageInputBlock .nzNewAccountName,
+.page.page--material .nzAddAccountPage .nzAccountPageInputBlock .nzNewAmountValue,
+.page.page--material .nzEditAccountPage .nzAccountPageInputBlock .nzNewAccountName,
+.page.page--material .nzEditAccountPage .nzAccountPageInputBlock .nzNewAmountValue {
   align-content: space-around;
   margin: 10px;
 }
 
-.page.page--material .nzAddAccountPage .nzAddAccountPageInputBlock .nzNewAccountName input,
-.page.page--material .nzAddAccountPage .nzAddAccountPageInputBlock .nzNewAmountValue input {
+.page.page--material .nzAddAccountPage .nzAccountPageInputBlock .nzNewAccountName input,
+.page.page--material .nzAddAccountPage .nzAccountPageInputBlock .nzNewAmountValue input,
+.page.page--material .nzEditAccountPage .nzAccountPageInputBlock .nzNewAccountName input,
+.page.page--material .nzEditAccountPage .nzAccountPageInputBlock .nzNewAmountValue input {
   color: white;
+}
+
+.page.page--material .nzFabButtonCansel {
+  position: absolute;
+  bottom: 26px;
+  right: 100px;
+  background-color: #a00505;
+  color: white;
+}
+
+.page.page--material .nzFabButtonCansel .icon-cancel {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .nzProgressC {

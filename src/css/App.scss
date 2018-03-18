@@ -479,9 +479,10 @@
       }
     }
   }
-  .nzAddAccountPage{
+  .nzAddAccountPage,
+  .nzEditAccountPage{
     margin: 8px;
-    .nzAddAccountPageInputBlock{
+    .nzAccountPageInputBlock{
       margin: 8px;
       display: flex;
       flex-direction: column;
@@ -493,6 +494,17 @@
           color: white;
         }
       }
+    }
+  }
+  .nzFabButtonCansel{
+    position: absolute;
+    bottom: 26px;
+    right: 100px;
+    background-color: #a00505;
+    color: white;
+    .icon-cancel{
+      font-size: 20px;
+      font-weight: bold;
     }
   }
 }
