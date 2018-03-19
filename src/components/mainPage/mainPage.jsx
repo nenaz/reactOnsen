@@ -153,9 +153,9 @@ class MainPage extends Component{
         this.setState({ modalOpen: false })
     }
 
-    pushPage() {
+    pushPage(name = 'main') {
         this.props.navigator.pushPage({
-            title: "addAccount",
+            title: name,
             hasBackButton: true
         });
 
@@ -241,28 +241,25 @@ class MainPage extends Component{
                     </SplitterSide>
                     <SplitterContent>
                         <Page >
-                            {/* <Section name="AccountsList" /> */}
-                            {/* <Section name="Balance" /> */}
+                            <Section
+                                name="AccountsList"
+                                pushPage={this.pushPage}
+                            />
+                            <Section name="Balance" />
                             {/* <Section name="Chart" /> */}
-                            {/* <Section name="LastOperations" /> */}
-                            <section style={{ margin: '16px', textAlign: 'center' }}>
-                                <Button onClick={this.pushPage}
-                                >
-                                    addAccount
-                                </Button>
-                            </section>
+                            <Section name="LastOperations" />
                         </Page>
                     </SplitterContent>
                 </Splitter>
-                {/* <Fab position='bottom right'>
-                    <Link to='/addOperation' style={{ textDecoration: 'none' }}>
-                        <Icon iconBase64={ICONPLUS} styleObj={{
-                            width: '25px',
-                            top: '10%',
-                            position: 'relative'
-                        }} />
-                    </Link>
-                </Fab> */}
+                <Fab position='bottom right' onClick={() => {
+                    this.pushPage('addOperation')
+                }}>
+                    <span className="icon-plus2"
+                        style={{
+                            lineHeight: '56px'
+                        }}
+                    />
+                </Fab>
             </Page>
         )
     }

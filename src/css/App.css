@@ -638,4 +638,9 @@
 .nzProgressAddOper .progress-circular--material__primary {
   stroke: #fff;
 }
+
+.icon-plus2 {
+  font-size: 28px;
+  line-height: 56px;
+}
 /*# sourceMappingURL=App.css.map */

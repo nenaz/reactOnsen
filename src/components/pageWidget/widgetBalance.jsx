@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import StatementBalanc from '../StatementBalance'
 import BalanceTitle from '../StatementBalance/balanceTitle'
@@ -26,6 +27,10 @@ class WidgetBalanceSection extends Component {
             </section>
         )
     }
+}
+
+WidgetBalanceSection.propTypes = {
+    pushPage: PropTypes.func,
 }
 
 export default connect((state) => ({

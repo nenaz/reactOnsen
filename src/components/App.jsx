@@ -51,34 +51,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // this.getAccounts(this.req)
-    // this.getOperations(this.req)
-    // setTimeout(() => {
-    //   this.setState({
-    //     render: true
-    //   })
-    // }, 2000)
+    this.getAccounts(this.req)
+    this.getOperations(this.req)
+    setTimeout(() => {
+      this.setState({
+        render: true
+      })
+    }, 2000)
   }
 
-  // renderPage({ match: { params } }) {
-  //   let name = params.name
-  //   switch (name) {
-  //     case 'addAccount': return <AddAccount />
-  //     case 'addOperation': return <AddOperation />
-  //     case 'editAccount': return <EditAccount />
-  //     case 'download': return <DownloadPDF />
-  //     default: return <MainPage changeLogonStatus={this.changeLogonStatus} />
-  //   }
-  // }
   renderPage(route, navigator) {
-    // return (
-    //   <MainPage
-    //     // changeLogonStatus={this.changeLogonStatus}
-    //     key={route.title}
-    //     route={route}
-    //     navigator={navigator}
-    //   />
-    // )
     switch (route.title) {
       case 'addAccount': return (
         <AddAccount
@@ -87,8 +69,20 @@ class App extends Component {
           navigator={navigator}
         />
       )
-      case 'addOperation': return <AddOperation />
-      case 'editAccount': return <EditAccount />
+      case 'addOperation': return (
+        <AddOperation
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+      case 'editAccount': return (
+        <EditAccount
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
       case 'download': return <DownloadPDF />
       default: return (
         <MainPage
@@ -129,31 +123,8 @@ class App extends Component {
   }
 
   render() {
-    // if (this.state.render) {
+    if (this.state.render) {
       return (
-        // <Provider store={store}>
-        //   <Router >
-        //     <Route render={({ location }) => (
-        //       <div>
-        //         <Route exact path="/" render={() => (
-        //           <Redirect to="/main" />
-        //         )} />
-        //         <div >
-        //           <ReactCSSTransitionGroup transitionName={Utils.selectAnimationClassForPage(this.props.changeAnimationState)}
-        //             transitionEnterTimeout={1250}
-        //             transitionLeaveTimeout={1250}>
-        //             <Route
-        //               location={location}
-        //               key={location.key}
-        //               path="/:name"
-        //               component={this.renderPage}
-        //             />
-        //           </ReactCSSTransitionGroup>
-        //         </div>        
-        //       </div>
-        //     )} />
-        //   </Router>
-        // </Provider>
         <Provider store={store}>
           <Navigator
             swipeable
@@ -163,12 +134,15 @@ class App extends Component {
               hasBackButton: false
             }}
             animation='slide'
+            animationOptions={{
+              duration: 0.3
+            }}
           />
         </Provider>
       )
-    // } else {
-    //   return <ProgressCircular indeterminate className="nzProgressC" />
-    // }
+    } else {
+      return <ProgressCircular indeterminate className="nzProgressC" />
+    }
   }
 }
 

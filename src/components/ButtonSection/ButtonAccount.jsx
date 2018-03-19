@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import * as Ons from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
@@ -43,40 +44,24 @@ class ButtonAccount extends Component {
 
     renderIcon() {
         if (this.props.params.iconEnable) {
-            // if (this.props.params.linkEnable) {
-                const link = '/' + this.props.params.link
-                return (
-                    <Link
-                        to={link}
-                        style={{
-                            textDecoration: 'none',
-                            color: this.props.params.textColor
-                        }}
-                        ref="addButton"
-                        onClick={this.handlerButtonClick}
-                    >
-                        <span className="nzAccountButtonItem icon-plus" />
-                    </Link>
-                )
-            // }
-        //     return <Ons.Icon icon={this.props.params.icon} onClick={this.props.editAccount}/>
+            return (
+                <span
+                    className="nzAccountButtonItem icon-plus"
+                    onClick={() => {
+                        this.props.pushPage('addAccount')
+                    }}
+                />
+            )
         } else {
-        //     if (this.props.params.linkEnable) {
-                const link = '/' + this.props.params.link
-                return (
-                    <Link to={link}
-                        style={{
-                            textDecoration: 'none',
-                            color: this.props.params.textColor
-                        }}
-                        onClick={this.handleEditAccount}
-                    >
-                        <span className="nzAccountButtonItem icon-wallet" />
-                    </Link>
-                )
-        //     }
+            return (
+                <span
+                    className="nzAccountButtonItem icon-wallet"
+                    onClick={() => {
+                        this.props.pushPage('editAccount')
+                    }}
+                />
+            )
         }
-        // return <span className={`nzAccountButtonItem ${icon}`} />
     }
 
 
@@ -96,6 +81,10 @@ class ButtonAccount extends Component {
             </div>
         )
     }
+}
+
+ButtonAccount.propTypes = {
+    pushPage: PropTypes.func
 }
 
 export default connect(null, {

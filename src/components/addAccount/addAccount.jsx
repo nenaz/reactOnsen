@@ -16,9 +16,6 @@ import {
 } from '../../AC'
 import Requester from '../../js/requester'
 import Utils from '../../js/utils'
-import { ICONCHECKING } from '../../js/consts'
-import Icon from '../Icon'
-import ToolbarC from '../Toolbar'
 
 class AddAccount extends Component{
     constructor(props){
@@ -34,21 +31,12 @@ class AddAccount extends Component{
         this.req = new Requester()
 
         this.renderToolbar = this.renderToolbar.bind(this)
-        this.handlerCanselClick = this.handlerCanselClick.bind(this)
         this.handleAccountNameChange = this.handleAccountNameChange.bind(this)
         this.handleAmountChange = this.handleAmountChange.bind(this)
         this.handlerOkClick = this.handlerOkClick.bind(this)
         this.handleShow = this.handleShow.bind(this)
         this.handleDismiss = this.handleDismiss.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-    }
-
-    handlerCanselClick() {
-        window.history.back()
-        this.props.changeAnimationState('backMainFromNewAccount')
-        setTimeout(() => {
-            this.props.changeAnimationState('')
-        }, 500);
+        this.handlerCanselClick = this.handlerCanselClick.bind(this)
     }
 
     handleAccountNameChange(e) {
@@ -83,7 +71,6 @@ class AddAccount extends Component{
         }
         this.props.addAccountToList(addObject)
         this.req.setLocal('localAccounts', addObject)
-        
         this.handlerCanselClick()
     }
 
@@ -100,25 +87,18 @@ class AddAccount extends Component{
     }
 
     renderToolbar() {
-        // return (
-        //     <ToolbarC
-        //         title='Добавить счет'
-        //         handlerCanselClick={this.handlerCanselClick}
-        //     />
-        // )
         const backButton = this.props.route.hasBackButton
-            ? <BackButton onClick={this.handleClick}>Back</BackButton>
+            ? <BackButton onClick={this.handlerCanselClick}>Back</BackButton>
             : null;
         return (
             <Toolbar>
                 <div className='left'>{backButton}</div>
                 <div className='center'>{this.props.route.title}</div>
             </Toolbar>
-            // );
         )
     }
 
-    handleClick() {
+    handlerCanselClick() {
         this.props.navigator.popPage();
     }
 
@@ -164,7 +144,7 @@ class AddAccount extends Component{
                     position='bottom right'
                     onClick={this.handlerOkClick}
                 >
-                    <Icon iconBase64={ICONCHECKING} />
+                    <span className="icon-checked" />
                 </Fab>
             </Page>
         )

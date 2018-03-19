@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
     Page,
     List,
@@ -37,6 +38,10 @@ class PageAccounts extends Component {
             </Page>
         )
     }
+}
+
+PageAccounts.propTypes = {
+    // pushPage: PropTypes.func,
 }
 
 export default connect((state) => ({

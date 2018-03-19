@@ -5,7 +5,8 @@ import {
     ToolbarButton,
     Modal,
     ProgressCircular,
-    Fab
+    Fab,
+    BackButton
 } from 'react-onsenui'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -72,6 +73,7 @@ class AddOperation extends Component{
         this.handleSelectItem = this.handleSelectItem.bind(this)
         this.handleSelectCategoty = this.handleSelectCategoty.bind(this)
         this.renderModal = this.renderModal.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     componentDidMount() {
@@ -138,12 +140,25 @@ class AddOperation extends Component{
     }
 
     renderToolbar() {
+        // return (
+        //     <ToolbarC
+        //         title = 'Добавить запись'
+        //         handlerCanselClick = { this.handlerCanselClick }
+        //     />
+        // )
+        const backButton = this.props.route.hasBackButton
+            ? <BackButton onClick={this.handleClick}>Back</BackButton>
+            : null;
         return (
-            <ToolbarC
-                title = 'Добавить запись'
-                handlerCanselClick = { this.handlerCanselClick }
-            />
+            <Toolbar>
+                <div className='left'>{backButton}</div>
+                <div className='center'>{this.props.route.title}</div>
+            </Toolbar>
         )
+    }
+
+    handleClick() {
+        this.props.navigator.popPage();
     }
 
     renderToolbarForSelect() {

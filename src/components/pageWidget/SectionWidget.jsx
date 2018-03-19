@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import WidgetButtonsSection from '../ButtonSection'
 import WidgetBalanceSection from './widgetBalance'
 import WidgetChartSection from './widgetChart'
@@ -23,13 +24,13 @@ class SectionWidget extends Component {
 
     renderButtons() {
         if (this.state.sectionParams.defaultButtons) {
-            return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetButtonsSection />} />
+            return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetButtonsSection pushPage={this.props.pushPage}/>} />
         } else if (this.state.sectionParams.balance) {
-            return <WidgetTemplate selectTitle title={this.state.sectionParams.title} children={<WidgetBalanceSection />} />
+            return <WidgetTemplate selectTitle title={this.state.sectionParams.title} children={<WidgetBalanceSection pushPage={this.props.pushPage} />} />
         } else if (this.state.sectionParams.chart) {
-            return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetChartSection />} />
+            return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetChartSection pushPage={this.props.pushPage} />} />
         } else if (this.state.sectionParams.last) {
-            return <WidgetTemplate selectTitle titleType={1} children={<WidgetLastSection />}
+            return <WidgetTemplate selectTitle titleType={1} children={<WidgetLastSection pushPage={this.props.pushPage} />}
                 />
         } else {
             return <div />
@@ -45,6 +46,10 @@ class SectionWidget extends Component {
             </section>
         )
     }
+}
+
+SectionWidget.propTypes = {
+    pushPage: PropTypes.func,
 }
 
 export default SectionWidget

@@ -4,7 +4,8 @@ import {
     Toolbar,
     ToolbarButton,
     Input,
-    Fab
+    Fab,
+    BackButton
 } from 'react-onsenui'
 import { connect } from 'react-redux'
 import {
@@ -16,7 +17,6 @@ import { Link } from 'react-router-dom'
 import Requester from '../../js/requester'
 import { ICONCHECKING, ICONCANCEL } from '../../js/consts'
 import Icon from '../Icon'
-import ToolbarC from '../Toolbar'
 
 
 class EditAccount extends Component{
@@ -43,32 +43,23 @@ class EditAccount extends Component{
     }
 
     handlerCanselClick() {
-        window.history.back()
-        this.props.changeAnimationState('backMainFromNewAccount')
-        setTimeout(() => {
-            this.props.changeAnimationState('')
-        }, 500);
+        // window.history.back()
+        // this.props.changeAnimationState('backMainFromNewAccount')
+        // setTimeout(() => {
+        //     this.props.changeAnimationState('')
+        // }, 500);
+        this.props.navigator.popPage();
     }
 
     renderToolbar() {
+        const backButton = this.props.route.hasBackButton
+            ? <BackButton onClick={this.handlerCanselClick}>Back</BackButton>
+            : null;
         return (
-            // <Toolbar style={{
-            //     position: 'relative'
-            // }}>
-            //     <div className="left" />
-            //     <div className="center">Edit Account</div>
-            //     <div className="right">
-            //         <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handlerCanselClick}>
-            //             <ToolbarButton ref='button'>
-            //                 <Icon iconBase64={ICONCANCEL} />
-            //             </ToolbarButton>
-            //         </Link>
-            //     </div>
-            // </Toolbar>
-            <ToolbarC
-                title='Изменить счет'
-                handlerCanselClick={this.handlerCanselClick}
-            />
+            <Toolbar>
+                <div className='left'>{backButton}</div>
+                <div className='center'>{this.props.route.title}</div>
+            </Toolbar>
         )
     }
 

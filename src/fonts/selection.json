@@ -4,6 +4,64 @@
     {
       "icon": {
         "paths": [
+          "M970.607 157.33l-602.559 602.554-314.655-314.65-53.393 53.393 368.048 368.043 655.952-655.947z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "checked"
+        ]
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 7,
+        "id": 0,
+        "name": "checked",
+        "prevSize": 32,
+        "code": 59655
+      },
+      "setIdx": 0,
+      "setId": 5,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M36.441 548.441c-20.158 0-36.181-16.543-36.181-36.702s16.022-36.181 36.181-36.181h438.825v-438.857c0.033-20.158 16.576-36.702 36.734-36.702s36.181 16.543 36.181 36.702v438.857h438.825c20.158 0 36.702 16.022 36.702 36.181s-16.543 36.702-36.702 36.702h-438.825v438.857c0 20.158-16.022 36.702-36.181 36.702s-36.702-16.543-36.702-36.702v-438.857h-438.857z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "plus"
+        ]
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 6,
+        "id": 0,
+        "name": "plus2",
+        "prevSize": 32,
+        "code": 59654
+      },
+      "setIdx": 1,
+      "setId": 4,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
           "M982.636 470.636h-941.272c-22.844 0-41.364 18.52-41.364 41.364 0 22.846 18.52 41.364 41.364 41.364h941.272c22.846 0 41.364-18.518 41.364-41.364 0-22.844-18.518-41.364-41.364-41.364z",
           "M99.864 512l323.726-323.728c16.154-16.154 16.154-42.344 0-58.498-16.154-16.152-42.344-16.152-58.498 0l-352.976 352.976c-16.154 16.154-16.154 42.344 0 58.498l352.976 352.976c8.076 8.078 18.664 12.116 29.25 12.116s21.174-4.038 29.25-12.116c16.154-16.154 16.154-42.344 0-58.498l-323.728-323.726z"
         ],
@@ -13,10 +71,10 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
         "tags": [
           "left-arrow"
-        ]
+        ],
+        "grid": 0
       },
       "attrs": [
         {},
@@ -29,8 +87,8 @@
         "prevSize": 32,
         "code": 59653
       },
-      "setIdx": 0,
-      "setId": 4,
+      "setIdx": 2,
+      "setId": 3,
       "iconIdx": 0
     },
     {
@@ -43,24 +101,24 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
         "tags": [
           "cancel"
-        ]
+        ],
+        "grid": 0
       },
       "attrs": [
         {}
       ],
       "properties": {
         "order": 2,
-        "id": 0,
+        "id": 1,
         "name": "cancel",
         "prevSize": 32,
         "code": 59652
       },
-      "setIdx": 1,
+      "setIdx": 2,
       "setId": 3,
-      "iconIdx": 0
+      "iconIdx": 1
     },
     {
       "icon": {
@@ -112,14 +170,14 @@
       ],
       "properties": {
         "order": 4,
-        "id": 0,
+        "id": 2,
         "name": "payment_up",
         "prevSize": 32,
         "code": 59650
       },
       "setIdx": 2,
-      "setId": 2,
-      "iconIdx": 0
+      "setId": 3,
+      "iconIdx": 2
     },
     {
       "icon": {
@@ -171,14 +229,14 @@
       ],
       "properties": {
         "order": 5,
-        "id": 1,
+        "id": 3,
         "name": "payment_dowm",
         "prevSize": 32,
         "code": 59651
       },
       "setIdx": 2,
-      "setId": 2,
-      "iconIdx": 1
+      "setId": 3,
+      "iconIdx": 3
     },
     {
       "icon": {
@@ -275,14 +333,14 @@
       ],
       "properties": {
         "order": 3,
-        "id": 2,
+        "id": 4,
         "name": "wallet",
         "prevSize": 32,
         "code": 59649
       },
       "setIdx": 2,
-      "setId": 2,
-      "iconIdx": 2
+      "setId": 3,
+      "iconIdx": 4
     },
     {
       "icon": {
@@ -307,14 +365,14 @@
       ],
       "properties": {
         "order": 2,
-        "id": 3,
+        "id": 5,
         "name": "plus",
         "prevSize": 32,
         "code": 59648
       },
       "setIdx": 2,
-      "setId": 2,
-      "iconIdx": 3
+      "setId": 3,
+      "iconIdx": 5
     }
   ],
   "height": 1024,
