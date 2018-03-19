@@ -25,7 +25,10 @@ class AddAccount extends Component{
             amount: '',
             modifier: '',
             toastShown: false,
-            error: false
+            error: false,
+            accountNumber: '',
+            accountDate: '',
+            accountPeople: '',
         }
 
         this.req = new Requester()
@@ -37,6 +40,27 @@ class AddAccount extends Component{
         this.handleShow = this.handleShow.bind(this)
         this.handleDismiss = this.handleDismiss.bind(this)
         this.handlerCanselClick = this.handlerCanselClick.bind(this)
+        this.handleNumberChange = this.handleNumberChange.bind(this)
+        this.handleDateChange = this.handleDateChange.bind(this)
+        this.handlePeopleChange = this.handlePeopleChange.bind(this)
+    }
+
+    handlePeopleChange(e) {
+        this.setState({ 
+            accountPeople: e.target.value
+        });
+    }
+
+    handleDateChange(e) {
+        this.setState({ 
+            accountDate: e.target.value
+        });
+    }
+
+    handleNumberChange(e) {
+        this.setState({ 
+            accountNumber: e.target.value
+        });
     }
 
     handleAccountNameChange(e) {
@@ -44,7 +68,7 @@ class AddAccount extends Component{
             accountName: e.target.value
         });
     }
-    
+
     handleAmountChange(e) {
         let noError = (e && e.data) ? e.data.match(/\d/) : null
         if (noError === null) {
@@ -64,6 +88,9 @@ class AddAccount extends Component{
     handlerOkClick(e) {
         const addObject = {
             name: this.state.accountName,
+            number: this.state.accountNumber,
+            date: this.state.accountDate,
+            people: this.state.accountPeople,
             balance: this.state.amount,
             currency: 'RUB',
             pname: 'AccountButton',
@@ -123,6 +150,30 @@ class AddAccount extends Component{
                             float
                             placeholder="Начальное значение"
                         />
+                        <Input
+                            className="nzNewAmountValue"
+                            value={this.state.accountNumber}
+                            onChange={this.handleNumberChange}
+                            modifier='underbar'
+                            float
+                            placeholder="Номер счета"
+                        />
+                        <Input
+                            className="nzNewAmountValue"
+                            value={this.state.accountDate}
+                            onChange={this.handleDateChange}
+                            modifier='underbar'
+                            float
+                            placeholder="Действителен до"
+                        />
+                        <Input
+                            className="nzNewAmountValue"
+                            value={this.state.accountPeople}
+                            onChange={this.handlePeopleChange}
+                            modifier='underbar'
+                            float
+                            placeholder="Имя владельца"
+                        />
                     </div>
                 </div>
                 <Toast isOpen={this.state.toastShown}>
@@ -133,13 +184,6 @@ class AddAccount extends Component{
                         Dismiss
                     </button>
                 </Toast>
-                <Fab
-                    className="nzFabButtonCansel"
-                    modifier="mini"
-                    onClick={this.handlerCanselClick}
-                >
-                    <span className="icon-cancel"/>
-                </Fab>
                 <Fab
                     position='bottom right'
                     onClick={this.handlerOkClick}

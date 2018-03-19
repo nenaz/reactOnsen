@@ -18,8 +18,8 @@ class PageAccounts extends Component {
         return (
             <ListItem
                 key={row._id}
-                onClick={this.props.handleSelectItem}
-                value={row._id}
+                onClick={this.props.handleSelectAccount}
+                id={row._id}
                 name={row.name}
             >
                 <span>{row.name}</span>
@@ -41,7 +41,7 @@ class PageAccounts extends Component {
 }
 
 PageAccounts.propTypes = {
-    // pushPage: PropTypes.func,
+    handleSelectAccount: PropTypes.func,
 }
 
 export default connect((state) => ({

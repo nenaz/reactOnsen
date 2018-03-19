@@ -70,10 +70,11 @@ class AddOperation extends Component{
         this.renderToolbarForSelect = this.renderToolbarForSelect.bind(this)
         this.selectTooltipForRendering = this.selectTooltipForRendering.bind(this)
         this.selectRenderBackgroundPage = this.selectRenderBackgroundPage.bind(this)
-        this.handleSelectItem = this.handleSelectItem.bind(this)
+        this.handleSelectAccount = this.handleSelectAccount.bind(this)
         this.handleSelectCategoty = this.handleSelectCategoty.bind(this)
         this.renderModal = this.renderModal.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        // this.handleSelectAccount = this.handleSelectAccount.bind(this)
     }
 
     componentDidMount() {
@@ -129,7 +130,6 @@ class AddOperation extends Component{
                 modalOpen: false
             })
         }, 500);
-        
     }
 
     selectTooltipForRendering() {
@@ -162,17 +162,26 @@ class AddOperation extends Component{
     }
 
     renderToolbarForSelect() {
+        // return (
+        //     <Toolbar className="nzCatToolbar">
+        //         <div className="left">
+        //             <ToolbarButton ref='button' onClick={this.handlerBackClick}>
+        //                 <Icon iconBase64={ICONBACK}/>
+        //             </ToolbarButton>
+        //         </div>
+        //         <div className="center" />
+        //         <div className="right">
+        //             <ToolbarButton ref='button' />
+        //         </div>
+        //     </Toolbar>
+        // )
+        const backButton = this.props.route.hasBackButton
+            ? <BackButton onClick={this.handlerCanselClick}>Back</BackButton>
+            : null;
         return (
             <Toolbar className="nzCatToolbar">
-                <div className="left">
-                    <ToolbarButton ref='button' onClick={this.handlerBackClick}>
-                        <Icon iconBase64={ICONBACK}/>
-                    </ToolbarButton>
-                </div>
-                <div className="center" />
-                <div className="right">
-                    <ToolbarButton ref='button' />
-                </div>
+                <div className='left'>{backButton}</div>
+                <div className='center'>{this.props.route.title}</div>
             </Toolbar>
         )
     }
@@ -278,14 +287,14 @@ class AddOperation extends Component{
             </section>) :
             (<section className="sectionClass sectionAccount">
                 <PageAccount
-                    handleSelectCategoty={this.handleSelectCategoty}
+                    handleSelectAccount={this.handleSelectAccount}
                 />
             </section>)
     }
 
-    handleSelectItem(e) {
+    handleSelectAccount(e) {
         this.setState({
-            id: e.currentTarget.getAttribute('value'),
+            id: e.currentTarget.getAttribute('id'),
             accountName: e.currentTarget.getAttribute('name')
         })
         this.handlerBackClick()

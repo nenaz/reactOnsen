@@ -1,4 +1,5 @@
 import React, { Component} from 'react'
+import PropTypes from 'prop-types'
 import {
     Page,
     Toolbar,
@@ -32,12 +33,34 @@ class EditAccount extends Component{
         this.handleAmountChange = this.handleAmountChange.bind(this)
         this.handleAccountNameChange = this.handleAccountNameChange.bind(this)
         this.editAccountInList = this.editAccountInList.bind(this)
+        this.handleNumberChange = this.handleNumberChange.bind(this)
+        this.handleDateChange = this.handleDateChange.bind(this)
+        this.handlePeopleChange = this.handlePeopleChange.bind(this)
     }
+
+    handlePeopleChange(e) {
+        this.setState({
+            accountPeople: e.target.value
+        });
+    }
+
+    handleDateChange(e) {
+        this.setState({
+            accountDate: e.target.value
+        });
+    }
+
+    handleNumberChange(e) {
+        this.setState({
+            accountNumber: e.target.value
+        });
+    }
+
 
     handleAmountChange(e) {
         this.setState({ amount: e.target.value })
     }
-    
+
     handleAccountNameChange(e) {
         this.setState({ accountName: e.target.value })
     }
@@ -101,15 +124,32 @@ class EditAccount extends Component{
                             placeholder={`${this.props.accountToEdit.balance}` || '0'}
                             className="nzNewAmountValue"
                         />
+                        <Input
+                            className="nzNewAmountValue"
+                            value={this.state.accountNumber}
+                            onChange={this.handleNumberChange}
+                            modifier='underbar'
+                            float
+                            placeholder={`${this.props.accountToEdit.number}` || 'Номер счета'}
+                        />
+                        <Input
+                            className="nzNewAmountValue"
+                            value={this.state.accountDate}
+                            onChange={this.handleDateChange}
+                            modifier='underbar'
+                            float
+                            placeholder={`${this.props.accountToEdit.date}` || 'Действителен до'}
+                        />
+                        <Input
+                            className="nzNewAmountValue"
+                            value={this.state.accountPeople}
+                            onChange={this.handlePeopleChange}
+                            modifier='underbar'
+                            float
+                            placeholder={`${this.props.accountToEdit.people}` || 'Имя владельца'}
+                        />
                     </div>
                 </div>
-                <Fab
-                    onClick={this.handlerCanselClick}
-                    className="nzFabButtonCansel"
-                    modifier="mini"
-                >
-                    <span className="icon-cancel" />
-                </Fab>
                 <Fab
                     position='bottom right'
                     onClick={this.handlerOkClick}
@@ -119,6 +159,10 @@ class EditAccount extends Component{
             </Page>
         )
     }
+}
+
+EditAccount.propTypes = {
+
 }
 
 export default connect((state) => ({
