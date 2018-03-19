@@ -12,7 +12,8 @@ import {
     Toolbar,
     ToolbarButton,
     Modal,
-    Fab
+    Fab,
+    Button
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
@@ -43,6 +44,9 @@ class MainPage extends Component{
         this.renderRow = this.renderRow.bind(this)
         this.handleModalOpen = this.handleModalOpen.bind(this)
         this.handleModalClose = this.handleModalClose.bind(this)
+        this.pushPage = this.pushPage.bind(this)
+
+        this.count = 0
     }
 
     getTarget() {
@@ -149,6 +153,15 @@ class MainPage extends Component{
         this.setState({ modalOpen: false })
     }
 
+    pushPage() {
+        this.props.navigator.pushPage({
+            title: "addAccount",
+            hasBackButton: true
+        });
+
+        this.count += 1
+    }
+
     render(){
         return (
             <Page
@@ -222,21 +235,26 @@ class MainPage extends Component{
                                     { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
                                     { name: 'exit', text: 'Выход' },
                                 ]}
-                                renderRow={this.renderRow}
+                                // renderRow={this.renderRow}
                             />
                         </Page>
                     </SplitterSide>
                     <SplitterContent>
                         <Page >
-                            <Section name="AccountsList" />
-                            <Section name="Balance" />
+                            {/* <Section name="AccountsList" /> */}
+                            {/* <Section name="Balance" /> */}
                             {/* <Section name="Chart" /> */}
-                            <Section name="LastOperations" />
-
+                            {/* <Section name="LastOperations" /> */}
+                            <section style={{ margin: '16px', textAlign: 'center' }}>
+                                <Button onClick={this.pushPage}
+                                >
+                                    addAccount
+                                </Button>
+                            </section>
                         </Page>
                     </SplitterContent>
                 </Splitter>
-                <Fab position='bottom right'>
+                {/* <Fab position='bottom right'>
                     <Link to='/addOperation' style={{ textDecoration: 'none' }}>
                         <Icon iconBase64={ICONPLUS} styleObj={{
                             width: '25px',
@@ -244,7 +262,7 @@ class MainPage extends Component{
                             position: 'relative'
                         }} />
                     </Link>
-                </Fab>
+                </Fab> */}
             </Page>
         )
     }

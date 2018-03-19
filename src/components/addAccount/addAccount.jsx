@@ -3,7 +3,9 @@ import {
     Page,
     Input,
     Toast,
-    Fab
+    Fab,
+    BackButton,
+    Toolbar
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
@@ -38,6 +40,7 @@ class AddAccount extends Component{
         this.handlerOkClick = this.handlerOkClick.bind(this)
         this.handleShow = this.handleShow.bind(this)
         this.handleDismiss = this.handleDismiss.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     handlerCanselClick() {
@@ -97,12 +100,26 @@ class AddAccount extends Component{
     }
 
     renderToolbar() {
+        // return (
+        //     <ToolbarC
+        //         title='Добавить счет'
+        //         handlerCanselClick={this.handlerCanselClick}
+        //     />
+        // )
+        const backButton = this.props.route.hasBackButton
+            ? <BackButton onClick={this.handleClick}>Back</BackButton>
+            : null;
         return (
-            <ToolbarC
-                title='Добавить счет'
-                handlerCanselClick={this.handlerCanselClick}
-            />
+            <Toolbar>
+                <div className='left'>{backButton}</div>
+                <div className='center'>{this.props.route.title}</div>
+            </Toolbar>
+            // );
         )
+    }
+
+    handleClick() {
+        this.props.navigator.popPage();
     }
 
     render(){
