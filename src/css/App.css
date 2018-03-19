@@ -528,7 +528,7 @@
   transform: translateY(105%);
 }
 
-.page.page--material.nzPageNewItem .sectionClass.sectionCategory {
+.page.page--material.nzPageNewItem .sectionClass.sectionCategory, .page.page--material.nzPageNewItem .sectionClass.sectionAccount {
   position: relative;
   overflow: hidden;
   z-index: 0;
@@ -536,19 +536,19 @@
   top: -100%;
 }
 
-.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory {
+.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory, .page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzPageCategory {
   overflow: hidden;
 }
 
-.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .page__content {
+.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .page__content, .page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzPageCategory .page__content {
   overflow: hidden;
 }
 
-.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzTopCategory {
+.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzTopCategory, .page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzPageCategory .nzTopCategory {
   background-color: #404040;
 }
 
-.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzTopCategory .nzWidgetTitle {
+.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzTopCategory .nzWidgetTitle, .page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzPageCategory .nzTopCategory .nzWidgetTitle {
   padding-left: 8px;
   font-size: 15px;
   height: 30px;
@@ -556,11 +556,19 @@
   color: #fff;
 }
 
-.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzAllCategory {
+.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzAllCategory, .page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzPageCategory .nzAllCategory {
   background-color: #404040;
 }
 
-.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzAllCategory .nzWidgetTitle {
+.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzAllCategory .nzWidgetTitle, .page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzPageCategory .nzAllCategory .nzWidgetTitle {
+  padding-left: 8px;
+  font-size: 15px;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+}
+
+.page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzWidgetTitle {
   padding-left: 8px;
   font-size: 15px;
   height: 30px;

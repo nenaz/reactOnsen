@@ -5,6 +5,7 @@ import {
     ListItem
 } from 'react-onsenui'
 import { connect } from 'react-redux'
+import Title from '../Title'
 
 class PageAccounts extends Component {
     constructor(props) {
@@ -28,6 +29,7 @@ class PageAccounts extends Component {
     render() {
         return (
             <Page>
+                <Title title="Счета" />
                 <List
                     dataSource={this.props.changeAccountsList}
                     renderRow={this.renderRow}

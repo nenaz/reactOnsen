@@ -20,6 +20,7 @@ import { ICONCHECKING, ICONCANCEL, ICONBACK } from '../../js/consts'
 import Icon from '../Icon'
 import AmountInput from './AmountInput'
 import PageCategory from './pageCategory'
+import PageAccount from './pageAccounts'
 import ToolbarC from '../Toolbar'
 
 const COEFFICIENT = 0.46;
@@ -259,7 +260,12 @@ class AddOperation extends Component{
                 <PageCategory
                     handleSelectCategoty={this.handleSelectCategoty}
                 />
-            </section>) : ''
+            </section>) :
+            (<section className="sectionClass sectionAccount">
+                <PageAccount
+                    handleSelectCategoty={this.handleSelectCategoty}
+                />
+            </section>)
     }
 
     handleSelectItem(e) {

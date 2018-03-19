@@ -488,7 +488,8 @@
           transform: translateY(105%);
         }
       }
-      &.sectionCategory{
+      &.sectionCategory,
+      &.sectionAccount{
         position: relative;
         overflow: hidden;
         z-index: 0;
@@ -519,6 +520,15 @@
               color: #fff;
             }
           }
+        }
+      }
+      &.sectionAccount{
+        .nzWidgetTitle{
+          padding-left: 8px;
+          font-size: 15px;
+          height: 30px;
+          line-height: 30px;
+          color: #fff;
         }
       }
     }
