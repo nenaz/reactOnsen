@@ -33,6 +33,7 @@ class App extends Component {
     }
 
     this.req = new Requester()
+    this.connectDB = this.req.JSON.parse(localStorage.getItem('localOptions')).connectDB
 
     this.renderPage = this.renderPage.bind(this)
     this.getOperations = this.getOperations.bind(this)
@@ -105,7 +106,8 @@ class App extends Component {
   getOperations(req) {
     // const arrOper = (req.getLocal('localItems'))
     // arrOper.map(item => this.props.addOperationToList(item))
-    req.send('getLastFive', 'POST').then(result => {
+    // req.send('getLastFive', 'POST').then(result => {
+    req.request('getOperations').then(result => {
       const arrOper = (JSON.parse(result)).reverse()
       arrOper.map(item => this.props.addOperationToList(item))
     })
@@ -114,7 +116,8 @@ class App extends Component {
   getAccounts(req) {
     // const arrAcc = req.getLocal('localAccounts')
     // arrAcc.map(item => this.props.addAccountToList(item))
-    req.send('getAccounts', 'POST').then(result => {
+    // req.send('getAccounts', 'POST').then(result => {
+    req.send('getAccounts').then(result => {
       const arrAcc = (JSON.parse(result)).reverse()
       arrAcc.map(item => this.props.addAccountToList(item))
     })

@@ -6,13 +6,16 @@ import {
     Toolbar,
     Switch
 } from 'react-onsenui'
+import Requester from '../../js/requester'
 
 class OptionsPage extends Component{
     constructor(props){
         super(props)
         this.state ={
-            checked: false
+            checked: JSON.parse(localStorage.getItem('localOptions')).connectDB || false,
         }
+
+        this.req = new Requester()
 
         this.handlerCanselClick = this.handlerCanselClick.bind(this)
         this.renderToolbar = this.renderToolbar.bind(this)
@@ -36,7 +39,11 @@ class OptionsPage extends Component{
     }
 
     handleChange(e) {
-        this.setState({ checked: e.target.checked });
+        this.setState({
+            checked: e.target.checked
+        }, () => {
+            this.req.updateOption('connectDB', this.state.checked)
+        });
     }
 
     render(){

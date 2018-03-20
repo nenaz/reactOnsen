@@ -116,7 +116,7 @@ class AddOperation extends Component{
             id: this.state.id,
         }
         this.props.addOperationToList(addObject)
-        this.req.save('addItem', addObject)
+        this.req.request('addItem', addObject)
         this.props.editAccountInList(addObject)
     }
 
@@ -126,7 +126,7 @@ class AddOperation extends Component{
             balance: obj.balance,
             _id: obj._id
         }
-        this.req.save('updateItem', updateObj)
+        this.req.request('updateItem', updateObj)
     }
 
     handlerCanselClick() {

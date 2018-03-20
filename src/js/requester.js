@@ -1,8 +1,12 @@
-import { SERVERURL } from './consts'
+import {
+    SERVERURL,
+    SERVERURLLOCAL,
+    DEVELOP
+} from './consts'
 
 export default class Requester {
-    saveDBtoServer = true
-    
+    options = {}
+
     initialize(value) {
         if (localStorage) {
             if (!localStorage.hasOwnProperty('localUserName')) {
@@ -19,19 +23,26 @@ export default class Requester {
             }
             
             if (!localStorage.hasOwnProperty('localOptions')) {
-                this.setLocal('localOptions', [], true)
-                this.saveDBtoServer = false;
+                this.options.develop = DEVELOP
+                this.options.connectDB = false
+                this.options.urlConnectDB = (DEVELOP) ? SERVERURLLOCAL : SERVERURL
+                this.setLocal('localOptions', this.options, true)
             }
-
         } else {
             console.log('error')
         }
     }
 
-    save(name, object) {
+    request(name, object) {
         let lName = ''
-        if (this.saveDBtoServer) {
+        if (this.options.connectDB) {
             switch (name) {
+                case 'getOperations':
+                    lName = 'getLastFive'
+                    break;
+                case 'getAccounts':
+                    lName = 'getAccounts'
+                    break;
                 case 'updateItem':
                     lName = 'updateAccountAmount'
                     break;
@@ -110,5 +121,12 @@ export default class Requester {
             return item
         })
         localStorage.setItem(name, JSON.stringify(one))
+    }
+
+    updateOption(name, value) {
+        const optionsName = 'localOptions'
+        const arr = this.getLocal(optionsName)
+        arr[name] = value
+        localStorage.setItem(optionsName, JSON.stringify(arr))
     }
 }
