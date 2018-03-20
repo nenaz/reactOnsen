@@ -87,11 +87,18 @@ class AddOperation extends Component{
         this.setState({
             modalOpen: true
         }, () => {
-            this.Pos.getPositions().then((coord) => {
-                this.addOperationToList(coord)
+            // this.Pos.getPositions().then((coord) => {
+                this.addOperationToList(
+                    {
+                        coords: {
+                            latitude: 54,
+                            longitude: 54,
+                        }
+                    }
+                )
                 this.editAccountInList()
                 this.handlerCanselClick()
-            })
+            // })
         })
     }
 
@@ -108,7 +115,8 @@ class AddOperation extends Component{
             }
         }
         this.props.addOperationToList(addObject)
-        this.req.setLocal('localItems', addObject)
+        // this.req.setLocal('localItems', addObject)
+        this.req.save('addItem', addObject)
         this.props.editAccountInList(addObject)
     }
 
@@ -118,18 +126,20 @@ class AddOperation extends Component{
             balance: obj.balance,
             _id: obj._id
         }
-        this.req.updateItem('localAccounts', updateObj)
+        // this.req.updateItem('localAccounts', updateObj)
+        this.req.save('updateItem', updateObj)
     }
 
     handlerCanselClick() {
-        window.history.back()
-        this.props.changeAnimationState('backMainFromNewAccount')
-        setTimeout(() => {
-            this.props.changeAnimationState('')
-            this.setState({
-                modalOpen: false
-            })
-        }, 500);
+        // window.history.back()
+        // this.props.changeAnimationState('backMainFromNewAccount')
+        // setTimeout(() => {
+        //     this.props.changeAnimationState('')
+        //     this.setState({
+        //         modalOpen: false
+        //     })
+        // }, 500);
+        this.props.navigator.popPage();
     }
 
     selectTooltipForRendering() {

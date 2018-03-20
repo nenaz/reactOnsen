@@ -106,20 +106,20 @@ class MainPage extends Component{
 
     renderRow(row, index) {
         switch(row.name) {
-            case 'exit':
-                return (
-                    <ListItem key={row.name}>
-                        <Link
-                            to='/logon'
-                            style={{
-                                textDecoration: 'none',
-                            }}
-                            onClick={this.props.changeLogonStatus}
-                        >
-                            {row.text}
-                        </Link>
-                    </ListItem>
-                )
+            // case 'exit':
+            //     return (
+            //         <ListItem key={row.name}>
+            //             <Link
+            //                 to='/logon'
+            //                 style={{
+            //                     textDecoration: 'none',
+            //                 }}
+            //                 onClick={this.props.changeLogonStatus}
+            //             >
+            //                 {row.text}
+            //             </Link>
+            //         </ListItem>
+            //     )
             case 'about': 
                 return (
                     <ListItem
@@ -129,17 +129,26 @@ class MainPage extends Component{
                         {row.text}
                     </ListItem>
                 )
-            case 'download':
+            case 'options': 
                 return (
-                    <ListItem key={row.name}>
-                        <Link to={'/download'} style={{
-                            textDecoration: 'none',
-                            color: '#250606'
-                        }}>
-                            {row.text}
-                        </Link>
+                    <ListItem
+                        key={row.name}
+                        onClick={row.onClick}
+                    >
+                        {row.text}
                     </ListItem>
                 )
+            // case 'download':
+            //     return (
+            //         <ListItem key={row.name}>
+            //             <Link to={'/download'} style={{
+            //                 textDecoration: 'none',
+            //                 color: '#250606'
+            //             }}>
+            //                 {row.text}
+            //             </Link>
+            //         </ListItem>
+            //     )
             default: return(<ListItem key={row.name} onClick={this.handleSelectLeftMenuItem} tappable>{row.text}</ListItem>)
         }
     }
@@ -231,11 +240,11 @@ class MainPage extends Component{
                                     { name: 'report', text: 'Отчет' },
                                     { name: 'operations', text: 'Операции' },
                                     { name: 'download', text: 'Скачать PDF' },
-                                    { name: 'options', text: 'Настройки' },
+                                    { name: 'options', text: 'Настройки', onClick: () => {this.pushPage('options')}},
                                     { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
                                     { name: 'exit', text: 'Выход' },
                                 ]}
-                                // renderRow={this.renderRow}
+                                renderRow={this.renderRow}
                             />
                         </Page>
                     </SplitterSide>

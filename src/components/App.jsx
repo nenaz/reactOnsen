@@ -20,6 +20,7 @@ import AddOperation from './addOperation'
 import { addOperationToList, addAccountToList } from '../AC'
 import Requester from '../js/requester'
 import { ProgressCircular, Navigator } from 'react-onsenui'
+import OptionsPage from './Options';
 
 class App extends Component {
   constructor(props) {
@@ -83,6 +84,13 @@ class App extends Component {
           navigator={navigator}
         />
       )
+      case 'options': return (
+        <OptionsPage
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
       case 'download': return <DownloadPDF />
       default: return (
         <MainPage
@@ -95,13 +103,21 @@ class App extends Component {
   }
 
   getOperations(req) {
-    const arrOper = (req.getLocal('localItems'))
-    arrOper.map(item => this.props.addOperationToList(item))
+    // const arrOper = (req.getLocal('localItems'))
+    // arrOper.map(item => this.props.addOperationToList(item))
+    req.send('getLastFive', 'POST').then(result => {
+      const arrOper = (JSON.parse(result)).reverse()
+      arrOper.map(item => this.props.addOperationToList(item))
+    })
   }
 
   getAccounts(req) {
-    const arrAcc = req.getLocal('localAccounts')
-    arrAcc.map(item => this.props.addAccountToList(item))
+    // const arrAcc = req.getLocal('localAccounts')
+    // arrAcc.map(item => this.props.addAccountToList(item))
+    req.send('getAccounts', 'POST').then(result => {
+      const arrAcc = (JSON.parse(result)).reverse()
+      arrAcc.map(item => this.props.addAccountToList(item))
+    })
   }
 
   changeLogonStatus(obj) {

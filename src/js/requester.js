@@ -1,6 +1,57 @@
 import { SERVERURL } from './consts'
 
 export default class Requester {
+    saveDBtoServer = true
+    
+    initialize(value) {
+        if (localStorage) {
+            if (!localStorage.hasOwnProperty('localUserName')) {
+                this.setLocal('localUserName', [], true)
+            }
+            if (!localStorage.hasOwnProperty('localAccounts')) {
+                this.setLocal('localAccounts', [], true)
+            }
+            if (!localStorage.hasOwnProperty('localItems')) {
+                this.setLocal('localItems', [], true)
+            }
+            if (!localStorage.hasOwnProperty('localItemsStatistic')) {
+                this.setLocal('localItemsStatistic', [], true)
+            }
+            
+            if (!localStorage.hasOwnProperty('localOptions')) {
+                this.setLocal('localOptions', [], true)
+                this.saveDBtoServer = false;
+            }
+
+        } else {
+            console.log('error')
+        }
+    }
+
+    save(name, object) {
+        let lName = ''
+        if (this.saveDBtoServer) {
+            switch (name) {
+                case 'updateItem':
+                    lName = 'updateAccountAmount'
+                    break;
+                default: lName = 'addOperation'
+                    break;
+            }
+            this.send(lName, 'POST', object)
+        } else {
+            switch (name) {
+                case 'updateItem': lName = 'localAccounts'
+                    this.updateItem(lName, object)
+                    break;
+            
+                default: lName = 'localItems'
+                    this.setLocal(lName, object)
+                    break;
+            }
+        }
+    }
+
     send(name, type, params) {
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
@@ -27,25 +78,6 @@ export default class Requester {
             };
             xhr.send(JSON.stringify(params));
         });
-    }
-
-    initialize(value) {
-        if (localStorage) {
-            if (!localStorage.hasOwnProperty('localUserName')) {
-                this.setLocal('localUserName', [], true)
-            }
-            if (!localStorage.hasOwnProperty('localAccounts')) {
-                this.setLocal('localAccounts', [], true)
-            }
-            if (!localStorage.hasOwnProperty('localItems')) {
-                this.setLocal('localItems', [], true)
-            }
-            if (!localStorage.hasOwnProperty('localItemsStatistic')) {
-                this.setLocal('localItemsStatistic', [], true)
-            }
-        } else {
-            console.log('error')
-        }
     }
 
     setLocal(name, value, initialize) {

@@ -49,7 +49,7 @@ class WaigetLastOperations extends Component{
                 </div>
                 <div className="center _center">
                     <div className="_centerTop">
-                        <span>{row.balance}</span>
+                        <span>{row.balance || row.amount}</span>
                     </div>
                     <div className="_centerBottom">
                         <span>{row.data.date}</span>
