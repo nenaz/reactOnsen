@@ -13,7 +13,7 @@ const addItem = (array,item) => {
 
 const editItem = (array, obj) => {
     const newarray = _.map(array, (item) => {
-        if (obj._id === item._id) {
+        if (obj.id === item._id) {
             if (obj.typeOperation) {
                 if (obj.typeOperation === '0') {
                     item.balance -= obj.balance * 1

@@ -112,10 +112,10 @@ class AddOperation extends Component{
             operCoord: {
                 lat: coord.coords.latitude,
                 lon: coord.coords.longitude
-            }
+            },
+            id: this.state.id,
         }
         this.props.addOperationToList(addObject)
-        // this.req.setLocal('localItems', addObject)
         this.req.save('addItem', addObject)
         this.props.editAccountInList(addObject)
     }
@@ -126,19 +126,10 @@ class AddOperation extends Component{
             balance: obj.balance,
             _id: obj._id
         }
-        // this.req.updateItem('localAccounts', updateObj)
         this.req.save('updateItem', updateObj)
     }
 
     handlerCanselClick() {
-        // window.history.back()
-        // this.props.changeAnimationState('backMainFromNewAccount')
-        // setTimeout(() => {
-        //     this.props.changeAnimationState('')
-        //     this.setState({
-        //         modalOpen: false
-        //     })
-        // }, 500);
         this.props.navigator.popPage();
     }
 
