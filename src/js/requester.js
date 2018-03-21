@@ -5,7 +5,7 @@ import {
 } from './consts'
 
 export default class Requester {
-    options = {}
+    // options = {}
 
     initialize(value) {
         if (localStorage) {
@@ -23,8 +23,9 @@ export default class Requester {
             }
             
             if (!localStorage.hasOwnProperty('localOptions')) {
+                this.options = {}
                 this.options.develop = DEVELOP
-                this.options.connectDB = false
+                this.options.connectDB = true
                 this.options.urlConnectDB = (DEVELOP) ? SERVERURLLOCAL : SERVERURL
                 this.setLocal('localOptions', this.options, true)
             }
@@ -35,8 +36,16 @@ export default class Requester {
 
     request(name, object) {
         let lName = ''
-        if (this.options.connectDB) {
+        const connectDB = JSON.parse(localStorage.getItem('localOptions')).connectDB 
+        if (connectDB) {
             switch (name) {
+                case 'updateAccounts':
+                    // lName = 'updateAccountAmount'
+                    lName = 'EditAccount'
+                    break;
+                case 'addAccount':
+                    lName = 'addAccount'
+                    break;
                 case 'getOperations':
                     lName = 'getLastFive'
                     break;
@@ -49,13 +58,24 @@ export default class Requester {
                 default: lName = 'addOperation'
                     break;
             }
-            this.send(lName, 'POST', object)
+            return this.send(lName, 'POST', object)
         } else {
             switch (name) {
+                case 'updateAccounts': lName = 'localAccounts'
+                    this.setLocal(lName, object)
+                    break;
+                case 'addAccount': lName = 'localAccounts'
+                    this.setLocal(lName, object)
+                    break;
                 case 'updateItem': lName = 'localAccounts'
                     this.updateItem(lName, object)
                     break;
-            
+                case 'getOperations':
+                    lName = 'localItems'
+                    return this.getLocal(lName, object)
+                case 'getAccounts':
+                    lName = 'localAccounts'
+                    return this.getLocal(lName, object)
                 default: lName = 'localItems'
                     this.setLocal(lName, object)
                     break;
@@ -66,11 +86,12 @@ export default class Requester {
     send(name, type, params) {
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
-            xhr.open(type, SERVERURL + name, true);
+            // xhr.open(type, SERVERURL + name, true);
+            xhr.open(type, SERVERURLLOCAL + name, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = function () {
                 if (this.status === 200) {
-                    resolve(this.response);
+                    resolve(JSON.parse(this.response));
                 } else if (this.status === 401) {
                     var obj = {
                         result: false,
@@ -104,8 +125,11 @@ export default class Requester {
     }
 
     getLocal(name) {
-        console.log('getLocal = ' + name)
-        return JSON.parse(localStorage.getItem(name))
+        return new Promise(function (resolve, reject) {
+            console.log('getLocal = ' + name)
+            // return JSON.parse(localStorage.getItem(name))
+            resolve(JSON.parse(localStorage.getItem(name)));
+        })
     }
 
     updateItem(name, value) {

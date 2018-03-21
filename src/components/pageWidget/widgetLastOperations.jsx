@@ -49,12 +49,12 @@ class WaigetLastOperations extends Component{
                 </div>
                 <div className="center _center">
                     <div className="_centerTop">
-                        <span>{row.balance || row.amount}</span>
+                        <span>{row.amount || row.amount}</span>
                     </div>
-                    <div className="_centerBottom">
+                    {row.data && <div className="_centerBottom">
                         <span>{row.data.date}</span>
                         <span>{row.data.time}</span>
-                    </div>
+                    </div>}
                 </div>
             </ListItem>
         )

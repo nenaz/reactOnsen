@@ -26,8 +26,9 @@ class ShowOperDetails extends Component{
     }
 
     getInfo() {
+        const id = this.props._id
         return this.props.operations.find((item, key) => {
-            return item._id === this.props._id
+            return item._id === id
         })
     }
 
@@ -57,7 +58,7 @@ class ShowOperDetails extends Component{
                         key={2}
                         tapBackgroundColor="#0f0f0f"
                     >
-                        <span>{`${OPERATIONDETAILS[2]}: ${objDeatil.balance}`}</span>
+                        <span>{`${OPERATIONDETAILS[2]}: ${objDeatil.amount}`}</span>
                     </ListItem>
                     <ListItem
                         key={3}

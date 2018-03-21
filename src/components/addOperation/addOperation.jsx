@@ -104,7 +104,7 @@ class AddOperation extends Component{
 
     addOperationToList(coord) {
         const addObject = {
-            balance: `${this.state.inputAmount}.${this.state.part}`,
+            amount: `${this.state.inputAmount}.${this.state.part}`,
             currency: 'RUB',
             data: Utils.nowDate(true),
             typeOperation: this.state.typeOperation,
@@ -123,8 +123,8 @@ class AddOperation extends Component{
     editAccountInList() {
         const obj = this.props.changeAccountsList.find(item => { return item._id === this.state.id })
         const updateObj = {
-            balance: obj.balance,
-            _id: obj._id
+            amount: obj.amount,
+            id: obj._id
         }
         this.req.request('updateItem', updateObj)
     }

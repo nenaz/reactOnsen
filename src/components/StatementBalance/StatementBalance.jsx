@@ -29,16 +29,14 @@ class StatementBalance extends Component{
         // const balanceObj = this.getTodayBalance()
         return (
             <section className="nzBalanceData">
-                {/* <Balance amount={balanceObj.amountUp} /> */}
-                <Balance amount={this.props.balance} typeBalance/>
-                {/* <Balance amount={balanceObj.amountDown} separator /> */}
+                <Balance amount={this.props.amount} typeBalance/>
             </section>
         )
     }
 }
 
 StatementBalance.propTypes = {
-    balance: PropTypes.string
+    amount: PropTypes.string
 }
 
 export default connect((state) => ({

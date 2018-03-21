@@ -91,13 +91,13 @@ class AddAccount extends Component{
             number: this.state.accountNumber,
             date: this.state.accountDate,
             people: this.state.accountPeople,
-            balance: this.state.amount,
+            amount: this.state.amount,
             currency: 'RUB',
             pname: 'AccountButton',
             _id: Utils.getRandomId()
         }
         this.props.addAccountToList(addObject)
-        this.req.setLocal('localAccounts', addObject)
+        this.req.request('addAccount', addObject)
         this.handlerCanselClick()
     }
 

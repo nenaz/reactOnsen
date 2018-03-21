@@ -11,19 +11,20 @@ class WidgetBalanceSection extends Component {
     }
 
     allBalance() {
-        let balance = 0
+        let amount = 0
         this.props.changeAccountsList.map((item) => {
-            balance += (item.balance * 1)
+            if (item.amount) {
+                amount += (item.amount * 1)
+            }
             return item
         })
-        return balance.toFixed(2)
+        return amount.toFixed(2)
     }
 
     render() {
         return (
             <section className="nzBalance">
-                {/* <StatementBalanc balance={this.allBalance()}/> */}
-                <BalanceTitle balance={this.allBalance()}/>
+                <BalanceTitle amount={this.allBalance()}/>
             </section>
         )
     }

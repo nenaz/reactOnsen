@@ -33,7 +33,8 @@ class App extends Component {
     }
 
     this.req = new Requester()
-    this.connectDB = this.req.JSON.parse(localStorage.getItem('localOptions')).connectDB
+    // this.connectDB = this.req.JSON.parse(localStorage.getItem('localOptions')).connectDB
+    // this.connectDB = true
 
     this.renderPage = this.renderPage.bind(this)
     this.getOperations = this.getOperations.bind(this)
@@ -53,8 +54,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getAccounts(this.req)
-    this.getOperations(this.req)
+    this.getAccounts()
+    this.getOperations()
     setTimeout(() => {
       this.setState({
         render: true
@@ -103,22 +104,16 @@ class App extends Component {
     }
   }
 
-  getOperations(req) {
-    // const arrOper = (req.getLocal('localItems'))
-    // arrOper.map(item => this.props.addOperationToList(item))
-    // req.send('getLastFive', 'POST').then(result => {
-    req.request('getOperations').then(result => {
-      const arrOper = (JSON.parse(result)).reverse()
+  getOperations() {
+    this.req.request('getOperations').then(result => {
+      const arrOper = result.reverse()
       arrOper.map(item => this.props.addOperationToList(item))
     })
   }
 
-  getAccounts(req) {
-    // const arrAcc = req.getLocal('localAccounts')
-    // arrAcc.map(item => this.props.addAccountToList(item))
-    // req.send('getAccounts', 'POST').then(result => {
-    req.send('getAccounts').then(result => {
-      const arrAcc = (JSON.parse(result)).reverse()
+  getAccounts() {
+    this.req.request('getAccounts').then(result => {
+      const arrAcc = result.reverse()
       arrAcc.map(item => this.props.addAccountToList(item))
     })
   }
@@ -127,8 +122,8 @@ class App extends Component {
     const resultObj = JSON.parse(obj)
     const logon = resultObj.result
     if (logon) {
-      this.getOperations(this.req)
-      this.getAccounts(this.req)
+      this.getOperations()
+      this.getAccounts()
       this.setState({
         logon,
         render: true

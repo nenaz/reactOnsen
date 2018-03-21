@@ -16,12 +16,12 @@ const editItem = (array, obj) => {
         if (obj.id === item._id) {
             if (obj.typeOperation) {
                 if (obj.typeOperation === '0') {
-                    item.balance -= obj.balance * 1
+                    item.amount -= obj.amount * 1
                 } else if (obj.typeOperation === '1') {
-                    item.balance += obj.balance * 1
+                    item.amount += obj.amount * 1
                 }
             } else {
-                item.balance = obj.balance
+                item.amount = obj.amount
                 item.name = (obj.name) ? obj.name : item.name
             }
         }

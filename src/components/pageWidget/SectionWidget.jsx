@@ -25,7 +25,7 @@ class SectionWidget extends Component {
     renderButtons() {
         if (this.state.sectionParams.defaultButtons) {
             return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetButtonsSection pushPage={this.props.pushPage}/>} />
-        } else if (this.state.sectionParams.balance) {
+        } else if (this.state.sectionParams.amount) {
             return <WidgetTemplate selectTitle title={this.state.sectionParams.title} children={<WidgetBalanceSection pushPage={this.props.pushPage} />} />
         } else if (this.state.sectionParams.chart) {
             return <WidgetTemplate title={this.state.sectionParams.title} children={<WidgetChartSection pushPage={this.props.pushPage} />} />

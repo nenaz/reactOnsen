@@ -3,7 +3,7 @@ const selectButtonsParams = (name) => {
         case 'AccountsButtonAdd': return {
             pname: 'AccountsButtonAdd',
             name: 'Добавить',
-            balance: '0 руб.',
+            amount: '0 руб.',
             backgroundColor: 'transparent',
             textColor: '#250606',
             // textSize: null,
@@ -27,7 +27,7 @@ const selectButtonsParams = (name) => {
         default: return {
             pname: 'default',
             name: 'Наличные',
-            balance: '0 руб.',
+            amount: '0 руб.',
             backgroundColor: '#808c50',
             textColor: '#fff',
             borderColor: '#939687',
@@ -44,7 +44,7 @@ const selectSectionsParams = (name) => {
     switch(name) {
         case 'Balance': return {
             title: "Баланс",
-            balance: true,
+            amount: true,
             defaultButtons: false,
         }
         case 'Chart': return {
@@ -161,7 +161,7 @@ const dailyCounting = (data) => {
     data.map(item => {
         if (item.data && item.data.dateObj) {
             count += (new Date(item.data.dateObj) > nowDate) ?
-                item.balance * 1 : 0
+                item.amount * 1 : 0
         }
         return true
     })

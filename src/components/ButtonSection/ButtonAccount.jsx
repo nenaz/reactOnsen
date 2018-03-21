@@ -72,12 +72,12 @@ class ButtonAccount extends Component {
             <div
                 className="nzAccountButton"
                 id={this.props.params._id}
-                // onClick={this.handlerButtonClick}
+                onClick={this.handleEditAccount}
                 // style={{}}
             >
                 <span className="nzAccountButtonItem _default">{this.props.params.name}</span>
                 {this.renderIcon()}
-                {!this.props.params.iconEnable && <span className="nzAccountButtonItem _default">{this.props.params.balance}</span>}
+                {!this.props.params.iconEnable && <span className="nzAccountButtonItem _default">{this.props.params.amount}</span>}
             </div>
         )
     }

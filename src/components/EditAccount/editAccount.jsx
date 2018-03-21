@@ -23,7 +23,13 @@ import Icon from '../Icon'
 class EditAccount extends Component{
     constructor(props){
         super(props)
-        this.state = {}
+        this.state = {
+            accountDate: props.accountToEdit.date || 'Действителен до',
+            accountNumber: props.accountToEdit.number || 'Номер счета',
+            accountPeople: this.props.accountToEdit.people || 'Имя владельца',
+            amount: this.props.accountToEdit.amount || '0',
+            accountName: this.props.accountToEdit.name || 'Название счета',
+        }
         
         this.req = new Requester()
 
@@ -93,12 +99,15 @@ class EditAccount extends Component{
 
     editAccountInList() {
         const updateObj = {
-            balance: this.state.amount,
-            _id: this.props.accountToEdit._id,
-            name: this.state.accountName
+            amount: this.state.amount,
+            id: this.props.accountToEdit._id,
+            name: this.state.accountName,
+            accountDate: this.state.accountDate,
+            accountNumber: this.state.accountNumber,
+            accountPeople: this.state.accountPeople,
         }
         this.props.editAccountInList(updateObj)
-        this.req.updateItem('localAccounts', updateObj)
+        this.req.request('updateAccounts', updateObj)
     }
 
     render() {
@@ -121,7 +130,7 @@ class EditAccount extends Component{
                             onChange={this.handleAmountChange}
                             modifier='underbar'
                             float
-                            placeholder={`${this.props.accountToEdit.balance}` || '0'}
+                            placeholder={this.props.accountToEdit.balance || '0'}
                             className="nzNewAmountValue"
                         />
                         <Input
@@ -130,7 +139,7 @@ class EditAccount extends Component{
                             onChange={this.handleNumberChange}
                             modifier='underbar'
                             float
-                            placeholder={`${this.props.accountToEdit.number}` || 'Номер счета'}
+                            placeholder={this.props.accountToEdit.number || 'Номер счета'}
                         />
                         <Input
                             className="nzNewAmountValue"
@@ -138,7 +147,7 @@ class EditAccount extends Component{
                             onChange={this.handleDateChange}
                             modifier='underbar'
                             float
-                            placeholder={`${this.props.accountToEdit.date}` || 'Действителен до'}
+                            placeholder={this.props.accountToEdit.date || 'Действителен до'}
                         />
                         <Input
                             className="nzNewAmountValue"
@@ -146,7 +155,7 @@ class EditAccount extends Component{
                             onChange={this.handlePeopleChange}
                             modifier='underbar'
                             float
-                            placeholder={`${this.props.accountToEdit.people}` || 'Имя владельца'}
+                            placeholder={this.props.accountToEdit.people || 'Имя владельца'}
                         />
                     </div>
                 </div>

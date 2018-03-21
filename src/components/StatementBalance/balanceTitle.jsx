@@ -13,7 +13,7 @@ class BalanceTitle extends Component{
                 <div className="nzBalanceTitleRow _balance">
                     <span className="nzBalanceTitleColumn nzBalanceTitleColumnFirst">Баланс</span>
                     <span className="nzBalanceTitleColumn nzBalanceTitleColumnSecond"></span>
-                    <span className="nzBalanceTitleColumn nzBalanceTitleColumnThird">{this.props.balance}</span>
+                    <span className="nzBalanceTitleColumn nzBalanceTitleColumnThird">{this.props.amount}</span>
                 </div>
                 <hr className="nzBalanceTitleLine" />
                 <div className="nzBalanceTitleRow _title">
@@ -32,7 +32,7 @@ class BalanceTitle extends Component{
 }
 
 BalanceTitle.propTypes = {
-    balance: PropTypes.string
+    amount: PropTypes.string
 }
 
 export default BalanceTitle
