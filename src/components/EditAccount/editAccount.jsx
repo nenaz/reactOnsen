@@ -25,8 +25,8 @@ class EditAccount extends Component{
         super(props)
         this.state = {
             accountDate: props.accountToEdit.date || 'Действителен до',
-            accountNumber: props.accountToEdit.number || 'Номер счета',
-            accountPeople: this.props.accountToEdit.people || 'Имя владельца',
+            accountNumber: props.accountToEdit.accountNumber || 'Номер счета',
+            accountPeople: this.props.accountToEdit.accountPeople || 'Имя владельца',
             amount: this.props.accountToEdit.amount || '0',
             accountName: this.props.accountToEdit.name || 'Название счета',
         }
@@ -72,11 +72,6 @@ class EditAccount extends Component{
     }
 
     handlerCanselClick() {
-        // window.history.back()
-        // this.props.changeAnimationState('backMainFromNewAccount')
-        // setTimeout(() => {
-        //     this.props.changeAnimationState('')
-        // }, 500);
         this.props.navigator.popPage();
     }
 
@@ -111,13 +106,13 @@ class EditAccount extends Component{
     }
 
     render() {
-        const disabled = (this.props.accountToEdit.pname === 'default') ? true : false
+        // const disabled = (this.props.accountToEdit.pname === 'default') ? true : false
         return (
             <Page renderToolbar={this.renderToolbar}>
                 <div className="nzEditAccountPage">
                     <div className="nzAccountPageInputBlock">
                         <Input
-                            disabled={disabled}
+                            // disabled={disabled}
                             value={this.state.accountName}
                             onChange={this.handleAccountNameChange}
                             modifier='underbar'

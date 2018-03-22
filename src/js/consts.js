@@ -7,7 +7,8 @@ export const SELECTTYPEOPERATION = 'selectTypeOperation'
 export const ACCOUNTTOEDIT = 'accountToEdit'
 export const CHANGECATEGORYSTATISTIC = 'changeCategoryStatictic'
 
-export const SERVERURL = 'https://guarded-sea-48553.herokuapp.com/'
+// export const SERVERURL = 'https://guarded-sea-48553.herokuapp.com/'
+export const SERVERURL = 'https://mongosever.herokuapp.com/'
 export const SERVERURLLOCAL = 'http://127.0.0.1:5000/'
 export const DEVELOP = true
 

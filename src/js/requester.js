@@ -41,7 +41,7 @@ export default class Requester {
             switch (name) {
                 case 'updateAccounts':
                     // lName = 'updateAccountAmount'
-                    lName = 'EditAccount'
+                    lName = 'editAccount'
                     break;
                 case 'addAccount':
                     lName = 'addAccount'
@@ -86,8 +86,8 @@ export default class Requester {
     send(name, type, params) {
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
-            // xhr.open(type, SERVERURL + name, true);
-            xhr.open(type, SERVERURLLOCAL + name, true);
+            xhr.open(type, SERVERURL + name, true);
+            // xhr.open(type, SERVERURLLOCAL + name, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = function () {
                 if (this.status === 200) {

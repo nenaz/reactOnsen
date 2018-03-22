@@ -1,10 +1,10 @@
-const selectConnectToDB = () => {
+// const selectConnectToDB = () => {
     
-    return count;
-}
+//     return count;
+// }
 
-const config = {
+// const config = {
     
-}
+// }
 
-export default config
+// export default config
