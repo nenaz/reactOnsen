@@ -3,20 +3,16 @@ import PropTypes from 'prop-types'
 import {
     Page,
     Toolbar,
-    ToolbarButton,
     Input,
     Fab,
     BackButton
 } from 'react-onsenui'
 import { connect } from 'react-redux'
 import {
-    changeAnimationState,
-    addAccountToList,
     editAccountInList
 } from '../../AC'
-import { Link } from 'react-router-dom'
 import Requester from '../../js/requester'
-import { ICONCHECKING, ICONCANCEL } from '../../js/consts'
+import { ICONCHECKING } from '../../js/consts'
 import Icon from '../Icon'
 
 
@@ -24,10 +20,11 @@ class EditAccount extends Component{
     constructor(props){
         super(props)
         this.state = {
-            accountDate: props.accountToEdit.date || 'Действителен до',
+            accountDate: props.accountToEdit.accountDate || 'Действителен до',
             accountNumber: props.accountToEdit.accountNumber || 'Номер счета',
             accountPeople: this.props.accountToEdit.accountPeople || 'Имя владельца',
-            amount: this.props.accountToEdit.amount || '0',
+            // amount: this.props.accountToEdit.amount || '0',
+            amount: '0',
             accountName: this.props.accountToEdit.name || 'Название счета',
         }
         
@@ -106,28 +103,25 @@ class EditAccount extends Component{
     }
 
     render() {
-        debugger
-        // const disabled = (this.props.accountToEdit.pname === 'default') ? true : false
         return (
             <Page renderToolbar={this.renderToolbar}>
                 <div className="nzEditAccountPage">
                     <div className="nzAccountPageInputBlock">
                         <Input
-                            // disabled={disabled}
                             value={this.state.accountName}
                             onChange={this.handleAccountNameChange}
                             modifier='underbar'
                             float
-                            placeholder={this.props.accountToEdit.name || 'Название счета'}
+                            placeholder='Название счета'
                             className="nzNewAccountName"
                         />
                         <Input
+                            className="nzNewAmountValue"
                             value={this.state.amount}
                             onChange={this.handleAmountChange}
                             modifier='underbar'
                             float
-                            placeholder={this.props.accountToEdit.balance || '0'}
-                            className="nzNewAmountValue"
+                            placeholder='Сумма'
                         />
                         <Input
                             className="nzNewAmountValue"
@@ -135,7 +129,7 @@ class EditAccount extends Component{
                             onChange={this.handleNumberChange}
                             modifier='underbar'
                             float
-                            placeholder={this.props.accountToEdit.number || 'Номер счета'}
+                            placeholder='Номер счета'
                         />
                         <Input
                             className="nzNewAmountValue"
@@ -143,7 +137,7 @@ class EditAccount extends Component{
                             onChange={this.handleDateChange}
                             modifier='underbar'
                             float
-                            placeholder={this.props.accountToEdit.date || 'Действителен до'}
+                            placeholder='Действителен до'
                         />
                         <Input
                             className="nzNewAmountValue"
@@ -151,7 +145,7 @@ class EditAccount extends Component{
                             onChange={this.handlePeopleChange}
                             modifier='underbar'
                             float
-                            placeholder={this.props.accountToEdit.people || 'Имя владельца'}
+                            placeholder='Имя владельца'
                         />
                     </div>
                 </div>
@@ -167,13 +161,11 @@ class EditAccount extends Component{
 }
 
 EditAccount.propTypes = {
-
+    accountToEdit: PropTypes.object,
 }
 
 export default connect((state) => ({
     accountToEdit: state.changeAccountToEdit
 }), {
-    changeAnimationState,
-    addAccountToList,
     editAccountInList
 })(EditAccount)

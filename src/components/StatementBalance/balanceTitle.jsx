@@ -1,5 +1,7 @@
 import React,{ Component} from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import Utils from '../../js/utils'
 
 class BalanceTitle extends Component{
     constructor(props){
@@ -7,7 +9,32 @@ class BalanceTitle extends Component{
         this.state ={}
     }
 
+    // componentDidMount() {
+        // debugger    
+        // const nowDay = new Date()
+        // const yesterday = new Date()
+        // yesterday.setDate(nowDay.getDate() - 1)
+        // const obj = this.props.operations.find(item => {
+        //     const dateItem = new Date(item.data.dateObj)
+        //     return nowDay.getTime() >  
+        // })
+    // }
+
+    getTodayBalance() {
+        const itemUp = this.props.operations.filter((item) => {
+            return item.typeOperation === "1"
+        })
+        const itemDown = this.props.operations.filter((item) => {
+            return item.typeOperation === "0"
+        })
+        return ({
+            amountUp: Utils.dailyCounting(itemUp),
+            amountDown: Utils.dailyCounting(itemDown)
+        })
+    }
+
     render(){
+        const balanceObj = this.getTodayBalance()
         return (
             <section className="nzBalanceTitle">
                 <div className="nzBalanceTitleRow _balance">
@@ -23,8 +50,8 @@ class BalanceTitle extends Component{
                 </div>
                 <div className="nzBalanceTitleRow">
                     <span className="nzBalanceTitleColumn nzBalanceTitleColumnFirst">Сегодня</span>
-                    <span className="nzBalanceTitleColumn">1000</span>
-                    <span className="nzBalanceTitleColumn">-500</span>
+                    <span className="nzBalanceTitleColumn">{balanceObj.amountUp}</span>
+                    <span className="nzBalanceTitleColumn">{balanceObj.amountDown}</span>
                 </div>
             </section>
         )
@@ -35,4 +62,6 @@ BalanceTitle.propTypes = {
     amount: PropTypes.string
 }
 
-export default BalanceTitle
+export default connect((state) => ({
+    operations: state.changeLastOperations
+}))(BalanceTitle)
