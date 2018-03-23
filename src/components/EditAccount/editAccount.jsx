@@ -106,6 +106,7 @@ class EditAccount extends Component{
     }
 
     render() {
+        debugger
         // const disabled = (this.props.accountToEdit.pname === 'default') ? true : false
         return (
             <Page renderToolbar={this.renderToolbar}>

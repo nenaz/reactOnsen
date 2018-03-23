@@ -124,7 +124,11 @@ class AddOperation extends Component{
         const obj = this.props.changeAccountsList.find(item => { return item._id === this.state.id })
         const updateObj = {
             amount: obj.amount,
-            id: obj._id
+            id: obj._id,
+            name: obj.name,
+            accountDate: obj.accountDate,
+            accountNumber: obj.accountNumber,
+            accountPeople: obj.accountPeople,
         }
         this.req.request('updateItem', updateObj)
     }
