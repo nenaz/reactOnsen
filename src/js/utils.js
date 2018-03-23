@@ -118,7 +118,7 @@ const nowDate = (returnObject) => {
 const convertTypeOperation = (value) => {
     switch (value) {
         case "1": return "+";
-        case "-1": return "";
+        case "-1": return "/";
         default: return "-";
     }
 }

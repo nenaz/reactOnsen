@@ -14,7 +14,7 @@ import { changeAnimationState, addOperationToList, editAccountInList } from '../
 import '../../css/App.css'
 import Utils from '../../js/utils'
 import KeyboardMain from '../Keyboard'
-import TypeOperation from './typeOperation'
+import CheckTypeOperation from './typeOperation'
 import Requester from '../../js/requester'
 import GetCoord from '../../js/coorditates'
 import { ICONCHECKING, ICONCANCEL, ICONBACK } from '../../js/consts'
@@ -49,6 +49,7 @@ class AddOperation extends Component{
             categoryId: null,
             showProcess: false,
             modalOpen: false,
+            typeOperation: this.props.typeOperation,
         }
 
         this.req = new Requester()
@@ -74,6 +75,7 @@ class AddOperation extends Component{
         this.handleSelectCategoty = this.handleSelectCategoty.bind(this)
         this.renderModal = this.renderModal.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.selectTypeOperation = this.selectTypeOperation.bind(this)
         // this.handleSelectAccount = this.handleSelectAccount.bind(this)
     }
 
@@ -181,7 +183,7 @@ class AddOperation extends Component{
         //     </Toolbar>
         // )
         const backButton = this.props.route.hasBackButton
-            ? <BackButton onClick={this.handlerCanselClick}>Back</BackButton>
+            ? <BackButton onClick={this.handlerBackClick}>Back</BackButton>
             : null;
         return (
             <Toolbar className="nzCatToolbar">
@@ -321,6 +323,10 @@ class AddOperation extends Component{
         )
     }
 
+    selectTypeOperation(typeOperation) {
+        this.setState({ typeOperation })
+    }
+
     render() {
         const pageAcc = this.selectRenderBackgroundPage()
         return (
@@ -330,9 +336,12 @@ class AddOperation extends Component{
                 renderModal={this.renderModal}
             >
                 <section className={`sectionClass sectionBlock ${this.state.section1Class}`}>
-                    <TypeOperation typeOperation={this.props.typeOperation} />
+                    <CheckTypeOperation
+                        typeOperation={this.state.typeOperation}
+                        selectTypeOperation={this.selectTypeOperation}
+                    />
                     <AmountInput
-                        typeOperation={this.props.typeOperation}
+                        typeOperation={this.state.typeOperation}
                         handleRunAnimation={this.handleRunAnimation}
                         inputAmount={this.state.inputAmount}
                         comma={this.state.comma}

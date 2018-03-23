@@ -1,10 +1,34 @@
 import React, { Component } from 'react'
-import Utils from '../../js/utils'
+import PropTypes from 'prop-types'
 
 class AmountInput extends Component {
     constructor(props) {
         super(props)
         this.state = {}
+
+        this.renderLists = this.renderLists.bind(this)
+    }
+
+    renderLists() {
+        if (this.props.typeOperation === '-1') {
+            return (
+                <div onClick={() => {
+                    this.props.handleRunAnimation(0)
+                }}>
+                    <span className="nzAmountSelectTitle">Счет</span>
+                    <span className="nzAmountSelectText">{this.props.accountName}</span>
+                </div>
+            )
+        } else {
+            return (
+                <div onClick={() => {
+                    this.props.handleRunAnimation(1)
+                }}>
+                    <span className="nzAmountSelectTitle">Категория</span>
+                    <span className="nzAmountSelectText">Еда</span>
+                </div>
+            )
+        }
     }
 
     render() {
@@ -12,7 +36,7 @@ class AmountInput extends Component {
             <div className="nzAmountSection">
                 <div className="nzAmountInput">
                     <div className="nzAmountItem nzTypeOperation">
-                        <span>{Utils.convertTypeOperation(this.props.typeOperation)}</span>
+                        <span>{this.state.typeOper}</span>
                     </div>
                     <div className="nzAmountItem nzAmountTextBlock">
                         <span style={{
@@ -31,16 +55,15 @@ class AmountInput extends Component {
                         <span className="nzAmountSelectTitle">Счет</span>
                         <span className="nzAmountSelectText">{this.props.accountName}</span>
                     </div>
-                    <div onClick={() => {
-                        this.props.handleRunAnimation(1)
-                    }}>
-                        <span className="nzAmountSelectTitle">Категория</span>
-                        <span className="nzAmountSelectText">Еда</span>
-                    </div>
+                    {this.renderLists()}
                 </div>
             </div>
         )
     }
+}
+
+AmountInput.propTypes = {
+    typeOperation: PropTypes.string
 }
 
 export default AmountInput

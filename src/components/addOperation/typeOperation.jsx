@@ -4,7 +4,7 @@ import '../../css/App.css'
 import { connect } from 'react-redux'
 import { selectTypeOperation } from '../../AC'
 
-class TypeOperation extends Component{
+class CheckTypeOperation extends Component{
     constructor(props){
         super(props)
         this.state ={
@@ -24,9 +24,30 @@ class TypeOperation extends Component{
     render(){
         return (
             <div className="nzTitle">
-                <Button className={`nzTitleCol ${(this.state.activeButton === "1") ? "nzActive" : ""} `} type="1" modifier='outline' onClick={this.handleSelectActiveButton}>Доход</Button>
-                <Button className={`nzTitleCol ${(this.state.activeButton === "0") ? "nzActive" : ""} nzCenterButton `} modifier='outline' type="0" onClick={this.handleSelectActiveButton}>Расход</Button>
-                <Button className={`nzTitleCol ${(this.state.activeButton === "-1") ? "nzActive" : ""} `} modifier='outline' type="-1" onClick={this.handleSelectActiveButton}>Перевод</Button>
+                <Button
+                    className={`nzTitleCol ${(this.state.activeButton === "1") ? "nzActive" : ""} `}
+                    type="1"
+                    modifier='outline'
+                    onClick={this.handleSelectActiveButton}
+                >
+                    Доход
+                </Button>
+                <Button
+                    className={`nzTitleCol ${(this.state.activeButton === "0") ? "nzActive" : ""} nzCenterButton `}
+                    modifier='outline'
+                    type="0"
+                    onClick={this.handleSelectActiveButton}
+                >
+                    Расход
+                </Button>
+                <Button
+                    className={`nzTitleCol ${(this.state.activeButton === "-1") ? "nzActive" : ""} `}
+                    modifier='outline'
+                    type="-1"
+                    onClick={this.handleSelectActiveButton}
+                >
+                    Перевод
+                </Button>
             </div>
         )
     }
@@ -34,6 +55,4 @@ class TypeOperation extends Component{
 
 export default connect((state) => ({
     typeOperation: state.changeTypeOperation
-}),{
-    selectTypeOperation
-})(TypeOperation)
+}),{})(CheckTypeOperation)
