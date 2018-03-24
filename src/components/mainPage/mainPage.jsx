@@ -263,7 +263,7 @@ class MainPage extends Component{
                 <Fab position='bottom right' onClick={() => {
                     this.pushPage('addOperation')
                 }}>
-                    <span className="icon-plus2"
+                    <span className="icon-plus"
                         style={{
                             lineHeight: '56px'
                         }}

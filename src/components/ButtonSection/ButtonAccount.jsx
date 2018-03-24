@@ -3,14 +3,11 @@ import PropTypes from 'prop-types'
 import * as Ons from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
     changeAnimationState,
     accountToEdit
 } from '../../AC'
-import Icon from '../Icon'
-import { ICONPURSE } from '../../js/consts'
 
 class ButtonAccount extends Component {
     constructor(props) {
@@ -24,18 +21,6 @@ class ButtonAccount extends Component {
 
     handlerButtonClick(event) {
         this.props.changeAnimationState('')
-
-        // const elem = event.currentTarget
-        // const elemBoundingCR = elem.getBoundingClientRect()
-        // elem.style.left = `${elemBoundingCR.left}px`
-        // setTimeout(() => {
-        //     elem.classList.add('nzAnimaion')
-        //     elem.style.width = `${elemBoundingCR.width}px`
-        // }, 100)
-        // setTimeout(() => {
-        //     elem.classList.add('nzAnimaionNext')
-        //     elem.style.left = '0px'
-        // }, 200);
     }
 
     handleEditAccount(e) {
@@ -53,9 +38,18 @@ class ButtonAccount extends Component {
                 />
             )
         } else {
+            let cardIcon;
+            if (!this.props.params.accountNumber) {
+                cardIcon = 'icon-wallet'
+            } else if (this.props.params.accountNumber[0] === '4') {
+                cardIcon = 'icon-visa'
+            } else {
+                cardIcon = 'icon-mastercard'
+            }
             return (
                 <span
-                    className="nzAccountButtonItem icon-wallet"
+                    // className="nzAccountButtonItem icon-wallet"
+                    className={`nzAccountButtonItem ${cardIcon}`}
                     onClick={() => {
                         this.props.pushPage('editAccount')
                     }}
@@ -67,17 +61,17 @@ class ButtonAccount extends Component {
 
 
     render() {
-        // const buttonPos = this.buttonPosition()
         return (
             <div
                 className="nzAccountButton"
                 id={this.props.params._id}
                 onClick={this.handleEditAccount}
-                // style={{}}
             >
                 <span className="nzAccountButtonItem _default">{this.props.params.name}</span>
                 {this.renderIcon()}
-                {!this.props.params.iconEnable && <span className="nzAccountButtonItem _default">{this.props.params.amount}</span>}
+                {!this.props.params.iconEnable &&
+                    <span className="nzAccountButtonItem _default">{this.props.params.amount}</span>
+                }
             </div>
         )
     }

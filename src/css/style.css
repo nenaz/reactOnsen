@@ -20,12 +20,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-checked:before {
-  content: "\e907";
+.icon-mastercard:before {
+  content: "\e906";
 }
 
-.icon-plus2:before {
-  content: "\e906";
+.icon-visa:before {
+  content: "\e907";
 }
 
 .icon-left-arrow:before {

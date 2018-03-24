@@ -274,6 +274,12 @@
   .page__background.page--material__background{
     background-color: rgb(44,44,44);
   }
+  .nzPage{
+    .icon-plus{
+      font-size: 28px;
+      line-height: 56px;
+    }
+  }
   .nzWidgetSection{
     margin: 8px;
     .nzWidgetBlock{
@@ -335,7 +341,9 @@
                 height: 15px;
                 line-height: 15px;
               }
-              &.icon-wallet{
+              &.icon-wallet,
+              &.icon-visa,
+              &.icon-mastercard{
                 font-size: 43px;
               }
               &.icon-plus{
@@ -584,9 +592,4 @@
   .progress-circular--material__primary{
     stroke: #fff;
   }
-}
-
-.icon-plus2{
-  font-size: 28px;
-  line-height: 56px;
 }
