@@ -35,6 +35,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-transfer:before {
+  content: "\e90b";
+}
+.icon-checked:before {
+  content: "\e908";
+}
+.icon-minus:before {
+  content: "\e909";
+}
+.icon-plus2:before {
+  content: "\e90a";
+}
 .icon-mastercard:before {
   content: "\e906";
 }
