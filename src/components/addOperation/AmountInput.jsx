@@ -16,7 +16,7 @@ class AmountInput extends Component {
                     this.props.handleRunAnimation(0)
                 }}>
                     <span className="nzAmountSelectTitle">Счет</span>
-                    <span className="nzAmountSelectText">{this.props.accountName}</span>
+                    <span className="nzAmountSelectText">{this.props.accountNameTo}</span>
                 </div>
             )
         } else {
@@ -63,7 +63,8 @@ class AmountInput extends Component {
 }
 
 AmountInput.propTypes = {
-    typeOperation: PropTypes.string
+    typeOperation: PropTypes.string,
+    accountNameTo: PropTypes.string,
 }
 
 export default AmountInput

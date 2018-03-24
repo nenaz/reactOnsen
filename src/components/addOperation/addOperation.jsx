@@ -39,7 +39,11 @@ class AddOperation extends Component{
             accountBalance: '0,00',
             accountName: (props.changeAccountsList.length) ?
                 props.changeAccountsList[0].name : '',
+            accountNameTo: (props.changeAccountsList.length) ?
+                props.changeAccountsList[0].name : '',
             id: (props.changeAccountsList.length) ?
+                this.props.changeAccountsList[0]._id : '',
+            idTo: (props.changeAccountsList.length) ?
                 this.props.changeAccountsList[0]._id : '',
             amountfontSize: 'calc(1rem + (1vw - 0px) * 20)',
             section1Class: '',
@@ -76,7 +80,7 @@ class AddOperation extends Component{
         this.renderModal = this.renderModal.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.selectTypeOperation = this.selectTypeOperation.bind(this)
-        // this.handleSelectAccount = this.handleSelectAccount.bind(this)
+        this.handleSelectAccountTo = this.handleSelectAccountTo.bind(this)
     }
 
     componentDidMount() {
@@ -307,6 +311,14 @@ class AddOperation extends Component{
         this.handlerBackClick()
     }
 
+    handleSelectAccountTo(e) {
+        this.setState({
+            idTo: e.currentTarget.getAttribute('id'),
+            accountNameTo: e.currentTarget.getAttribute('name')
+        })
+        this.handlerBackClick()
+    }
+
     handleSelectCategoty(e) {
         console.log(e.currentTarget.getAttribute('id'))
         this.setState({
@@ -348,6 +360,7 @@ class AddOperation extends Component{
                         part={this.state.part}
                         amountfontSize={this.state.amountfontSize}
                         accountName={this.state.accountName}
+                        accountNameTo={this.state.accountNameTo}
                     />
                 </section>
                 <section className={`sectionClass sectionBlock ${this.state.section2Class}`}>
