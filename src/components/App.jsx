@@ -3,18 +3,11 @@ import '../css/App.css'
 import '../css/style.css'
 import '../css/ionicons.css'
 import DownloadPDF from './DownloadPDF'
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect
-} from 'react-router-dom'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import store from '../store'
 import { Provider } from 'react-redux'
 import AddAccount from './addAccount'
 import EditAccount from './EditAccount'
 import MainPage from './mainPage'
-import Utils from '../js/utils'
 import { connect } from 'react-redux'
 import AddOperation from './addOperation'
 import { addOperationToList, addAccountToList } from '../AC'
@@ -87,6 +80,13 @@ class App extends Component {
         />
       )
       case 'options': return (
+        <OptionsPage
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+      case 'chart': return (
         <OptionsPage
           key={route.title}
           route={route}

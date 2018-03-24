@@ -104,6 +104,7 @@
     "jest": "^20.0.4",
     "onsenui": "^2.8.1",
     "react-onsenui": "^1.9.0",
+    "recharts": "^1.0.0-beta.10",
     "yandex-map-react": "^1.1.1"
   }
 }
