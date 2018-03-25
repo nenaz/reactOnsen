@@ -178,19 +178,6 @@ class AddOperation extends Component{
     }
 
     renderToolbarForSelect() {
-        // return (
-        //     <Toolbar className="nzCatToolbar">
-        //         <div className="left">
-        //             <ToolbarButton ref='button' onClick={this.handlerBackClick}>
-        //                 <Icon iconBase64={ICONBACK}/>
-        //             </ToolbarButton>
-        //         </div>
-        //         <div className="center" />
-        //         <div className="right">
-        //             <ToolbarButton ref='button' />
-        //         </div>
-        //     </Toolbar>
-        // )
         const backButton = this.props.route.hasBackButton
             ? <BackButton onClick={this.handlerBackClick}>Back</BackButton>
             : null;
@@ -341,15 +328,16 @@ class AddOperation extends Component{
     }
 
     selectTypeOperation(typeOperation) {
-        this.setState({ typeOperation })
+        this.setState({ 
+            typeOperation,
+            carouselIndex: typeOperation * 1
+        })
     }
 
     handleChangeCarousel(event) {
-        // debugger
-        // this.selectTypeOperation(event.activeIndex)
         this.setState({
             typeOperation: `${event.activeIndex}`,
-            carouselIndex: event.activeIndex
+            carouselIndex: event.activeIndex * 1
         })
     }
 
