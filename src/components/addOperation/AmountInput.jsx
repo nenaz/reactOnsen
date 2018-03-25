@@ -10,7 +10,7 @@ class AmountInput extends Component {
     }
 
     renderLists() {
-        if (this.props.typeOperation === '-1') {
+        if (this.props.typeOperation === '2') {
             return (
                 <div onClick={() => {
                     this.props.handleRunAnimation(0)

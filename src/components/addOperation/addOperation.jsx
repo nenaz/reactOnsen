@@ -2,13 +2,13 @@ import React,{ Component} from 'react'
 import {
     Page,
     Toolbar,
-    ToolbarButton,
     Modal,
     ProgressCircular,
     Fab,
-    BackButton
+    BackButton,
+    Carousel,
+    CarouselItem
 } from 'react-onsenui'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { changeAnimationState, addOperationToList, editAccountInList } from '../../AC'
 import '../../css/App.css'
@@ -17,12 +17,11 @@ import KeyboardMain from '../Keyboard'
 import CheckTypeOperation from './typeOperation'
 import Requester from '../../js/requester'
 import GetCoord from '../../js/coorditates'
-import { ICONCHECKING, ICONCANCEL, ICONBACK } from '../../js/consts'
+import { ICONCHECKING } from '../../js/consts'
 import Icon from '../Icon'
 import AmountInput from './AmountInput'
 import PageCategory from './pageCategory'
 import PageAccount from './pageAccounts'
-import ToolbarC from '../Toolbar'
 
 const COEFFICIENT = 0.46;
 // const FORMULA = `calc(1rem + ((1vw - ${this.generateAmountFontSize()}) * 20))`;
@@ -33,7 +32,7 @@ class AddOperation extends Component{
         super(props)
         this.state ={
             inputAmount: '0',
-            typeOperation: this.props.typeOperation || "0",
+            typeOperation: this.props.typeOperation || '0',
             comma: false,
             part: '00',
             accountBalance: '0,00',
@@ -53,7 +52,10 @@ class AddOperation extends Component{
             categoryId: null,
             showProcess: false,
             modalOpen: false,
-            typeOperation: this.props.typeOperation,
+            itemsType: [
+                '1', '0','-1'
+            ],
+            carouselIndex: 0,
         }
 
         this.req = new Requester()
@@ -81,6 +83,8 @@ class AddOperation extends Component{
         this.handleClick = this.handleClick.bind(this)
         this.selectTypeOperation = this.selectTypeOperation.bind(this)
         this.handleSelectAccountTo = this.handleSelectAccountTo.bind(this)
+        this.handleChangeCarousel = this.handleChangeCarousel.bind(this)
+        this.setIndex = this.setIndex.bind(this)
     }
 
     componentDidMount() {
@@ -339,6 +343,20 @@ class AddOperation extends Component{
         this.setState({ typeOperation })
     }
 
+    handleChangeCarousel(event) {
+        // debugger
+        // this.selectTypeOperation(event.activeIndex)
+        this.setState({
+            typeOperation: `${event.activeIndex}`,
+            carouselIndex: event.activeIndex
+        })
+    }
+
+    setIndex(event) {
+        debugger
+        // this.setState({ carouselIndex: index });
+    }
+
     render() {
         const pageAcc = this.selectRenderBackgroundPage()
         return (
@@ -352,16 +370,68 @@ class AddOperation extends Component{
                         typeOperation={this.state.typeOperation}
                         selectTypeOperation={this.selectTypeOperation}
                     />
-                    <AmountInput
-                        typeOperation={this.state.typeOperation}
-                        handleRunAnimation={this.handleRunAnimation}
-                        inputAmount={this.state.inputAmount}
-                        comma={this.state.comma}
-                        part={this.state.part}
-                        amountfontSize={this.state.amountfontSize}
-                        accountName={this.state.accountName}
-                        accountNameTo={this.state.accountNameTo}
-                    />
+                    <Carousel
+                        onPostChange={this.handleChangeCarousel}
+                        index={this.state.carouselIndex}
+                        fullscreen
+                        swipeable
+                        autoScroll
+                        overscrollable
+                    >
+                        {/*<AmountInput
+                            typeOperation={this.state.typeOperation}
+                            handleRunAnimation={this.handleRunAnimation}
+                            inputAmount={this.state.inputAmount}
+                            comma={this.state.comma}
+                            part={this.state.part}
+                            amountfontSize={this.state.amountfontSize}
+                            accountName={this.state.accountName}
+                            accountNameTo={this.state.accountNameTo}
+                        />*/}
+                        {
+                            this.state.itemsType.map((item, index) => {
+                                return <CarouselItem 
+                                    key={index}
+                                    index={this.state.index}
+                                    fullscreen
+                                    swipeable
+                                    autoScroll
+                                    overscrollable
+                                >
+                                    <AmountInput
+                                        typeOperation={this.state.typeOperation}
+                                        handleRunAnimation={this.handleRunAnimation}
+                                        inputAmount={this.state.inputAmount}
+                                        comma={this.state.comma}
+                                        part={this.state.part}
+                                        amountfontSize={this.state.amountfontSize}
+                                        accountName={this.state.accountName}
+                                        accountNameTo={this.state.accountNameTo}
+                                    />
+                                </CarouselItem>
+                            })
+                        }
+                    </Carousel>
+                    <div style={{
+                        textAlign: 'center',
+                        fontSize: '30px',
+                        position: 'absolute',
+                        bottom: '50px',
+                        left: '0px',
+                        right: '0px',
+                        color: 'white',
+                    }}>
+                        {this.state.itemsType.map((item, index) => (
+                            <span
+                                key={index}
+                                index={index}
+                                style={{ cursor: 'pointer' }}
+                                onClick={this.setIndex}
+                            >
+                                {this.state.carouselIndex === index ? '\u25CF' : '\u25CB'}
+                            </span>
+                        ))}
+                    </div>
                 </section>
                 <section className={`sectionClass sectionBlock ${this.state.section2Class}`}>
                     <KeyboardMain

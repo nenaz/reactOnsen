@@ -523,6 +523,7 @@
 .page.page--material.nzPageNewItem .sectionClass.sectionBlock {
   position: relative;
   z-index: 1;
+  background-color: #404040;
 }
 
 .page.page--material.nzPageNewItem .sectionClass.sectionBlock.section1Class.transition {

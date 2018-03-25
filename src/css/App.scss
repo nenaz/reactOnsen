@@ -489,6 +489,7 @@
       &.sectionBlock{
         position: relative;
         z-index: 1;
+        background-color: rgb(64,64,64);
         &.section1Class.transition{
           transform: translateY(-105%);
         }
