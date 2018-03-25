@@ -574,6 +574,11 @@
   color: #fff;
 }
 
+.page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzAllCategory .nzAllCategoryList, .page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzPageCategory .nzAllCategory .nzAllCategoryList {
+  max-height: 52vh;
+  overflow-y: scroll;
+}
+
 .page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzWidgetTitle {
   padding-left: 8px;
   font-size: 15px;

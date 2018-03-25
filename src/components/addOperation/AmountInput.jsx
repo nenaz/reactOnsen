@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { LISTCATEGORY } from '../../js/consts'
 
 class AmountInput extends Component {
     constructor(props) {
@@ -7,6 +8,13 @@ class AmountInput extends Component {
         this.state = {}
 
         this.renderLists = this.renderLists.bind(this)
+    }
+
+    getCurrentCategoryName(id) {
+        const items = id.split('-')
+        // const categoryName = LISTCATEGORY.find(item => {
+        //     return item.value = 
+        // })
     }
 
     renderLists() {
@@ -20,6 +28,7 @@ class AmountInput extends Component {
                 </div>
             )
         } else {
+            debugger
             return (
                 <div onClick={() => {
                     this.props.handleRunAnimation(1)
@@ -65,6 +74,7 @@ class AmountInput extends Component {
 AmountInput.propTypes = {
     typeOperation: PropTypes.string,
     accountNameTo: PropTypes.string,
+    categoryId: PropTypes.string,
 }
 
 export default AmountInput

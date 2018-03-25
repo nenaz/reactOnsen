@@ -117,10 +117,7 @@ class PageCategory extends Component {
                     <List
                         dataSource={LISTCATEGORY}
                         renderRow={this.renderRowCategory}
-                        style={{
-                            minHeight: '52vh',
-                            overflowY: 'scroll'
-                        }}
+                        className="nzAllCategoryList"
                     />
                 </section>
             </Page>

@@ -528,6 +528,10 @@
               line-height: 30px;
               color: #fff;
             }
+            .nzAllCategoryList{
+              max-height: 52vh;
+              overflow-y: scroll;
+            }
           }
         }
       }

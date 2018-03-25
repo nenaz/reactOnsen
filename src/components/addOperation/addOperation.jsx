@@ -326,7 +326,7 @@ class AddOperation extends Component{
     handleSelectCategoty(e) {
         console.log(e.currentTarget.getAttribute('id'))
         this.setState({
-            typeOperation: e.currentTarget.getAttribute('id')
+            categoryId: e.currentTarget.getAttribute('id')
         })
         this.handlerBackClick()
     }
@@ -353,7 +353,7 @@ class AddOperation extends Component{
     }
 
     setIndex(event) {
-        debugger
+        // debugger
         // this.setState({ carouselIndex: index });
     }
 
@@ -376,18 +376,8 @@ class AddOperation extends Component{
                         fullscreen
                         swipeable
                         autoScroll
-                        overscrollable
+                        // overscrollable
                     >
-                        {/*<AmountInput
-                            typeOperation={this.state.typeOperation}
-                            handleRunAnimation={this.handleRunAnimation}
-                            inputAmount={this.state.inputAmount}
-                            comma={this.state.comma}
-                            part={this.state.part}
-                            amountfontSize={this.state.amountfontSize}
-                            accountName={this.state.accountName}
-                            accountNameTo={this.state.accountNameTo}
-                        />*/}
                         {
                             this.state.itemsType.map((item, index) => {
                                 return <CarouselItem 
@@ -407,6 +397,7 @@ class AddOperation extends Component{
                                         amountfontSize={this.state.amountfontSize}
                                         accountName={this.state.accountName}
                                         accountNameTo={this.state.accountNameTo}
+                                        categoryId={this.state.categoryId}
                                     />
                                 </CarouselItem>
                             })
