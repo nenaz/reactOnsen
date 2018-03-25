@@ -8,13 +8,16 @@ class AmountInput extends Component {
         this.state = {}
 
         this.renderLists = this.renderLists.bind(this)
+        this.getCurrentCategoryName = this.getCurrentCategoryName.bind(this)
     }
 
-    getCurrentCategoryName(id) {
+    getCurrentCategoryName() {
+        const id = this.props.categoryId || '0-0'
         const items = id.split('-')
-        // const categoryName = LISTCATEGORY.find(item => {
-        //     return item.value = 
-        // })
+        const categoryName = LISTCATEGORY.find(item => {
+            return item.value === items[0] * 1
+        })
+        return categoryName
     }
 
     renderLists() {
@@ -28,13 +31,13 @@ class AmountInput extends Component {
                 </div>
             )
         } else {
-            debugger
+            const name = this.getCurrentCategoryName()
             return (
                 <div onClick={() => {
                     this.props.handleRunAnimation(1)
                 }}>
                     <span className="nzAmountSelectTitle">Категория</span>
-                    <span className="nzAmountSelectText">Еда</span>
+                    <span className="nzAmountSelectText">{name.title}</span>
                 </div>
             )
         }
@@ -75,6 +78,10 @@ AmountInput.propTypes = {
     typeOperation: PropTypes.string,
     accountNameTo: PropTypes.string,
     categoryId: PropTypes.string,
+}
+
+AmountInput.defaultProps = {
+    categoryId: '0-0',
 }
 
 export default AmountInput

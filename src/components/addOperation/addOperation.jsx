@@ -124,6 +124,7 @@ class AddOperation extends Component{
                 lon: coord.coords.longitude
             },
             id: this.state.id,
+            categoryId: this.state.categoryId,
         }
         this.props.addOperationToList(addObject)
         this.req.request('addItem', addObject)
