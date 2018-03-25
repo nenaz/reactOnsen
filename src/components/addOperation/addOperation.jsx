@@ -126,13 +126,20 @@ class AddOperation extends Component{
             id: this.state.id,
             categoryId: this.state.categoryId,
         }
+        if (this.state.typeOperation === '2') {
+            addObject.idTo = this.state.idTo
+        }
         this.props.addOperationToList(addObject)
         this.req.request('addItem', addObject)
         this.props.editAccountInList(addObject)
+        // if (this.state.typeOperation === '2') {
+        //     this.props.editAccountInList(addObject)
+        // }
     }
 
-    editAccountInList() {
+    editAccountInList(addObject) {
         const obj = this.props.changeAccountsList.find(item => { return item._id === this.state.id })
+        debugger
         const updateObj = {
             amount: obj.amount,
             id: obj._id,
@@ -156,12 +163,6 @@ class AddOperation extends Component{
     }
 
     renderToolbar() {
-        // return (
-        //     <ToolbarC
-        //         title = 'Добавить запись'
-        //         handlerCanselClick = { this.handlerCanselClick }
-        //     />
-        // )
         const backButton = this.props.route.hasBackButton
             ? <BackButton onClick={this.handleClick}>Back</BackButton>
             : null;

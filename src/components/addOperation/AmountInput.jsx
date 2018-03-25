@@ -66,6 +66,7 @@ class AmountInput extends Component {
                     }}>
                         <span className="nzAmountSelectTitle">Счет</span>
                         <span className="nzAmountSelectText">{this.props.accountName}</span>
+                        <span className="nzAmountSelectAmount">{this.props.inputAmount}</span>
                     </div>
                     {this.renderLists()}
                 </div>
