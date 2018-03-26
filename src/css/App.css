@@ -172,6 +172,20 @@
   height: calc(100% - 50px);
 }
 
+.nzAmountSection .nznzAmountSectionCarousel {
+  height: 72%;
+}
+
+.nzAmountSection .nznzAmountSectionCarousel .carousel.carousel-slider,
+.nzAmountSection .nznzAmountSectionCarousel .slider-wrapper,
+.nzAmountSection .nznzAmountSectionCarousel .slider {
+  height: 100%;
+}
+
+.nzAmountSection .nznzAmountSectionCarousel .slide {
+  background-color: #404040;
+}
+
 .nzAmountSection .nzAmountInput {
   display: flex;
   flex-direction: row;

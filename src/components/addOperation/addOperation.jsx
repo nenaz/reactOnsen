@@ -6,15 +6,14 @@ import {
     ProgressCircular,
     Fab,
     BackButton,
-    Carousel,
-    CarouselItem
+    // Carousel,
+    // CarouselItem
 } from 'react-onsenui'
 import { connect } from 'react-redux'
 import { changeAnimationState, addOperationToList, editAccountInList } from '../../AC'
 import '../../css/App.css'
 import Utils from '../../js/utils'
 import KeyboardMain from '../Keyboard'
-import CheckTypeOperation from './typeOperation'
 import Requester from '../../js/requester'
 import GetCoord from '../../js/coorditates'
 import { ICONCHECKING } from '../../js/consts'
@@ -52,9 +51,6 @@ class AddOperation extends Component{
             categoryId: null,
             showProcess: false,
             modalOpen: false,
-            itemsType: [
-                '1', '0','-1'
-            ],
             carouselIndex: 0,
         }
 
@@ -356,63 +352,19 @@ class AddOperation extends Component{
                 renderModal={this.renderModal}
             >
                 <section className={`sectionClass sectionBlock ${this.state.section1Class}`}>
-                    <CheckTypeOperation
+                    <AmountInput
                         typeOperation={this.state.typeOperation}
+                        handleRunAnimation={this.handleRunAnimation}
+                        inputAmount={this.state.inputAmount}
+                        comma={this.state.comma}
+                        part={this.state.part}
+                        amountfontSize={this.state.amountfontSize}
+                        accountName={this.state.accountName}
+                        accountNameTo={this.state.accountNameTo}
+                        categoryId={this.state.categoryId}
+                        // typeOperation={this.state.typeOperation}
                         selectTypeOperation={this.selectTypeOperation}
                     />
-                    <Carousel
-                        onPostChange={this.handleChangeCarousel}
-                        index={this.state.carouselIndex}
-                        fullscreen
-                        swipeable
-                        autoScroll
-                        // overscrollable
-                    >
-                        {
-                            this.state.itemsType.map((item, index) => {
-                                return <CarouselItem 
-                                    key={index}
-                                    index={this.state.index}
-                                    fullscreen
-                                    swipeable
-                                    autoScroll
-                                    overscrollable
-                                >
-                                    <AmountInput
-                                        typeOperation={this.state.typeOperation}
-                                        handleRunAnimation={this.handleRunAnimation}
-                                        inputAmount={this.state.inputAmount}
-                                        comma={this.state.comma}
-                                        part={this.state.part}
-                                        amountfontSize={this.state.amountfontSize}
-                                        accountName={this.state.accountName}
-                                        accountNameTo={this.state.accountNameTo}
-                                        categoryId={this.state.categoryId}
-                                    />
-                                </CarouselItem>
-                            })
-                        }
-                    </Carousel>
-                    <div style={{
-                        textAlign: 'center',
-                        fontSize: '30px',
-                        position: 'absolute',
-                        bottom: '50px',
-                        left: '0px',
-                        right: '0px',
-                        color: 'white',
-                    }}>
-                        {this.state.itemsType.map((item, index) => (
-                            <span
-                                key={index}
-                                index={index}
-                                style={{ cursor: 'pointer' }}
-                                onClick={this.setIndex}
-                            >
-                                {this.state.carouselIndex === index ? '\u25CF' : '\u25CB'}
-                            </span>
-                        ))}
-                    </div>
                 </section>
                 <section className={`sectionClass sectionBlock ${this.state.section2Class}`}>
                     <KeyboardMain
