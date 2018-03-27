@@ -1,30 +1,61 @@
 import React, { Component } from 'react'
-import './css/App.css'
-import * as Ons from 'react-onsenui'
-import 'onsenui/css/onsenui.css'
-import 'onsenui/css/onsen-css-components.css'
-// import RightMenu from './RightMenu'
+import '../css/App.css'
+import '../css/style.css'
+import '../css/ionicons.css'
+import DownloadPDF from './DownloadPDF'
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect
+} from 'react-router-dom'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import store from '../store'
+import { Provider } from 'react-redux'
+import AddAccount from './addAccount'
+import EditAccount from './EditAccount'
+import MainPage from './mainPage'
+import Utils from '../js/utils'
+import { connect } from 'react-redux'
+import AddOperation from './addOperation'
+import { addOperationToList, addAccountToList } from '../AC'
+import Requester from '../js/requester'
+import { ProgressCircular, Navigator } from 'react-onsenui'
+import OptionsPage from './Options';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       render: false,
-      // rightMenuOpen: false,
-      isOpenPopover: false,
-      isOpenLeftMenu: false
+      logon: false,
+      errorLogonText: '',
+      errorLogonStatus: ''
     }
 
-    // this.rightMenu = this.rightMenu.bind(this)
-    this.showPopover = this.showPopover.bind(this)
-    this.hidePopover = this.hidePopover.bind(this)
-    this.canselPopover = this.canselPopover.bind(this)
-    this.getTarget = this.getTarget.bind(this)
-    this.showLeftMenu = this.showLeftMenu.bind(this)
-    this.hideLeftMenu = this.hideLeftMenu.bind(this)
+    this.req = new Requester()
+    // this.connectDB = this.req.JSON.parse(localStorage.getItem('localOptions')).connectDB
+    // this.connectDB = true
+
+    this.renderPage = this.renderPage.bind(this)
+    this.getOperations = this.getOperations.bind(this)
+    this.getAccounts = this.getAccounts.bind(this)
+    this.changeLogonStatus = this.changeLogonStatus.bind(this)
+  }
+
+  // componentDidMount() {
+    // setTimeout(() => {
+    //   this.setState({
+    //     render: true
+    //   })
+    // }, 2000)
+  // }
+  componentWillMount() {
+    this.req.initialize();
   }
 
   componentDidMount() {
+    this.getAccounts()
+    this.getOperations()
     setTimeout(() => {
       this.setState({
         render: true
@@ -32,157 +63,106 @@ class App extends Component {
     }, 2000)
   }
 
-  
-
-  componentWillUnmount() {
-    console.log('componentWillUnmount') 
+  renderPage(route, navigator) {
+    switch (route.title) {
+      case 'addAccount': return (
+        <AddAccount
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+      case 'addOperation': return (
+        <AddOperation
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+      case 'editAccount': return (
+        <EditAccount
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+      case 'options': return (
+        <OptionsPage
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+      case 'download': return <DownloadPDF />
+      default: return (
+        <MainPage
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+    }
   }
 
-  // rightMenu() {
-  //   this.setState({
-  //     rightMenuOpen: !this.state.rightMenuOpen
-  //   }) 
-  // }
-
-  getTarget() {
-    return this.refs.button;
+  getOperations() {
+    this.req.request('getOperations').then(result => {
+      const arrOper = result.reverse()
+      arrOper.map(item => this.props.addOperationToList(item))
+    })
   }
 
-  showPopover() {
-    console.log('show')
-    this.setState({ isOpenPopover: true });
+  getAccounts() {
+    this.req.request('getAccounts').then(result => {
+      const arrAcc = result.reverse()
+      arrAcc.map(item => this.props.addAccountToList(item))
+    })
   }
 
-  hidePopover() {
-    this.setState({ isOpenPopover: false });
-  }
-
-  canselPopover() {
-    this.setState({ isOpenPopover: false });
-  }
-
-  showLeftMenu() {
-    console.log('show')
-    this.setState({ isOpenLeftMenu: true });
-  }
-
-  hideLeftMenu() {
-    this.setState({ isOpenLeftMenu: false });
+  changeLogonStatus(obj) {
+    const resultObj = JSON.parse(obj)
+    const logon = resultObj.result
+    if (logon) {
+      this.getOperations()
+      this.getAccounts()
+      this.setState({
+        logon,
+        render: true
+      })
+    } else {
+      this.setState({
+        errorLogonStatus: resultObj.status,
+        errorLogonText: resultObj.statusText
+      })
+    }
   }
 
   render() {
     if (this.state.render) {
       return (
-        <div>
-          
-          
-          <Ons.Page>
-            <Ons.Popover
-              isOpen={this.state.isOpenPopover}
-              onOpen={this.showPopover}
-              onHide={this.hidePopover}
-              isCancelable={true}
-              onCancel={this.canselPopover}
-              getTarget={this.getTarget}
-              direction='down'
-            >
-              <ons-list>
-                <ons-list-header>Settings</ons-list-header>
-                <ons-list-item>
-                  <div className="center">
-                    Enable cool feature
-                    </div>
-                  <div className="right">
-                    <ons-switch checked></ons-switch>
-                  </div>
-                </ons-list-item>
-                <ons-list-item>
-                  <div className="center">
-                    Enable even cooler feature
-                    </div>
-                  <div className="right">
-                    <ons-switch></ons-switch>
-                  </div>
-                </ons-list-item>
-                <ons-list-item>
-                  <div className="center">
-                    Enable amazing feature
-                    </div>
-                  <div className="right">
-                    <ons-switch disabled></ons-switch>
-                  </div>
-                </ons-list-item>
-              </ons-list>
-
-            </Ons.Popover>
-            <Ons.Splitter>
-              <Ons.SplitterSide
-                style={{
-                  boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
-                }}
-                side='left'
-                width={200}
-                collapse={true}
-                swipeable={true}
-                isOpen={this.state.isOpenLeftMenu}
-                onClose={this.hideLeftMenu}
-                onOpen={this.showLeftMenu}
-              >
-                <Ons.Page>
-                  <Ons.List
-                    dataSource={['Profile', 'Followers', 'Settings']}
-                    renderRow={(title) => (
-                      <Ons.ListItem key={title} onClick={this.hideLeftMenu} tappable>{title}</Ons.ListItem>
-                    )}
-                  />
-                </Ons.Page>
-              </Ons.SplitterSide>
-              <Ons.SplitterContent>
-                <Ons.Page renderToolbar={this.renderToolbar}>
-                  <ons-toolbar>
-                    <div className="left">
-                      <ons-toolbar-button onClick={this.showLeftMenu}>
-                        <ons-icon icon="ion-android-menu, material:md-menu"></ons-icon>
-                      </ons-toolbar-button>
-                    </div>
-                    <div className="center">Center</div>
-                    <div className="right">
-                      <ons-toolbar-button onClick={this.showPopover} ref='button'>
-                        <ons-icon icon="ion-android-more-horizontal, material:md-more"></ons-icon>
-                      </ons-toolbar-button>
-                    </div>
-                  </ons-toolbar>
-                  <section style={{ margin: '16px' }}>
-                    <p>
-                      Swipe right to open the menu.
-                    </p>
-                  </section>
-                </Ons.Page>
-              </Ons.SplitterContent>
-            </Ons.Splitter>
-          </Ons.Page>
-        </div>
+        <Provider store={store}>
+          <Navigator
+            swipeable
+            renderPage={this.renderPage}
+            initialRoute={{
+              title: 'First page',
+              hasBackButton: false
+            }}
+            animation='slide'
+            animationOptions={{
+              duration: 0.3
+            }}
+          />
+        </Provider>
       )
     } else {
-      return (
-        <Ons.Page>
-          <div style={{
-            position: 'absolute',
-            top: 'calc(50% - 25px)',
-            left: 'calc(50% - 25px)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}>
-            <Ons.ProgressCircular indeterminate />
-            <span style={{
-              color: '#0076ff'
-            }}>loading ...</span>
-          </div>
-        </Ons.Page>
-      )
+      return <ProgressCircular indeterminate className="nzProgressC" />
     }
   }
 }
 
-export default App
+export default connect((state) => ({
+  changeAnimationState: state.changeAnimationState
+}), {
+  addOperationToList,
+  addAccountToList
+})(App)

@@ -12,6 +12,7 @@
     "babel-runtime": "6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
+    "chart.js": "^2.7.1",
     "css-loader": "0.28.7",
     "dotenv": "4.0.0",
     "eslint": "4.10.0",
@@ -26,12 +27,17 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "jspdf": "^1.3.5",
+    "mongodb": "^2.2.33",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "promise": "8.0.1",
+    "prop-types": "^15.6.0",
     "raf": "3.4.0",
     "react": "^16.1.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-chartjs": "^0.8.0",
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.1.0",
     "react-redux": "^5.0.6",
@@ -39,6 +45,7 @@
     "redux": "^3.7.2",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
+    "underscore": "^1.8.3",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.4",
@@ -93,7 +100,10 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "eslint": "^4.10.0",
+    "jest": "^20.0.4",
     "onsenui": "^2.8.1",
-    "react-onsenui": "^1.9.0"
+    "react-onsenui": "^1.9.0",
+    "yandex-map-react": "^1.1.1"
   }
 }

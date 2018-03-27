@@ -1,0 +1,595 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+/* ++ new page ++ */
+.exp-enter-right-to-left {
+  transform: translate3d(100%, 0, 0);
+  position: absolute;
+  z-index: 15
+}
+
+.exp-enter-right-to-left.exp-enter-active-right-to-left {
+  transform: translate3d(0, 0, 0);
+  transition: all 850ms ease-in-out;
+  position: absolute;
+  z-index: 15
+}
+/* -- new page -- */
+
+/* ++ old page ++ */
+.exp-leave-right-to-left {
+  transform: translate3d(0, 0, 0);
+  position: absolute;
+  z-index: 10
+}
+
+.exp-leave-right-to-left.exp-leave-active-right-to-left {
+  transform: translate3d(0%, 0, 0);
+  transition: all 850ms ease-in-out;
+  position: absolute;
+  z-index: 10
+}
+/* -- old page -- */
+
+/* ++ new page ++ */
+.exp-enter-left-to-right {
+  transform: translate3d(0%, 0, 0);
+  position: absolute;
+  z-index: 10
+}
+
+.exp-enter-left-to-right.exp-enter-active-left-to-right {
+  transform: translate3d(0%, 0, 0);
+  transition: all 850ms ease-in-out;
+  position: absolute;
+  z-index: 10
+}
+/* -- new page -- */
+
+/* ++ old page ++ */
+.exp-leave-left-to-right {
+  transform: translate3d(0%, 0, 0);
+  position: absolute;
+  z-index: 15
+}
+
+.exp-leave-left-to-right.exp-leave-active-left-to-right {
+  transform: translate3d(100%, 0, 0);
+  transition: all 850ms ease-in-out;
+  position: absolute;
+  z-index: 15
+}
+/* -- old page -- */
+
+.nzKeyboard{
+  display: flex;
+  position: absolute;
+  width: 100%;
+  // bottom: 0;
+  height: 70%;
+  // height: 100%;
+  .nzButtonsBlock1{
+    width: 100%;
+    background-color:rgb(44,44,44);
+    // background-color: #fff;
+    .nzButtonRow{
+      border-bottom: 1px solid rgb(64,64,64);
+      display: flex;
+      flex-direction: row-reverse;
+      height: 25%;
+      align-items: center;
+      .nzButton{
+        color: rgb(255,255,255);
+        // color: rgb(96, 96, 96);
+        width: 33%;
+        font-size: 25px;
+        height: 45px;
+        line-height: 45px;
+        &.nzButtonCenter{
+          border-left: 1px solid rgb(64,64,64);
+          border-right: 1px solid rgb(64,64,64);
+        }
+        &.nzButtonClear{
+          color: #f9e918;
+        }
+      }
+    }
+  }
+  .nzButtonsBlock2{
+    width: 20%;
+    .nzButtonCol{
+      display: flex;
+      flex-direction: column;
+      .nzButton{
+        margin: 1px;
+        font-size: 20px;
+        color: rgb(96, 96, 96);
+      }
+    }
+  }
+}
+
+.nzTitle{
+  display: flex;
+  // background-color: rgb(0,154,196);
+  background-color: rgb(64,64,64);
+  align-items: center;
+  border-bottom: 1px solid rgb(44,44,44);
+  // border-bottom: 1px solid rgb(0,118,137);
+  color: white;
+  .nzTitleCol{
+    width: 33%;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    &.nzActive{
+      // background-color: rgb(0,140,164);
+      background-color: rgb(44,44,44);
+    }
+    &.nzCenterButton{
+      border-left: 1px solid rgb(44,44,44);
+      border-right: 1px solid rgb(44,44,44);
+    }
+  }
+}
+
+.nzAmountSection{
+  // background-color: rgb(0,154,196);
+  background-color: rgb(64,64,64);
+  height: calc(100% - 50px);
+  .nzAmountInput{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 75%;
+    color: white;
+    .nzAmountItem{
+      flex-grow: 1;
+      text-align: center;
+      &.nzAmountTextBlock{
+        // font-size: 100px;
+        flex-grow: 3;
+        text-align: right;
+        min-width: 200px;
+      }
+      &.nzTypeOperation{
+        font-size: 35px;
+      }
+    }
+  }
+  .nzAmountSelect{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    div{
+      color: #fff;
+      text-align: center;
+      span{
+        display: inline-block;
+        width: 100%;
+      }
+      .nzAmountSelectTitle{
+        font-size: 12px;
+      }
+      .nzAmountSelectText{
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+.nzFromToText{
+  select{
+    border: 0px;
+    background-color: #2979ff;
+    width: 100%;
+    height: 50px;
+    color: white;
+    font-size: 30px;
+  }
+}
+
+.logonForm div.page__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.logonSection{
+  padding: 10px;
+  background: #fff;
+  margin: 10px;
+  height: 250px;
+  section{
+    padding: 10px;
+    ons-input{
+      width: 100%;
+    }
+    ons-button{
+      margin: 10px 0;
+    }
+  }
+}
+
+.localIcon{
+  height: 20px;
+  width: 20px;
+  opacity: 1;
+  font-size: 16px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  top: 30%;
+}
+
+
+
+#choose-sel{
+  width: 100%;
+  select.select-input--material{
+    background-image: none;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTBweCIgaGVpZ2h0PSI1cHgiIHZpZXdCb3g9IjAgMCAxMCA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA0My4yICgzOTA2OSkgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+c2VsZWN0LWFsbG93PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9InNlbGVjdCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Imlvcy1zZWxlY3QiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xOTguMDAwMDAwLCAtMTE0LjAwMDAwMCkiIGZpbGw9IiM3NTc1NzUiPgogICAgICAgICAgICA8ZyBpZD0ibWVudS1iYXItKy1vcGVuLW1lbnUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyMy4wMDAwMDAsIDEwMC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJtZW51LWJhciI+CiAgICAgICAgICAgICAgICAgICAgPHBvbHlnb24gaWQ9InNlbGVjdC1hbGxvdyIgcG9pbnRzPSI3NSAxNCA4MCAxOSA4NSAxNCI+PC9wb2x5Z29uPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=');
+  }
+}
+
+.localCategory {
+  color: red;
+  ons-list{
+    display: flex;
+      ons-list-item {
+      width: 10%;
+    }
+  }
+}
+
+/* PAGE CATEGORY */
+.page.page--material{
+  .page__background.page--material__background{
+    background-color: rgb(44,44,44);
+  }
+  .nzPage{
+    .icon-plus2{
+      font-size: 28px;
+      line-height: 56px;
+    }
+  }
+  .nzWidgetSection{
+    margin: 8px;
+    .nzWidgetBlock{
+      // background-color: rgb(64,64,64);
+      background-color: rgb(44,44,44);
+      .nzWidgetMarginAll {
+        margin: 8px;
+        .nzWidgetTitle{
+          font-size: 15px;
+          height: 30px;
+          line-height: 30px;
+          color: #fff;
+        }
+        .nzButtonsPosition {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          // justify-content: space-between;
+          background-color: rgb(44,44,44);
+          .nzAccountButton{
+            display: flex;
+            flex-direction: column;
+            // font-size: (this.props.params.textSize) ? this.props.params.textSize : '10px',
+            font-size: 10px;
+            // backgroundColor: this.props.params.backgroundColor,
+            background-color: transparent;
+            width: 33%;
+            padding: 5px;
+            // color: this.props.params.textColor,
+            border-radius: 2px;
+            // border: 1px solid ' + this.props.params.borderColor,
+            box-sizing: border-box;
+            margin: 1px 0;
+            color: white;
+            height: 85px;
+            width: 25%;
+            text-align: center;
+            background-color: rgb(64,64,64);
+            border: 1px solid rgb(44,44,44);
+            top: 38px;
+            // left: 180px;
+            &.nzAnimaion{
+              position: absolute;
+              box-sizing: content-box;
+              width: 70px;
+              height: 73px;
+              z-index: 100000;
+              &.nzAnimaionNext{
+                transition: all 200ms linear;
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0;
+              }
+            }
+            .nzAccountButtonItem{
+              &._default{
+                display: inline-block;
+                height: 15px;
+                line-height: 15px;
+              }
+              &.icon-wallet,
+              &.icon-visa,
+              &.icon-mastercard{
+                font-size: 43px;
+              }
+              &.icon-plus{
+                font-size: 30px;
+                height: 57px;
+                line-height: 57px;
+                color: white;
+                display: inline-block;
+                
+                // background-color: rgb(64,64,64);
+                // width: 25%;
+              }
+            }
+          }
+        }
+        .nzBalance{
+          padding: 8px;
+          background-color: rgb(64,64,64);
+          .nzBalanceTitle{
+            display: flex;
+            // justify-content: space-between;
+            color: #fff;
+            flex-direction: column;
+            .nzBalanceTitleRow{
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              .nzBalanceTitleColumn{
+                width: 33%;
+                text-align: right;
+                &.nzBalanceTitleColumnFirst{
+                  text-align: left;
+                }
+              }
+              &._balance{
+                .nzBalanceTitleColumn{
+                  &.nzBalanceTitleColumnFirst{
+                    line-height: 40px;
+                    display: inline-block;
+                  }
+                  &.nzBalanceTitleColumnSecond{
+                    width: 0;
+                  }
+                  &.nzBalanceTitleColumnThird{
+                    font-size: 35px;
+                    width: 66%;
+                  }
+                }
+              }
+              &._title{
+                margin-bottom: 10px;
+              }
+            }
+            .nzBalanceTitleLine{
+              width: 100%;
+              margin: 5px 0;
+              opacity: .4;
+            }
+          }
+          .nzBalanceData{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            text-shadow: 1px 1px 1px #b39595;
+            .nzBalanceRed{
+              color: red;
+            }
+            .nzBalanceGreen{
+              color: green;
+            }
+            .nzBalanceBig{
+              font-size: 25px;
+              text-align: center;
+            }
+          }
+        }
+        .nzWidgetLastOperations{
+          background-color: rgb(64,64,64);
+          padding: 8px;
+          .nzTitleSelect{
+            select{
+              color: white;
+            }
+          }
+          .nzWidgetLastOperationsList{
+            overflow-y: auto;
+            max-height: 55vh;
+            min-height: 55vh;
+            background-color: rgb(64,64,64);
+            .nzWidgetLastOperationsListItem{
+              color: white;
+              ._left{
+                .icon-payment_up,
+                .icon-payment_dowm{
+                  font-size: 43px;
+                }
+                .icon-payment_up{
+                  color: #18c118;
+                }
+                .icon-payment_dowm{
+                  color: red;
+                }
+              }
+              ._center{
+                display: flex;
+                flex-direction: row;
+                ._centerTop{
+                  flex-grow: 1;
+                  justify-content: space-around;
+                  display: flex;
+                  span{
+                    padding-right: 7px;
+                  }
+                }
+                ._centerBottom{
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.nzPageNewItem{
+    .page__content.page--material__content{
+      overflow: hidden;
+    }
+    .nzNewItemToolbar,
+    .nzCatToolbar{
+      position: relative;
+      background-color: rgb(255,255,255);
+      // background-color: rgb(0, 140, 164);
+      .center{
+        color: white;
+      }
+    }
+    .sectionClass {
+      height: 50%;
+      transition: 300ms ease-out;
+      &.sectionBlock{
+        position: relative;
+        z-index: 1;
+        &.section1Class.transition{
+          transform: translateY(-105%);
+        }
+        &.section2Class.transition{
+          transform: translateY(105%);
+        }
+      }
+      &.sectionCategory,
+      &.sectionAccount{
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+        height: 100%;
+        top: -100%;
+        .nzPageCategory{
+          overflow: hidden;
+          .page__content{
+            overflow: hidden;
+          }
+          .nzTopCategory{
+            background-color: rgb(64,64,64);
+            .nzWidgetTitle{
+              padding-left: 8px;
+              font-size: 15px;
+              height: 30px;
+              line-height: 30px;
+              color: #fff;
+            }
+          }
+          .nzAllCategory{
+            background-color: rgb(64,64,64);
+            .nzWidgetTitle{
+              padding-left: 8px;
+              font-size: 15px;
+              height: 30px;
+              line-height: 30px;
+              color: #fff;
+            }
+          }
+        }
+      }
+      &.sectionAccount{
+        .nzWidgetTitle{
+          padding-left: 8px;
+          font-size: 15px;
+          height: 30px;
+          line-height: 30px;
+          color: #fff;
+        }
+      }
+    }
+  }
+  .nzAddAccountPage,
+  .nzEditAccountPage{
+    margin: 8px;
+    .nzAccountPageInputBlock{
+      margin: 8px;
+      display: flex;
+      flex-direction: column;
+      .nzNewAccountName,
+      .nzNewAmountValue{
+        align-content: space-around;
+        margin: 10px;
+        input{
+          color: white;
+        }
+      }
+    }
+  }
+  .nzFabButtonCansel{
+    position: absolute;
+    bottom: 26px;
+    right: 100px;
+    // background-color: #a00505;
+    // color: white;
+    .icon-left-arrow{
+    // .icon-cancel{
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+}
+
+.nzProgressC {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  circle {
+    stroke-width: 3%;
+  }
+}
+
+.nzProgressAddOper {
+  width: 60px;
+  height: 60px;
+  circle {
+    stroke-width: 3%;
+  }
+  .progress-circular--material__primary{
+    stroke: #fff;
+  }
+}
