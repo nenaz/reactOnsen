@@ -1,26 +1,27 @@
 import React, { Component } from 'react'
+import {
+  Provider,
+  connect
+} from 'react-redux'
+import {
+  ProgressCircular,
+  Navigator
+} from 'react-onsenui'
 import '../css/App.css'
 import '../css/style.css'
 import '../css/ionicons.css'
 import DownloadPDF from './DownloadPDF'
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect
-} from 'react-router-dom'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import store from '../store'
-import { Provider } from 'react-redux'
-import AddAccount from './addAccount'
-import EditAccount from './EditAccount'
-import MainPage from './mainPage'
-import Utils from '../js/utils'
-import { connect } from 'react-redux'
-import AddOperation from './addOperation'
-import { addOperationToList, addAccountToList } from '../AC'
+import AddAccount from './Pages/Account/Add'
+import EditAccount from './Pages/Account/Edit'
+import MainPage from './Pages/Main'
+import AddOperation from './Pages/Operation/Add'
+import OptionsPage from './Pages/Options';
+import {
+  addOperationToList,
+  addAccountToList
+} from '../AC'
 import Requester from '../js/requester'
-import { ProgressCircular, Navigator } from 'react-onsenui'
-import OptionsPage from './Options';
 
 class App extends Component {
   constructor(props) {

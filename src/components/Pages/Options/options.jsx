@@ -6,7 +6,7 @@ import {
     Toolbar,
     Switch
 } from 'react-onsenui'
-import Requester from '../../js/requester'
+import Requester from '../../../js/requester'
 
 class OptionsPage extends Component{
     constructor(props){
