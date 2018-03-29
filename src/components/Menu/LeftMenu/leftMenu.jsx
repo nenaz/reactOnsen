@@ -5,6 +5,7 @@ import {
     List,
     ListItem
 } from 'react-onsenui'
+import { LEFTMENUITEMS } from '../../../js/consts'
 
 class LeftMenu extends Component{
     constructor(props){
@@ -15,20 +16,6 @@ class LeftMenu extends Component{
 
     renderRow(row, index) {
         switch (row.name) {
-            // case 'exit':
-            //     return (
-            //         <ListItem key={row.name}>
-            //             <Link
-            //                 to='/logon'
-            //                 style={{
-            //                     textDecoration: 'none',
-            //                 }}
-            //                 onClick={this.props.changeLogonStatus}
-            //             >
-            //                 {row.text}
-            //             </Link>
-            //         </ListItem>
-            //     )
             case 'about':
                 return (
                     <ListItem
@@ -42,23 +29,20 @@ class LeftMenu extends Component{
                 return (
                     <ListItem
                         key={row.name}
-                        onClick={row.onClick}
+                        onClick={() => { this.props.pushPage('options') } }
                     >
                         {row.text}
                     </ListItem>
                 )
-            // case 'download':
-            //     return (
-            //         <ListItem key={row.name}>
-            //             <Link to={'/download'} style={{
-            //                 textDecoration: 'none',
-            //                 color: '#250606'
-            //             }}>
-            //                 {row.text}
-            //             </Link>
-            //         </ListItem>
-            //     )
-            default: return (<ListItem key={row.name} onClick={this.props.handleSelectLeftMenuItem} tappable>{row.text}</ListItem>)
+            default: return (
+                <ListItem
+                    key={row.name}
+                    onClick={this.props.handleSelectLeftMenuItem}
+                    tappable
+                >
+                    {row.text}
+                </ListItem>
+            )
         }
     }
 
@@ -66,14 +50,7 @@ class LeftMenu extends Component{
         return (
             <Page>
                 <List
-                    dataSource={[
-                        { name: 'report', text: 'Отчет' },
-                        { name: 'operations', text: 'Операции' },
-                        { name: 'download', text: 'Скачать PDF' },
-                        { name: 'options', text: 'Настройки', onClick: () => { this.props.pushPage('options') } },
-                        // { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
-                        { name: 'exit', text: 'Выход' },
-                    ]}
+                    dataSource={LEFTMENUITEMS}
                     renderRow={this.renderRow}
                 />
             </Page>

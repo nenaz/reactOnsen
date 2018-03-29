@@ -215,7 +215,7 @@ class MainPage extends Component{
 }
 
 MainPage.propTypes = {
-    // route={ route }
+    route: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
 }
 

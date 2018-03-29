@@ -21,7 +21,7 @@ import Requester from '../../../../js/requester'
 import GetCoord from '../../../../js/coorditates'
 import { ICONCHECKING } from '../../../../js/consts'
 import Icon from '../../../Icon'
-import SelectTypeOperation from './selectTypeOperation'
+import SelectTypeOperation from '../../../SelectTypeOperation'
 import PageCategory from '../../Category'
 import PageAccount from '../../Account'
 // import ToolbarC from '../Toolbar'
@@ -153,12 +153,6 @@ class AddOperation extends Component{
     }
 
     renderToolbar() {
-        // return (
-        //     <ToolbarC
-        //         title = 'Добавить запись'
-        //         handlerCanselClick = { this.handlerCanselClick }
-        //     />
-        // )
         const backButton = this.props.route.hasBackButton
             ? <BackButton onClick={this.handleClick}>Back</BackButton>
             : null;
@@ -175,19 +169,6 @@ class AddOperation extends Component{
     }
 
     renderToolbarForSelect() {
-        // return (
-        //     <Toolbar className="nzCatToolbar">
-        //         <div className="left">
-        //             <ToolbarButton ref='button' onClick={this.handlerBackClick}>
-        //                 <Icon iconBase64={ICONBACK}/>
-        //             </ToolbarButton>
-        //         </div>
-        //         <div className="center" />
-        //         <div className="right">
-        //             <ToolbarButton ref='button' />
-        //         </div>
-        //     </Toolbar>
-        // )
         const backButton = this.props.route.hasBackButton
             ? <BackButton onClick={this.handlerBackClick}>Back</BackButton>
             : null;
@@ -350,7 +331,7 @@ class AddOperation extends Component{
                 renderModal={this.renderModal}
             >
                 <section className={`sectionClass sectionBlock ${this.state.section1Class}`}>
-                    {/* <CheckTypeOperation
+                    {/* <SelectTypeOperation
                         typeOperation={this.state.typeOperation}
                         selectTypeOperation={this.selectTypeOperation}
                     /> */}
