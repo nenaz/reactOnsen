@@ -128,10 +128,10 @@ class PageCategory extends Component {
     }
 }
 
-export default connect((state) => ({
-    topOperations: state.changeCategoryStatistic
-}))(PageCategory)
-
 PageCategory.propTypes = {
     handleSelectCategoty: PropTypes.func,
 }
+
+export default connect((state) => ({
+    topOperations: state.changeCategoryStatistic
+}))(PageCategory)

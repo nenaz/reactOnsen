@@ -25,14 +25,6 @@ class CheckTypeOperation extends Component{
         return (
             <div className="nzTitle">
                 <Button
-                    className={`nzTitleCol ${(this.state.activeButton === "1") ? "nzActive" : ""} `}
-                    type="1"
-                    modifier='outline'
-                    onClick={this.handleSelectActiveButton}
-                >
-                    Доход
-                </Button>
-                <Button
                     className={`nzTitleCol ${(this.state.activeButton === "0") ? "nzActive" : ""} nzCenterButton `}
                     modifier='outline'
                     type="0"
@@ -41,9 +33,17 @@ class CheckTypeOperation extends Component{
                     Расход
                 </Button>
                 <Button
-                    className={`nzTitleCol ${(this.state.activeButton === "-1") ? "nzActive" : ""} `}
+                    className={`nzTitleCol ${(this.state.activeButton === "1") ? "nzActive" : ""} `}
+                    type="1"
                     modifier='outline'
-                    type="-1"
+                    onClick={this.handleSelectActiveButton}
+                >
+                    Доход
+                </Button>
+                <Button
+                    className={`nzTitleCol ${(this.state.activeButton === "2") ? "nzActive" : ""} `}
+                    modifier='outline'
+                    type="2"
                     onClick={this.handleSelectActiveButton}
                 >
                     Перевод
@@ -54,5 +54,7 @@ class CheckTypeOperation extends Component{
 }
 
 export default connect((state) => ({
-    typeOperation: state.changeTypeOperation
-}),{})(CheckTypeOperation)
+    // typeOperation: state.changeTypeOperation
+}),{
+    selectTypeOperation
+})(CheckTypeOperation)

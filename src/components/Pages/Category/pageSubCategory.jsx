@@ -71,8 +71,8 @@ class PageSubCategory extends Component {
 
 export default PageSubCategory
 
-PageSubCategory.PropTypes= {
-    dataSource: PropTypes.object,
+PageSubCategory.propTypes = {
+    dataSource: PropTypes.array,
     handleHideModal: PropTypes.func,
     handleSelectCategoty: PropTypes.func,
 }

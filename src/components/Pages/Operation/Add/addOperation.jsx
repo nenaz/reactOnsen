@@ -35,7 +35,6 @@ class AddOperation extends Component{
         super(props)
         this.state ={
             inputAmount: '0',
-            typeOperation: this.props.typeOperation || "0",
             comma: false,
             part: '00',
             accountBalance: '0,00',
@@ -52,7 +51,7 @@ class AddOperation extends Component{
             section2Class: '',
             showPageAccounts: false,
             showPageCategory: false,
-            categoryId: null,
+            categoryId: '0-0',
             showProcess: false,
             modalOpen: false,
             typeOperation: this.props.typeOperation,
@@ -115,13 +114,14 @@ class AddOperation extends Component{
             amount: `${this.state.inputAmount}.${this.state.part}`,
             currency: 'RUB',
             data: Utils.nowDate(true),
-            typeOperation: this.state.typeOperation,
+            typeOperation: this.props.typeOperation,
             _id: Utils.getRandomId(),
             operCoord: {
                 lat: coord.coords.latitude,
                 lon: coord.coords.longitude
             },
             id: this.state.id,
+            categoryId: this.state.categoryId,
         }
         this.props.addOperationToList(addObject)
         this.req.request('addItem', addObject)
@@ -305,7 +305,7 @@ class AddOperation extends Component{
     handleSelectCategoty(e) {
         console.log(e.currentTarget.getAttribute('id'))
         this.setState({
-            typeOperation: e.currentTarget.getAttribute('id')
+            categoryId: e.currentTarget.getAttribute('id')
         })
         this.handlerBackClick()
     }
@@ -331,12 +331,8 @@ class AddOperation extends Component{
                 renderModal={this.renderModal}
             >
                 <section className={`sectionClass sectionBlock ${this.state.section1Class}`}>
-                    {/* <SelectTypeOperation
-                        typeOperation={this.state.typeOperation}
-                        selectTypeOperation={this.selectTypeOperation}
-                    /> */}
                     <SelectTypeOperation
-                        typeOperation={this.state.typeOperation}
+                        typeOperation={this.props.typeOperation}
                         handleRunAnimation={this.handleRunAnimation}
                         inputAmount={this.state.inputAmount}
                         comma={this.state.comma}
@@ -344,6 +340,7 @@ class AddOperation extends Component{
                         amountfontSize={this.state.amountfontSize}
                         accountName={this.state.accountName}
                         accountNameTo={this.state.accountNameTo}
+                        categoryId={this.state.categoryId}
                     />
                 </section>
                 <section className={`sectionClass sectionBlock ${this.state.section2Class}`}>
