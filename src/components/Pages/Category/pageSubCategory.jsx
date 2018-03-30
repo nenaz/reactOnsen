@@ -7,7 +7,7 @@ import {
     Button,
     Dialog
 } from 'react-onsenui'
-import Title from "../Title";
+import Title from "../../Title";
 // import { LISTCATEGORY } from '../../js/consts'
 
 class PageSubCategory extends Component {
@@ -69,10 +69,10 @@ class PageSubCategory extends Component {
     }
 }
 
+export default PageSubCategory
+
 PageSubCategory.propTypes = {
-    dataSource: PropTypes.object,
+    dataSource: PropTypes.array,
     handleHideModal: PropTypes.func,
     handleSelectCategoty: PropTypes.func,
 }
-
-export default PageSubCategory
