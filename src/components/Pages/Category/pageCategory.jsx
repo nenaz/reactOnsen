@@ -76,15 +76,18 @@ class PageCategory extends Component {
     }
 
     renderModal() {
-        return (
-            <Modal isOpen={this.state.modalOpen}>
-                <PageSubCategory
-                    dataSource={this.state.subcategory}
-                    handleHideModal={this.setValue}
-                    handleSelectCategoty={this.props.handleSelectCategoty}
-                />
-            </Modal>
-        )
+        if (this.state.subcategory.data) {
+            return (
+                <Modal isOpen={this.state.modalOpen}>
+                    <PageSubCategory
+                        dataSource={this.state.subcategory}
+                        handleHideModal={this.setValue}
+                        handleSelectCategoty={this.props.handleSelectCategoty}
+                    />
+                </Modal>
+            )
+        }
+        return false;
     }
 
     setValue(value, name) {

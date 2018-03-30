@@ -291,9 +291,14 @@ class AddOperation extends Component{
     }
 
     handleSelectAccount(e) {
+        const id = e.currentTarget.getAttribute('id');
+        const obj = this.props.changeAccountsList.find(item => {
+            return item._id === id
+        })
         this.setState({
-            id: e.currentTarget.getAttribute('id'),
-            accountName: e.currentTarget.getAttribute('name')
+            id,
+            accountName: e.currentTarget.getAttribute('name'),
+            accountFromAmount: Number(obj.amount),
         })
         this.handlerBackClick()
     }
