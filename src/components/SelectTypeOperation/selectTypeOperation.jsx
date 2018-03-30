@@ -26,15 +26,18 @@ class SelectTypeOperation extends Component {
                 }}>
                     <span className="nzAmountSelectTitle">Счет</span>
                     <span className="nzAmountSelectText">{this.props.accountNameTo}</span>
+                    <span className="nzAmountSelectAmount">{this.props.accountToAmount}</span>
                 </div>
             )
         } else {
+            const categoryObj = this.categotyIdToTitle()
             return (
                 <div onClick={() => {
                     this.props.handleRunAnimation(1)
                 }}>
                     <span className="nzAmountSelectTitle">Категория</span>
-                    <span className="nzAmountSelectText">{this.categotyIdToTitle()}</span>
+                    <span className="nzAmountSelectText">{categoryObj.title}</span>
+                    <span className="nzAmountSelectSubCategory">{categoryObj.subTitle}</span>
                 </div>
             )
         }
@@ -65,6 +68,7 @@ class SelectTypeOperation extends Component {
                         }}>
                             <span className="nzAmountSelectTitle">Счет</span>
                             <span className="nzAmountSelectText">{this.props.accountName}</span>
+                            <span className="nzAmountSelectAmount">{this.props.accountFromAmount}</span>
                         </div>
                         {this.renderLists()}
                     </div>
@@ -84,6 +88,8 @@ SelectTypeOperation.propTypes = {
     amountfontSize: PropTypes.string,
     accountName: PropTypes.string,
     categoryId: PropTypes.string,
+    accountFromAmount: PropTypes.number,
+    accountToAmount: PropTypes.number,
 }
 
 export default SelectTypeOperation

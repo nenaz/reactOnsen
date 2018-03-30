@@ -40,8 +40,12 @@ class AddOperation extends Component{
             accountBalance: '0,00',
             accountName: (props.changeAccountsList.length) ?
                 props.changeAccountsList[0].name : '',
+            accountFromAmount: (props.changeAccountsList.length) ?
+                props.changeAccountsList[0].amount : 0,
             accountNameTo: (props.changeAccountsList.length) ?
-                props.changeAccountsList[0].name : '',
+                props.changeAccountsList[1].name : '',
+            accountToAmount: (props.changeAccountsList.length) ?
+                props.changeAccountsList[1].amount : 0,
             id: (props.changeAccountsList.length) ?
                 this.props.changeAccountsList[0]._id : '',
             idTo: (props.changeAccountsList.length) ?
@@ -339,7 +343,9 @@ class AddOperation extends Component{
                         part={this.state.part}
                         amountfontSize={this.state.amountfontSize}
                         accountName={this.state.accountName}
+                        accountFromAmount={this.state.accountFromAmount}
                         accountNameTo={this.state.accountNameTo}
+                        accountToAmount={this.state.accountToAmount}
                         categoryId={this.state.categoryId}
                     />
                 </section>

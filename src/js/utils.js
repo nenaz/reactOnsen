@@ -175,7 +175,13 @@ const findCateGoryNameOnId = (id) => {
     const row = LISTCATEGORY.find((item) => {
         return item.value === ids[0]*1
     })
-    return row.title
+    const col = row.data.find((item) => {
+        return item.value === ids[1] * 1
+    })
+    return {
+        title: row.title,
+        subTitle: col.title,
+    }
 }
 
 const utils = {
