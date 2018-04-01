@@ -22,6 +22,7 @@ import {
   addAccountToList
 } from '../AC'
 import Requester from '../js/requester'
+import Welcome from './Welcome'
 
 class App extends Component {
   constructor(props) {
@@ -142,26 +143,27 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.render) {
-      return (
-        <Provider store={store}>
-          <Navigator
-            swipeable
-            renderPage={this.renderPage}
-            initialRoute={{
-              title: 'First page',
-              hasBackButton: false
-            }}
-            animation='slide'
-            animationOptions={{
-              duration: 0.3
-            }}
-          />
-        </Provider>
-      )
-    } else {
-      return <ProgressCircular indeterminate className="nzProgressC" />
-    }
+    // if (this.state.render) {
+    //   return (
+    //     <Provider store={store}>
+    //       <Navigator
+    //         swipeable
+    //         renderPage={this.renderPage}
+    //         initialRoute={{
+    //           title: 'First page',
+    //           hasBackButton: false
+    //         }}
+    //         animation='slide'
+    //         animationOptions={{
+    //           duration: 0.3
+    //         }}
+    //       />
+    //     </Provider>
+    //   )
+    // } else {
+      // return <ProgressCircular indeterminate className="nzProgressC" />
+      return <Welcome />
+    // }
   }
 }
 
@@ -171,3 +173,5 @@ export default connect((state) => ({
   addOperationToList,
   addAccountToList
 })(App)
+
+// 
