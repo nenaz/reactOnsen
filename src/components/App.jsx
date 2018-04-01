@@ -55,13 +55,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getAccounts()
-    this.getOperations()
-    setTimeout(() => {
+    Promise.all([this.getAccounts(), this.getOperations()]).then(values => {
       this.setState({
         render: true
       })
-    }, 2000)
+    })
   }
 
   renderPage(route, navigator) {
@@ -106,16 +104,22 @@ class App extends Component {
   }
 
   getOperations() {
-    this.req.request('getOperations').then(result => {
-      const arrOper = result.reverse()
-      arrOper.map(item => this.props.addOperationToList(item))
+    return new Promise((resolve, reject) => {
+      this.req.request('getOperations').then(result => {
+        resolve(result)
+        const arrOper = result.reverse()
+        arrOper.map(item => this.props.addOperationToList(item))
+      })
     })
   }
 
   getAccounts() {
-    this.req.request('getAccounts').then(result => {
-      const arrAcc = result.reverse()
-      arrAcc.map(item => this.props.addAccountToList(item))
+    return new Promise((resolve, reject) => {
+      this.req.request('getAccounts').then(result => {
+        resolve(result)
+        const arrAcc = result.reverse()
+        arrAcc.map(item => this.props.addAccountToList(item))
+      })
     })
   }
 
