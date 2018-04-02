@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import {
     Page,
     Input,
-    ProgressCircular
+    ProgressCircular,
+    Navigator
 } from 'react-onsenui'
+import Login from '../Login'
+import WelcomeScreeen from './welcomeScreen'
 
 class Welcome extends Component {
     constructor(props) {
@@ -12,32 +15,39 @@ class Welcome extends Component {
         this.state = {}
     }
 
+    renderPage(route, navigator) {
+        switch (route.title) {
+            case 'login': return (
+                <Login
+                    key={route.title}
+                    route={route}
+                    navigator={navigator}
+                />
+            )
+            default: return (
+                <WelcomeScreeen
+                    key={route.title}
+                    route={route}
+                    navigator={navigator}
+                />
+            )
+        }
+    }
+
     render() {
-        return (
-            <Page>
-                {/* <section className='nzWelcomLogo'> */}
-                    {/* <div /> */}
-                {/* <section>
-                    
-                </section> */}
-                <section className="nzWelcomePage">
-                    <div className="nzWelcomePageBlock">
-                        <span>Welcome!</span>
-                        {/* <div className="nzWelcomePageBlockRow">
-                            <Input modifier="material transparent"
-                                className="nzWelcomePageBlockRowTextField"
-                            />
-                        </div>
-                        <div className="nzWelcomePageBlockRow">
-                            <Input className="nzWelcomePageBlockRowTextField" />
-                        </div>
-                        <div className="nzWelcomePageBlockRow">
-                            <Input className="nzWelcomePageBlockRowTextField" />
-                        </div> */}
-                    </div>
-                </section>
-                <ProgressCircular indeterminate className="nzProgressWelcomePage" />
-            </Page>
+        return(
+            <Navigator
+                swipeable
+                renderPage={this.renderPage}
+                initialRoute={{
+                    title: 'welcome page',
+                    hasBackButton: false
+                }}
+                animation='lift'
+                animationOptions={{
+                    duration: 0.3
+                }}
+            />
         )
     }
 }

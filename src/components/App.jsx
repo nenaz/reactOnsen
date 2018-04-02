@@ -162,7 +162,9 @@ class App extends Component {
     //   )
     // } else {
       // return <ProgressCircular indeterminate className="nzProgressC" />
-      return <Welcome />
+      return (
+        <Welcome />
+      )
     // }
   }
 }
