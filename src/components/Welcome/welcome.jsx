@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
     Page,
-    Input
+    Input,
+    ProgressCircular
 } from 'react-onsenui'
 
 class Welcome extends Component {
@@ -14,43 +15,28 @@ class Welcome extends Component {
     render() {
         return (
             <Page>
-                <section style={{
-                    margin: 'auto',
-                    height: '100vh',
-                    width: '60%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                                // margin: auto;
-                                // height: 100vh;
-                                // width: 40 %;
-                                // display: flex;
-                                // flex-direction: column;
-                                // justify-content: center;
-                }}>
-                    <div style={{
-//                         background-color: rgba(255,255,255,0.3);
-// height: 40%;
-// display: flex;
-// flex-direction: column;
-// justify-content: center;
-                        backgroundColor: 'rgba(255,255,255,0.3)',
-                        height: '40%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                    }}>
-                        <div>
-                            <Input />
+                {/* <section className='nzWelcomLogo'> */}
+                    {/* <div /> */}
+                {/* <section>
+                    
+                </section> */}
+                <section className="nzWelcomePage">
+                    <div className="nzWelcomePageBlock">
+                        <span>Welcome!</span>
+                        {/* <div className="nzWelcomePageBlockRow">
+                            <Input modifier="material transparent"
+                                className="nzWelcomePageBlockRowTextField"
+                            />
                         </div>
-                        <div>
-                            <Input />
+                        <div className="nzWelcomePageBlockRow">
+                            <Input className="nzWelcomePageBlockRowTextField" />
                         </div>
-                        <div>
-                            <Input />
-                        </div>
+                        <div className="nzWelcomePageBlockRow">
+                            <Input className="nzWelcomePageBlockRowTextField" />
+                        </div> */}
                     </div>
                 </section>
+                <ProgressCircular indeterminate className="nzProgressWelcomePage" />
             </Page>
         )
     }

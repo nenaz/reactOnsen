@@ -650,4 +650,57 @@
 .nzProgressAddOper .progress-circular--material__primary {
   stroke: #fff;
 }
+
+.nzWelcomePage {
+  margin: auto;
+  height: 100vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nzWelcomePage .nzWelcomePageBlock {
+  text-align: center;
+  color: white;
+  font-size: 35px;
+}
+
+.nzWelcomePage .nzWelcomePageBlock .nzWelcomePageBlockRow {
+  text-align: center;
+}
+
+.nzWelcomePage .nzWelcomePageBlock .nzWelcomePageBlockRow .nzWelcomePageBlockRowTextField input {
+  color: white;
+}
+
+.nzWelcomePage .nzWelcomePageBlock .nzWelcomePageBlockRow .nzWelcomePageBlockRowTextField .text-input--material:focus {
+  background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+}
+
+.nzProgressWelcomePage {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: calc(70% - 30px);
+  left: calc(50% - 30px);
+}
+
+.nzProgressWelcomePage circle {
+  stroke-width: 3%;
+}
+
+.nzProgressWelcomePage .progress-circular--material__primary {
+  stroke: white;
+}
+
+.nzWelcomLogo {
+  width: 100px;
+  height: 100px;
+  background-color: #404040;
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 50px);
+  top: 10%;
+}
 /*# sourceMappingURL=App.css.map */
