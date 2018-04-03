@@ -600,7 +600,7 @@
   }
 }
 
-.nzWelcomePage{
+.nzWelcomeSection{
   margin: auto;
   height: 100vh;
   width: 80%;
@@ -608,7 +608,7 @@
   flex-direction: column;
   justify-content: center;
   // background-color: url('../img/man-3083341_1280.bf8db6ad.jpg');
-  .nzWelcomePageBlock{
+  .nzWelcomeSectionBlock{
     // background-color: rgb(64,64,64);
     // height: 40%;
     // display: flex;
@@ -618,9 +618,9 @@
     text-align: center;
     color: white;
     font-size: 35px;
-    .nzWelcomePageBlockRow{
+    .nzWelcomeSectionBlockRow{
       text-align: center;
-      .nzWelcomePageBlockRowTextField{
+      .nzWelcomeSectionBlockRowTextField{
         input{
           color: white;
         }
@@ -638,7 +638,7 @@
   position: absolute;
   width: 60px;
   height: 60px;
-  top: calc(70% - 30px);
+  top: calc(80% - 30px);
   left: calc(50% - 30px);
   circle {
     stroke-width: 3%;
@@ -655,4 +655,43 @@
   border-radius: 50%;
   left: calc(50% - 50px);
   top: 10%;
+}
+
+.nzWelcomePage,
+.nzLoginPage,
+.nzWelcomeSectionBlock,
+.nzProgressWelcomePage{
+  transition: 500ms linear all;
+}
+.nzLoginPage{
+  transform: translateX(100%);
+}
+.nzWelcomePage{
+  overflow: hidden;
+}
+
+.nzWelcomePage.FadeOut{
+  transform: translateX(-100%);
+  overflow: hidden;
+  .nzWelcomeSectionBlock{
+    transform: translateX(250%);
+  }
+  .nzProgressWelcomePage{
+    transform: translateY(700%);
+    opacity: 0;
+  }
+}
+.nzLoginPage.FadeOut{
+  transform: translateX(0%);
+}
+
+html{
+  overflow: hidden;
+}
+
+#root{
+  overflow: hidden;
+  div{
+    overflow: hidden;
+  }
 }

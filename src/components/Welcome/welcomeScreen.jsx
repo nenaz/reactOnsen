@@ -9,30 +9,30 @@ class WelcomeScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {}
-        this.pushPage = this.pushPage.bind(this)
+        // this.pushPage = this.p   ushPage.bind(this)
     }
 
-    componentDidMount() {
-        setTimeout(() => {
-            this.pushPage('login')
-        }, 3000);
-    }
+    // componentDidMount() {
+    //     setTimeout(() => {
+    //         this.pushPage('login')
+    //     }, 3000);
+    // }
 
-    pushPage(name = 'main') {
-        // debugger
-        this.props.navigator.pushPage({
-            title: name,
-            hasBackButton: true
-        });
+    // pushPage(name = 'main') {
+    //     // debugger
+    //     this.props.navigator.pushPage({
+    //         title: name,
+    //         hasBackButton: true
+    //     });
 
-        this.count += 1
-    }
+    //     this.count += 1
+    // }
 
     render() {
         return (
-            <Page>
-                <section className="nzWelcomePage">
-                    <div className="nzWelcomePageBlock">
+            <Page className={this.props.className}>
+                <section className="nzWelcomeSection">
+                    <div className="nzWelcomeSectionBlock">
                         <span>Welcome!</span>
                     </div>
                 </section>

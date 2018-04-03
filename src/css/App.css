@@ -651,7 +651,7 @@
   stroke: #fff;
 }
 
-.nzWelcomePage {
+.nzWelcomeSection {
   margin: auto;
   height: 100vh;
   width: 80%;
@@ -660,21 +660,21 @@
   justify-content: center;
 }
 
-.nzWelcomePage .nzWelcomePageBlock {
+.nzWelcomeSection .nzWelcomeSectionBlock {
   text-align: center;
   color: white;
   font-size: 35px;
 }
 
-.nzWelcomePage .nzWelcomePageBlock .nzWelcomePageBlockRow {
+.nzWelcomeSection .nzWelcomeSectionBlock .nzWelcomeSectionBlockRow {
   text-align: center;
 }
 
-.nzWelcomePage .nzWelcomePageBlock .nzWelcomePageBlockRow .nzWelcomePageBlockRowTextField input {
+.nzWelcomeSection .nzWelcomeSectionBlock .nzWelcomeSectionBlockRow .nzWelcomeSectionBlockRowTextField input {
   color: white;
 }
 
-.nzWelcomePage .nzWelcomePageBlock .nzWelcomePageBlockRow .nzWelcomePageBlockRowTextField .text-input--material:focus {
+.nzWelcomeSection .nzWelcomeSectionBlock .nzWelcomeSectionBlockRow .nzWelcomeSectionBlockRowTextField .text-input--material:focus {
   background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
 }
 
@@ -682,7 +682,7 @@
   position: absolute;
   width: 60px;
   height: 60px;
-  top: calc(70% - 30px);
+  top: calc(80% - 30px);
   left: calc(50% - 30px);
 }
 
@@ -702,5 +702,50 @@
   border-radius: 50%;
   left: calc(50% - 50px);
   top: 10%;
+}
+
+.nzWelcomePage,
+.nzLoginPage,
+.nzWelcomeSectionBlock,
+.nzProgressWelcomePage {
+  transition: 500ms linear all;
+}
+
+.nzLoginPage {
+  transform: translateX(100%);
+}
+
+.nzWelcomePage {
+  overflow: hidden;
+}
+
+.nzWelcomePage.FadeOut {
+  transform: translateX(-100%);
+  overflow: hidden;
+}
+
+.nzWelcomePage.FadeOut .nzWelcomeSectionBlock {
+  transform: translateX(250%);
+}
+
+.nzWelcomePage.FadeOut .nzProgressWelcomePage {
+  transform: translateY(700%);
+  opacity: 0;
+}
+
+.nzLoginPage.FadeOut {
+  transform: translateX(0%);
+}
+
+html {
+  overflow: hidden;
+}
+
+#root {
+  overflow: hidden;
+}
+
+#root div {
+  overflow: hidden;
 }
 /*# sourceMappingURL=App.css.map */

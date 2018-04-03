@@ -55,13 +55,13 @@ class App extends Component {
     this.req.initialize();
   }
 
-  componentDidMount() {
-    Promise.all([this.getAccounts(), this.getOperations()]).then(values => {
-      this.setState({
-        render: true
-      })
-    })
-  }
+  // componentDidMount() {
+  //   Promise.all([this.getAccounts(), this.getOperations()]).then(values => {
+  //     this.setState({
+  //       render: true
+  //     })
+  //   })
+  // }
 
   renderPage(route, navigator) {
     switch (route.title) {
@@ -124,8 +124,7 @@ class App extends Component {
     })
   }
 
-  changeLogonStatus(obj) {
-    const resultObj = JSON.parse(obj)
+  changeLogonStatus(resultObj) {
     const logon = resultObj.result
     if (logon) {
       this.getOperations()
@@ -135,37 +134,43 @@ class App extends Component {
         render: true
       })
     } else {
+      const obj = JSON.parse(resultObj)
       this.setState({
-        errorLogonStatus: resultObj.status,
-        errorLogonText: resultObj.statusText
+        errorLogonStatus: String(obj.status),
+        errorLogonText: obj.statusText,
+        render: false,
       })
     }
   }
 
   render() {
-    // if (this.state.render) {
-    //   return (
-    //     <Provider store={store}>
-    //       <Navigator
-    //         swipeable
-    //         renderPage={this.renderPage}
-    //         initialRoute={{
-    //           title: 'First page',
-    //           hasBackButton: false
-    //         }}
-    //         animation='slide'
-    //         animationOptions={{
-    //           duration: 0.3
-    //         }}
-    //       />
-    //     </Provider>
-    //   )
-    // } else {
+    if (this.state.render) {
+      return (
+        <Provider store={store}>
+          <Navigator
+            swipeable
+            renderPage={this.renderPage}
+            initialRoute={{
+              title: 'First page',
+              hasBackButton: false
+            }}
+            animation='slide'
+            animationOptions={{
+              duration: 0.3
+            }}
+          />
+        </Provider>
+      )
+    } else {
       // return <ProgressCircular indeterminate className="nzProgressC" />
       return (
-        <Welcome />
+        <Welcome
+          changeLogonStatus={this.changeLogonStatus}
+          errorLogonText={this.state.errorLogonText}
+          errorLogonStatus={this.state.errorLogonStatus}
+        />
       )
-    // }
+    }
   }
 }
 
