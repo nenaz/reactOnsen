@@ -745,7 +745,8 @@ html {
   overflow: hidden;
 }
 
-#root div {
-  overflow: hidden;
+#root #test {
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 /*# sourceMappingURL=App.css.map */

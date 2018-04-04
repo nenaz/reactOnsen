@@ -691,7 +691,8 @@ html{
 
 #root{
   overflow: hidden;
-  div{
-    overflow: hidden;
+  #test{
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 }

@@ -127,11 +127,11 @@ class App extends Component {
   changeLogonStatus(resultObj) {
     const logon = resultObj.result
     if (logon) {
-      this.getOperations()
-      this.getAccounts()
-      this.setState({
-        logon,
-        render: true
+      Promise.all([this.getAccounts(), this.getOperations()]).then(values => {
+        this.setState({
+          render: true,
+          logon
+        })
       })
     } else {
       const obj = JSON.parse(resultObj)
@@ -162,7 +162,6 @@ class App extends Component {
         </Provider>
       )
     } else {
-      // return <ProgressCircular indeterminate className="nzProgressC" />
       return (
         <Welcome
           changeLogonStatus={this.changeLogonStatus}

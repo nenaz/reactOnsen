@@ -9,24 +9,7 @@ class WelcomeScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {}
-        // this.pushPage = this.p   ushPage.bind(this)
     }
-
-    // componentDidMount() {
-    //     setTimeout(() => {
-    //         this.pushPage('login')
-    //     }, 3000);
-    // }
-
-    // pushPage(name = 'main') {
-    //     // debugger
-    //     this.props.navigator.pushPage({
-    //         title: name,
-    //         hasBackButton: true
-    //     });
-
-    //     this.count += 1
-    // }
 
     render() {
         return (

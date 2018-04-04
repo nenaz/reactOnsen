@@ -13,9 +13,9 @@ class Welcome extends Component {
         this.state = {
             animationClass: '',
             toastShown: false,
-            // errorLogonStatus: '',
         }
         this.handleDismiss = this.handleDismiss.bind(this)
+        this.fetch = true;
     }
 
     componentDidMount() {
@@ -26,41 +26,49 @@ class Welcome extends Component {
         }, 3000);
     }
 
-    // componentDidUpdate(nextProps, nextState) { 
-    //     if (nextProps.errorLogonStatus && !nextState.toastShown) {
-    //         this.setState({
-    //             toastShown: true,
-    //             errorLogonStatus: nextProps.errorLogonStatus
-    //         })
-    //     }
-    // }
+    componentWillUpdate(nextProps, nextState) { 
+        if (nextProps.errorLogonStatus && this.fetch) {
+            this.setState({
+                toastShown: true,
+            }, () => {
+                this.fetch = false;
+            })
+        }
+        console.log(nextProps);
+        console.log(nextState);
+        
+    }
 
     // component
 
     handleDismiss() {
         this.setState({
             toastShown: false,
-            // errorLogonStatus: ''
+            errorLogonStatus: '',
+        }, () => {
+            this.fetch = true
         })
     }
 
     render() {
         return(
-            <div>
+            <div id="test" style={{
+                overflow: 'hidden',
+                display: 'inline-block'
+            }}>
                 <WelcomeScreeen className={`nzWelcomePage ${this.state.animationClass}`} />
-                {/* <Login className={`nzLoginPage ${this.state.animationClass}`} /> */}
                 <Logon
                     className={`nzLoginPage ${this.state.animationClass}`}
                     changeLogonStatus={this.props.changeLogonStatus}
                 />
-                {this.props.errorLogonStatus && <Toast isOpen={this.props.errorLogonStatus}>
+                <Toast isOpen={this.state.toastShown}>
                     <div className="message">
                         {this.props.errorLogonText}
                     </div>
                     <button onClick={this.handleDismiss}>
                         Закрыть
                     </button>
-                </Toast>}
+                </Toast>
             </div>
         )
     }

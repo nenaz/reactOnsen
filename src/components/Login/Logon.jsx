@@ -44,7 +44,7 @@ class Logon extends Component {
             username: '',
             password: ''
         })
-        this.req.send('Logon', 'POST', addObject).then(result => {
+        this.req.send('authUser', 'POST', addObject).then(result => {
             this.props.changeLogonStatus(result)
         })
     }
