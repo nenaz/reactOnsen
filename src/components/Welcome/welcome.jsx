@@ -1,59 +1,83 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-    Page,
-    Input,
-    ProgressCircular,
-    Navigator
+    Toast
 } from 'react-onsenui'
 import Login from '../Login'
+import Logon from '../Login/Logon'
 import WelcomeScreeen from './welcomeScreen'
 
 class Welcome extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            animationClass: '',
+            toastShown: false,
+        }
+        this.handleDismiss = this.handleDismiss.bind(this)
+        this.fetch = true;
     }
 
-    renderPage(route, navigator) {
-        switch (route.title) {
-            case 'login': return (
-                <Login
-                    key={route.title}
-                    route={route}
-                    navigator={navigator}
-                />
-            )
-            default: return (
-                <WelcomeScreeen
-                    key={route.title}
-                    route={route}
-                    navigator={navigator}
-                />
-            )
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                animationClass: 'FadeOut'
+            })
+        }, 3000);
+    }
+
+    componentWillUpdate(nextProps, nextState) { 
+        if (nextProps.errorLogonStatus && this.fetch) {
+            this.setState({
+                toastShown: true,
+            }, () => {
+                this.fetch = false;
+            })
         }
+        console.log(nextProps);
+        console.log(nextState);
+        
+    }
+
+    // component
+
+    handleDismiss() {
+        this.setState({
+            toastShown: false,
+            errorLogonStatus: '',
+        }, () => {
+            this.fetch = true
+        })
     }
 
     render() {
         return(
-            <Navigator
-                swipeable
-                renderPage={this.renderPage}
-                initialRoute={{
-                    title: 'welcome page',
-                    hasBackButton: false
-                }}
-                animation='lift'
-                animationOptions={{
-                    duration: 0.3
-                }}
-            />
+            <div id="test" style={{
+                overflow: 'hidden',
+                display: 'inline-block'
+            }}>
+                <WelcomeScreeen className={`nzWelcomePage ${this.state.animationClass}`} />
+                <Logon
+                    className={`nzLoginPage ${this.state.animationClass}`}
+                    changeLogonStatus={this.props.changeLogonStatus}
+                />
+                <Toast isOpen={this.state.toastShown}>
+                    <div className="message">
+                        {this.props.errorLogonText}
+                    </div>
+                    <button onClick={this.handleDismiss}>
+                        Закрыть
+                    </button>
+                </Toast>
+            </div>
         )
     }
 }
 
 Welcome.propTypes = {
-
+    changeLogonStatus: PropTypes.func.isRequired,
+    errorLogonStatus: PropTypes.string,
+    errorLogonText: PropTypes.string,
 }
 
 export default Welcome

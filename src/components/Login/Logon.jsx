@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import {
     Button,
     Input,
     Page,
     Modal
 } from 'react-onsenui'
-import Requester from '../js/requester'
+import Requester from '../../js/requester'
 import NewUser from './NewUser'
 
 class Logon extends Component {
@@ -43,7 +44,7 @@ class Logon extends Component {
             username: '',
             password: ''
         })
-        this.req.send('Logon', 'POST', addObject).then(result => {
+        this.req.send('authUser', 'POST', addObject).then(result => {
             this.props.changeLogonStatus(result)
         })
     }
@@ -59,6 +60,7 @@ class Logon extends Component {
     render() {
         return (
             <Page
+                className={`logonForm ${this.props.className}`}
                 renderModal={() => (
                     <Modal
                         isOpen={this.state.modalOpen}
@@ -66,7 +68,6 @@ class Logon extends Component {
                         <NewUser handleModalClose={this.handleModalClose} />
                     </Modal>
                 )}
-                className='logonForm'
             >
                 <section className="logonSection">
                     {/* <div> */}
@@ -116,14 +117,8 @@ class Logon extends Component {
     }
 }
 
-// Logon.p
-export default Logon
+Logon.propTypes = {
+    changeLogonStatus: PropTypes.func.isRequired,
+}
 
-//     < div id = "fb-root" ></div >
-//         <script>(function(d, s, id) {
-//   var js, fjs = d.getElementsByTagName(s)[0];
-//   if (d.getElementById(id)) return;
-//   js = d.createElement(s); js.id = id;
-//   js.src = 'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.12&appId=174938706452010&autoLogAppEvents=1';
-//   fjs.parentNode.insertBefore(js, fjs);
-// }(document, 'script', 'facebook-jssdk'));</script>
+export default Logon

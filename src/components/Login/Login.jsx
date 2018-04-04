@@ -13,7 +13,10 @@ class Login extends Component{
 
     render(){
         return (
-            <Page renderToolbar={this.renderToolbar}>
+            <Page
+                renderToolbar={this.renderToolbar}
+                className={this.props.className}
+            >
                 <div style={{
                     padding: '8px'
                 }}>
