@@ -4,7 +4,8 @@ import {
     Button,
     Input,
     Page,
-    Modal
+    Modal,
+    Fab
 } from 'react-onsenui'
 import Requester from '../../js/requester'
 import NewUser from './NewUser'
@@ -15,7 +16,8 @@ class Logon extends Component {
         this.state = {
             username: '',
             password: '',
-            modalOpen: false
+            modalOpen: false,
+            className: '',
         }
 
         this.req = new Requester()
@@ -25,6 +27,8 @@ class Logon extends Component {
         this.handleLogon = this.handleLogon.bind(this)
         this.handleModalOpen = this.handleModalOpen.bind(this)
         this.handleModalClose = this.handleModalClose.bind(this)
+        this.handleNewUser = this.handleNewUser.bind(this)
+        this.goToNewUser = this.goToNewUser.bind(this)
     }
 
     handleUsernameChange(e) {
@@ -42,7 +46,7 @@ class Logon extends Component {
         }
         this.setState({
             username: '',
-            password: ''
+            password: '',
         })
         this.req.send('authUser', 'POST', addObject).then(result => {
             this.props.changeLogonStatus(result)
@@ -57,6 +61,16 @@ class Logon extends Component {
         this.setState({ modalOpen: false })
     }
 
+    handleNewUser(event) {
+        this.goToNewUser(event);
+    }
+
+    goToNewUser(event) {
+        this.setState({
+            className: 'nzNewUser'
+        })
+    }
+
     render() {
         return (
             <Page
@@ -69,48 +83,51 @@ class Logon extends Component {
                     </Modal>
                 )}
             >
-                <section className="logonSection">
-                    {/* <div> */}
-                        <section>
-                            <Input
-                                value={this.state.username}
-                                onChange={this.handleUsernameChange}
-                                modifier='underbar'
-                                float
-                                placeholder='Логин' />
-                        </section>
-                        <section>
-                            <Input
-                                value={this.state.password}
-                                onChange={this.handlePasswordChange}
-                                modifier='underbar'
-                                type='password'
-                                float
-                                placeholder='Пароль' />
-                        </section>
-                        <section>
-                            <Button
-                                label="Submit"
-                                primary={true}
-                                onClick={this.handleLogon}
-                                modifier='large'
-                            >Войти</Button>
-                            <Button
-                                label="Submit"
-                                primary={true}
-                                onClick={this.handleModalOpen}
-                                modifier='large'    
-                            >Зарегистрироваться</Button>
-                        </section>
-                        <section>
-                            <div>
-                                <span>{this.props.errorLogonStatus}</span>
-                            </div>
-                            <div>
-                                <span>{this.props.errorLogonText}</span>
-                            </div>
-                        </section>
-                    {/* </div> */}
+                <section className={`nzLogonSection ${this.state.className}`}>
+                    <section>
+                        <Input
+                            value={this.state.username}
+                            onChange={this.handleUsernameChange}
+                            modifier='underbar material'
+                            float
+                            placeholder='Логин' />
+                    </section>
+                    <section>
+                        <Input
+                            value={this.state.password}
+                            onChange={this.handlePasswordChange}
+                            modifier='underbar material'
+                            type='password'
+                            float
+                            placeholder='Пароль' />
+                    </section>
+                    <section>
+                        <Button
+                            label="Submit"
+                            primary={true}
+                            onClick={this.handleLogon}
+                            modifier='large outline'
+                        >Войти</Button>
+                        {/* <Button
+                            label="Submit"
+                            primary={true}
+                            onClick={this.goToNewUser}
+                            modifier='large outline'    
+                        >Зарегистрироваться</Button> */}
+                    </section>
+                    <section>
+                        <div>
+                            <span>{this.props.errorLogonStatus}</span>
+                        </div>
+                        <div>
+                            <span>{this.props.errorLogonText}</span>
+                        </div>
+                    </section>
+                    <Fab
+                        style={{ backgroundColor: '#4282cc' }}
+                        // onClick={this.handleClick}
+                        position='bottom right'>
+                    </Fab>
                 </section>
             </Page>
         )

@@ -243,23 +243,33 @@
   justify-content: center;
 }
 
-.logonSection {
+.nzLogonSection {
   padding: 10px;
   background: #fff;
   margin: 10px;
-  height: 250px;
+  height: 150px;
+  border-radius: 15px;
 }
 
-.logonSection section {
+.nzLogonSection section {
   padding: 10px;
 }
 
-.logonSection section ons-input {
+.nzLogonSection section ons-input {
   width: 100%;
 }
 
-.logonSection section ons-button {
-  margin: 10px 0;
+.nzLogonSection section ons-input span {
+  color: #404040;
+}
+
+.nzLogonSection section ons-input .text-input--material:focus {
+  background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+}
+
+.nzLogonSection section ons-button {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  color: #404040;
 }
 
 .localIcon {

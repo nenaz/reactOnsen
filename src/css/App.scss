@@ -228,21 +228,58 @@
   flex-direction: column;
   justify-content: center;
 }
-.logonSection{
+
+// .nzNewUserSection,
+.nzLogonSection{
   padding: 10px;
   background: #fff;
   margin: 10px;
-  height: 250px;
+  height: 150px;
+  border-radius: 15px;
   section{
     padding: 10px;
     ons-input{
       width: 100%;
+      span{
+        color: rgb(64,64,64);
+      }
+      .text-input--material:focus{
+        background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+      }
     }
     ons-button{
-      margin: 10px 0;
+      // margin: 10px 0;
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      color: rgb(64,64,64);
     }
   }
 }
+// .nzNewUserSection{
+//   position: absolute;
+//   width: 320px;
+//   height: 250px;
+//   top: 175px;
+  
+// }
+// .nzNewUserSection.nzNewUser{
+//   animation: rotateY2 1s linear;
+//   animation-iteration-count: 1;
+//   animation-fill-mode: forwards;
+// }
+// @keyframes rotateY2 {
+//   from {transform: matrix(-1, 0, 0, 1, 0, 0);};
+//   // to { transform: rotateY(90deg); }
+//   to { transform: matrix(0, 0, 0, 0, 0, 0); }
+// }
+
+// .nzLogonSection.nzNewUser{
+//   animation: rotateY 1s linear;
+//   animation-iteration-count: 1;
+//   animation-fill-mode: forwards;
+// }
+// @keyframes rotateY {
+//   to { transform: rotateY(90deg); }
+// }
 
 .localIcon{
   height: 20px;
