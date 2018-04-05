@@ -305,8 +305,42 @@
   left: 50%;
 }
 
+.nzLogonPageAddUser .nzAddUserSection {
+  position: absolute;
+  display: inline-block;
+  margin-top: 10px;
+  height: 170px;
+  border-radius: 15px;
+  width: calc(100% - 20px);
+  left: 10px;
+  opacity: 0;
+}
+
+.nzLogonPageAddUser .nzAddUserSection section {
+  padding: 10px;
+}
+
+.nzLogonPageAddUser .nzAddUserSection section ons-input {
+  width: 100%;
+}
+
+.nzLogonPageAddUser .nzAddUserSection section ons-input span {
+  color: #404040;
+}
+
+.nzLogonPageAddUser .nzAddUserSection section ons-input .text-input--material:focus {
+  background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+}
+
+.nzLogonPageAddUser .nzAddUserSection section ons-button {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  color: #404040;
+}
+
 .nzLogonPageAddUser.nzNewUser {
   overflow: hidden;
+  animation: animHeight 500ms linear forwards;
+  animation-delay: 500ms;
 }
 
 .nzLogonPageAddUser.nzNewUser .nzAddUserButton {
@@ -316,6 +350,11 @@
 
 .nzLogonPageAddUser.nzNewUser .nzAddUserButton span {
   animation: animPlus 250ms linear forwards;
+  animation-delay: 500ms;
+}
+
+.nzLogonPageAddUser.nzNewUser .nzAddUserSection {
+  animation: animShowNewUserFields 500ms linear forwards;
   animation-delay: 500ms;
 }
 
@@ -339,6 +378,19 @@
     height: 50%;
     top: 15%;
     right: -10%;
+  }
+}
+
+@keyframes animHeight {
+  100% {
+    height: 210px;
+  }
+}
+
+@keyframes animShowNewUserFields {
+  100% {
+    opacity: 1;
+    z-index: 11111;
   }
 }
 

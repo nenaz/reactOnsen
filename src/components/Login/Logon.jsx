@@ -86,18 +86,48 @@ class Logon extends Component {
                 )}
             >
                 <section className={`nzLogonPageAddUser ${this.state.className}`}>
-                    {/* <Fab
-                        className="nzAddUserButton"
-                        onClick={this.handleNewUser}
-                    >
-                        <Icon icon='md-plus' />
-                    </Fab> */}
                     <div
                         className="nzAddUserButton" 
                         onClick={this.handleNewUser}
                     >
                         <span className="shape" />
                     </div>
+                    <section className="nzAddUserSection">
+                        <section>
+                            <Input
+                                value={this.state.username}
+                                onChange={this.handleUsernameChange}
+                                modifier='underbar material'
+                                float
+                                placeholder='Логин' />
+                        </section>
+                        <section>
+                            <Input
+                                value={this.state.password}
+                                onChange={this.handlePasswordChange}
+                                modifier='underbar material'
+                                type='password'
+                                float
+                                placeholder='Пароль' />
+                        </section>
+                        <section>
+                            <Input
+                                value={this.state.password}
+                                onChange={this.handlePasswordChange}
+                                modifier='underbar material'
+                                type='password'
+                                float
+                                placeholder='Пароль' />
+                        </section>
+                        <section>
+                            <Button
+                                label="Submit"
+                                primary={true}
+                                onClick={this.handleLogon}
+                                modifier='large outline'
+                            >Зарегистрироваться</Button>
+                        </section>
+                    </section>
                 </section>
                 <section className="nzLogonSection">
                     <section>
@@ -124,12 +154,6 @@ class Logon extends Component {
                             onClick={this.handleLogon}
                             modifier='large outline'
                         >Войти</Button>
-                        {/* <Button
-                            label="Submit"
-                            primary={true}
-                            onClick={this.goToNewUser}
-                            modifier='large outline'    
-                        >Зарегистрироваться</Button> */}
                     </section>
                     <section>
                         <div>
