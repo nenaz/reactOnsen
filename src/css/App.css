@@ -326,9 +326,9 @@
     height: 35px;
   }
   100% {
-    transform: translate3d(calc(-105vw + 24px), -22vh, 0);
-    width: 450px;
-    height: 450px;
+    transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    width: 120vw;
+    height: 120vh;
   }
 }
 
@@ -337,8 +337,8 @@
     transform: rotate(45deg);
     width: 50%;
     height: 50%;
-    top: 50px;
-    right: -28px;
+    top: 15%;
+    right: -10%;
   }
 }
 

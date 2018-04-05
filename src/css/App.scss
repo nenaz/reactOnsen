@@ -289,7 +289,6 @@
       z-index: 1000;
       animation: newUser 500ms linear forwards;
       span{
-        // transform: rotate(45deg);
         animation: animPlus 250ms linear forwards;
         animation-delay: 500ms;
       }
@@ -304,9 +303,9 @@
     height: 35px;
   }
   100% {
-    transform: translate3d(calc(-105vw + 24px), -22vh, 0);
-    width: 450px;
-    height: 450px;
+    transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    width: 120vw;
+    height: 120vh;
   }
 }
 
@@ -315,12 +314,11 @@
     transform: rotate(45deg);
     width: 50%;
     height: 50%;
-    top: 50px;
-    right: -28px
+    top: 15%;
+    right: -10%;
   }
 }
 
-// .nzNewUserSection,
 .nzLogonSection{
   padding: 10px;
   background: #fff;
@@ -339,38 +337,11 @@
       }
     }
     ons-button{
-      // margin: 10px 0;
       border: 3px solid rgba(0, 0, 0, 0.1);
       color: rgb(64,64,64);
     }
   }
 }
-// .nzNewUserSection{
-//   position: absolute;
-//   width: 320px;
-//   height: 250px;
-//   top: 175px;
-  
-// }
-// .nzNewUserSection.nzNewUser{
-//   animation: rotateY2 1s linear;
-//   animation-iteration-count: 1;
-//   animation-fill-mode: forwards;
-// }
-// @keyframes rotateY2 {
-//   from {transform: matrix(-1, 0, 0, 1, 0, 0);};
-//   // to { transform: rotateY(90deg); }
-//   to { transform: matrix(0, 0, 0, 0, 0, 0); }
-// }
-
-// .nzLogonSection.nzNewUser{
-//   animation: rotateY 1s linear;
-//   animation-iteration-count: 1;
-//   animation-fill-mode: forwards;
-// }
-// @keyframes rotateY {
-//   to { transform: rotateY(90deg); }
-// }
 
 .localIcon{
   height: 20px;
