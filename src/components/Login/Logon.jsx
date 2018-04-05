@@ -180,14 +180,10 @@ class Logon extends Component {
                             modifier='large outline'
                         >Войти</Button> */}
                         <button>
-                            <span>Войти</span>
+                            <span className="content">Войти</span>
                             <span className="progress">
                                 <span
                                     className="progress-inner notransition"
-                                    style={{
-                                        width: '45%',
-                                        opacity: '1',
-                                    }}
                                 />
                             </span>
                             </button>

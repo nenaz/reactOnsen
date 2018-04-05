@@ -510,6 +510,31 @@
   font-size: 14px;
   width: 100%;
   background: transparent;
+  transition: transform 0.2s;
+}
+
+.nzLogonSection section button .content {
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.nzLogonSection section button .progress {
+  background: #148544;
+}
+
+.nzLogonSection section button .progress .progress-inner {
+  position: absolute;
+  left: 0;
+  background: #0e7138;
+  top: 0;
+  height: 100%;
+}
+
+.nzLogonSection section button.loading {
+  transform: scale(0.3);
+}
+
+.nzLogonSection section button.loading .content {
+  opacity: 0;
 }
 
 .nzLogonSection section button:active {

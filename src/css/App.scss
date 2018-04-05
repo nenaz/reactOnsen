@@ -465,6 +465,26 @@
       font-size: 14px;
       width: 100%;
       background: transparent;
+      transition: transform 0.2s;
+      .content{
+        transition: opacity 0.3s, transform 0.3s;
+      }
+      .progress{
+        background: #148544;
+        .progress-inner{
+          position: absolute;
+          left: 0;
+          background: #0e7138;
+          top: 0;
+          height: 100%;
+        }
+      }
+    }
+    button.loading{
+      transform: scale(.3);
+      .content{
+        opacity: 0;
+      }
     }
     button:active{
       box-shadow: none;
