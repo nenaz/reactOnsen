@@ -311,7 +311,7 @@
   margin-top: 10px;
   height: 170px;
   border-radius: 15px;
-  width: calc(100% - 20px);
+  width: calc(100% - 35px);
   left: 10px;
   opacity: 0;
 }
@@ -345,7 +345,7 @@
 
 .nzLogonPageAddUser.nzNewUser .nzAddUserButton {
   z-index: 1000;
-  animation: newUser 500ms linear forwards;
+  animation: animUser 500ms linear forwards;
 }
 
 .nzLogonPageAddUser.nzNewUser .nzAddUserButton span {
@@ -358,7 +358,24 @@
   animation-delay: 500ms;
 }
 
-@keyframes newUser {
+.nzLogonPageAddUser.nzNoNewUser {
+  animation: noAnimHeight 500ms linear forwards;
+}
+
+.nzLogonPageAddUser.nzNoNewUser .nzAddUserButton {
+  animation: noAnimUser 500ms linear forwards;
+}
+
+.nzLogonPageAddUser.nzNoNewUser .nzAddUserButton span {
+  animation: noAnimPlus 250ms linear forwards;
+}
+
+.nzLogonPageAddUser.nzNoNewUser .nzAddUserSection {
+  animation: noAnimShowNewUserFields 500ms linear forwards;
+}
+
+/****** ******/
+@keyframes animUser {
   50% {
     transform: translate3d(calc(-50vw + 24px), 11vh, 0);
     width: 35px;
@@ -368,6 +385,23 @@
     transform: translate3d(calc(-105vw + 24px), -45vh, 0);
     width: 120vw;
     height: 120vh;
+  }
+}
+
+@keyframes noAnimUser {
+  0% {
+    transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    width: 120vw;
+    height: 120vh;
+  }
+  50% {
+    transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+    width: 35px;
+    height: 35px;
+  }
+  100% {
+    left: calc(100% - 30px);
+    top: -5px;
   }
 }
 
@@ -381,9 +415,36 @@
   }
 }
 
+@keyframes noAnimPlus {
+  0% {
+    transform: rotate(45deg);
+    width: 50%;
+    height: 50%;
+    top: 15%;
+    right: -10%;
+  }
+  100% {
+    transform: rotate(0deg);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
+}
+
 @keyframes animHeight {
   100% {
     height: 210px;
+  }
+}
+
+@keyframes noAnimHeight {
+  0% {
+    height: 210px;
+  }
+  100% {
+    height: 170px;
+    overflow: initial;
   }
 }
 
@@ -394,6 +455,18 @@
   }
 }
 
+@keyframes noAnimShowNewUserFields {
+  0% {
+    opacity: 1;
+    z-index: 11111;
+  }
+  100% {
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
+/****** ******/
 .nzLogonSection {
   padding: 10px;
   background: #fff;
