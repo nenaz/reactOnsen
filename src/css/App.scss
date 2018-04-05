@@ -451,6 +451,35 @@
       border: 3px solid rgba(0, 0, 0, 0.1);
       color: rgb(64,64,64);
     }
+    button{
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      color: #404040;
+      position: relative;
+      display: inline-block;
+      box-sizing: border-box;
+      background-clip: padding-box;
+      min-height: 36px;
+      line-height: 36px;
+      padding: 0 16px;
+      text-align: center;
+      font-size: 14px;
+      width: 100%;
+      background: transparent;
+    }
+    button:active{
+      box-shadow: none;
+      outline: 0;
+      opacity: 1;
+      border: none;
+      background-color: rgba(153, 153, 153, 0.2);
+      transition: all 0.25s linear;
+    }
+    button:focus{
+      box-shadow: none;
+      background-color: transparent;
+      outline: 0;
+      opacity: 1;
+    }
   }
 }
 

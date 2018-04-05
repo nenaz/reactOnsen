@@ -43,17 +43,18 @@ class Logon extends Component {
     }
 
     handleLogon() {
-        const addObject = {
-            username: this.state.username,
-            password: this.state.password
-        }
-        this.setState({
-            username: '',
-            password: '',
-        })
-        this.req.send('authUser', 'POST', addObject).then(result => {
-            this.props.changeLogonStatus(result)
-        })
+        // const addObject = {
+        //     username: this.state.username,
+        //     password: this.state.password
+        // }
+        // this.setState({
+        //     username: '',
+        //     password: '',
+        // })
+        // this.req.send('authUser', 'POST', addObject).then(result => {
+        //     this.props.changeLogonStatus(result)
+        // })
+
     }
 
     handleModalOpen() {
@@ -149,6 +150,7 @@ class Logon extends Component {
                                 onClick={this.handleLogon}
                                 modifier='large outline'
                             >Зарегистрироваться</Button>
+                            {/* <button value="Зарегистрироваться" /> */}
                         </section>
                     </section>
                 </section>
@@ -171,12 +173,24 @@ class Logon extends Component {
                             placeholder='Пароль' />
                     </section>
                     <section>
-                        <Button
+                        {/* <Button
                             label="Submit"
                             primary={true}
                             onClick={this.handleLogon}
                             modifier='large outline'
-                        >Войти</Button>
+                        >Войти</Button> */}
+                        <button>
+                            <span>Войти</span>
+                            <span className="progress">
+                                <span
+                                    className="progress-inner notransition"
+                                    style={{
+                                        width: '45%',
+                                        opacity: '1',
+                                    }}
+                                />
+                            </span>
+                            </button>
                     </section>
                     <section>
                         <div>
