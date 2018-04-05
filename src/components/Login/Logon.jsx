@@ -19,6 +19,7 @@ class Logon extends Component {
             password: '',
             modalOpen: false,
             className: '',
+            animButtonClassName: '',
         }
 
         this.req = new Requester()
@@ -54,7 +55,9 @@ class Logon extends Component {
         // this.req.send('authUser', 'POST', addObject).then(result => {
         //     this.props.changeLogonStatus(result)
         // })
-
+        this.setState({
+            animButtonClassName: 'loading',
+        })
     }
 
     handleModalOpen() {
@@ -179,7 +182,10 @@ class Logon extends Component {
                             onClick={this.handleLogon}
                             modifier='large outline'
                         >Войти</Button> */}
-                        <button>
+                        <button
+                            className={this.state.animButtonClassName}
+                            onClick={this.handleLogon}
+                        >
                             <span className="content">Войти</span>
                             <span className="progress">
                                 <span

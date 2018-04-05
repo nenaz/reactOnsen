@@ -497,7 +497,7 @@
 }
 
 .nzLogonSection section button {
-  border: 3px solid rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(0, 0, 0, 0.4);
   color: #404040;
   position: relative;
   display: inline-block;
@@ -530,11 +530,15 @@
 }
 
 .nzLogonSection section button.loading {
-  transform: scale(0.3);
+  animation: buttonSmall 500ms linear forwards;
 }
 
 .nzLogonSection section button.loading .content {
-  opacity: 0;
+  animation: buttonTextHide 500ms linear forwards;
+}
+
+.nzLogonSection section button.loading .progress .progress-inner {
+  animation: process 10000ms linear forwards;
 }
 
 .nzLogonSection section button:active {
@@ -551,6 +555,30 @@
   background-color: transparent;
   outline: 0;
   opacity: 1;
+}
+
+@keyframes buttonSmall {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0.3);
+  }
+}
+
+@keyframes buttonTextHide {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes process {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .localIcon {

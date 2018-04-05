@@ -452,7 +452,7 @@
       color: rgb(64,64,64);
     }
     button{
-      border: 3px solid rgba(0, 0, 0, 0.1);
+      border: 3px solid rgba(0, 0, 0, 0.4);
       color: #404040;
       position: relative;
       display: inline-block;
@@ -481,9 +481,14 @@
       }
     }
     button.loading{
-      transform: scale(.3);
+      animation: buttonSmall 500ms linear forwards;
       .content{
-        opacity: 0;
+        animation: buttonTextHide 500ms linear forwards;
+      }
+      .progress{
+        .progress-inner{
+          animation: process 10000ms linear forwards;
+        }
       }
     }
     button:active{
@@ -500,6 +505,28 @@
       outline: 0;
       opacity: 1;
     }
+  }
+}
+
+@keyframes buttonSmall{
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(.3);
+  }
+}
+@keyframes buttonTextHide{
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes process{
+  from {
+    width: 0%
+  }
+  to {
+    width: 100%;
   }
 }
 
