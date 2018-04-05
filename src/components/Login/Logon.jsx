@@ -30,6 +30,7 @@ class Logon extends Component {
         this.handleModalClose = this.handleModalClose.bind(this)
         this.handleNewUser = this.handleNewUser.bind(this)
         this.goToNewUser = this.goToNewUser.bind(this)
+        this.goToLogin = this.goToLogin.bind(this)
     }
 
     handleUsernameChange(e) {
@@ -63,13 +64,22 @@ class Logon extends Component {
     }
 
     handleNewUser(event) {
-        this.goToNewUser(event);
+        if (!this.state.className) {
+            this.goToNewUser(event);
+        } else {
+            this.goToLogin();
+        }
     }
 
     goToNewUser(event) {
         this.setState({
             className: 'nzNewUser'
-            // className: 'anim'
+        })
+    }
+
+    goToLogin() {
+        this.setState({
+            className: ''
         })
     }
 
@@ -88,9 +98,11 @@ class Logon extends Component {
                 <section className={`nzLogonPageAddUser ${this.state.className}`}>
                     <div
                         className="nzAddUserButton" 
-                        onClick={this.handleNewUser}
                     >
-                        <span className="shape" />
+                        <span
+                            className="shape"
+                            onClick={this.handleNewUser}
+                        />
                     </div>
                     <section className="nzAddUserSection">
                         <section>
