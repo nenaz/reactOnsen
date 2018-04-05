@@ -243,6 +243,105 @@
   justify-content: center;
 }
 
+.nzLogonPageAddUser {
+  position: absolute;
+  background: #fff;
+  height: 170px;
+  border-radius: 15px;
+  width: calc(100% - 20px);
+  left: 10px;
+  overflow: initial;
+}
+
+.nzLogonPageAddUser.fab.fab--material {
+  top: calc(50% - 90px);
+  right: 5px;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+}
+
+.nzLogonPageAddUser.fab.fab--material span {
+  line-height: 35px;
+}
+
+.nzLogonPageAddUser .nzAddUserButton {
+  background-color: #4eaf51;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  position: absolute;
+  left: calc(100% - 30px);
+  top: -5px;
+}
+
+.nzLogonPageAddUser .nzAddUserButton span {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: rotate(0deg);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.nzLogonPageAddUser .nzAddUserButton span::before {
+  width: 18px;
+  height: 2px;
+  content: "";
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 8px);
+}
+
+.nzLogonPageAddUser .nzAddUserButton span::after {
+  height: 18px;
+  width: 2px;
+  content: "";
+  background: #fff;
+  position: absolute;
+  top: calc(50% - 8px);
+  left: 50%;
+}
+
+.nzLogonPageAddUser.nzNewUser {
+  overflow: hidden;
+}
+
+.nzLogonPageAddUser.nzNewUser .nzAddUserButton {
+  z-index: 1000;
+  animation: newUser 500ms linear forwards;
+}
+
+.nzLogonPageAddUser.nzNewUser .nzAddUserButton span {
+  animation: animPlus 250ms linear forwards;
+  animation-delay: 500ms;
+}
+
+@keyframes newUser {
+  50% {
+    transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+    width: 35px;
+    height: 35px;
+  }
+  100% {
+    transform: translate3d(calc(-105vw + 24px), -22vh, 0);
+    width: 450px;
+    height: 450px;
+  }
+}
+
+@keyframes animPlus {
+  100% {
+    transform: rotate(45deg);
+    width: 50%;
+    height: 50%;
+    top: 50px;
+    right: -28px;
+  }
+}
+
 .nzLogonSection {
   padding: 10px;
   background: #fff;

@@ -5,7 +5,8 @@ import {
     Input,
     Page,
     Modal,
-    Fab
+    Fab,
+    Icon
 } from 'react-onsenui'
 import Requester from '../../js/requester'
 import NewUser from './NewUser'
@@ -68,6 +69,7 @@ class Logon extends Component {
     goToNewUser(event) {
         this.setState({
             className: 'nzNewUser'
+            // className: 'anim'
         })
     }
 
@@ -83,7 +85,21 @@ class Logon extends Component {
                     </Modal>
                 )}
             >
-                <section className={`nzLogonSection ${this.state.className}`}>
+                <section className={`nzLogonPageAddUser ${this.state.className}`}>
+                    {/* <Fab
+                        className="nzAddUserButton"
+                        onClick={this.handleNewUser}
+                    >
+                        <Icon icon='md-plus' />
+                    </Fab> */}
+                    <div
+                        className="nzAddUserButton" 
+                        onClick={this.handleNewUser}
+                    >
+                        <span className="shape" />
+                    </div>
+                </section>
+                <section className="nzLogonSection">
                     <section>
                         <Input
                             value={this.state.username}
@@ -123,11 +139,6 @@ class Logon extends Component {
                             <span>{this.props.errorLogonText}</span>
                         </div>
                     </section>
-                    <Fab
-                        style={{ backgroundColor: '#4282cc' }}
-                        // onClick={this.handleClick}
-                        position='bottom right'>
-                    </Fab>
                 </section>
             </Page>
         )
