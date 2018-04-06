@@ -7,7 +7,7 @@ class Root extends Component {
     render() {
         return (
             <Provider store={store}>
-                <App />
+                <App cordova={this.props.cordova}/>
             </Provider>
         )
     }

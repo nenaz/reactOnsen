@@ -60,7 +60,8 @@ class Welcome extends Component {
                 <Logon
                     className={`nzLoginPage ${this.state.animationClass}`}
                     changeLogonStatus={this.props.changeLogonStatus}
-                />
+                    uuid={this.props.cordova.define.moduleMap['cordova-plugin-device.device'].exports.uuid}
+            />
                 <Toast isOpen={this.state.toastShown}>
                     <div className="message">
                         {this.props.errorLogonText}

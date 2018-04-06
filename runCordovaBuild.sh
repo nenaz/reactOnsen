@@ -14,4 +14,4 @@ cd /Users/Worker/Desktop/GRIBOV/cordova/react-app/
 
 # cordova build android
 
-cordova run android
+# cordova run android

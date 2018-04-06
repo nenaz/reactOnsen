@@ -164,6 +164,7 @@ class App extends Component {
     } else {
       return (
         <Welcome
+          cordova={this.props.cordova}
           changeLogonStatus={this.changeLogonStatus}
           errorLogonText={this.state.errorLogonText}
           errorLogonStatus={this.state.errorLogonStatus}

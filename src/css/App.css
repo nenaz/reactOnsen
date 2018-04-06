@@ -266,7 +266,7 @@
 }
 
 .nzLogonPageAddUser .nzAddUserButton {
-  background-color: #4eaf51;
+  background-color: #22964f;
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -479,6 +479,11 @@
   padding: 10px;
 }
 
+.nzLogonSection section.nzLogonSectionButton {
+  text-align: center;
+  position: relative;
+}
+
 .nzLogonSection section ons-input {
   width: 100%;
 }
@@ -497,72 +502,75 @@
 }
 
 .nzLogonSection section button {
-  border: 3px solid rgba(0, 0, 0, 0.4);
+  border: 0;
   color: #404040;
   position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  background-clip: padding-box;
-  min-height: 36px;
-  line-height: 36px;
-  padding: 0 16px;
   text-align: center;
   font-size: 14px;
   width: 100%;
-  background: transparent;
-  transition: transform 0.2s;
+  height: 42px;
 }
 
 .nzLogonSection section button .content {
   transition: opacity 0.3s, transform 0.3s;
 }
 
-.nzLogonSection section button .progress {
-  background: #148544;
-}
-
-.nzLogonSection section button .progress .progress-inner {
-  position: absolute;
-  left: 0;
-  background: #0e7138;
-  top: 0;
-  height: 100%;
-}
-
 .nzLogonSection section button.loading {
-  animation: buttonSmall 500ms linear forwards;
+  animation: buttonSmall 550ms linear forwards;
 }
 
 .nzLogonSection section button.loading .content {
-  animation: buttonTextHide 500ms linear forwards;
+  animation: buttonTextHide 450ms linear forwards;
 }
 
-.nzLogonSection section button.loading .progress .progress-inner {
-  animation: process 10000ms linear forwards;
+.nzLogonSection section button.loading.unLoad {
+  width: 42px;
+  border-radius: 50%;
+  height: 42px;
+  animation: buttonColor 550ms linear forwards;
+}
+
+.nzLogonSection section button.loading.unLoad.icon-checked:before {
+  font-size: 25px;
 }
 
 .nzLogonSection section button:active {
-  box-shadow: none;
   outline: 0;
-  opacity: 1;
-  border: none;
-  background-color: rgba(153, 153, 153, 0.2);
-  transition: all 0.25s linear;
 }
 
 .nzLogonSection section button:focus {
-  box-shadow: none;
-  background-color: transparent;
   outline: 0;
-  opacity: 1;
 }
 
+.nzLogonSection section .nzLogonSectionButtonCircular {
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  top: 10px;
+  text-align: center;
+  left: calc(50% - 21px);
+  opacity: 0;
+}
+
+.nzLogonSection section .nzLogonSectionButtonCircular.loading {
+  animation: processCircularShow 450ms linear forwards;
+  animation-delay: 500ms;
+}
+
+.nzLogonSection section .nzLogonSectionButtonCircular.loading.unLoad {
+  animation: processCircularHide 450ms linear forwards;
+}
+
+/*********************************/
 @keyframes buttonSmall {
-  from {
-    transform: scaleY(1);
+  0% {
+    border-radius: 0px;
   }
-  to {
-    transform: scaleY(0.3);
+  100% {
+    width: 42px;
+    border-radius: 50%;
+    height: 42px;
+    border: 2px solid #515854;
   }
 }
 
@@ -572,15 +580,33 @@
   }
 }
 
-@keyframes process {
+@keyframes processCircularShow {
   from {
-    width: 0%;
+    opacity: 0;
   }
   to {
-    width: 100%;
+    opacity: 1;
   }
 }
 
+/*********************************/
+/*********************************/
+@keyframes processCircularHide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes buttonColor {
+  to {
+    background-color: #1d9650;
+  }
+}
+
+/*********************************/
 .localIcon {
   height: 20px;
   width: 20px;

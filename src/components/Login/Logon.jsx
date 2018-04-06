@@ -6,7 +6,8 @@ import {
     Page,
     Modal,
     Fab,
-    Icon
+    Icon,
+    ProgressCircular
 } from 'react-onsenui'
 import Requester from '../../js/requester'
 import NewUser from './NewUser'
@@ -20,6 +21,7 @@ class Logon extends Component {
             modalOpen: false,
             className: '',
             animButtonClassName: '',
+            buttonText: 'Войти'
         }
 
         this.req = new Requester()
@@ -44,19 +46,39 @@ class Logon extends Component {
     }
 
     handleLogon() {
-        // const addObject = {
-        //     username: this.state.username,
-        //     password: this.state.password
-        // }
-        // this.setState({
-        //     username: '',
-        //     password: '',
-        // })
-        // this.req.send('authUser', 'POST', addObject).then(result => {
-        //     this.props.changeLogonStatus(result)
-        // })
+        const addObject = {
+            // username: this.state.username,
+            // password: this.state.password
+            username: 'nenaz',
+            password: 'nenaz',
+            uuid: this.props.uuid,
+        }
+        this.setState({
+            username: '',
+            password: '',
+        })
         this.setState({
             animButtonClassName: 'loading',
+            buttonText: '',
+        // })
+        }, () => {
+            setTimeout(() => {
+                this.req.send('authUser', 'POST', addObject).then(result => {
+                    if (result.result) {
+                        this.setState({
+                            animButtonClassName: 'loading unLoad',
+                        }, () => {
+                            setTimeout(() => {
+                                this.setState({
+                                    animButtonClassName: 'loading unLoad icon-checked',
+                                }, () => {
+                                    this.props.changeLogonStatus(result)
+                                })
+                            }, 1000);
+                        })
+                    }
+                })
+            }, 1500)
         })
     }
 
@@ -89,7 +111,6 @@ class Logon extends Component {
     }
 
     onAnimationEnd(event) {
-        // debugger
         if (event.animationName === 'noAnimUser' && this.state.className === "nzNewUser nzNoNewUser") {
             this.setState({
                 className: ''
@@ -153,7 +174,6 @@ class Logon extends Component {
                                 onClick={this.handleLogon}
                                 modifier='large outline'
                             >Зарегистрироваться</Button>
-                            {/* <button value="Зарегистрироваться" /> */}
                         </section>
                     </section>
                 </section>
@@ -175,24 +195,17 @@ class Logon extends Component {
                             float
                             placeholder='Пароль' />
                     </section>
-                    <section>
-                        {/* <Button
-                            label="Submit"
-                            primary={true}
-                            onClick={this.handleLogon}
-                            modifier='large outline'
-                        >Войти</Button> */}
+                    <section className="nzLogonSectionButton">
                         <button
                             className={this.state.animButtonClassName}
                             onClick={this.handleLogon}
                         >
-                            <span className="content">Войти</span>
-                            <span className="progress">
-                                <span
-                                    className="progress-inner notransition"
-                                />
-                            </span>
-                            </button>
+                            <span className="content">{this.state.buttonText}</span>
+                        </button>
+                        <ProgressCircular
+                            indeterminate
+                            className={`nzLogonSectionButtonCircular ${this.state.animButtonClassName}`}
+                        />
                     </section>
                     <section>
                         <div>
