@@ -567,10 +567,9 @@
     border-radius: 0px;
   }
   100% {
-    width: 42px;
+    width: 40px;
     border-radius: 50%;
-    height: 42px;
-    border: 2px solid #515854;
+    height: 40px;
   }
 }
 

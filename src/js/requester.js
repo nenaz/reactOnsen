@@ -3,6 +3,7 @@ import {
     SERVERURLLOCAL,
     DEVELOP
 } from './consts'
+import md5 from 'md5'
 
 export default class Requester {
     // options = {}
@@ -86,10 +87,9 @@ export default class Requester {
     send(name, type, params) {
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
-            xhr.open(type, SERVERURL + name, true);
-            xhr.onprogress = (event) => {
-                
-            }
+            // xhr.open(type, SERVERURL + name, true);
+            xhr.open(type, SERVERURLLOCAL + name, true);
+            xhr.onprogress = (event) => {}
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = function () {
                 if (this.status === 200) {

@@ -11,6 +11,7 @@ import {
 } from 'react-onsenui'
 import Requester from '../../js/requester'
 import NewUser from './NewUser'
+import md5 from 'md5'
 
 class Logon extends Component {
     constructor(props) {
@@ -51,8 +52,10 @@ class Logon extends Component {
             // password: this.state.password
             username: 'nenaz',
             password: 'nenaz',
-            uuid: this.props.uuid,
+            // uuid: this.props.uuid,
         }
+        const mess = md5('nenaznenaz')
+        console.log(mess)
         this.setState({
             username: '',
             password: '',
@@ -140,42 +143,7 @@ class Logon extends Component {
                             onClick={this.handleNewUser}
                         />
                     </div>
-                    <section className="nzAddUserSection">
-                        <section>
-                            <Input
-                                value={this.state.username}
-                                onChange={this.handleUsernameChange}
-                                modifier='underbar material'
-                                float
-                                placeholder='Логин' />
-                        </section>
-                        <section>
-                            <Input
-                                value={this.state.password}
-                                onChange={this.handlePasswordChange}
-                                modifier='underbar material'
-                                type='password'
-                                float
-                                placeholder='Пароль' />
-                        </section>
-                        <section>
-                            <Input
-                                value={this.state.password}
-                                onChange={this.handlePasswordChange}
-                                modifier='underbar material'
-                                type='password'
-                                float
-                                placeholder='Пароль' />
-                        </section>
-                        <section>
-                            <Button
-                                label="Submit"
-                                primary={true}
-                                onClick={this.handleLogon}
-                                modifier='large outline'
-                            >Зарегистрироваться</Button>
-                        </section>
-                    </section>
+                    <NewUser />
                 </section>
                 <section className="nzLogonSection">
                     <section>

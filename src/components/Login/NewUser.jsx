@@ -5,6 +5,7 @@ import {
     // Page,
     // Modal
 } from 'react-onsenui'
+import Requester from '../../js/requester'
 
 class NewUser extends Component {
     constructor(props) {
@@ -15,58 +16,71 @@ class NewUser extends Component {
             password2: '',
             email: ''
         }
+        this.handleRegister = this.handleRegister.bind(this)
+        this.req = new Requester()
+    }
+
+    handleRegister() {
+        const addObj = {
+            username: this.state.username,
+            password: this.state.password,
+            password2: this.state.password2,
+        }
+
+        this.req.send('newUser', 'POST', addObj).then(result => {
+            // if (result.result) {
+            //     this.setState({
+            //         animButtonClassName: 'loading unLoad',
+            //     }, () => {
+            //         setTimeout(() => {
+            //             this.setState({
+            //                 animButtonClassName: 'loading unLoad icon-checked',
+            //             }, () => {
+            //                 this.props.changeLogonStatus(result)
+            //             })
+            //         }, 1000);
+            //     })
+            // }
+        })
     }
 
     render() {
         return (
-            <section style={{ margin: '16px' }}>
+            <section className="nzAddUserSection">
                 <section>
                     <Input
                         value={this.state.username}
-                        // onChange={this.handleAccountNameChange}
-                        modifier='underbar'
+                        onChange={this.handleUsernameChange}
+                        modifier='underbar material'
                         float
-                        placeholder='Логин'
-                        style={{
-                            alignContent: 'space-around',
-                            margin: '10px'
-                        }}
-                    />
+                        placeholder='Логин' />
                 </section>
                 <section>
                     <Input
-                        // value={this.state.password}
-                        // onChange={this.handleAmountChange}
-                        modifier='underbar'
+                        value={this.state.password}
+                        onChange={this.handlePasswordChange}
+                        modifier='underbar material'
+                        type='password'
                         float
-                        placeholder='Пароль'
-                        style={{
-                            alignContent: 'space-around',
-                            margin: '10px'
-                        }}
-                    />
+                        placeholder='Пароль' />
                 </section>
                 <section>
                     <Input
                         value={this.state.password2}
-                        // onChange={this.handleAmountChange}
-                        modifier='underbar'
+                        onChange={this.handlePasswordChange}
+                        modifier='underbar material'
+                        type='password'
                         float
-                        placeholder='Повторить пароль'
-                        style={{
-                            alignContent: 'space-around',
-                            margin: '10px'
-                        }}
-                    />
+                        placeholder='Пароль' />
                 </section>
-                <p>
+                <section>
                     <Button
-                        onClick={this.props.handleModalClose}
-                    >Отмена</Button>
-                    <Button
-                        onClick={() => this.setState({ isOpen: false })}
-                    >Создать</Button>
-                </p>
+                        label="Submit"
+                        primary={true}
+                        onClick={this.handleRegister}
+                        modifier='large outline'
+                    >Зарегистрироваться</Button>
+                </section>
             </section>
         )
     }
