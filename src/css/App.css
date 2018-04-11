@@ -508,6 +508,8 @@
   text-align: center;
   font-size: 14px;
   width: 100%;
+  border: 2px solid #515854;
+  background: transparent;
   height: 42px;
 }
 
@@ -516,7 +518,11 @@
 }
 
 .nzLogonSection section button.loading {
-  animation: buttonSmall 550ms linear forwards;
+  transition: 500ms linear all;
+  width: 42px;
+  height: 42px;
+  border: 2px solid #515854;
+  border-radius: 50%;
 }
 
 .nzLogonSection section button.loading .content {
@@ -562,19 +568,7 @@
 }
 
 /*********************************/
-@keyframes buttonSmall {
-  0% {
-    border-radius: 0px;
-  }
-  100% {
-    width: 42px;
-    border-radius: 50%;
-    height: 42px;
-    border: 2px solid #515854;
-  }
-}
-
-@keyframes buttonTextHide {
+@keyframes buttonSmall {}@keyframes buttonTextHide {
   100% {
     opacity: 0;
   }

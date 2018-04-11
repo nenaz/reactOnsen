@@ -47,11 +47,11 @@ class Logon extends Component {
 
     handleLogon() {
         const addObject = {
-            // username: this.state.username,
-            // password: this.state.password
-            username: 'nenaz',
-            password: 'nenaz',
-            uuid: this.props.uuid,
+            username: this.state.username,
+            password: this.state.password
+            // username: 't2',
+            // password: 't2',
+            // uuid: this.props.uuid,
         }
         this.setState({
             username: '',
@@ -64,15 +64,16 @@ class Logon extends Component {
         }, () => {
             setTimeout(() => {
                 this.req.send('authUser', 'POST', addObject).then(result => {
-                    if (result.result) {
+                    if (result.auth) {
                         this.setState({
                             animButtonClassName: 'loading unLoad',
                         }, () => {
+                            this.req.setLocal('localOptions', result.token, 'webToken')
                             setTimeout(() => {
                                 this.setState({
                                     animButtonClassName: 'loading unLoad icon-checked',
                                 }, () => {
-                                    this.props.changeLogonStatus(result)
+                                    this.props.changeLogonStatus(result.auth)
                                 })
                             }, 1000);
                         })
@@ -80,6 +81,10 @@ class Logon extends Component {
                 })
             }, 1500)
         })
+    }
+    
+    handleRegistretion() {
+        
     }
 
     handleModalOpen() {
@@ -122,13 +127,13 @@ class Logon extends Component {
         return (
             <Page
                 className={`logonForm ${this.props.className}`}
-                renderModal={() => (
-                    <Modal
-                        isOpen={this.state.modalOpen}
-                    >
-                        <NewUser handleModalClose={this.handleModalClose} />
-                    </Modal>
-                )}
+                // renderModal={() => (
+                //     <Modal
+                //         isOpen={this.state.modalOpen}
+                //     >
+                //         <NewUser handleModalClose={this.handleModalClose} />
+                //     </Modal>
+                // )}
                 onAnimationEnd={this.onAnimationEnd}
             >
                 <section className={`nzLogonPageAddUser ${this.state.className}`}>
@@ -140,42 +145,7 @@ class Logon extends Component {
                             onClick={this.handleNewUser}
                         />
                     </div>
-                    <section className="nzAddUserSection">
-                        <section>
-                            <Input
-                                value={this.state.username}
-                                onChange={this.handleUsernameChange}
-                                modifier='underbar material'
-                                float
-                                placeholder='Логин' />
-                        </section>
-                        <section>
-                            <Input
-                                value={this.state.password}
-                                onChange={this.handlePasswordChange}
-                                modifier='underbar material'
-                                type='password'
-                                float
-                                placeholder='Пароль' />
-                        </section>
-                        <section>
-                            <Input
-                                value={this.state.password}
-                                onChange={this.handlePasswordChange}
-                                modifier='underbar material'
-                                type='password'
-                                float
-                                placeholder='Пароль' />
-                        </section>
-                        <section>
-                            <Button
-                                label="Submit"
-                                primary={true}
-                                onClick={this.handleLogon}
-                                modifier='large outline'
-                            >Зарегистрироваться</Button>
-                        </section>
-                    </section>
+                    <NewUser />
                 </section>
                 <section className="nzLogonSection">
                     <section>

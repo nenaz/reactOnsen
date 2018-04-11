@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
     Button,
-    Input,
-    // Page,
-    // Modal
+    Input
 } from 'react-onsenui'
+import Requester from '../../js/requester'
 
 class NewUser extends Component {
     constructor(props) {
@@ -12,64 +12,90 @@ class NewUser extends Component {
         this.state = {
             username: '',
             password: '',
-            password2: '',
+            confirmPassword: '',
             email: ''
         }
+
+        this.req = new Requester()
+        this.handleUsernameChange = this.handleUsernameChange.bind(this)
+        this.handlePasswordChange = this.handlePasswordChange.bind(this)
+        this.handleConfirmPassword = this.handleConfirmPassword.bind(this)
+        this.handleRegister = this.handleRegister.bind(this)
+    }
+
+    handleUsernameChange(e) {
+        this.setState({ username: e.target.value })
+    }
+
+    handlePasswordChange(e) {
+        this.setState({ password: e.target.value })
+    }
+
+    handleConfirmPassword(e) {
+        this.setState({ confirmPassword: e.target.value })
+    }
+
+    handleRegister() {
+        const newUserObj = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        this.req.send('newUser', 'POST', newUserObj).then(result => {
+            if (result.token) {
+                this.req.setLocal('localOptions', result.token)
+            }
+        })
     }
 
     render() {
         return (
-            <section style={{ margin: '16px' }}>
+            <section className="nzAddUserSection">
                 <section>
                     <Input
                         value={this.state.username}
-                        // onChange={this.handleAccountNameChange}
-                        modifier='underbar'
+                        onChange={this.handleUsernameChange}
+                        modifier='underbar material'
                         float
                         placeholder='Логин'
-                        style={{
-                            alignContent: 'space-around',
-                            margin: '10px'
-                        }}
                     />
                 </section>
                 <section>
                     <Input
-                        // value={this.state.password}
-                        // onChange={this.handleAmountChange}
-                        modifier='underbar'
+                        value={this.state.password}
+                        onChange={this.handlePasswordChange}
+                        modifier='underbar material'
+                        type='password'
                         float
                         placeholder='Пароль'
-                        style={{
-                            alignContent: 'space-around',
-                            margin: '10px'
-                        }}
                     />
                 </section>
                 <section>
                     <Input
-                        value={this.state.password2}
-                        // onChange={this.handleAmountChange}
-                        modifier='underbar'
+                        value={this.state.confirmPassword}
+                        onChange={this.handleConfirmPassword}
+                        modifier='underbar material'
+                        type='password'
                         float
-                        placeholder='Повторить пароль'
-                        style={{
-                            alignContent: 'space-around',
-                            margin: '10px'
-                        }}
+                        placeholder='Подтвердить пароль'
                     />
                 </section>
-                <p>
+                <section>
                     <Button
-                        onClick={this.props.handleModalClose}
-                    >Отмена</Button>
-                    <Button
-                        onClick={() => this.setState({ isOpen: false })}
-                    >Создать</Button>
-                </p>
+                        label="Submit"
+                        primary={true}
+                        onClick={this.handleRegister}
+                        modifier='large outline'
+                    >
+                        <span>Зарегистрироваться</span>
+                    </Button>
+                </section>
             </section>
         )
     }
+}
+
+NewUser.propTypes = {
+    className: PropTypes.string,
 }
 
 export default NewUser

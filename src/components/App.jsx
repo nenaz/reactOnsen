@@ -124,8 +124,8 @@ class App extends Component {
     })
   }
 
-  changeLogonStatus(resultObj) {
-    const logon = resultObj.result
+  changeLogonStatus(logon) {
+    // const logon = resultObj.auth
     if (logon) {
       Promise.all([this.getAccounts(), this.getOperations()]).then(values => {
         this.setState({
@@ -134,12 +134,12 @@ class App extends Component {
         })
       })
     } else {
-      const obj = JSON.parse(resultObj)
-      this.setState({
-        errorLogonStatus: String(obj.status),
-        errorLogonText: obj.statusText,
-        render: false,
-      })
+      // const obj = JSON.parse(resultObj)
+      // this.setState({
+      //   errorLogonStatus: String(obj.status),
+      //   errorLogonText: obj.statusText,
+      //   render: false,
+      // })
     }
   }
 
