@@ -523,15 +523,15 @@
 
 /*********************************/
 @keyframes buttonSmall{
-  // 0% {
-  //   border-radius: 0px;
-  // }
-  // 100% {
-  //   // width: 40px;
-  //   border-radius: 50%;
-  //   // height: 40px;
-  //   border: 2px solid #515854;
-  // }
+  0% {
+    border-radius: 0px;
+  }
+  100% {
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    // border: 2px solid #515854;
+  }
 }
 @keyframes buttonTextHide{
   100% {

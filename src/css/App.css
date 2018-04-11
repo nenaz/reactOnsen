@@ -568,7 +568,18 @@
 }
 
 /*********************************/
-@keyframes buttonSmall {}@keyframes buttonTextHide {
+@keyframes buttonSmall {
+  0% {
+    border-radius: 0px;
+  }
+  100% {
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+  }
+}
+
+@keyframes buttonTextHide {
   100% {
     opacity: 0;
   }

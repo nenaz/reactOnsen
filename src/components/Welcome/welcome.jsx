@@ -86,7 +86,7 @@ Welcome.propTypes = {
 }
 
 Welcome.defaultProps = {
-    cordova: null,
+    cordova: null
 }
 
 export default Welcome

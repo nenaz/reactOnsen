@@ -11,6 +11,7 @@ import {
 } from 'react-onsenui'
 import Requester from '../../js/requester'
 import NewUser from './NewUser'
+import md5 from 'md5'
 
 class Logon extends Component {
     constructor(props) {
@@ -53,6 +54,8 @@ class Logon extends Component {
             // password: 't2',
             // uuid: this.props.uuid,
         }
+        const mess = md5('nenaznenaz')
+        console.log(mess)
         this.setState({
             username: '',
             password: '',

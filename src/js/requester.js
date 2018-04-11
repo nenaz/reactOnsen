@@ -3,6 +3,7 @@ import {
     SERVERURLLOCAL,
     DEVELOP
 } from './consts'
+import md5 from 'md5'
 
 export default class Requester {
     // webToken = null
@@ -93,9 +94,7 @@ export default class Requester {
             var xhr = new XMLHttpRequest();
             // xhr.open(type, SERVERURL + name, true);
             xhr.open(type, SERVERURLLOCAL + name, true);
-            xhr.onprogress = (event) => {
-                
-            }
+            xhr.onprogress = (event) => {}
             xhr.setRequestHeader('Content-Type', 'application/json');
             if (name !== 'newUser' && name !== 'authUser') {
                 
