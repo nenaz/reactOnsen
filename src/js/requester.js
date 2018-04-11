@@ -3,11 +3,8 @@ import {
     SERVERURLLOCAL,
     DEVELOP
 } from './consts'
-import md5 from 'md5'
 
 export default class Requester {
-    // webToken = null
-
     initialize(value) {
         if (localStorage) {
             if (!localStorage.hasOwnProperty('localUserName')) {
@@ -22,9 +19,6 @@ export default class Requester {
             if (!localStorage.hasOwnProperty('localItemsStatistic')) {
                 this.setLocal('localItemsStatistic', [], true)
             }
-            // if (!localStorage.hasOwnProperty('localOptions')) {
-            //     this.setLocal('localOptions', {}, null, true)
-            // }
             
             if (!localStorage.hasOwnProperty('localOptions')) {
                 this.options = {
