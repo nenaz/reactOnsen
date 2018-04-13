@@ -38,18 +38,18 @@ class AddOperation extends Component{
             comma: false,
             part: '00',
             accountBalance: '0,00',
-            accountName: (props.changeAccountsList.length) ?
-                props.changeAccountsList[0].name : '',
-            accountFromAmount: (props.changeAccountsList.length) ?
-                props.changeAccountsList[0].amount : 0,
-            accountNameTo: (props.changeAccountsList.length) ?
-                props.changeAccountsList[1].name : '',
-            accountToAmount: (props.changeAccountsList.length) ?
-                props.changeAccountsList[1].amount : 0,
-            id: (props.changeAccountsList.length) ?
-                this.props.changeAccountsList[0]._id : '',
-            idTo: (props.changeAccountsList.length) ?
-                this.props.changeAccountsList[0]._id : '',
+            accountName: (props.changeAccountsList.length)
+                ? props.changeAccountsList[0].name : '',
+            accountFromAmount: (props.changeAccountsList.length)
+                ? String(props.changeAccountsList[0].amount) : '0',
+            accountNameTo: (props.changeAccountsList.length)
+                ? props.changeAccountsList[1].name : '',
+            accountToAmount: (props.changeAccountsList.length)
+                ? String(props.changeAccountsList[1].amount) : '0',
+            id: (props.changeAccountsList.length)
+                ? this.props.changeAccountsList[0]._id : '',
+            idTo: (props.changeAccountsList.length)
+                ? this.props.changeAccountsList[1]._id : '',
             amountfontSize: 'calc(1rem + (1vw - 0px) * 20)',
             section1Class: '',
             section2Class: '',
@@ -86,6 +86,7 @@ class AddOperation extends Component{
         this.handleClick = this.handleClick.bind(this)
         this.selectTypeOperation = this.selectTypeOperation.bind(this)
         this.handleSelectAccountTo = this.handleSelectAccountTo.bind(this)
+        this.transferOperation = this.transferOperation.bind(this)
     }
 
     componentDidMount() {
@@ -99,21 +100,23 @@ class AddOperation extends Component{
             modalOpen: true
         }, () => {
             // this.Pos.getPositions().then((coord) => {
-                this.addOperationToList(
-                    {
+                if (this.props.typeOperation !== '2') {
+                    this.addOperationToList({
                         coords: {
                             latitude: 54,
                             longitude: 54,
                         }
-                    }
-                )
-                this.editAccountInList()
-                this.handlerCanselClick()
+                    })
+                    this.editAccountInList()
+                    this.handlerCanselClick()
+                } else {
+                    this.transferOperation()
+                }
             // })
         })
     }
 
-    addOperationToList(coord) {
+    addOperationToList(coord, transfer) {
         const addObject = {
             amount: `${this.state.inputAmount}.${this.state.part}`,
             currency: 'RUB',
@@ -126,6 +129,11 @@ class AddOperation extends Component{
             },
             id: this.state.id,
             categoryId: this.state.categoryId,
+            accountName: this.state.accountName
+        }
+        if (transfer) {
+            addObject.accountNameTo = this.state.accountNameTo
+            addObject.idTo = this.state.idTo
         }
         this.props.addOperationToList(addObject)
         this.req.request('addItem', addObject)
@@ -135,7 +143,7 @@ class AddOperation extends Component{
     editAccountInList() {
         const obj = this.props.changeAccountsList.find(item => { return item._id === this.state.id })
         const updateObj = {
-            amount: obj.amount,
+            amount: Number(obj.amount),
             id: obj._id,
             name: obj.name,
             accountDate: obj.accountDate,
@@ -285,7 +293,10 @@ class AddOperation extends Component{
             </section>) :
             (<section className="sectionClass sectionAccount">
                 <PageAccount
-                    handleSelectAccount={this.handleSelectAccount}
+                    handleSelectAccount={(this.props.typeOperation !== '2')
+                        ? this.handleSelectAccount
+                        : this.handleSelectAccountTo
+                    }
                 />
             </section>)
     }
@@ -298,12 +309,13 @@ class AddOperation extends Component{
         this.setState({
             id,
             accountName: e.currentTarget.getAttribute('name'),
-            accountFromAmount: Number(obj.amount),
+            accountFromAmount: String(obj.amount),
         })
         this.handlerBackClick()
     }
 
     handleSelectAccountTo(e) {
+        debugger
         this.setState({
             idTo: e.currentTarget.getAttribute('id'),
             accountNameTo: e.currentTarget.getAttribute('name')
@@ -329,6 +341,19 @@ class AddOperation extends Component{
 
     selectTypeOperation(typeOperation) {
         this.setState({ typeOperation })
+    }
+
+    transferOperation() {
+        const coords = {
+            coords: {
+                latitude: 54,
+                longitude: 54,
+            }
+        }
+        // this.addOperationToList(coords)
+        this.addOperationToList(coords, true)
+        // this.editAccountInList()
+        // this.handlerCanselClick()
     }
 
     render() {
