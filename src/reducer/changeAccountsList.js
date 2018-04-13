@@ -14,10 +14,14 @@ const addItem = (array,item) => {
 const editItem = (array, obj) => {
     const newarray = _.map(array, (item) => {
         if (obj.id === item._id) {
-            if (obj.typeOperation) {
-                if (obj.typeOperation === '0') {
+            let typeOperation = obj.typeOperation
+            if (typeOperation === '2') {
+                typeOperation = obj.transfer ? '1' : '0'
+            }
+            if (typeOperation) {
+                if (typeOperation === '0') {
                     item.amount -= obj.amount * 1
-                } else if (obj.typeOperation === '1') {
+                } else if (typeOperation === '1') {
                     item.amount += obj.amount * 1
                 }
             } else {

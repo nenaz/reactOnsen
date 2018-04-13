@@ -140,8 +140,13 @@ class AddOperation extends Component{
         this.props.editAccountInList(addObject)
     }
 
-    editAccountInList() {
-        const obj = this.props.changeAccountsList.find(item => { return item._id === this.state.id })
+    editAccountInList(transfer) {
+        const id = transfer ? this.state.idTo : this.state.id
+        const obj = this.props.changeAccountsList.find(item => { return item._id === id })
+        // debugger
+        if (transfer) {
+            obj.transfer = transfer
+        }
         const updateObj = {
             amount: Number(obj.amount),
             id: obj._id,
@@ -352,8 +357,9 @@ class AddOperation extends Component{
         }
         // this.addOperationToList(coords)
         this.addOperationToList(coords, true)
-        // this.editAccountInList()
-        // this.handlerCanselClick()
+        this.editAccountInList()
+        this.editAccountInList(true)
+        this.handlerCanselClick()
     }
 
     render() {
