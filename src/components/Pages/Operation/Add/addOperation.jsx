@@ -134,7 +134,17 @@ class AddOperation extends Component{
         this.req.request('addItem', addObject)
     }
 
+<<<<<<< HEAD
     editAccountInList() {
+=======
+    editAccountInList(transfer) {
+        const id = transfer ? this.state.idTo : this.state.id
+        const obj = this.props.changeAccountsList.find(item => { return item._id === id })
+        // debugger
+        if (transfer) {
+            obj.transfer = transfer
+        }
+>>>>>>> 548c33c722579a4ee3ef4df524f7ab7687c6ba9f
         const updateObj = {
             amount: Number(`${this.state.inputAmount}.${this.state.part}`),
             idFrom: this.state.id,
@@ -357,6 +367,23 @@ class AddOperation extends Component{
         this.setState({ typeOperation })
     }
 
+<<<<<<< HEAD
+=======
+    transferOperation() {
+        const coords = {
+            coords: {
+                latitude: 54,
+                longitude: 54,
+            }
+        }
+        // this.addOperationToList(coords)
+        this.addOperationToList(coords, true)
+        this.editAccountInList()
+        this.editAccountInList(true)
+        this.handlerCanselClick()
+    }
+
+>>>>>>> 548c33c722579a4ee3ef4df524f7ab7687c6ba9f
     render() {
         const pageAcc = this.selectRenderBackgroundPage()
         return (

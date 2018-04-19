@@ -16,12 +16,25 @@ const updateItem = (array, obj) => {
         ? obj.idFrom
         : obj.idTo
     const newarray = _.map(array, (item) => {
+<<<<<<< HEAD
         if (userId === item._id) {
             if (obj.typeOperation) {
                 if (obj.typeOperation === '0') {
                     item.amount = obj.accountFromAmount - obj.amount
                 } else if (obj.typeOperation === '1') {
                     item.amount = obj.accountToAmount + obj.amount
+=======
+        if (obj.id === item._id) {
+            let typeOperation = obj.typeOperation
+            if (typeOperation === '2') {
+                typeOperation = obj.transfer ? '1' : '0'
+            }
+            if (typeOperation) {
+                if (typeOperation === '0') {
+                    item.amount -= obj.amount * 1
+                } else if (typeOperation === '1') {
+                    item.amount += obj.amount * 1
+>>>>>>> 548c33c722579a4ee3ef4df524f7ab7687c6ba9f
                 }
             } else {
                 item.amount = obj.amount
