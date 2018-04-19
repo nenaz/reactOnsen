@@ -92,8 +92,8 @@ class EditAccount extends Component{
     editAccountInList() {
         const updateObj = {
             amount: this.state.amount,
-            id: this.props.accountToEdit._id,
-            name: this.state.accountName,
+            idFrom: this.props.accountToEdit._id,
+            accountNameFrom: this.state.accountName,
             accountDate: this.state.accountDate,
             accountNumber: this.state.accountNumber,
             accountPeople: this.state.accountPeople,

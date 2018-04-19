@@ -52,7 +52,11 @@ export default class Requester {
                     lName = 'getAccounts'
                     break;
                 case 'updateItem':
-                    lName = 'updateAccountAmount'
+                    // lName = 'updateAccountAmount'
+                    lName = 'editAccount'
+                    break;
+                case 'transfer':
+                    lName = 'transfer'
                     break;
                 default: lName = 'addOperation'
                     break;

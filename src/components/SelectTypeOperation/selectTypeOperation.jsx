@@ -26,8 +26,8 @@ class SelectTypeOperation extends Component {
         if (this.state.typeOperation === '2') {
             return (
                 <div onClick={() => {
-                    this.props.handleRunAnimation(0)
-                }}>
+                    this.props.handleRunAnimation(0, true)
+                }} type="to">
                     <span className="nzAmountSelectTitle">Счет</span>
                     <span className="nzAmountSelectText">{this.props.accountNameTo}</span>
                     <span className="nzAmountSelectAmount">{this.props.accountToAmount}</span>

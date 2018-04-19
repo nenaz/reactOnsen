@@ -836,6 +836,10 @@
   color: red;
 }
 
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._left .icon-transfer {
+  font-size: 32px;
+}
+
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._center {
   display: flex;
   flex-direction: row;
