@@ -1,8 +1,7 @@
 import React,{ Component} from 'react'
+import PropTypes from 'prop-types'
 import { Button } from  'react-onsenui'
 import '../../css/App.css'
-import { connect } from 'react-redux'
-import { selectTypeOperation } from '../../AC'
 
 class CheckTypeOperation extends Component{
     constructor(props){
@@ -15,10 +14,12 @@ class CheckTypeOperation extends Component{
     }
 
     handleSelectActiveButton(e) {
+        const type = e.target.getAttribute('type')
         this.setState({
-            activeButton: e.target.getAttribute('type')
+            activeButton: type
         })
-        this.props.selectTypeOperation(e.target.getAttribute('type'))
+    //     this.props.selectTypeOperation(e.target.getAttribute('type'))
+        this.props.handleSelectActiveButton(type)
     }
 
     render(){
@@ -53,8 +54,8 @@ class CheckTypeOperation extends Component{
     }
 }
 
-export default connect((state) => ({
-    // typeOperation: state.changeTypeOperation
-}),{
-    selectTypeOperation
-})(CheckTypeOperation)
+CheckTypeOperation.propTypes = {
+    handleSelectActiveButton: PropTypes.func,
+}
+
+export default CheckTypeOperation

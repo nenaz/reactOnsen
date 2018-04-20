@@ -468,23 +468,27 @@
       text-align: center;
       font-size: 14px;
       width: 100%;
-      border: 2px solid #515854;
-      background: transparent;
+      // border: 2px solid #515854;
+      background: #37474f;
       // transition: transform 0.2s;
       height: 42px;
       .content{
         transition: opacity 0.3s, transform 0.3s;
       }
+      span{
+        color: white;
+      }
     }
     button.loading{
-      // animation: buttonSmall 550ms linear forwards;
-      transition: 500ms linear all;
-      width: 42px;
-      height: 42px;
-      border: 2px solid #515854;
-      border-radius: 50%;
+      animation: buttonSmall 500ms linear forwards;
+      // transition: 500ms linear all;
+      // width: 42px;
+      // height: 42px;
+      // border: 2px solid #515854;
+      // border-radius: 50%;
       .content{
-        animation: buttonTextHide 450ms linear forwards;
+        animation-delay: 200ms;
+        animation: buttonTextHide 300ms linear forwards;
       }
       &.unLoad{
         width: 42px;
@@ -524,12 +528,13 @@
 /*********************************/
 @keyframes buttonSmall{
   0% {
-    border-radius: 0px;
+    // border-radius: 0px;
   }
   100% {
     width: 40px;
     border-radius: 50%;
     height: 40px;
+    background: transparent;
     // border: 2px solid #515854;
   }
 }
@@ -770,6 +775,9 @@
                 }
                 .icon-payment_dowm{
                   color: red;
+                }
+                .icon-transfer{
+                  font-size: 32px;
                 }
               }
               ._center{

@@ -38,18 +38,18 @@ class AddOperation extends Component{
             comma: false,
             part: '00',
             accountBalance: '0,00',
-            accountName: (props.changeAccountsList.length) ?
-                props.changeAccountsList[0].name : '',
-            accountFromAmount: (props.changeAccountsList.length) ?
-                props.changeAccountsList[0].amount : 0,
-            accountNameTo: (props.changeAccountsList.length) ?
-                props.changeAccountsList[1].name : '',
-            accountToAmount: (props.changeAccountsList.length) ?
-                props.changeAccountsList[1].amount : 0,
-            id: (props.changeAccountsList.length) ?
-                this.props.changeAccountsList[0]._id : '',
-            idTo: (props.changeAccountsList.length) ?
-                this.props.changeAccountsList[0]._id : '',
+            accountName: (props.changeAccountsList.length)
+                ? props.changeAccountsList[0].name : '',
+            accountFromAmount: (props.changeAccountsList.length)
+                ? String(props.changeAccountsList[0].amount) : '0',
+            accountNameTo: (props.changeAccountsList.length)
+                ? props.changeAccountsList[1].name : '',
+            accountToAmount: (props.changeAccountsList.length)
+                ? String(props.changeAccountsList[1].amount) : '0',
+            id: (props.changeAccountsList.length)
+                ? this.props.changeAccountsList[0]._id : '',
+            idTo: (props.changeAccountsList.length)
+                ? this.props.changeAccountsList[1]._id : '',
             amountfontSize: 'calc(1rem + (1vw - 0px) * 20)',
             section1Class: '',
             section2Class: '',
@@ -72,20 +72,20 @@ class AddOperation extends Component{
         this.handlerClickBackButton = this.handlerClickBackButton.bind(this)
         this.handlerClickCommaButton = this.handlerClickCommaButton.bind(this)
         this.handleChangeSelect = this.handleChangeSelect.bind(this)
+        this.handleRunAnimation = this.handleRunAnimation.bind(this)
+        this.handlerBackClick = this.handlerBackClick.bind(this)
+        this.handleSelectAccount = this.handleSelectAccount.bind(this)
+        this.handleSelectCategoty = this.handleSelectCategoty.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+        this.handleSelectAccountTo = this.handleSelectAccountTo.bind(this)
         this.generateAmountFontSize = this.generateAmountFontSize.bind(this)
         this.addOperationToList = this.addOperationToList.bind(this)
         this.editAccountInList = this.editAccountInList.bind(this)
-        this.handleRunAnimation = this.handleRunAnimation.bind(this)
-        this.handlerBackClick = this.handlerBackClick.bind(this)
         this.renderToolbarForSelect = this.renderToolbarForSelect.bind(this)
         this.selectTooltipForRendering = this.selectTooltipForRendering.bind(this)
         this.selectRenderBackgroundPage = this.selectRenderBackgroundPage.bind(this)
-        this.handleSelectAccount = this.handleSelectAccount.bind(this)
-        this.handleSelectCategoty = this.handleSelectCategoty.bind(this)
         this.renderModal = this.renderModal.bind(this)
-        this.handleClick = this.handleClick.bind(this)
         this.selectTypeOperation = this.selectTypeOperation.bind(this)
-        this.handleSelectAccountTo = this.handleSelectAccountTo.bind(this)
     }
 
     componentDidMount() {
@@ -99,14 +99,12 @@ class AddOperation extends Component{
             modalOpen: true
         }, () => {
             // this.Pos.getPositions().then((coord) => {
-                this.addOperationToList(
-                    {
-                        coords: {
-                            latitude: 54,
-                            longitude: 54,
-                        }
+                this.addOperationToList({
+                    coords: {
+                        latitude: 54,
+                        longitude: 54,
                     }
-                )
+                })
                 this.editAccountInList()
                 this.handlerCanselClick()
             // })
@@ -126,23 +124,41 @@ class AddOperation extends Component{
             },
             id: this.state.id,
             categoryId: this.state.categoryId,
+            accountName: this.state.accountName
+        }
+        if (this.props.typeOperation === '2') {
+            addObject.accountNameTo = this.state.accountNameTo
+            addObject.idTo = this.state.idTo
         }
         this.props.addOperationToList(addObject)
         this.req.request('addItem', addObject)
-        this.props.editAccountInList(addObject)
     }
 
     editAccountInList() {
-        const obj = this.props.changeAccountsList.find(item => { return item._id === this.state.id })
         const updateObj = {
-            amount: obj.amount,
-            id: obj._id,
-            name: obj.name,
-            accountDate: obj.accountDate,
-            accountNumber: obj.accountNumber,
-            accountPeople: obj.accountPeople,
+            amount: Number(`${this.state.inputAmount}.${this.state.part}`),
+            idFrom: this.state.id,
+            accountNameFrom: this.state.accountName,
+            accountFromAmount: this.state.accountFromAmount * 1,
+            typeOperation: '0',
         }
-        this.req.request('updateItem', updateObj)
+        if (this.props.typeOperation !== '2') {
+            this.props.editAccountInList(updateObj)
+            this.req.request('updateItem', updateObj)
+        } else {
+            const transferObj = {
+                accountNameTo: this.state.accountNameTo,
+                idTo: this.state.idTo,
+                amount: Number(`${this.state.inputAmount}.${this.state.part}`),
+                transfer: true,
+                accountToAmount: this.state.accountToAmount * 1,
+                typeOperation: '1',
+            }
+            this.props.editAccountInList(transferObj)
+            const obj = Object.assign({},   updateObj, transferObj)
+            this.req.request('transfer', obj)
+        }
+        this.props.editAccountInList(updateObj)
     }
 
     handlerCanselClick() {
@@ -251,18 +267,20 @@ class AddOperation extends Component{
         });
     }
 
-    handleRunAnimation(type) {
+    handleRunAnimation(type, transfer) {
         this.setState({
             section1Class: 'section1Class transition',
             section2Class: 'section2Class transition'
         })
         if (!type) {
             this.setState({
-                showPageAccounts: true
+                showPageAccounts: true,
+                transfer
             })
         } else {
             this.setState({
-                showPageCategory: true
+                showPageCategory: true,
+                transfer
             })
         }
     }
@@ -285,7 +303,10 @@ class AddOperation extends Component{
             </section>) :
             (<section className="sectionClass sectionAccount">
                 <PageAccount
-                    handleSelectAccount={this.handleSelectAccount}
+                    handleSelectAccount={(!this.state.transfer)
+                        ? this.handleSelectAccount
+                        : this.handleSelectAccountTo
+                    }
                 />
             </section>)
     }
@@ -298,15 +319,20 @@ class AddOperation extends Component{
         this.setState({
             id,
             accountName: e.currentTarget.getAttribute('name'),
-            accountFromAmount: Number(obj.amount),
+            accountFromAmount: String(obj.amount),
         })
         this.handlerBackClick()
     }
 
     handleSelectAccountTo(e) {
+        const idTo = e.currentTarget.getAttribute('id')
+        const obj = this.props.changeAccountsList.find(item => {
+            return item._id === idTo
+        })
         this.setState({
-            idTo: e.currentTarget.getAttribute('id'),
-            accountNameTo: e.currentTarget.getAttribute('name')
+            idTo,
+            accountNameTo: e.currentTarget.getAttribute('name'),
+            accountToAmount: String(obj.amount),
         })
         this.handlerBackClick()
     }

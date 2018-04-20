@@ -3,11 +3,8 @@ import {
     SERVERURLLOCAL,
     DEVELOP
 } from './consts'
-import md5 from 'md5'
 
 export default class Requester {
-    // webToken = null
-
     initialize(value) {
         if (localStorage) {
             if (!localStorage.hasOwnProperty('localUserName')) {
@@ -22,9 +19,6 @@ export default class Requester {
             if (!localStorage.hasOwnProperty('localItemsStatistic')) {
                 this.setLocal('localItemsStatistic', [], true)
             }
-            // if (!localStorage.hasOwnProperty('localOptions')) {
-            //     this.setLocal('localOptions', {}, null, true)
-            // }
             
             if (!localStorage.hasOwnProperty('localOptions')) {
                 this.options = {
@@ -58,7 +52,11 @@ export default class Requester {
                     lName = 'getAccounts'
                     break;
                 case 'updateItem':
-                    lName = 'updateAccountAmount'
+                    // lName = 'updateAccountAmount'
+                    lName = 'editAccount'
+                    break;
+                case 'transfer':
+                    lName = 'transfer'
                     break;
                 default: lName = 'addOperation'
                     break;
@@ -92,8 +90,8 @@ export default class Requester {
         const webToken = this.getWebToken()
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
-            // xhr.open(type, SERVERURL + name, true);
-            xhr.open(type, SERVERURLLOCAL + name, true);
+            xhr.open(type, SERVERURL + name, true);
+            // xhr.open(type, SERVERURLLOCAL + name, true);
             xhr.onprogress = (event) => {}
             xhr.setRequestHeader('Content-Type', 'application/json');
             if (name !== 'newUser' && name !== 'authUser') {

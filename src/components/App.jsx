@@ -125,7 +125,6 @@ class App extends Component {
   }
 
   changeLogonStatus(logon) {
-    // const logon = resultObj.auth
     if (logon) {
       Promise.all([this.getAccounts(), this.getOperations()]).then(values => {
         this.setState({

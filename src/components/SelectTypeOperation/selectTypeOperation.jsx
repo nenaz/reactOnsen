@@ -2,16 +2,20 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import CheckTypeOperation from './typeOperation'
 import Utils from '../../js/utils'
+import { connect } from 'react-redux'
+import { selectTypeOperation } from '../../AC'
 
 class SelectTypeOperation extends Component {
     constructor(props) {
         super(props)
         this.state = {
             tt: 0,
+            typeOperation: this.props.typeOperation,
         }
 
         this.renderLists = this.renderLists.bind(this)
         this.categotyIdToTitle = this.categotyIdToTitle.bind(this)
+        this.handleSelectActiveButton = this.handleSelectActiveButton.bind(this)
     }
 
     categotyIdToTitle() {
@@ -19,11 +23,11 @@ class SelectTypeOperation extends Component {
     }
 
     renderLists() {
-        if (this.props.typeOperation === '-1') {
+        if (this.state.typeOperation === '2') {
             return (
                 <div onClick={() => {
-                    this.props.handleRunAnimation(0)
-                }}>
+                    this.props.handleRunAnimation(0, true)
+                }} type="to">
                     <span className="nzAmountSelectTitle">Счет</span>
                     <span className="nzAmountSelectText">{this.props.accountNameTo}</span>
                     <span className="nzAmountSelectAmount">{this.props.accountToAmount}</span>
@@ -43,10 +47,19 @@ class SelectTypeOperation extends Component {
         }
     }
 
+    handleSelectActiveButton(type) {
+        this.setState({
+            typeOperation: type
+        })
+        this.props.selectTypeOperation(type)
+    }
+
     render() {
         return (
             <Fragment>
-                <CheckTypeOperation />
+                <CheckTypeOperation
+                    handleSelectActiveButton={this.handleSelectActiveButton}
+                />
                 <div className="nzAmountSection">
                     <div className="nzAmountInput">
                         <div className="nzAmountItem nzTypeOperation">
@@ -88,8 +101,11 @@ SelectTypeOperation.propTypes = {
     amountfontSize: PropTypes.string,
     accountName: PropTypes.string,
     categoryId: PropTypes.string,
-    accountFromAmount: PropTypes.number,
-    accountToAmount: PropTypes.number,
+    accountFromAmount: PropTypes.string,
+    accountToAmount: PropTypes.string,
 }
 
-export default SelectTypeOperation
+
+export default connect(null, {
+    selectTypeOperation
+})(SelectTypeOperation)

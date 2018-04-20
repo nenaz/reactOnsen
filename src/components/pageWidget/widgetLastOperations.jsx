@@ -20,6 +20,7 @@ class WaigetLastOperations extends Component{
         this.renderRow = this.renderRow.bind(this)
         this.showDetails = this.showDetails.bind(this)
         this.handleHideModal = this.handleHideModal.bind(this)
+        this.selectOperationsIcon = this.selectOperationsIcon.bind(this)
     }
 
     showDetails(e) {
@@ -33,8 +34,16 @@ class WaigetLastOperations extends Component{
         this.setState({ modalOpen: false });
     }
 
+    selectOperationsIcon(type) {
+        switch(type) {
+            case "1": return 'icon-payment_up'
+            case "2": return 'icon-transfer'
+            default: return 'icon-payment_dowm'
+        }
+    }
+
     renderRow(row, index) {
-        const icon = (row.typeOperation === "1") ? 'icon-payment_up' : 'icon-payment_dowm'
+        const icon = this.selectOperationsIcon(row.typeOperation)
         return (
             <ListItem
                 key={index}

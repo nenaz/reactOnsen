@@ -11,14 +11,17 @@ const addItem = (array,item) => {
     return newarray
 }
 
-const editItem = (array, obj) => {
+const updateItem = (array, obj) => {
+    const userId  = (!obj.transfer)
+        ? obj.idFrom
+        : obj.idTo
     const newarray = _.map(array, (item) => {
-        if (obj.id === item._id) {
+        if (userId === item._id) {
             if (obj.typeOperation) {
                 if (obj.typeOperation === '0') {
-                    item.amount -= obj.amount * 1
+                    item.amount = obj.accountFromAmount - obj.amount
                 } else if (obj.typeOperation === '1') {
-                    item.amount += obj.amount * 1
+                    item.amount = obj.accountToAmount + obj.amount
                 }
             } else {
                 item.amount = obj.amount
@@ -39,7 +42,7 @@ export default (accountsList = [], action) => {
     const { type, payload } = action
     switch (type) {
         case ADDACCOUNTTOLIST: return addItem(accountsList, payload)
-        case EDITACCOUNTINLIST: return editItem(accountsList, payload)
+        case EDITACCOUNTINLIST: return updateItem(accountsList, payload)
         case REMOVEACCOUNTROMLIST: return removeItem(accountsList, payload)
         default: return accountsList
     }

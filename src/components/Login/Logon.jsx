@@ -11,7 +11,6 @@ import {
 } from 'react-onsenui'
 import Requester from '../../js/requester'
 import NewUser from './NewUser'
-import md5 from 'md5'
 
 class Logon extends Component {
     constructor(props) {
@@ -22,7 +21,8 @@ class Logon extends Component {
             modalOpen: false,
             className: '',
             animButtonClassName: '',
-            buttonText: 'Войти'
+            buttonText: 'Войти',
+            disabledInputs: false,
         }
 
         this.req = new Requester()
@@ -47,22 +47,17 @@ class Logon extends Component {
     }
 
     handleLogon() {
+        if (!this.state.username && !this.state.password) {
+            return false;
+        }
         const addObject = {
             username: this.state.username,
             password: this.state.password
-            // username: 't2',
-            // password: 't2',
-            // uuid: this.props.uuid,
         }
-        const mess = md5('nenaznenaz')
-        console.log(mess)
-        this.setState({
-            username: '',
-            password: '',
-        })
         this.setState({
             animButtonClassName: 'loading',
             buttonText: '',
+            disabledInputs: true
         // })
         }, () => {
             setTimeout(() => {
@@ -70,6 +65,8 @@ class Logon extends Component {
                     if (result.auth) {
                         this.setState({
                             animButtonClassName: 'loading unLoad',
+                            username: '',
+                            password: '',
                         }, () => {
                             this.req.setLocal('localOptions', result.token, 'webToken')
                             setTimeout(() => {
@@ -79,6 +76,14 @@ class Logon extends Component {
                                     this.props.changeLogonStatus(result.auth)
                                 })
                             }, 1000);
+                        })
+                    } else {
+                        this.setState({
+                            username: '',
+                            password: '',
+                            disabledInputs: false,
+                            animButtonClassName: '',
+                            buttonText: 'Войти',
                         })
                     }
                 })
@@ -130,13 +135,6 @@ class Logon extends Component {
         return (
             <Page
                 className={`logonForm ${this.props.className}`}
-                // renderModal={() => (
-                //     <Modal
-                //         isOpen={this.state.modalOpen}
-                //     >
-                //         <NewUser handleModalClose={this.handleModalClose} />
-                //     </Modal>
-                // )}
                 onAnimationEnd={this.onAnimationEnd}
             >
                 <section className={`nzLogonPageAddUser ${this.state.className}`}>
@@ -157,7 +155,9 @@ class Logon extends Component {
                             onChange={this.handleUsernameChange}
                             modifier='underbar material'
                             float
-                            placeholder='Логин' />
+                            placeholder='Логин'
+                            disabled={this.state.disabledInputs}
+                        />
                     </section>
                     <section>
                         <Input
@@ -166,7 +166,9 @@ class Logon extends Component {
                             modifier='underbar material'
                             type='password'
                             float
-                            placeholder='Пароль' />
+                            placeholder='Пароль'
+                            disabled={this.state.disabledInputs}
+                        />
                     </section>
                     <section className="nzLogonSectionButton">
                         <button
