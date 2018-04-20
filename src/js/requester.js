@@ -58,6 +58,9 @@ export default class Requester {
                 case 'transfer':
                     lName = 'transfer'
                     break;
+                case 'deleteAccount':
+                    lName = 'deleteAccount'
+                    break;
                 default: lName = 'addOperation'
                     break;
             }
@@ -90,8 +93,8 @@ export default class Requester {
         const webToken = this.getWebToken()
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
-            xhr.open(type, SERVERURL + name, true);
-            // xhr.open(type, SERVERURLLOCAL + name, true);
+            // xhr.open(type, SERVERURL + name, true);
+            xhr.open(type, SERVERURLLOCAL + name, true);
             xhr.onprogress = (event) => {}
             xhr.setRequestHeader('Content-Type', 'application/json');
             if (name !== 'newUser' && name !== 'authUser') {

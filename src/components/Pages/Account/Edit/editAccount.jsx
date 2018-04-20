@@ -5,11 +5,13 @@ import {
     Toolbar,
     Input,
     Fab,
-    BackButton
+    BackButton,
+    AlertDialog
 } from 'react-onsenui'
 import { connect } from 'react-redux'
 import {
-    editAccountInList
+    editAccountInList,
+    deleteAccountFromList
 } from '../../../../AC'
 import Requester from '../../../../js/requester'
 import { ICONCHECKING } from '../../../../js/consts'
@@ -23,9 +25,9 @@ class EditAccount extends Component{
             accountDate: props.accountToEdit.accountDate || 'Действителен до',
             accountNumber: props.accountToEdit.accountNumber || 'Номер счета',
             accountPeople: this.props.accountToEdit.accountPeople || 'Имя владельца',
-            // amount: this.props.accountToEdit.amount || '0',
             amount: '0',
             accountName: this.props.accountToEdit.name || 'Название счета',
+            alertDialogShown: false,
         }
         
         this.req = new Requester()
@@ -39,6 +41,8 @@ class EditAccount extends Component{
         this.handleNumberChange = this.handleNumberChange.bind(this)
         this.handleDateChange = this.handleDateChange.bind(this)
         this.handlePeopleChange = this.handlePeopleChange.bind(this)
+        this.handlerDeleteAccount = this.handlerDeleteAccount.bind(this)
+        this.handlerToggleAlertDialog = this.handlerToggleAlertDialog.bind(this)
     }
 
     handlePeopleChange(e) {
@@ -102,6 +106,22 @@ class EditAccount extends Component{
         this.req.request('updateAccounts', updateObj)
     }
 
+    handlerDeleteAccount() {
+        const deleteObj = {
+            idFrom: this.props.accountToEdit._id
+        }
+        this.props.deleteAccountFromList(deleteObj)
+        this.req.request('deleteAccount', deleteObj)
+        this.handlerCanselClick()
+    }
+
+    handlerToggleAlertDialog() {
+        const showDialog = this.state.alertDialogShown
+        this.setState({
+            alertDialogShown: !showDialog
+        })
+    }
+
     render() {
         return (
             <Page renderToolbar={this.renderToolbar}>
@@ -150,11 +170,35 @@ class EditAccount extends Component{
                     </div>
                 </div>
                 <Fab
+                    className="nzFabButtonCansel"
+                    modifier="mini"
+                    onClick={this.handlerToggleAlertDialog}
+                >
+                    <span className="icon-cancel" />
+                </Fab>
+                <Fab
                     position='bottom right'
                     onClick={this.handlerOkClick}
                 >
                     <Icon iconBase64={ICONCHECKING} />
                 </Fab>
+                <AlertDialog
+                    isOpen={this.state.alertDialogShown}
+                    isCancelable={false}
+                >
+                    <div className='alert-dialog-title'>Внимание!</div>
+                    <div className='alert-dialog-content'>
+                        Удалить этот счет!
+                    </div>
+                    <div className='alert-dialog-footer'>
+                        <button onClick={this.handlerToggleAlertDialog} className='alert-dialog-button'>
+                            Отмена
+                        </button>
+                        <button onClick={this.handlerDeleteAccount} className='alert-dialog-button'>
+                            Да
+                        </button>
+                    </div>
+                </AlertDialog>
             </Page>
         )
     }
@@ -167,5 +211,6 @@ EditAccount.propTypes = {
 export default connect((state) => ({
     accountToEdit: state.changeAccountToEdit
 }), {
-    editAccountInList
+    editAccountInList,
+    deleteAccountFromList
 })(EditAccount)

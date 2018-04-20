@@ -1,11 +1,11 @@
 export const BACKMAINFROMNEWACCOUNT = 'backMainFromNewAccount'
 export const ADDACCOUNTTOLIST = 'addAccountToList'
 export const EDITACCOUNTINLIST = 'editAccountInList'
-export const REMOVEACCOUNTROMLIST = 'removeAccountFromList'
 export const ADDOPERATIONTOLIST = 'AddOperationToList'
 export const SELECTTYPEOPERATION = 'selectTypeOperation'
 export const ACCOUNTTOEDIT = 'accountToEdit'
 export const CHANGECATEGORYSTATISTIC = 'changeCategoryStatictic'
+export const DELETEACCOUNTFROMLIST = 'deleteAccountFromList'
 
 // export const SERVERURL = 'https://guarded-sea-48553.herokuapp.com/'
 export const SERVERURL = 'https://mongosever.herokuapp.com/'
@@ -50,7 +50,8 @@ export const LEFTMENUITEMS = [
     { name: 'operations', text: 'Операции' },
     { name: 'download', text: 'Скачать PDF' },
     { name: 'options', text: 'Настройки'},
-    // { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
+    { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
+    // { name: 'about', text: 'О программе'},
     { name: 'exit', text: 'Выход' },
 ];
 

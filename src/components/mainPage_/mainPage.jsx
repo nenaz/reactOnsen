@@ -269,6 +269,15 @@ class MainPage extends Component{
                         }}
                     />
                 </Fab>
+                <Fab
+                    modifier="mini"
+                >
+                    <span className="icon-plus2"
+                        style={{
+                            lineHeight: '56px'
+                        }}
+                    />
+                </Fab>
             </Page>
         )
     }

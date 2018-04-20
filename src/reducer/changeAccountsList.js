@@ -2,7 +2,7 @@ import _ from 'underscore'
 import { 
     ADDACCOUNTTOLIST,
     EDITACCOUNTINLIST,
-    REMOVEACCOUNTROMLIST
+    DELETEACCOUNTFROMLIST
 } from '../js/consts'
 
 const addItem = (array,item) => {
@@ -33,8 +33,10 @@ const updateItem = (array, obj) => {
     return newarray
 }
 
-const removeItem = (array, item) => {
-    let numItem = array.indexOf(item)
+const deleteItem = (array, item) => {
+    // debugger
+    const deleteItem = array.find(({it}) => ( item.idFrom ))
+    const numItem = array.indexOf(deleteItem)
     return (array.slice(0, numItem)).concat(array.slice(numItem + 1))
 }
 
@@ -43,7 +45,7 @@ export default (accountsList = [], action) => {
     switch (type) {
         case ADDACCOUNTTOLIST: return addItem(accountsList, payload)
         case EDITACCOUNTINLIST: return updateItem(accountsList, payload)
-        case REMOVEACCOUNTROMLIST: return removeItem(accountsList, payload)
+        case DELETEACCOUNTFROMLIST: return deleteItem(accountsList, payload)
         default: return accountsList
     }
 }

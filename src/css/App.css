@@ -467,6 +467,30 @@
 }
 
 /****** ******/
+.nzNotification {
+  animation: notif 2s infinite;
+  position: absolute;
+  top: 17px;
+  right: 16px;
+  border-radius: 50%;
+  width: 27px;
+  height: 20px;
+  text-align: center;
+}
+
+.nzNotification.ion-android-alert::before {
+  display: block;
+}
+
+@keyframes notif {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}
+
 .nzLogonSection {
   padding: 10px;
   background: #fff;
@@ -978,6 +1002,12 @@
 .page.page--material .nzFabButtonCansel .icon-left-arrow {
   font-size: 20px;
   font-weight: bold;
+}
+
+.page.page--material .nzFabButtonCansel .icon-cancel {
+  font-size: 18px;
+  color: red;
+  font-weight: bolder;
 }
 
 .nzProgressC {

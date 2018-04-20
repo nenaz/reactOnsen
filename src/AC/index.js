@@ -5,7 +5,8 @@ import {
     EDITACCOUNTINLIST,
     SELECTTYPEOPERATION,
     ACCOUNTTOEDIT,
-    CHANGECATEGORYSTATISTIC
+    CHANGECATEGORYSTATISTIC,
+    DELETEACCOUNTFROMLIST
 } from '../js/consts'
 
 export function changeAnimationState(value) {
@@ -25,6 +26,13 @@ export function addAccountToList(value) {
 export function editAccountInList(value) {
     return {
         type: EDITACCOUNTINLIST,
+        payload: value
+    }
+}
+
+export function deleteAccountFromList(value) {
+    return {
+        type: DELETEACCOUNTFROMLIST,
         payload: value
     }
 }

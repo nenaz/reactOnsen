@@ -27,7 +27,6 @@
   to { transform: rotate(360deg); }
 }
 
-
 /* ++ new page ++ */
 .exp-enter-right-to-left {
   transform: translate3d(100%, 0, 0);
@@ -429,6 +428,31 @@
   }
 }
 /****** ******/
+
+
+.nzNotification{
+  animation: notif 2s infinite;
+  position: absolute;
+  top: 17px;
+  right: 16px;
+  border-radius: 50%;
+  width: 27px;
+  height: 20px;
+  text-align: center;
+}
+.nzNotification {
+  &.ion-android-alert::before{
+    display: block;
+  }
+}
+@keyframes notif{
+  0%, 100%{
+    transform: scale(1)
+  }
+  50%{
+    transform: scale(1.5)
+  }
+}
 
 .nzLogonSection{
   padding: 10px;
@@ -898,9 +922,13 @@
     // background-color: #a00505;
     // color: white;
     .icon-left-arrow{
-    // .icon-cancel{
       font-size: 20px;
       font-weight: bold;
+    }
+    .icon-cancel{
+      font-size: 18px;
+      color: red;
+      font-weight: bolder;
     }
   }
 }

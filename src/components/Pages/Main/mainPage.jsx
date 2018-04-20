@@ -2,11 +2,6 @@ import React,{ Component} from 'react'
 import PropTypes from 'prop-types'
 import { 
     Page,
-    // Popover,
-    // List,
-    // ListHeader,
-    // ListItem,
-    // Switch,
     Splitter,
     SplitterContent,
     SplitterSide,
@@ -19,6 +14,7 @@ import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import Section from '../../pageWidget'
 import About from '../About'
+import WhatsNew from '../WhatsNew'
 import Icon from '../../Icon';
 import { ICONMENU } from '../../../js/consts';
 import LeftMenu from '../../Menu/LeftMenu'
@@ -29,7 +25,8 @@ class MainPage extends Component{
         this.state ={
             isOpenPopover: false,
             isOpenLeftMenu: false,
-            modalOpen: false
+            modalOpen: false,
+            showAboutComponent: true,
         }
 
         this.renderToolbar = this.renderToolbar.bind(this)
@@ -44,6 +41,8 @@ class MainPage extends Component{
         this.handleModalOpen = this.handleModalOpen.bind(this)
         this.handleModalClose = this.handleModalClose.bind(this)
         this.pushPage = this.pushPage.bind(this)
+        this.renderModal = this.renderModal.bind(this)
+        this.handlerNotification = this.handlerNotification.bind(this)
 
         this.count = 0
     }
@@ -93,7 +92,11 @@ class MainPage extends Component{
                     </ToolbarButton>
                 </div>
                 <div className="center">Текущее состояние</div>
-                <div className="right" />
+                <div className="right">
+                    <div className="ion-android-alert nzNotification"
+                        onClick={this.handlerNotification}
+                    />
+                </div>
             </Toolbar>
         )
     }
@@ -120,56 +123,35 @@ class MainPage extends Component{
         this.count += 1
     }
 
+    handlerNotification() {
+        this.setState({
+            modalOpen: true,
+            showAboutComponent: false
+        })
+    }
+
+    renderModal() {
+        // const modalData = (this.state.showAboutComponent)
+        //     ? (
+        //         <Modal isOpen={this.state.modalOpen} >
+        //             <About handleModalClose={this.handleModalClose} />
+        //         </Modal>
+        //     )
+        //     : (
+        //         <Modal isOpen={this.state.modalOpen} >
+        //             <WhatsNew handleModalClose={this.handleModalClose} />
+        //         </Modal>
+        //     )
+        // return (<section>{modalData}</section>)
+    }
+
     render(){
         return (
             <Page
                 className="nzPage"
                 renderToolbar={this.renderToolbar}
-                renderModal={() => (
-                    <Modal
-                        isOpen={this.state.modalOpen}
-                    >
-                        <About handleModalClose={this.handleModalClose}/>
-                    </Modal>
-                )}
+                renderModal={this.renderModal}
             >
-                {/* <Popover
-                    isOpen={this.state.isOpenPopover}
-                    onOpen={this.showPopover}
-                    onHide={this.hidePopover}
-                    isCancelable={true}
-                    onCancel={this.canselPopover}
-                    getTarget={this.getTarget}
-                    direction='down'
-                >
-                    <List>
-                        <ListHeader>Settings</ListHeader>
-                        <ListItem>
-                            <div className="center">
-                                Enable cool feature
-                                </div>
-                            <div className="right">
-                                <Switch checked></Switch>
-                            </div>
-                        </ListItem>
-                        <ListItem>
-                            <div className="center">
-                                Enable even cooler feature
-                                </div>
-                            <div className="right">
-                                <Switch></Switch>
-                            </div>
-                        </ListItem>
-                        <ListItem>
-                            <div className="center">
-                                Enable amazing feature
-                                </div>
-                            <div className="right">
-                                <Switch disabled></Switch>
-                            </div>
-                        </ListItem>
-                    </List>
-                </Popover> */}
                 <Splitter>
                     <SplitterSide
                         style={{
@@ -209,6 +191,9 @@ class MainPage extends Component{
                         }}
                     />
                 </Fab>
+                <Modal isOpen={this.state.modalOpen} >
+                    <WhatsNew handleModalClose={this.handleModalClose} />
+                </Modal>
             </Page>
         )
     }
