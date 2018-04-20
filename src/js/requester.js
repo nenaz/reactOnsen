@@ -58,6 +58,9 @@ export default class Requester {
                 case 'transfer':
                     lName = 'transfer'
                     break;
+                case 'whatsnew':
+                    lName = 'whatsnew'
+                    break;
                 case 'deleteAccount':
                     lName = 'deleteAccount'
                     break;

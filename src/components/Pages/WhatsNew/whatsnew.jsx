@@ -4,6 +4,7 @@ import {
     Button
 } from 'react-onsenui'
 import config from '../../../js/config'
+import Requester from '../../../js/requester'
 
 class WhatsNew extends Component{
     constructor(props){
@@ -11,6 +12,9 @@ class WhatsNew extends Component{
         this.state ={}
 
         this.showUpdateDescription = this.showUpdateDescription.bind(this)
+        this.getNew = this.getNew.bind(this)
+
+        this.req = new Requester()
     }
 
     showUpdateDescription() {
@@ -20,6 +24,18 @@ class WhatsNew extends Component{
             )
         })
         return description
+    }
+
+    getNew() {
+        return new Promise((resolve, reject) => {
+            this.req.request('whatsnew').then(result => {
+                resolve(result)
+            })
+        })
+    }
+
+    componentDidMount() {
+        this.getNew()
     }
 
     render(){
