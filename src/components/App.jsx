@@ -19,7 +19,8 @@ import AddOperation from './Pages/Operation/Add'
 import OptionsPage from './Pages/Options';
 import {
   addOperationToList,
-  addAccountToList
+  addAccountToList,
+  setNewFunctions
 } from '../AC'
 import Requester from '../js/requester'
 import Welcome from './Welcome'
@@ -42,6 +43,7 @@ class App extends Component {
     this.getOperations = this.getOperations.bind(this)
     this.getAccounts = this.getAccounts.bind(this)
     this.changeLogonStatus = this.changeLogonStatus.bind(this)
+    this.getNew = this.getNew.bind(this)
   }
 
   // componentDidMount() {
@@ -124,9 +126,22 @@ class App extends Component {
     })
   }
 
+  getNew() {
+    return new Promise((resolve, reject) => {
+      this.req.request('whatsnew').then(result => {
+        resolve(result)
+        this.props.setNewFunctions(result)
+      })
+    })
+  }
+
   changeLogonStatus(logon) {
     if (logon) {
-      Promise.all([this.getAccounts(), this.getOperations()]).then(values => {
+      Promise.all([
+        this.getAccounts(),
+        this.getOperations(),
+        this.getNew()
+      ]).then(values => {
         this.setState({
           render: true,
           logon
@@ -177,7 +192,8 @@ export default connect((state) => ({
   changeAnimationState: state.changeAnimationState
 }), {
   addOperationToList,
-  addAccountToList
+  addAccountToList,
+  setNewFunctions
 })(App)
 
 // 

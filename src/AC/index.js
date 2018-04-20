@@ -6,7 +6,8 @@ import {
     SELECTTYPEOPERATION,
     ACCOUNTTOEDIT,
     CHANGECATEGORYSTATISTIC,
-    DELETEACCOUNTFROMLIST
+    DELETEACCOUNTFROMLIST,
+    SETNEWFUNCTIONS,
 } from '../js/consts'
 
 export function changeAnimationState(value) {
@@ -62,5 +63,12 @@ export function changeCategoryStatistic(id) {
     return {
         type: CHANGECATEGORYSTATISTIC,
         payload: id
+    }
+}
+
+export function setNewFunctions(obj) {
+    return {
+        type: SETNEWFUNCTIONS,
+        payload: obj
     }
 }

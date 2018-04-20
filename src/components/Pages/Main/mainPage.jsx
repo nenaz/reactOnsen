@@ -18,6 +18,7 @@ import WhatsNew from '../WhatsNew'
 import Icon from '../../Icon';
 import { ICONMENU } from '../../../js/consts';
 import LeftMenu from '../../Menu/LeftMenu'
+import { connect } from 'react-redux'
 
 class MainPage extends Component{
     constructor(props){
@@ -93,9 +94,12 @@ class MainPage extends Component{
                 </div>
                 <div className="center">Текущее состояние</div>
                 <div className="right">
-                    <div className="ion-android-alert nzNotification"
-                        onClick={this.handlerNotification}
-                    />
+                    {this.props.newFunctions.show &&
+                        <div
+                            className="ion-android-alert nzNotification"
+                            onClick={this.handlerNotification}
+                        />
+                    }
                 </div>
             </Toolbar>
         )
@@ -131,18 +135,11 @@ class MainPage extends Component{
     }
 
     renderModal() {
-        // const modalData = (this.state.showAboutComponent)
-        //     ? (
-        //         <Modal isOpen={this.state.modalOpen} >
-        //             <About handleModalClose={this.handleModalClose} />
-        //         </Modal>
-        //     )
-        //     : (
-        //         <Modal isOpen={this.state.modalOpen} >
-        //             <WhatsNew handleModalClose={this.handleModalClose} />
-        //         </Modal>
-        //     )
-        // return (<section>{modalData}</section>)
+        // return (
+        //     <Modal isOpen={this.state.modalOpen} >
+        //         <About handleModalClose={this.handleModalClose} />
+        //     </Modal>
+        // )
     }
 
     render(){
@@ -204,4 +201,6 @@ MainPage.propTypes = {
     navigator: PropTypes.object.isRequired,
 }
 
-export default MainPage
+export default connect((state) => ({
+    newFunctions: state.updateNewFunctions,
+}))(MainPage)

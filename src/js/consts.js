@@ -6,6 +6,7 @@ export const SELECTTYPEOPERATION = 'selectTypeOperation'
 export const ACCOUNTTOEDIT = 'accountToEdit'
 export const CHANGECATEGORYSTATISTIC = 'changeCategoryStatictic'
 export const DELETEACCOUNTFROMLIST = 'deleteAccountFromList'
+export const SETNEWFUNCTIONS = 'setNewFunctions'
 
 // export const SERVERURL = 'https://guarded-sea-48553.herokuapp.com/'
 export const SERVERURL = 'https://mongosever.herokuapp.com/'

@@ -5,37 +5,47 @@ import {
 } from 'react-onsenui'
 import config from '../../../js/config'
 import Requester from '../../../js/requester'
+import { connect } from 'react-redux'
+import {
+    setNewFunctions,
+} from '../../../AC'
 
 class WhatsNew extends Component{
     constructor(props){
         super(props)
-        this.state ={}
+        this.state ={
+            descriptions: ''
+        }
 
         this.showUpdateDescription = this.showUpdateDescription.bind(this)
-        this.getNew = this.getNew.bind(this)
+        this.handleButtonClose = this.handleButtonClose.bind(this)
 
         this.req = new Requester()
     }
 
     showUpdateDescription() {
-        const description = config.updateDescription.map((item, key) => {
-            return (
-                <li key={key}>{item}</li>
-            )
-        })
-        return description
-    }
-
-    getNew() {
-        return new Promise((resolve, reject) => {
-            this.req.request('whatsnew').then(result => {
-                resolve(result)
+        if (this.props.newFunctions.show) {
+            const description = this.props.newFunctions.updateDescription.map((item, key) => {
+                return (
+                    <li key={key}>{item}</li>
+                )
             })
-        })
+            return description
+        } else {
+            return false
+        }
     }
 
-    componentDidMount() {
-        this.getNew()
+    handleButtonClose() {
+        this.props.setNewFunctions({
+            show: false,
+        })
+        this.req.request('setShowNews', {
+            id: this.props.newFunctions._id
+        }).then((result) => {
+
+        })
+        this.props.handleModalClose()
     }
 
     render(){
@@ -59,7 +69,7 @@ class WhatsNew extends Component{
                         {this.showUpdateDescription()}
                     </ul>
                     <Button
-                        onClick={this.props.handleModalClose}
+                        onClick={this.handleButtonClose}
                     >
                         Понятно
                     </Button>
@@ -73,4 +83,8 @@ WhatsNew.propTypes = {
     handleModalClose: PropTypes.func
 }
 
-export default WhatsNew
+export default connect((state) => ({
+    newFunctions: state.updateNewFunctions,
+}), {
+    setNewFunctions,
+})(WhatsNew)
