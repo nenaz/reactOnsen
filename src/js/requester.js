@@ -5,8 +5,6 @@ import {
 } from './consts'
 
 export default class Requester {
-    // options = {}
-
     initialize(value) {
         if (localStorage) {
             if (!localStorage.hasOwnProperty('localUserName')) {
@@ -23,11 +21,12 @@ export default class Requester {
             }
             
             if (!localStorage.hasOwnProperty('localOptions')) {
-                this.options = {}
-                this.options.develop = DEVELOP
-                this.options.connectDB = true
-                this.options.urlConnectDB = (DEVELOP) ? SERVERURLLOCAL : SERVERURL
-                this.setLocal('localOptions', this.options, true)
+                this.options = {
+                    develop: DEVELOP,
+                    connectDB: true,
+                    urlConnectDB: (DEVELOP) ? SERVERURLLOCAL : SERVERURL,
+                }
+                this.setLocal('localOptions', this.options, null, true)
             }
         } else {
             console.log('error')
@@ -53,7 +52,11 @@ export default class Requester {
                     lName = 'getAccounts'
                     break;
                 case 'updateItem':
-                    lName = 'updateAccountAmount'
+                    // lName = 'updateAccountAmount'
+                    lName = 'editAccount'
+                    break;
+                case 'transfer':
+                    lName = 'transfer'
                     break;
                 default: lName = 'addOperation'
                     break;
@@ -84,11 +87,17 @@ export default class Requester {
     }
 
     send(name, type, params) {
+        const webToken = this.getWebToken()
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
             xhr.open(type, SERVERURL + name, true);
             // xhr.open(type, SERVERURLLOCAL + name, true);
+            xhr.onprogress = (event) => {}
             xhr.setRequestHeader('Content-Type', 'application/json');
+            if (name !== 'newUser' && name !== 'authUser') {
+                
+                xhr.setRequestHeader('Authorization', webToken);
+            }
             xhr.onload = function () {
                 if (this.status === 200) {
                     resolve(JSON.parse(this.response));
@@ -112,16 +121,25 @@ export default class Requester {
         });
     }
 
-    setLocal(name, value, initialize) {
+    setLocal(name, value, nameField, initialize) {
         console.log('setLocal = ' + name)
         let arr
         if (initialize) {
             arr = value
+            localStorage.setItem(name, JSON.stringify(arr))
         } else {
-            arr = this.getLocal(name)
-            arr.push(value)
+            this.getLocal(name).then((arr) => {
+                if (nameField) {
+                    arr[nameField] = value
+                    if (nameField === 'token') {
+                        this.webToken = value
+                    }
+                } else {
+                    arr.push(value)
+                }
+                localStorage.setItem(name, JSON.stringify(arr))
+            })
         }
-        localStorage.setItem(name, JSON.stringify(arr))
     }
 
     getLocal(name) {
@@ -130,6 +148,10 @@ export default class Requester {
             // return JSON.parse(localStorage.getItem(name))
             resolve(JSON.parse(localStorage.getItem(name)));
         })
+    }
+
+    getWebToken() {
+        return JSON.parse(localStorage.getItem('localOptions')).webToken
     }
 
     updateItem(name, value) {

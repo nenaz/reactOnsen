@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
+import {
+  Provider,
+  connect
+} from 'react-redux'
+import {
+  ProgressCircular,
+  Navigator
+} from 'react-onsenui'
 import '../css/App.css'
 import '../css/style.css'
 import '../css/ionicons.css'
 import DownloadPDF from './DownloadPDF'
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect
-} from 'react-router-dom'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import store from '../store'
-import { Provider } from 'react-redux'
-import AddAccount from './addAccount'
-import EditAccount from './EditAccount'
-import MainPage from './mainPage'
-import Utils from '../js/utils'
-import { connect } from 'react-redux'
-import AddOperation from './addOperation'
-import { addOperationToList, addAccountToList } from '../AC'
+import AddAccount from './Pages/Account/Add'
+import EditAccount from './Pages/Account/Edit'
+import MainPage from './Pages/Main'
+import AddOperation from './Pages/Operation/Add'
+import OptionsPage from './Pages/Options';
+import {
+  addOperationToList,
+  addAccountToList
+} from '../AC'
 import Requester from '../js/requester'
-import { ProgressCircular, Navigator } from 'react-onsenui'
-import OptionsPage from './Options';
+import Welcome from './Welcome'
 
 class App extends Component {
   constructor(props) {
@@ -53,15 +55,13 @@ class App extends Component {
     this.req.initialize();
   }
 
-  componentDidMount() {
-    this.getAccounts()
-    this.getOperations()
-    setTimeout(() => {
-      this.setState({
-        render: true
-      })
-    }, 2000)
-  }
+  // componentDidMount() {
+  //   Promise.all([this.getAccounts(), this.getOperations()]).then(values => {
+  //     this.setState({
+  //       render: true
+  //     })
+  //   })
+  // }
 
   renderPage(route, navigator) {
     switch (route.title) {
@@ -105,34 +105,40 @@ class App extends Component {
   }
 
   getOperations() {
-    this.req.request('getOperations').then(result => {
-      const arrOper = result.reverse()
-      arrOper.map(item => this.props.addOperationToList(item))
+    return new Promise((resolve, reject) => {
+      this.req.request('getOperations').then(result => {
+        resolve(result)
+        const arrOper = result.reverse()
+        arrOper.map(item => this.props.addOperationToList(item))
+      })
     })
   }
 
   getAccounts() {
-    this.req.request('getAccounts').then(result => {
-      const arrAcc = result.reverse()
-      arrAcc.map(item => this.props.addAccountToList(item))
+    return new Promise((resolve, reject) => {
+      this.req.request('getAccounts').then(result => {
+        resolve(result)
+        const arrAcc = result.reverse()
+        arrAcc.map(item => this.props.addAccountToList(item))
+      })
     })
   }
 
-  changeLogonStatus(obj) {
-    const resultObj = JSON.parse(obj)
-    const logon = resultObj.result
+  changeLogonStatus(logon) {
     if (logon) {
-      this.getOperations()
-      this.getAccounts()
-      this.setState({
-        logon,
-        render: true
+      Promise.all([this.getAccounts(), this.getOperations()]).then(values => {
+        this.setState({
+          render: true,
+          logon
+        })
       })
     } else {
-      this.setState({
-        errorLogonStatus: resultObj.status,
-        errorLogonText: resultObj.statusText
-      })
+      // const obj = JSON.parse(resultObj)
+      // this.setState({
+      //   errorLogonStatus: String(obj.status),
+      //   errorLogonText: obj.statusText,
+      //   render: false,
+      // })
     }
   }
 
@@ -155,7 +161,14 @@ class App extends Component {
         </Provider>
       )
     } else {
-      return <ProgressCircular indeterminate className="nzProgressC" />
+      return (
+        <Welcome
+          cordova={this.props.cordova}
+          changeLogonStatus={this.changeLogonStatus}
+          errorLogonText={this.state.errorLogonText}
+          errorLogonStatus={this.state.errorLogonStatus}
+        />
+      )
     }
   }
 }
@@ -166,3 +179,5 @@ export default connect((state) => ({
   addOperationToList,
   addAccountToList
 })(App)
+
+// 

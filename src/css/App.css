@@ -177,7 +177,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 75%;
+  height: 70%;
   color: white;
 }
 
@@ -200,11 +200,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  height: 30%;
 }
 
 .nzAmountSection .nzAmountSelect div {
   color: #fff;
   text-align: center;
+  width: 50%;
 }
 
 .nzAmountSection .nzAmountSelect div span {
@@ -219,6 +221,11 @@
 .nzAmountSection .nzAmountSelect div .nzAmountSelectText {
   font-size: 16px;
   font-weight: bold;
+}
+
+.nzAmountSection .nzAmountSelect div .nzAmountSelectAmount,
+.nzAmountSection .nzAmountSelect div .nzAmountSelectSubCategory {
+  font-size: 12px;
 }
 
 .nzFromToText select {
@@ -236,25 +243,375 @@
   justify-content: center;
 }
 
-.logonSection {
-  padding: 10px;
+.nzLogonPageAddUser {
+  position: absolute;
   background: #fff;
-  margin: 10px;
-  height: 250px;
+  height: 170px;
+  border-radius: 15px;
+  width: calc(100% - 20px);
+  left: 10px;
+  overflow: initial;
 }
 
-.logonSection section {
+.nzLogonPageAddUser.fab.fab--material {
+  top: calc(50% - 90px);
+  right: 5px;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+}
+
+.nzLogonPageAddUser.fab.fab--material span {
+  line-height: 35px;
+}
+
+.nzLogonPageAddUser .nzAddUserButton {
+  background-color: #22964f;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  position: absolute;
+  left: calc(100% - 30px);
+  top: -5px;
+}
+
+.nzLogonPageAddUser .nzAddUserButton span {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: rotate(0deg);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.nzLogonPageAddUser .nzAddUserButton span::before {
+  width: 18px;
+  height: 2px;
+  content: "";
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 8px);
+}
+
+.nzLogonPageAddUser .nzAddUserButton span::after {
+  height: 18px;
+  width: 2px;
+  content: "";
+  background: #fff;
+  position: absolute;
+  top: calc(50% - 8px);
+  left: 50%;
+}
+
+.nzLogonPageAddUser .nzAddUserSection {
+  position: absolute;
+  display: inline-block;
+  margin-top: 10px;
+  height: 170px;
+  border-radius: 15px;
+  width: calc(100% - 35px);
+  left: 10px;
+  opacity: 0;
+}
+
+.nzLogonPageAddUser .nzAddUserSection section {
   padding: 10px;
 }
 
-.logonSection section ons-input {
+.nzLogonPageAddUser .nzAddUserSection section ons-input {
   width: 100%;
 }
 
-.logonSection section ons-button {
-  margin: 10px 0;
+.nzLogonPageAddUser .nzAddUserSection section ons-input span {
+  color: #404040;
 }
 
+.nzLogonPageAddUser .nzAddUserSection section ons-input .text-input--material:focus {
+  background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+}
+
+.nzLogonPageAddUser .nzAddUserSection section ons-button {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  color: #404040;
+}
+
+.nzLogonPageAddUser.nzNewUser {
+  overflow: hidden;
+  animation: animHeight 500ms linear forwards;
+  animation-delay: 500ms;
+}
+
+.nzLogonPageAddUser.nzNewUser .nzAddUserButton {
+  z-index: 1000;
+  animation: animUser 500ms linear forwards;
+}
+
+.nzLogonPageAddUser.nzNewUser .nzAddUserButton span {
+  animation: animPlus 250ms linear forwards;
+  animation-delay: 500ms;
+}
+
+.nzLogonPageAddUser.nzNewUser .nzAddUserSection {
+  animation: animShowNewUserFields 500ms linear forwards;
+  animation-delay: 500ms;
+}
+
+.nzLogonPageAddUser.nzNoNewUser {
+  animation: noAnimHeight 500ms linear forwards;
+}
+
+.nzLogonPageAddUser.nzNoNewUser .nzAddUserButton {
+  animation: noAnimUser 500ms linear forwards;
+}
+
+.nzLogonPageAddUser.nzNoNewUser .nzAddUserButton span {
+  animation: noAnimPlus 250ms linear forwards;
+}
+
+.nzLogonPageAddUser.nzNoNewUser .nzAddUserSection {
+  animation: noAnimShowNewUserFields 500ms linear forwards;
+}
+
+/****** ******/
+@keyframes animUser {
+  50% {
+    transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+    width: 35px;
+    height: 35px;
+  }
+  100% {
+    transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    width: 120vw;
+    height: 120vh;
+  }
+}
+
+@keyframes noAnimUser {
+  0% {
+    transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    width: 120vw;
+    height: 120vh;
+  }
+  50% {
+    transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+    width: 35px;
+    height: 35px;
+  }
+  100% {
+    left: calc(100% - 30px);
+    top: -5px;
+  }
+}
+
+@keyframes animPlus {
+  100% {
+    transform: rotate(45deg);
+    width: 50%;
+    height: 50%;
+    top: 15%;
+    right: -10%;
+  }
+}
+
+@keyframes noAnimPlus {
+  0% {
+    transform: rotate(45deg);
+    width: 50%;
+    height: 50%;
+    top: 15%;
+    right: -10%;
+  }
+  100% {
+    transform: rotate(0deg);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
+}
+
+@keyframes animHeight {
+  100% {
+    height: 210px;
+  }
+}
+
+@keyframes noAnimHeight {
+  0% {
+    height: 210px;
+  }
+  100% {
+    height: 170px;
+    overflow: initial;
+  }
+}
+
+@keyframes animShowNewUserFields {
+  100% {
+    opacity: 1;
+    z-index: 11111;
+  }
+}
+
+@keyframes noAnimShowNewUserFields {
+  0% {
+    opacity: 1;
+    z-index: 11111;
+  }
+  100% {
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
+/****** ******/
+.nzLogonSection {
+  padding: 10px;
+  background: #fff;
+  margin: 10px;
+  height: 150px;
+  border-radius: 15px;
+}
+
+.nzLogonSection section {
+  padding: 10px;
+}
+
+.nzLogonSection section.nzLogonSectionButton {
+  text-align: center;
+  position: relative;
+}
+
+.nzLogonSection section ons-input {
+  width: 100%;
+}
+
+.nzLogonSection section ons-input span {
+  color: #404040;
+}
+
+.nzLogonSection section ons-input .text-input--material:focus {
+  background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+}
+
+.nzLogonSection section ons-button {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  color: #404040;
+}
+
+.nzLogonSection section button {
+  border: 0;
+  color: #404040;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  width: 100%;
+  background: #37474f;
+  height: 42px;
+}
+
+.nzLogonSection section button .content {
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.nzLogonSection section button span {
+  color: white;
+}
+
+.nzLogonSection section button.loading {
+  animation: buttonSmall 500ms linear forwards;
+}
+
+.nzLogonSection section button.loading .content {
+  animation-delay: 200ms;
+  animation: buttonTextHide 300ms linear forwards;
+}
+
+.nzLogonSection section button.loading.unLoad {
+  width: 42px;
+  border-radius: 50%;
+  height: 42px;
+  animation: buttonColor 550ms linear forwards;
+}
+
+.nzLogonSection section button.loading.unLoad.icon-checked:before {
+  font-size: 25px;
+}
+
+.nzLogonSection section button:active {
+  outline: 0;
+}
+
+.nzLogonSection section button:focus {
+  outline: 0;
+}
+
+.nzLogonSection section .nzLogonSectionButtonCircular {
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  top: 10px;
+  text-align: center;
+  left: calc(50% - 21px);
+  opacity: 0;
+}
+
+.nzLogonSection section .nzLogonSectionButtonCircular.loading {
+  animation: processCircularShow 450ms linear forwards;
+  animation-delay: 500ms;
+}
+
+.nzLogonSection section .nzLogonSectionButtonCircular.loading.unLoad {
+  animation: processCircularHide 450ms linear forwards;
+}
+
+/*********************************/
+@keyframes buttonSmall {
+  0% {
+  }
+  100% {
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    background: transparent;
+  }
+}
+
+@keyframes buttonTextHide {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes processCircularShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/*********************************/
+/*********************************/
+@keyframes processCircularHide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes buttonColor {
+  to {
+    background-color: #1d9650;
+  }
+}
+
+/*********************************/
 .localIcon {
   height: 20px;
   width: 20px;
@@ -479,6 +836,10 @@
   color: red;
 }
 
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._left .icon-transfer {
+  font-size: 32px;
+}
+
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._center {
   display: flex;
   flex-direction: row;
@@ -642,5 +1003,104 @@
 
 .nzProgressAddOper .progress-circular--material__primary {
   stroke: #fff;
+}
+
+.nzWelcomeSection {
+  margin: auto;
+  height: 100vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nzWelcomeSection .nzWelcomeSectionBlock {
+  text-align: center;
+  color: white;
+  font-size: 35px;
+}
+
+.nzWelcomeSection .nzWelcomeSectionBlock .nzWelcomeSectionBlockRow {
+  text-align: center;
+}
+
+.nzWelcomeSection .nzWelcomeSectionBlock .nzWelcomeSectionBlockRow .nzWelcomeSectionBlockRowTextField input {
+  color: white;
+}
+
+.nzWelcomeSection .nzWelcomeSectionBlock .nzWelcomeSectionBlockRow .nzWelcomeSectionBlockRowTextField .text-input--material:focus {
+  background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+}
+
+.nzProgressWelcomePage {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: calc(80% - 30px);
+  left: calc(50% - 30px);
+}
+
+.nzProgressWelcomePage circle {
+  stroke-width: 3%;
+}
+
+.nzProgressWelcomePage .progress-circular--material__primary {
+  stroke: white;
+}
+
+.nzWelcomLogo {
+  width: 100px;
+  height: 100px;
+  background-color: #404040;
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 50px);
+  top: 10%;
+}
+
+.nzWelcomePage,
+.nzLoginPage,
+.nzWelcomeSectionBlock,
+.nzProgressWelcomePage {
+  transition: 500ms linear all;
+}
+
+.nzLoginPage {
+  transform: translateX(100%);
+}
+
+.nzWelcomePage {
+  overflow: hidden;
+}
+
+.nzWelcomePage.FadeOut {
+  transform: translateX(-100%);
+  overflow: hidden;
+}
+
+.nzWelcomePage.FadeOut .nzWelcomeSectionBlock {
+  transform: translateX(250%);
+}
+
+.nzWelcomePage.FadeOut .nzProgressWelcomePage {
+  transform: translateY(700%);
+  opacity: 0;
+}
+
+.nzLoginPage.FadeOut {
+  transform: translateX(0%);
+}
+
+html {
+  overflow: hidden;
+}
+
+#root {
+  overflow: hidden;
+}
+
+#root #test {
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 /*# sourceMappingURL=App.css.map */

@@ -1,3 +1,5 @@
+import { LISTCATEGORY } from './consts'
+
 const selectButtonsParams = (name) => {
     switch(name) {
         case 'AccountsButtonAdd': return {
@@ -168,6 +170,34 @@ const dailyCounting = (data) => {
     return count;
 }
 
+const findCateGoryNameOnId = (id) => {
+    const ids = id.split('-')
+    const row = LISTCATEGORY.find((item) => {
+        return item.value === ids[0]*1
+    })
+    const col = row.data.find((item) => {
+        return item.value === ids[1] * 1
+    })
+    return {
+        title: row.title,
+        subTitle: col.title,
+    }
+}
+
+const findAccountDataOnId = (id) => {
+    const ids = id.split('-')
+    const row = LISTCATEGORY.find((item) => {
+        return item.value === ids[0] * 1
+    })
+    const col = row.data.find((item) => {
+        return item.value === ids[1] * 1
+    })
+    return {
+        title: row.title,
+        subTitle: col.title,
+    }
+}
+
 const utils = {
     selectButtonsParams,
     selectSectionsParams,
@@ -179,6 +209,8 @@ const utils = {
     deleteFirstSymbol,
     createTopCategorys,
     dailyCounting,
+    findCateGoryNameOnId,
+    findAccountDataOnId,
 }
 
 export default utils

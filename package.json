@@ -28,6 +28,7 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "jspdf": "^1.3.5",
+    "md5": "^2.2.1",
     "mongodb": "^2.2.33",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
@@ -100,8 +101,10 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "bcrypt": "^2.0.0",
     "eslint": "^4.10.0",
     "jest": "^20.0.4",
+    "jwt-simple": "^0.5.1",
     "onsenui": "^2.8.1",
     "react-onsenui": "^1.9.0",
     "yandex-map-react": "^1.1.1"

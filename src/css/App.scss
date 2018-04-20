@@ -169,7 +169,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 75%;
+    height: 70%;
     color: white;
     .nzAmountItem{
       flex-grow: 1;
@@ -189,9 +189,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    height: 30%;
     div{
       color: #fff;
       text-align: center;
+      width: 50%;
       span{
         display: inline-block;
         width: 100%;
@@ -202,6 +204,10 @@
       .nzAmountSelectText{
         font-size: 16px;
         font-weight: bold;
+      }
+      .nzAmountSelectAmount,
+      .nzAmountSelectSubCategory{
+        font-size: 12px;
       }
     }
   }
@@ -222,21 +228,345 @@
   flex-direction: column;
   justify-content: center;
 }
-.logonSection{
-  padding: 10px;
-  background: #fff;
-  margin: 10px;
-  height: 250px;
-  section{
-    padding: 10px;
-    ons-input{
-      width: 100%;
+
+.nzLogonPageAddUser{
+  &.fab.fab--material{
+    top: calc(50% - 90px);
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    span{
+      line-height: 35px;
     }
-    ons-button{
-      margin: 10px 0;
+  }
+  position: absolute;
+  background: #fff;
+  height: 170px;
+  border-radius: 15px;
+  width: calc(100% - 20px);
+  left: 10px;
+  overflow: initial;
+  .nzAddUserButton{
+    background-color: #22964f;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: absolute;
+    left: calc(100% - 30px);
+    top: -5px;
+    span{
+      width: 100%;
+      height: 100%;
+      display: block;
+      transform: rotate(0deg);
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    span::before{
+      width: 18px;
+      height: 2px;
+      content: "";
+      background: #fff;
+      position: absolute;
+      top: 50%;
+      left: calc(50% - 8px);
+    }
+    span::after{
+      height: 18px;
+      width: 2px;
+      content: "";
+      background: #fff;
+      position: absolute;
+      top: calc(50% - 8px);
+      left: 50%;
+    }
+  }
+  .nzAddUserSection{
+    position: absolute;
+    display: inline-block;
+    margin-top: 10px;
+    height: 170px;
+    border-radius: 15px;
+    width: calc(100% - 35px);
+    left: 10px;
+    opacity: 0;
+    section{
+      padding: 10px;
+      ons-input{
+        width: 100%;
+        span{
+          color: rgb(64,64,64);
+        }
+        .text-input--material:focus{
+          background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+        }
+      }
+      ons-button{
+        border: 3px solid rgba(0, 0, 0, 0.1);
+        color: rgb(64,64,64);
+      }
+    }
+  }
+  &.nzNewUser{
+    overflow: hidden;
+    animation: animHeight 500ms linear forwards;
+    animation-delay: 500ms;
+    .nzAddUserButton{
+      z-index: 1000;
+      animation: animUser 500ms linear forwards;
+      span{
+        animation: animPlus 250ms linear forwards;
+        animation-delay: 500ms;
+      }
+    }
+    .nzAddUserSection{
+      animation: animShowNewUserFields 500ms linear forwards;
+      animation-delay: 500ms;
+    }
+  }
+  &.nzNoNewUser{
+    animation: noAnimHeight 500ms linear forwards;
+    .nzAddUserButton{
+      animation: noAnimUser 500ms linear forwards;
+      // animation-delay: 500ms;
+      span{
+        animation: noAnimPlus 250ms linear forwards;
+      }
+    }
+    .nzAddUserSection{
+      animation: noAnimShowNewUserFields 500ms linear forwards;
     }
   }
 }
+
+/****** ******/
+@keyframes animUser {
+  50% {
+    transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+    width: 35px;
+    height: 35px;
+  }
+  100% {
+    transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    width: 120vw;
+    height: 120vh;
+  }
+}
+@keyframes noAnimUser {
+  0% {
+    transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    width: 120vw;
+    height: 120vh;
+  }
+  50% {
+    transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+    width: 35px;
+    height: 35px;
+  }
+  100% {
+    left: calc(100% - 30px);
+    top: -5px;
+  }
+}
+
+@keyframes animPlus{
+  100%{
+    transform: rotate(45deg);
+    width: 50%;
+    height: 50%;
+    top: 15%;
+    right: -10%;
+  }
+}
+@keyframes noAnimPlus{
+  0%{
+    transform: rotate(45deg);
+    width: 50%;
+    height: 50%;
+    top: 15%;
+    right: -10%;
+  }
+  100%{
+    transform: rotate(0deg);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
+}
+
+@keyframes animHeight{
+  100%{
+    height: 210px;
+  }
+}
+@keyframes noAnimHeight{
+  0%{
+    height: 210px;
+  }
+  100%{
+    height: 170px;
+    overflow: initial;
+  }
+}
+
+@keyframes animShowNewUserFields{
+  100%{
+    opacity: 1;
+    z-index: 11111;
+  }
+}
+@keyframes noAnimShowNewUserFields{
+  0%{
+    opacity: 1;
+    z-index: 11111;
+  }
+  100%{
+    opacity: 0;
+    z-index: 0;
+  }
+}
+/****** ******/
+
+.nzLogonSection{
+  padding: 10px;
+  background: #fff;
+  margin: 10px;
+  height: 150px;
+  border-radius: 15px;
+  section{
+    &.nzLogonSectionButton{
+      text-align: center;
+      position: relative;
+    }
+    padding: 10px;
+    ons-input{
+      width: 100%;
+      span{
+        color: rgb(64,64,64);
+      }
+      .text-input--material:focus{
+        background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+      }
+    }
+    ons-button{
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      color: rgb(64,64,64);
+    }
+    button{
+      border: 0;
+      color: #404040;
+      position: relative;
+      // display: inline-block;
+      // box-sizing: border-box;
+      // background-clip: padding-box;
+      // min-height: 36px;
+      // line-height: 36px;
+      // padding: 0;
+      text-align: center;
+      font-size: 14px;
+      width: 100%;
+      // border: 2px solid #515854;
+      background: #37474f;
+      // transition: transform 0.2s;
+      height: 42px;
+      .content{
+        transition: opacity 0.3s, transform 0.3s;
+      }
+      span{
+        color: white;
+      }
+    }
+    button.loading{
+      animation: buttonSmall 500ms linear forwards;
+      // transition: 500ms linear all;
+      // width: 42px;
+      // height: 42px;
+      // border: 2px solid #515854;
+      // border-radius: 50%;
+      .content{
+        animation-delay: 200ms;
+        animation: buttonTextHide 300ms linear forwards;
+      }
+      &.unLoad{
+        width: 42px;
+        border-radius: 50%;
+        height: 42px;
+        animation: buttonColor 550ms linear forwards;
+        &.icon-checked:before{
+          font-size: 25px;
+        }
+      }
+    }
+    button:active{
+      outline: 0;
+    }
+    button:focus{
+      outline: 0;
+    }
+    .nzLogonSectionButtonCircular{
+      height: 42px;
+      width: 42px;
+      position: absolute;
+      top: 10px;
+      text-align: center;
+      left: calc(50% - 21px);
+      opacity: 0;
+    }
+    .nzLogonSectionButtonCircular.loading{
+      animation: processCircularShow 450ms linear forwards;
+      animation-delay: 500ms;
+      &.unLoad{
+        animation: processCircularHide 450ms linear forwards;
+      }
+    }
+  }
+}
+
+/*********************************/
+@keyframes buttonSmall{
+  0% {
+    // border-radius: 0px;
+  }
+  100% {
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    background: transparent;
+    // border: 2px solid #515854;
+  }
+}
+@keyframes buttonTextHide{
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes processCircularShow{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/*********************************/
+/*********************************/
+@keyframes processCircularHide{
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes buttonColor{
+  to {
+    background-color: #1d9650;
+  }
+}
+/*********************************/
 
 .localIcon{
   height: 20px;
@@ -446,6 +776,9 @@
                 .icon-payment_dowm{
                   color: red;
                 }
+                .icon-transfer{
+                  font-size: 32px;
+                }
               }
               ._center{
                 display: flex;
@@ -591,5 +924,102 @@
   }
   .progress-circular--material__primary{
     stroke: #fff;
+  }
+}
+
+.nzWelcomeSection{
+  margin: auto;
+  height: 100vh;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // background-color: url('../img/man-3083341_1280.bf8db6ad.jpg');
+  .nzWelcomeSectionBlock{
+    // background-color: rgb(64,64,64);
+    // height: 40%;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // border-radius: 25px;
+    text-align: center;
+    color: white;
+    font-size: 35px;
+    .nzWelcomeSectionBlockRow{
+      text-align: center;
+      .nzWelcomeSectionBlockRowTextField{
+        input{
+          color: white;
+        }
+        .text-input--material:focus{
+          background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+        }
+        // imput:focus{
+        //   background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+        // }
+      }
+    }
+  }
+}
+.nzProgressWelcomePage {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: calc(80% - 30px);
+  left: calc(50% - 30px);
+  circle {
+    stroke-width: 3%;
+  }
+  .progress-circular--material__primary{
+    stroke: white;
+  }
+}
+.nzWelcomLogo{
+  width: 100px;
+  height: 100px;
+  background-color: rgb(64,64,64);
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 50px);
+  top: 10%;
+}
+
+.nzWelcomePage,
+.nzLoginPage,
+.nzWelcomeSectionBlock,
+.nzProgressWelcomePage{
+  transition: 500ms linear all;
+}
+.nzLoginPage{
+  transform: translateX(100%);
+}
+.nzWelcomePage{
+  overflow: hidden;
+}
+
+.nzWelcomePage.FadeOut{
+  transform: translateX(-100%);
+  overflow: hidden;
+  .nzWelcomeSectionBlock{
+    transform: translateX(250%);
+  }
+  .nzProgressWelcomePage{
+    transform: translateY(700%);
+    opacity: 0;
+  }
+}
+.nzLoginPage.FadeOut{
+  transform: translateX(0%);
+}
+
+html{
+  overflow: hidden;
+}
+
+#root{
+  overflow: hidden;
+  #test{
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 }

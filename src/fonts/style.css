@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?889cjn');
-  src:  url('fonts/icomoon.eot?889cjn#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?889cjn') format('truetype'),
-    url('fonts/icomoon.woff?889cjn') format('woff'),
-    url('fonts/icomoon.svg?889cjn#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?9ntf57');
+  src:  url('fonts/icomoon.eot?9ntf57#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?9ntf57') format('truetype'),
+    url('fonts/icomoon.woff?9ntf57') format('woff'),
+    url('fonts/icomoon.svg?9ntf57#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -25,22 +25,13 @@
 }
 
 .icon-transfer:before {
-  content: "\e90b";
-}
-.icon-checked:before {
   content: "\e908";
 }
-.icon-minus:before {
-  content: "\e909";
+.icon-checked:before {
+  content: "\e907";
 }
 .icon-plus2:before {
-  content: "\e90a";
-}
-.icon-mastercard:before {
   content: "\e906";
-}
-.icon-visa:before {
-  content: "\e907";
 }
 .icon-left-arrow:before {
   content: "\e905";

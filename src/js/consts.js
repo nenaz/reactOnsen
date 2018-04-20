@@ -45,6 +45,15 @@ export const FILTERLIST = [{
 
 export const OPERATIONDETAILS = ['Место','Дата','Сумма', 'Валюта'];
 
+export const LEFTMENUITEMS = [
+    { name: 'report', text: 'Отчет' },
+    { name: 'operations', text: 'Операции' },
+    { name: 'download', text: 'Скачать PDF' },
+    { name: 'options', text: 'Настройки'},
+    // { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
+    { name: 'exit', text: 'Выход' },
+];
+
 export const LISTCATEGORY = [
     {
         value: 0,
