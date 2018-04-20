@@ -143,24 +143,24 @@ class App extends Component {
   }
 
   render() {
-    // if (this.state.render) {
-    //   return (
-    //     <Provider store={store}>
-    //       <Navigator
-    //         swipeable
-    //         renderPage={this.renderPage}
-    //         initialRoute={{
-    //           title: 'First page',
-    //           hasBackButton: false
-    //         }}
-    //         animation='slide'
-    //         animationOptions={{
-    //           duration: 0.3
-    //         }}
-    //       />
-    //     </Provider>
-    //   )
-    // } else {
+    if (this.state.render) {
+      return (
+        <Provider store={store}>
+          <Navigator
+            swipeable
+            renderPage={this.renderPage}
+            initialRoute={{
+              title: 'First page',
+              hasBackButton: false
+            }}
+            animation='slide'
+            animationOptions={{
+              duration: 0.3
+            }}
+          />
+        </Provider>
+      )
+    } else {
       return (
         <Welcome
           cordova={this.props.cordova}
@@ -169,7 +169,7 @@ class App extends Component {
           errorLogonStatus={this.state.errorLogonStatus}
         />
       )
-    // }
+    }
   }
 }
 
