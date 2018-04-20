@@ -1103,4 +1103,11 @@ html {
   overflow-x: hidden;
   overflow-y: hidden;
 }
+
+.nzVersion {
+  position: absolute;
+  top: 95%;
+  left: calc(50% - 25px);
+  color: white;
+}
 /*# sourceMappingURL=App.css.map */

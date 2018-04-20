@@ -19,11 +19,11 @@ class Welcome extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                animationClass: 'FadeOut'
-            })
-        }, 3000);
+        // setTimeout(() => {
+        //     this.setState({
+        //         animationClass: 'FadeOut'
+        //     })
+        // }, 3000);
     }
 
     componentWillUpdate(nextProps, nextState) { 
@@ -64,7 +64,7 @@ class Welcome extends Component {
                         ? this.props.cordova.define.moduleMap['cordova-plugin-device.device'].exports.uuid
                         : null
                     }
-            />
+                />
                 <Toast isOpen={this.state.toastShown}>
                     <div className="message">
                         {this.props.errorLogonText}

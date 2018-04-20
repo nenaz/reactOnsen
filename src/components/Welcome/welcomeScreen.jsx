@@ -4,6 +4,7 @@ import {
     Page,
     ProgressCircular
 } from 'react-onsenui'
+import config from '../../js/config'
 
 class WelcomeScreen extends Component {
     constructor(props) {
@@ -20,9 +21,16 @@ class WelcomeScreen extends Component {
                     </div>
                 </section>
                 <ProgressCircular indeterminate className="nzProgressWelcomePage" />
+                <div className="nzVersion">
+                    <span>v. {config.version}</span>
+                </div>
             </Page>
         )
     }
+}
+
+WelcomeScreen.propTypes = {
+    className: PropTypes.string
 }
 
 export default WelcomeScreen

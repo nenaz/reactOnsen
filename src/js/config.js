@@ -3,8 +3,8 @@
 //     return count;
 // }
 
-// const config = {
-    
-// }
+const config = {
+    version: '1.0.1',
+}
 
-// export default config
+export default config
