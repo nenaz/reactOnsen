@@ -179,15 +179,18 @@ class MainPage extends Component{
                         </Page>
                     </SplitterContent>
                 </Splitter>
-                <Fab position='bottom right' onClick={() => {
-                    this.pushPage('addOperation')
-                }}>
+                {this.props.accountsLength && <Fab
+                    position='bottom right'
+                    onClick={() => {
+                        this.pushPage('addOperation')
+                    }}
+                >
                     <span className="icon-plus2"
                         style={{
                             lineHeight: '56px'
                         }}
                     />
-                </Fab>
+                </Fab>}
                 <Modal isOpen={this.state.modalOpen} >
                     <WhatsNew handleModalClose={this.handleModalClose} />
                 </Modal>
@@ -203,4 +206,5 @@ MainPage.propTypes = {
 
 export default connect((state) => ({
     newFunctions: state.updateNewFunctions,
+    accountsLength: state.changeAccountsList.length,
 }))(MainPage)

@@ -42,13 +42,13 @@ class AddOperation extends Component{
                 ? props.changeAccountsList[0].name : '',
             accountFromAmount: (props.changeAccountsList.length)
                 ? String(props.changeAccountsList[0].amount) : '0',
-            accountNameTo: (props.changeAccountsList.length)
+            accountNameTo: (props.changeAccountsList.length > 1)
                 ? props.changeAccountsList[1].name : '',
-            accountToAmount: (props.changeAccountsList.length)
+            accountToAmount: (props.changeAccountsList.length > 1)
                 ? String(props.changeAccountsList[1].amount) : '0',
             id: (props.changeAccountsList.length)
                 ? this.props.changeAccountsList[0]._id : '',
-            idTo: (props.changeAccountsList.length)
+            idTo: (props.changeAccountsList.length > 1)
                 ? this.props.changeAccountsList[1]._id : '',
             amountfontSize: 'calc(1rem + (1vw - 0px) * 20)',
             section1Class: '',

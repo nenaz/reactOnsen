@@ -2,6 +2,7 @@ import React,{ Component} from 'react'
 import PropTypes from 'prop-types'
 import { Button } from  'react-onsenui'
 import '../../css/App.css'
+import { connect } from 'react-redux'
 
 class CheckTypeOperation extends Component{
     constructor(props){
@@ -11,6 +12,7 @@ class CheckTypeOperation extends Component{
         }
 
         this.handleSelectActiveButton = this.handleSelectActiveButton.bind(this)
+        this.renderTransferButton = this.renderTransferButton.bind(this)
     }
 
     handleSelectActiveButton(e) {
@@ -18,15 +20,36 @@ class CheckTypeOperation extends Component{
         this.setState({
             activeButton: type
         })
-    //     this.props.selectTypeOperation(e.target.getAttribute('type'))
         this.props.handleSelectActiveButton(type)
+    }
+
+    renderTransferButton() {
+        if (this.props.accountsLength > 1) {
+            const classNameTransferButton = `nzTitleCol ${(this.state.activeButton === "2") ? "nzActive" : ""} ${this.props.accountsLength > 1 ? '' : "nzDisabled"}`
+            return (
+                <Button
+                    className={classNameTransferButton}
+                    modifier='outline'
+                    type="2"
+                    onClick={this.handleSelectActiveButton}
+                >
+                    Перевод
+                </Button>
+            )
+        } else {
+            return (
+                <Button className='nzTitleCol nzDisabled'>
+                    Перевод
+                </Button>
+            )
+        }
     }
 
     render(){
         return (
             <div className="nzTitle">
                 <Button
-                    className={`nzTitleCol ${(this.state.activeButton === "0") ? "nzActive" : ""} nzCenterButton `}
+                    className={`nzTitleCol ${(this.state.activeButton === "0") ? "nzActive" : ""} `}
                     modifier='outline'
                     type="0"
                     onClick={this.handleSelectActiveButton}
@@ -34,21 +57,14 @@ class CheckTypeOperation extends Component{
                     Расход
                 </Button>
                 <Button
-                    className={`nzTitleCol ${(this.state.activeButton === "1") ? "nzActive" : ""} `}
+                    className={`nzTitleCol ${(this.state.activeButton === "1") ? "nzActive" : ""} nzCenterButton `}
                     type="1"
                     modifier='outline'
                     onClick={this.handleSelectActiveButton}
                 >
                     Доход
                 </Button>
-                <Button
-                    className={`nzTitleCol ${(this.state.activeButton === "2") ? "nzActive" : ""} `}
-                    modifier='outline'
-                    type="2"
-                    onClick={this.handleSelectActiveButton}
-                >
-                    Перевод
-                </Button>
+                {this.renderTransferButton()}
             </div>
         )
     }
@@ -58,4 +74,6 @@ CheckTypeOperation.propTypes = {
     handleSelectActiveButton: PropTypes.func,
 }
 
-export default CheckTypeOperation
+export default connect((state) => ({
+    accountsLength: state.changeAccountsList.length
+}))(CheckTypeOperation)

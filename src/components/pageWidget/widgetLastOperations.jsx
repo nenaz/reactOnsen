@@ -70,6 +70,7 @@ class WaigetLastOperations extends Component{
     }
 
     handleChangeSelect(e) {
+        debugger
         this.setState({
             filter: e.target.value
         })
@@ -82,6 +83,7 @@ class WaigetLastOperations extends Component{
                 break
             default: result = this.props.operations
         }
+        // debugger
         return result
     }
 

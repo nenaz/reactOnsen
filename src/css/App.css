@@ -167,6 +167,11 @@
   border-right: 1px solid #2c2c2c;
 }
 
+.nzTitle .nzTitleCol.nzDisabled {
+  background-color: #969191;
+  color: #7d7777;
+}
+
 .nzAmountSection {
   background-color: #404040;
   height: calc(100% - 50px);
