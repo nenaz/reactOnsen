@@ -87,10 +87,10 @@ class AddAccount extends Component{
 
     handlerOkClick(e) {
         const addObject = {
-            name: this.state.accountName,
-            number: this.state.accountNumber,
-            date: this.state.accountDate,
-            people: this.state.accountPeople,
+            accountName: this.state.accountName,
+            accountNumber: this.state.accountNumber,
+            accountDate: this.state.accountDate,
+            accountPeople: this.state.accountPeople,
             amount: this.state.amount,
             currency: 'RUB',
             pname: 'AccountButton',

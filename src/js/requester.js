@@ -46,7 +46,7 @@ export default class Requester {
                     lName = 'addAccount'
                     break;
                 case 'getOperations':
-                    lName = 'getLastFive'
+                    lName = 'getOperations'
                     break;
                 case 'getAccounts':
                     lName = 'getAccounts'
@@ -138,15 +138,17 @@ export default class Requester {
             localStorage.setItem(name, JSON.stringify(arr))
         } else {
             this.getLocal(name).then((arr) => {
-                if (nameField) {
-                    arr[nameField] = value
-                    if (nameField === 'token') {
-                        this.webToken = value
+                if (arr) {
+                    if (nameField) {
+                        arr[nameField] = value
+                        if (nameField === 'token') {
+                            this.webToken = value
+                        }
+                    } else {
+                        arr.push(value)
                     }
-                } else {
-                    arr.push(value)
+                    localStorage.setItem(name, JSON.stringify(arr))
                 }
-                localStorage.setItem(name, JSON.stringify(arr))
             })
         }
     }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { List, ListItem, Modal, Button } from 'react-onsenui'
 
 import TitleSelect from '../TitleSelect'
-// import Title from '../Title'
+import Requester from '../../js/requester'
 import { FILTERLIST } from '../../js/consts'
 import ShowOperDetails from '../ShowOperDetails/showOperDetails';
 
@@ -21,6 +21,8 @@ class WaigetLastOperations extends Component{
         this.showDetails = this.showDetails.bind(this)
         this.handleHideModal = this.handleHideModal.bind(this)
         this.selectOperationsIcon = this.selectOperationsIcon.bind(this)
+
+        this.req = new Requester()
     }
 
     showDetails(e) {
@@ -70,7 +72,7 @@ class WaigetLastOperations extends Component{
     }
 
     handleChangeSelect(e) {
-        debugger
+        // debugger
         this.setState({
             filter: e.target.value
         })
@@ -81,7 +83,10 @@ class WaigetLastOperations extends Component{
         switch(this.state.filter) {
             case 'last5': result = this.props.operations.slice(0, 5)
                 break
-            default: result = this.props.operations
+            // default: result = this.props.operations
+            default: this.req.request('getOperations', {
+                limit: 0,
+            }).then(result => result)
         }
         // debugger
         return result
