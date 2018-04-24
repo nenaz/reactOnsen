@@ -61,13 +61,14 @@ class ButtonAccount extends Component {
 
 
     render() {
+        debugger
         return (
             <div
                 className="nzAccountButton"
                 id={this.props.params._id}
                 onClick={this.handleEditAccount}
             >
-                <span className="nzAccountButtonItem _default">{this.props.params.name}</span>
+                <span className="nzAccountButtonItem _default">{this.props.params.accountName}</span>
                 {this.renderIcon()}
                 {!this.props.params.iconEnable &&
                     <span className="nzAccountButtonItem _default">{this.props.params.amount}</span>
