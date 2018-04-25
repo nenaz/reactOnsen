@@ -61,7 +61,6 @@ class ButtonAccount extends Component {
 
 
     render() {
-        debugger
         return (
             <div
                 className="nzAccountButton"

@@ -22,12 +22,17 @@ class EditAccount extends Component{
     constructor(props){
         super(props)
         this.state = {
-            accountDate: props.accountToEdit.accountDate || 'Действителен до',
-            accountNumber: props.accountToEdit.accountNumber || 'Номер счета',
-            accountPeople: this.props.accountToEdit.accountPeople || 'Имя владельца',
-            amount: '0',
-            accountName: this.props.accountToEdit.name || 'Название счета',
+            accountDate: '',
+            accountNumber: '',
+            accountPeople: '',
+            accountName: '',
+            placeholderAccountDate: props.accountToEdit.accountDate || 'Действителен до',
+            placeholderAccountNumber: props.accountToEdit.accountNumber || 'Номер счета',
+            placeholderAccountPeople: this.props.accountToEdit.accountPeople || 'Имя владельца',
+            placeholderAccountName: this.props.accountToEdit.accountName || 'Название счета',
+            amount: 0,
             alertDialogShown: false,
+            update: false,
         }
         
         this.req = new Requester()
@@ -46,30 +51,44 @@ class EditAccount extends Component{
     }
 
     handlePeopleChange(e) {
+        const update = this.state.update
         this.setState({
-            accountPeople: e.target.value
+            accountPeople: e.target.value,
+            update: (e.target.value && !update) ? true : false
         });
     }
 
     handleDateChange(e) {
+        const update = this.state.update
         this.setState({
-            accountDate: e.target.value
+            accountDate: e.target.value,
+            update: (e.target.value && !update) ? true : false
         });
     }
 
     handleNumberChange(e) {
+        const update = this.state.update
         this.setState({
-            accountNumber: e.target.value
+            accountNumber: e.target.value,
+            update: (e.target.value && !update) ? true : false
         });
     }
 
 
     handleAmountChange(e) {
-        this.setState({ amount: e.target.value })
+        const update = this.state.update
+        this.setState({
+            amount: Number(e.target.value),
+            update: (Number(e.target.value) && !update) ? true : false
+        })
     }
 
     handleAccountNameChange(e) {
-        this.setState({ accountName: e.target.value })
+        const update = this.state.update
+        this.setState({
+            accountName: e.target.value,
+            update: (e.target.value && !update) ? true : false
+        })
     }
 
     handlerCanselClick() {
@@ -94,16 +113,26 @@ class EditAccount extends Component{
     }
 
     editAccountInList() {
+        // let update = false
         const updateObj = {
-            amount: this.state.amount * 1,
             idFrom: this.props.accountToEdit._id,
             accountNameFrom: this.state.accountName,
             accountDate: this.state.accountDate,
             accountNumber: this.state.accountNumber,
             accountPeople: this.state.accountPeople,
         }
-        this.props.editAccountInList(updateObj)
-        this.req.request('updateAccounts', updateObj)
+        // if (this.state.amount ||
+        //     this.state.accountName ||
+        //     this.state.accountDate ||
+        //     this.state.accountNumber ||
+        //     this.state.accountPeople
+        // ) {
+        //     update = true
+        // }
+        if (this.state.update) {
+            this.props.editAccountInList(updateObj)
+            this.req.request('updateAccounts', updateObj)
+        }
     }
 
     handlerDeleteAccount() {
@@ -128,16 +157,16 @@ class EditAccount extends Component{
                 <div className="nzEditAccountPage">
                     <div className="nzAccountPageInputBlock">
                         <Input
+                            className="nzNewAccountName"
                             value={this.state.accountName}
                             onChange={this.handleAccountNameChange}
                             modifier='underbar'
                             float
-                            placeholder='Название счета'
-                            className="nzNewAccountName"
+                            placeholder={this.state.placeholderAccountName}
                         />
                         <Input
                             className="nzNewAmountValue"
-                            value={this.state.amount}
+                            value={String(this.state.amount)}
                             onChange={this.handleAmountChange}
                             modifier='underbar'
                             float
@@ -149,7 +178,7 @@ class EditAccount extends Component{
                             onChange={this.handleNumberChange}
                             modifier='underbar'
                             float
-                            placeholder='Номер счета'
+                            placeholder={this.state.placeholderAccountNumber}
                         />
                         <Input
                             className="nzNewAmountValue"
@@ -157,7 +186,7 @@ class EditAccount extends Component{
                             onChange={this.handleDateChange}
                             modifier='underbar'
                             float
-                            placeholder='Действителен до'
+                            placeholder={this.state.placeholderAccountDate}
                         />
                         <Input
                             className="nzNewAmountValue"
@@ -165,7 +194,7 @@ class EditAccount extends Component{
                             onChange={this.handlePeopleChange}
                             modifier='underbar'
                             float
-                            placeholder='Имя владельца'
+                            placeholder={this.state.placeholderAccountPeople}
                         />
                     </div>
                 </div>
@@ -177,6 +206,7 @@ class EditAccount extends Component{
                     <span className="icon-cancel" />
                 </Fab>
                 <Fab
+                    disabled={!this.state.update}
                     position='bottom right'
                     onClick={this.handlerOkClick}
                 >
