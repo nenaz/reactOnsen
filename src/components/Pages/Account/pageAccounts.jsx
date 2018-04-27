@@ -20,9 +20,9 @@ class PageAccounts extends Component {
                 key={row._id}
                 onClick={this.props.handleSelectAccount}
                 id={row._id}
-                name={row.name}
+                name={row.accountName}
             >
-                <span>{row.name}</span>
+                <span>{row.accountName}</span>
             </ListItem>
         )
     }

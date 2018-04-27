@@ -39,11 +39,11 @@ class AddOperation extends Component{
             part: '00',
             accountBalance: '0,00',
             accountName: (props.changeAccountsList.length)
-                ? props.changeAccountsList[0].name : '',
+                ? props.changeAccountsList[0].accountName : '',
             accountFromAmount: (props.changeAccountsList.length)
                 ? String(props.changeAccountsList[0].amount) : '0',
             accountNameTo: (props.changeAccountsList.length > 1)
-                ? props.changeAccountsList[1].name : '',
+                ? props.changeAccountsList[1].accountName : '',
             accountToAmount: (props.changeAccountsList.length > 1)
                 ? String(props.changeAccountsList[1].amount) : '0',
             id: (props.changeAccountsList.length)

@@ -48,46 +48,61 @@ class EditAccount extends Component{
         this.handlePeopleChange = this.handlePeopleChange.bind(this)
         this.handlerDeleteAccount = this.handlerDeleteAccount.bind(this)
         this.handlerToggleAlertDialog = this.handlerToggleAlertDialog.bind(this)
+        this.validateForm = this.validateForm.bind(this)
+    }
+
+    validateForm() {
+        const update = (this.state.accountDate ||
+                this.state.accountNumber ||
+                this.state.accountPeople ||
+                this.state.accountName ||
+                this.state.amount
+            )
+            ? true
+            : false
+        this.setState({
+            update
+        })
     }
 
     handlePeopleChange(e) {
-        const update = this.state.update
         this.setState({
             accountPeople: e.target.value,
-            update: (e.target.value && !update) ? true : false
+        }, () => {
+            this.validateForm()
         });
     }
 
     handleDateChange(e) {
-        const update = this.state.update
         this.setState({
             accountDate: e.target.value,
-            update: (e.target.value && !update) ? true : false
+        }, () => {
+            this.validateForm()
         });
     }
 
     handleNumberChange(e) {
-        const update = this.state.update
         this.setState({
             accountNumber: e.target.value,
-            update: (e.target.value && !update) ? true : false
+        }, () => {
+            this.validateForm()
         });
     }
 
 
     handleAmountChange(e) {
-        const update = this.state.update
         this.setState({
             amount: Number(e.target.value),
-            update: (Number(e.target.value) && !update) ? true : false
+        }, () => {
+            this.validateForm()
         })
     }
 
     handleAccountNameChange(e) {
-        const update = this.state.update
         this.setState({
             accountName: e.target.value,
-            update: (e.target.value && !update) ? true : false
+        }, () => {
+            this.validateForm()
         })
     }
 
@@ -113,22 +128,14 @@ class EditAccount extends Component{
     }
 
     editAccountInList() {
-        // let update = false
         const updateObj = {
             idFrom: this.props.accountToEdit._id,
             accountNameFrom: this.state.accountName,
             accountDate: this.state.accountDate,
             accountNumber: this.state.accountNumber,
             accountPeople: this.state.accountPeople,
+            amount: this.state.amount,
         }
-        // if (this.state.amount ||
-        //     this.state.accountName ||
-        //     this.state.accountDate ||
-        //     this.state.accountNumber ||
-        //     this.state.accountPeople
-        // ) {
-        //     update = true
-        // }
         if (this.state.update) {
             this.props.editAccountInList(updateObj)
             this.req.request('updateAccounts', updateObj)
