@@ -24,6 +24,7 @@ import {
 } from '../AC'
 import Requester from '../js/requester'
 import Welcome from './Welcome'
+import config from '../js/config'
 
 class App extends Component {
   constructor(props) {
@@ -128,7 +129,9 @@ class App extends Component {
 
   getNew() {
     return new Promise((resolve, reject) => {
-      this.req.request('whatsnew').then(result => {
+      this.req.request('whatsnew', {
+        version: config.version,
+      }).then(result => {
         resolve(result)
         this.props.setNewFunctions(result)
       })

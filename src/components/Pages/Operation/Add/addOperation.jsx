@@ -142,6 +142,7 @@ class AddOperation extends Component{
             accountFromAmount: this.state.accountFromAmount * 1,
             typeOperation: '0',
         }
+        // debugger
         if (this.props.typeOperation !== '2') {
             this.props.editAccountInList(updateObj)
             this.req.request('updateItem', updateObj)
