@@ -21,8 +21,13 @@ class WaigetLastOperations extends Component{
         this.showDetails = this.showDetails.bind(this)
         this.handleHideModal = this.handleHideModal.bind(this)
         this.selectOperationsIcon = this.selectOperationsIcon.bind(this)
+        this.setItems = this.setItems.bind(this)
 
         this.req = new Requester()
+    }
+
+    componentWillMount() {
+        this.filterOperations()
     }
 
     showDetails(e) {
@@ -72,9 +77,10 @@ class WaigetLastOperations extends Component{
     }
 
     handleChangeSelect(e) {
-        // debugger
         this.setState({
-            filter: e.target.value
+            filter: e.target.value,
+        }, () => {
+            this.filterOperations()
         })
     }
 
@@ -82,23 +88,29 @@ class WaigetLastOperations extends Component{
         let result = []
         switch(this.state.filter) {
             case 'last5': result = this.props.operations.slice(0, 5)
-                break
-            // default: result = this.props.operations
+                this.setItems(result)
+                return result
             default: this.req.request('getOperations', {
                 limit: 0,
-            }).then(result => result)
+            }).then(result => {
+                this.setItems(result)
+                return result
+            })
         }
-        // debugger
-        return result
+    }
+
+    setItems(items) {
+        this.setState({
+            items
+        })
     }
 
     render(){
         return (
             <div className="nzWidgetLastOperations">
                 <TitleSelect data={FILTERLIST} handleChangeSelect={this.handleChangeSelect} />
-                {/* <Title title={FILTERLIST[0].title} /> */}
                 <List className="nzWidgetLastOperationsList"
-                    dataSource={this.filterOperations()}
+                    dataSource={this.state.items}
                     renderRow={this.renderRow}
                 />
                 <Modal isOpen={this.state.modalOpen}>

@@ -35,13 +35,14 @@ export const FILTERLIST = [{
     },{
         value: 'all',
         title: 'Все'
-    },{
-        value: 'period',
-        title: 'За период'
-    },{
-        value: 'category',
-        title: 'По категории'
     },
+    // {
+    //     value: 'period',
+    //     title: 'За период'
+    // },{
+    //     value: 'category',
+    //     title: 'По категории'
+    // },
 ];
 
 export const OPERATIONDETAILS = ['Место','Дата','Сумма', 'Валюта'];
