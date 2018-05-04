@@ -50,8 +50,8 @@ class CheckTypeOperation extends Component{
             <div className="nzTitle">
                 <Button
                     className={`nzTitleCol ${(this.state.activeButton === "0") ? "nzActive" : ""} `}
-                    modifier='outline'
                     type="0"
+                    modifier='outline'
                     onClick={this.handleSelectActiveButton}
                 >
                     Расход

@@ -17,12 +17,15 @@ const updateItem = (array, obj) => {
         : obj.idTo
     const newarray = _.map(array, (item) => {
         if (userId === item._id) {
-            // debugger
             if (obj.typeOperation) {
                 if (obj.typeOperation === '0') {
                     item.amount = obj.accountFromAmount - obj.amount
                 } else if (obj.typeOperation === '1') {
-                    item.amount = obj.accountToAmount + obj.amount
+                    if (obj.accountToAmount) {
+                        item.amount = obj.accountToAmount + obj.amount
+                    } else {
+                        item.amount = obj.accountFromAmount + obj.amount
+                    }
                 }
             } else {
                 item.amount = obj.amount

@@ -8,14 +8,9 @@ import { selectTypeOperation } from '../../AC'
 class SelectTypeOperation extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            tt: 0,
-            typeOperation: this.props.typeOperation,
-        }
-
         this.renderLists = this.renderLists.bind(this)
         this.categotyIdToTitle = this.categotyIdToTitle.bind(this)
-        this.handleSelectActiveButton = this.handleSelectActiveButton.bind(this)
+        this.typeOpertaionSymbol = this.typeOpertaionSymbol.bind(this)
     }
 
     categotyIdToTitle() {
@@ -23,7 +18,7 @@ class SelectTypeOperation extends Component {
     }
 
     renderLists() {
-        if (this.state.typeOperation === '2') {
+        if (this.props.typeOperation === '2') {
             return (
                 <div onClick={() => {
                     this.props.handleRunAnimation(0, true)
@@ -47,23 +42,27 @@ class SelectTypeOperation extends Component {
         }
     }
 
-    handleSelectActiveButton(type) {
-        this.setState({
-            typeOperation: type
-        })
-        this.props.selectTypeOperation(type)
+    typeOpertaionSymbol() {
+        const type = this.props.typeOperation
+        let symbol = '&plusmn'
+        if (type === '0') {
+            symbol = '-' 
+        } else if (type === '1') {
+            symbol = '+'
+        }
+        return <span dangerouslySetInnerHTML={{ __html: symbol }} />
     }
 
     render() {
         return (
             <Fragment>
                 <CheckTypeOperation
-                    handleSelectActiveButton={this.handleSelectActiveButton}
+                    handleSelectActiveButton={this.props.selectTypeOperation}
                 />
                 <div className="nzAmountSection">
                     <div className="nzAmountInput">
                         <div className="nzAmountItem nzTypeOperation">
-                            <span>{this.state.typeOper}</span>
+                            {this.typeOpertaionSymbol()}
                         </div>
                         <div className="nzAmountItem nzAmountTextBlock">
                             <span style={{

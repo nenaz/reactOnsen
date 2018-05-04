@@ -11,12 +11,12 @@ import { connect } from 'react-redux'
 import {
     changeAnimationState,
     addOperationToList,
-    editAccountInList
+    editAccountInList,
+    selectTypeOperation
 } from '../../../../AC'
 import '../../../../css/App.css'
 import Utils from '../../../../js/utils'
 import KeyboardMain from '../../../Keyboard'
-// import CheckTypeOperation from './typeOperation'
 import Requester from '../../../../js/requester'
 import GetCoord from '../../../../js/coorditates'
 import { ICONCHECKING } from '../../../../js/consts'
@@ -24,7 +24,6 @@ import Icon from '../../../Icon'
 import SelectTypeOperation from '../../../SelectTypeOperation'
 import PageCategory from '../../Category'
 import PageAccount from '../../Account'
-// import ToolbarC from '../Toolbar'
 
 const COEFFICIENT = 0.46;
 // const FORMULA = `calc(1rem + ((1vw - ${this.generateAmountFontSize()}) * 20))`;
@@ -58,7 +57,6 @@ class AddOperation extends Component{
             categoryId: '0-0',
             showProcess: false,
             modalOpen: false,
-            typeOperation: this.props.typeOperation,
         }
 
         this.req = new Requester()
@@ -85,7 +83,6 @@ class AddOperation extends Component{
         this.selectTooltipForRendering = this.selectTooltipForRendering.bind(this)
         this.selectRenderBackgroundPage = this.selectRenderBackgroundPage.bind(this)
         this.renderModal = this.renderModal.bind(this)
-        this.selectTypeOperation = this.selectTypeOperation.bind(this)
     }
 
     componentDidMount() {
@@ -140,9 +137,9 @@ class AddOperation extends Component{
             idFrom: this.state.id,
             accountNameFrom: this.state.accountName,
             accountFromAmount: this.state.accountFromAmount * 1,
-            typeOperation: '0',
+            typeOperation: this.props.typeOperation,
         }
-        // debugger
+        debugger
         if (this.props.typeOperation !== '2') {
             this.props.editAccountInList(updateObj)
             this.req.request('updateItem', updateObj)
@@ -155,8 +152,9 @@ class AddOperation extends Component{
                 accountToAmount: this.state.accountToAmount * 1,
                 typeOperation: '1',
             }
+            updateObj.typeOperation = '0'
             this.props.editAccountInList(transferObj)
-            const obj = Object.assign({},   updateObj, transferObj)
+            const obj = Object.assign({}, updateObj, transferObj)
             this.req.request('transfer', obj)
         }
         this.props.editAccountInList(updateObj)
@@ -164,6 +162,7 @@ class AddOperation extends Component{
 
     handlerCanselClick() {
         this.props.navigator.popPage();
+        this.props.selectTypeOperation('0');
     }
 
     selectTooltipForRendering() {
@@ -354,10 +353,6 @@ class AddOperation extends Component{
         )
     }
 
-    selectTypeOperation(typeOperation) {
-        this.setState({ typeOperation })
-    }
-
     render() {
         const pageAcc = this.selectRenderBackgroundPage()
         return (
@@ -414,5 +409,6 @@ export default connect((state) => ({
 }), {
     changeAnimationState,
     addOperationToList,
-    editAccountInList
+    editAccountInList,
+    selectTypeOperation
 })(AddOperation)
