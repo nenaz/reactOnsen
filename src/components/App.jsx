@@ -4,7 +4,7 @@ import {
   connect
 } from 'react-redux'
 import {
-  ProgressCircular,
+  // ProgressCircular,
   Navigator
 } from 'react-onsenui'
 import '../css/App.css'
@@ -23,7 +23,7 @@ import {
   setNewFunctions
 } from '../AC'
 import Requester from '../js/requester'
-import Welcome from './Welcome'
+import Welcome from './Pages/Welcome'
 import config from '../js/config'
 
 class App extends Component {

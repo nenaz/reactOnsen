@@ -1,11 +1,11 @@
 import React,{ Component} from 'react'
 import { connect } from 'react-redux'
-import { List, ListItem, Modal, Button } from 'react-onsenui'
+import { List, ListItem, Modal } from 'react-onsenui'
 
-import TitleSelect from '../TitleSelect'
-import Requester from '../../js/requester'
-import { FILTERLIST } from '../../js/consts'
-import ShowOperDetails from '../ShowOperDetails/showOperDetails';
+import TitleSelect from '../../TitleSelect'
+import Requester from '../../../js/requester'
+import { FILTERLIST } from '../../../js/consts'
+import ShowOperDetails from '../../ShowOperDetails/showOperDetails';
 
 class WaigetLastOperations extends Component{
     constructor(props){

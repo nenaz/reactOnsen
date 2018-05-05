@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Title from '../Title'
+import Title from '../../Title'
 
 class WidgetTemplate extends Component{
     constructor(props){

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import {
     Toast
 } from 'react-onsenui'
-// import Login from '../Login'
-import Logon from '../Login/Logon'
+import Logon from '../Login'
 import WelcomeScreeen from './welcomeScreen'
 
 class Welcome extends Component {
@@ -38,8 +37,6 @@ class Welcome extends Component {
         console.log(nextState);
         
     }
-
-    // component
 
     handleDismiss() {
         this.setState({
