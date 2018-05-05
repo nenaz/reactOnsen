@@ -5,14 +5,5 @@ import './css/magic.css'
 import Root from './components/Root'
 import registerServiceWorker from './registerServiceWorker'
 
-if (window.navigator) {
-    console.log('navigator')
-}
-let cordova = undefined
-if (window.cordova) {
-    console.log('cordova')
-    cordova = window.cordova
-}
-
-ReactDOM.render(<Root cordova={cordova}/>, document.getElementById('root'))
+ReactDOM.render(<Root />, document.getElementById('root'))
 registerServiceWorker()

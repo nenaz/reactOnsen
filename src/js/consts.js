@@ -54,7 +54,7 @@ export const LEFTMENUITEMS = [
     { name: 'options', text: 'Настройки'},
     { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
     // { name: 'about', text: 'О программе'},
-    { name: 'exit', text: 'Выход' },
+    { name: 'exit', text: 'Выход', onClick: this.closeApp },
 ];
 
 export const LISTCATEGORY = [

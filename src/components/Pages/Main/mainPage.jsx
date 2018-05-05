@@ -44,6 +44,7 @@ class MainPage extends Component{
         this.pushPage = this.pushPage.bind(this)
         this.renderModal = this.renderModal.bind(this)
         this.handlerNotification = this.handlerNotification.bind(this)
+        this.closeApp = this.closeApp.bind(this)
 
         this.count = 0
     }
@@ -134,6 +135,10 @@ class MainPage extends Component{
         })
     }
 
+    closeApp() {
+        navigator.app.exitApp()
+    }
+
     renderModal() {
         // return (
         //     <Modal isOpen={this.state.modalOpen} >
@@ -165,6 +170,7 @@ class MainPage extends Component{
                         <LeftMenu
                             pushPage={this.pushPage}
                             handleSelectLeftMenuItem={this.handleSelectLeftMenuItem}
+                            closeApp={this.closeApp}
                         />
                     </SplitterSide>
                     <SplitterContent>

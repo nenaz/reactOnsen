@@ -34,6 +34,15 @@ class LeftMenu extends Component{
                         {row.text}
                     </ListItem>
                 )
+            case 'exit':
+                return (
+                    <ListItem
+                        key={row.name}
+                        onClick={this.props.closeApp}
+                    >
+                        {row.text}
+                    </ListItem>
+                )
             default: return (
                 <ListItem
                     key={row.name}
@@ -61,6 +70,7 @@ class LeftMenu extends Component{
 LeftMenu.propTypes = {
     pushPage: PropTypes.func.isRequired,
     handleSelectLeftMenuItem: PropTypes.func.isRequired,
+    closeApp: PropTypes.func.isRequired,
 }
 
 export default LeftMenu
