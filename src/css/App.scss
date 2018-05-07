@@ -885,6 +885,8 @@
           }
           .nzAllCategory{
             background-color: rgb(64,64,64);
+            overflow: hidden;
+            height: calc(100% - 222px);
             .nzWidgetTitle{
               padding-left: 8px;
               font-size: 15px;

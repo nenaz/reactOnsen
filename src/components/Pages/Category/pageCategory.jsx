@@ -121,8 +121,9 @@ class PageCategory extends Component {
                         dataSource={LISTCATEGORY}
                         renderRow={this.renderRowCategory}
                         style={{
-                            minHeight: '52vh',
-                            overflowY: 'scroll'
+                            // minHeight: '52vh',
+                            overflowY: 'scroll',
+                            height: 'calc(100% - 30px)',
                         }}
                     />
                 </section>

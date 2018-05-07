@@ -958,6 +958,8 @@
 
 .page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzAllCategory, .page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzPageCategory .nzAllCategory {
   background-color: #404040;
+  overflow: hidden;
+  height: calc(100% - 222px);
 }
 
 .page.page--material.nzPageNewItem .sectionClass.sectionCategory .nzPageCategory .nzAllCategory .nzWidgetTitle, .page.page--material.nzPageNewItem .sectionClass.sectionAccount .nzPageCategory .nzAllCategory .nzWidgetTitle {
