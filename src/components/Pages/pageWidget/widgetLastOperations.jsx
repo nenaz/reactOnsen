@@ -30,6 +30,10 @@ class WaigetLastOperations extends Component{
         this.filterOperations()
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setItems(nextProps.operations)
+    }
+
     showDetails(e) {
         this.setState({
             _id: e.currentTarget.getAttribute('_id'),
@@ -86,7 +90,6 @@ class WaigetLastOperations extends Component{
 
     filterOperations() {
         let result = []
-        // debugger
         switch(this.state.filter) {
             case 'last5': result = this.props.operations.slice(0, 5)
                 this.setItems(result)
