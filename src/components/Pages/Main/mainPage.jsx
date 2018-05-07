@@ -12,7 +12,7 @@ import {
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
-import Section from '../../pageWidget'
+import Section from '../pageWidget'
 import About from '../About'
 import WhatsNew from '../WhatsNew'
 import Icon from '../../Icon';
@@ -44,6 +44,7 @@ class MainPage extends Component{
         this.pushPage = this.pushPage.bind(this)
         this.renderModal = this.renderModal.bind(this)
         this.handlerNotification = this.handlerNotification.bind(this)
+        this.closeApp = this.closeApp.bind(this)
 
         this.count = 0
     }
@@ -134,6 +135,10 @@ class MainPage extends Component{
         })
     }
 
+    closeApp() {
+        navigator.app.exitApp()
+    }
+
     renderModal() {
         // return (
         //     <Modal isOpen={this.state.modalOpen} >
@@ -165,6 +170,7 @@ class MainPage extends Component{
                         <LeftMenu
                             pushPage={this.pushPage}
                             handleSelectLeftMenuItem={this.handleSelectLeftMenuItem}
+                            closeApp={this.closeApp}
                         />
                     </SplitterSide>
                     <SplitterContent>
@@ -174,7 +180,7 @@ class MainPage extends Component{
                                 pushPage={this.pushPage}
                             />
                             <Section name="Balance" />
-                            {/* <Section name="Chart" /> */}
+                            <Section name="Chart" />
                             <Section name="LastOperations" />
                         </Page>
                     </SplitterContent>

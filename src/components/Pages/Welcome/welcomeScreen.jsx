@@ -4,7 +4,7 @@ import {
     Page,
     ProgressCircular
 } from 'react-onsenui'
-import config from '../../js/config'
+import config from '../../../js/config'
 
 class WelcomeScreen extends Component {
     constructor(props) {

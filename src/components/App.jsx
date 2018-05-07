@@ -4,7 +4,7 @@ import {
   connect
 } from 'react-redux'
 import {
-  ProgressCircular,
+  // ProgressCircular,
   Navigator
 } from 'react-onsenui'
 import '../css/App.css'
@@ -20,11 +20,13 @@ import OptionsPage from './Pages/Options';
 import {
   addOperationToList,
   addAccountToList,
-  setNewFunctions
+  setNewFunctions,
+  addDataToList
 } from '../AC'
 import Requester from '../js/requester'
-import Welcome from './Welcome'
+import Welcome from './Pages/Welcome'
 import config from '../js/config'
+import Utils from '../js/utils'
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +47,7 @@ class App extends Component {
     this.getAccounts = this.getAccounts.bind(this)
     this.changeLogonStatus = this.changeLogonStatus.bind(this)
     this.getNew = this.getNew.bind(this)
+    this.getDataForChart = this.getDataForChart.bind(this)
   }
 
   // componentDidMount() {
@@ -138,12 +141,24 @@ class App extends Component {
     })
   }
 
+  getDataForChart() {
+    return new Promise((resolve, reject) => {
+      this.req.request('getDataForChart', {
+        nowMonthDate: Utils.nowDate(false, true)
+      }).then(data => {
+        resolve(data)
+        this.props.addDataToList(data)
+      })
+    })
+  }
+
   changeLogonStatus(logon) {
     if (logon) {
       Promise.all([
         this.getAccounts(),
         this.getOperations(),
-        this.getNew()
+        this.getDataForChart(),
+        this.getNew(),
       ]).then(values => {
         this.setState({
           render: true,
@@ -181,7 +196,6 @@ class App extends Component {
     } else {
       return (
         <Welcome
-          cordova={this.props.cordova}
           changeLogonStatus={this.changeLogonStatus}
           errorLogonText={this.state.errorLogonText}
           errorLogonStatus={this.state.errorLogonStatus}
@@ -196,7 +210,8 @@ export default connect((state) => ({
 }), {
   addOperationToList,
   addAccountToList,
-  setNewFunctions
+  setNewFunctions,
+  addDataToList
 })(App)
 
 // 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import WidgetButtonsSection from '../ButtonSection'
+import WidgetButtonsSection from '../../ButtonSection'
 import WidgetBalanceSection from './widgetBalance'
 import WidgetChartSection from './widgetChart'
 import WidgetLastSection from './widgetLastOperations'
-import Utils from '../../js/utils'
+import Utils from '../../../js/utils'
 import WidgetTemplate from './widgetTemplate';
 
 class SectionWidget extends Component {

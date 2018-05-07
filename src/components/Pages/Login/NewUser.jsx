@@ -4,7 +4,7 @@ import {
     Button,
     Input
 } from 'react-onsenui'
-import Requester from '../../js/requester'
+import Requester from '../../../js/requester'
 
 class NewUser extends Component {
     constructor(props) {

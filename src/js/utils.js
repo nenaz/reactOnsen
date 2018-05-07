@@ -96,7 +96,7 @@ const formatDate = (str) => {
     return ('0' + str).slice(-2)
 }
 
-const nowDate = (returnObject) => {
+const nowDate = (returnObject, returnStartMonth, returnISO) => {
     let ddd = new Date()
     const year = ddd.getUTCFullYear(),
         month = formatDate(ddd.getMonth() + 1),
@@ -113,6 +113,12 @@ const nowDate = (returnObject) => {
         }
     } else {
         date = day + ' ' + month + ' ' + year + ', ' + hour + ':' + min + ':' + sec
+    }
+    if (returnStartMonth) {
+        date = year + '-' + formatDate(ddd.getMonth()) + '-01T00:00:00.000Z'
+    }
+    if (returnISO) {
+        date = ddd
     }
     return date
 }
@@ -198,6 +204,18 @@ const findAccountDataOnId = (id) => {
     }
 }
 
+const finishDataFormatingForChart = (data) => {
+    const newData = data.map(item => {
+        const res = LISTCATEGORY.find(row => {
+            return row.value === item.id
+        })
+        item.label = res.title
+        item.id = res.title
+        return item
+    })
+    return newData
+}
+
 const utils = {
     selectButtonsParams,
     selectSectionsParams,
@@ -211,6 +229,7 @@ const utils = {
     dailyCounting,
     findCateGoryNameOnId,
     findAccountDataOnId,
+    finishDataFormatingForChart,
 }
 
 export default utils

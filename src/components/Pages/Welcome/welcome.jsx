@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import {
     Toast
 } from 'react-onsenui'
-import Login from '../Login'
-import Logon from '../Login/Logon'
+import Logon from '../Login'
 import WelcomeScreeen from './welcomeScreen'
 
 class Welcome extends Component {
@@ -39,8 +38,6 @@ class Welcome extends Component {
         
     }
 
-    // component
-
     handleDismiss() {
         this.setState({
             toastShown: false,
@@ -60,10 +57,6 @@ class Welcome extends Component {
                 <Logon
                     className={`nzLoginPage ${this.state.animationClass}`}
                     changeLogonStatus={this.props.changeLogonStatus}
-                    uuid={this.props.cordova
-                        ? this.props.cordova.define.moduleMap['cordova-plugin-device.device'].exports.uuid
-                        : null
-                    }
                 />
                 <Toast isOpen={this.state.toastShown}>
                     <div className="message">
@@ -82,11 +75,9 @@ Welcome.propTypes = {
     changeLogonStatus: PropTypes.func.isRequired,
     errorLogonStatus: PropTypes.string,
     errorLogonText: PropTypes.string,
-    cordova: PropTypes.object,
 }
 
 Welcome.defaultProps = {
-    cordova: null
 }
 
 export default Welcome

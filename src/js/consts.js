@@ -7,6 +7,7 @@ export const ACCOUNTTOEDIT = 'accountToEdit'
 export const CHANGECATEGORYSTATISTIC = 'changeCategoryStatictic'
 export const DELETEACCOUNTFROMLIST = 'deleteAccountFromList'
 export const SETNEWFUNCTIONS = 'setNewFunctions'
+export const ADDDATATOLIST = 'addDataToList'
 
 // export const SERVERURL = 'https://guarded-sea-48553.herokuapp.com/'
 export const SERVERURL = 'https://mongosever.herokuapp.com/'
@@ -54,7 +55,7 @@ export const LEFTMENUITEMS = [
     { name: 'options', text: 'Настройки'},
     { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
     // { name: 'about', text: 'О программе'},
-    { name: 'exit', text: 'Выход' },
+    { name: 'exit', text: 'Выход', onClick: this.closeApp },
 ];
 
 export const LISTCATEGORY = [

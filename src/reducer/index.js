@@ -6,6 +6,7 @@ import changeTypeOperation from './changeTypeOperation'
 import changeAccountToEdit from './changeAccountToEdit'
 import changeCategoryStatistic from './changeCategoryStatistic'
 import updateNewFunctions from './updateNewFunctions'
+import redAddDataToList from './redAddDataToList'
 
 export default combineReducers({
     changeAnimationState,
@@ -14,5 +15,6 @@ export default combineReducers({
     changeTypeOperation,
     changeAccountToEdit,
     changeCategoryStatistic,
-    updateNewFunctions
+    updateNewFunctions,
+    redAddDataToList
 })
