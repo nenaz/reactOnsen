@@ -14,11 +14,12 @@ class WidgetChart extends Component{
             <ResponsivePie
                 data={this.props.data}
                 margin={{
-                    "top": 40,
+                    "top": 0,
                     "right": 80,
-                    "bottom": 40,
+                    "bottom": 80,
                     "left": 80
                 }}
+                width={328}
                 innerRadius={0.5}
                 padAngle={0.7}
                 cornerRadius={0}
@@ -36,10 +37,23 @@ class WidgetChart extends Component{
                 animate={true}
                 motionStiffness={90}
                 motionDamping={15}
-                // enableRadialLabels={false}
+                enableRadialLabels={false}
                 slicesLabelsSkipAngle={10}
                 slicesLabelsTextColor="#333333"
                 // enableSlicesLabels={false}
+                sortByValue
+                legends={[
+                    {
+                        "anchor": "left",
+                        "direction": "column",
+                        "translateY": 150,
+                        "translateX": -56,
+                        "itemWidth": 100,
+                        "itemHeight": 14,
+                        "symbolSize": 12,
+                        "symbolShape": "square"
+                    }
+                ]}
             />
             </div>
         )
