@@ -13,7 +13,8 @@ import {
     addOperationToList,
     editAccountInList,
     selectTypeOperation,
-    editData
+    editData,
+    addOneCategoryForChart
 } from '../../../../AC'
 import '../../../../css/App.css'
 import Utils from '../../../../js/utils'
@@ -84,6 +85,7 @@ class AddOperation extends Component{
         this.selectTooltipForRendering = this.selectTooltipForRendering.bind(this)
         this.selectRenderBackgroundPage = this.selectRenderBackgroundPage.bind(this)
         this.renderModal = this.renderModal.bind(this)
+        this.selectAddOrEditDataForChart = this.selectAddOrEditDataForChart.bind(this)
     }
 
     componentDidMount() {
@@ -130,7 +132,7 @@ class AddOperation extends Component{
             addObject.idTo = this.state.idTo
         }
         this.props.addOperationToList(addObject)
-        this.props.editData(addObject)
+        this.selectAddOrEditDataForChart(addObject)
         this.req.request('addItem', addObject)
     }
 
@@ -355,6 +357,17 @@ class AddOperation extends Component{
         )
     }
 
+    selectAddOrEditDataForChart(obj) {
+        const res = this.props.dataForChart.find(function (item) {
+            return item.catId === obj.categoryId[0] * 1
+        })
+        if (res) {
+            this.props.editData(obj)
+        } else {
+            this.props.addOneCategoryForChart(obj)
+        }
+    }
+
     render() {
         const pageAcc = this.selectRenderBackgroundPage()
         return (
@@ -407,11 +420,13 @@ class AddOperation extends Component{
 
 export default connect((state) => ({
     changeAccountsList: state.changeAccountsList,
-    typeOperation: state.changeTypeOperation
+    typeOperation: state.changeTypeOperation,
+    dataForChart: state.redAddDataToList,
 }), {
     changeAnimationState,
     addOperationToList,
     editAccountInList,
     selectTypeOperation,
-    editData
+    editData,
+    addOneCategoryForChart,
 })(AddOperation)

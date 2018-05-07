@@ -1,7 +1,10 @@
 import _ from 'underscore'
 import {
     ADDDATATOLIST,
-    EDITDATA
+    EDITDATA,
+    COLORS,
+    LISTCATEGORY,
+    ADDONECATEGORYFORCHART
 } from '../js/consts'
 import Utils from '../js/utils'
 
@@ -11,13 +14,27 @@ const addItem = (array, item) => {
     return newArray
 }
 
+const addOneCategoryForChart = (array, item) => {
+    let newArray = array.slice()
+    const catId = item.categoryId[0] * 1
+    const res = LISTCATEGORY.find(row => {
+        return row.value === catId
+    })
+    newArray.push({
+        catId: catId,
+        color: COLORS["color" + catId],
+        id: res.title,
+        label: res.title,
+        value: item.amount * 1,
+    })
+    return newArray
+}
+
 const editItem = (data, item) => {
     const newarray = _.map(data, (row) => {
-        if (row.catId === item.categoryId[0] * 1) {
+        const catId = item.categoryId[0] * 1
+        if (row.catId === catId) {
             if (item.typeOperation) {
-                // row.value = (item.typeOperation === '0')
-                //     ? row.value - item.amount * 1
-                //     : row.value + item.amount * 1
                 if (item.typeOperation === '0') {
                     row.value += item.amount * 1
                 }
@@ -33,6 +50,7 @@ export default (data = [], action) => {
     switch (type) {
         case ADDDATATOLIST: return addItem(data, payload)
         case EDITDATA: return editItem(data, payload)
+        case ADDONECATEGORYFORCHART: return addOneCategoryForChart(data, payload)
         default:
             return data;
     }

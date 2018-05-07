@@ -9,7 +9,8 @@ import {
     DELETEACCOUNTFROMLIST,
     SETNEWFUNCTIONS,
     ADDDATATOLIST,
-    EDITDATA
+    EDITDATA,
+    ADDONECATEGORYFORCHART
 } from '../js/consts'
 
 export function changeAnimationState(value) {
@@ -85,6 +86,13 @@ export function addDataToList(obj) {
 export function editData(obj) {
     return {
         type: EDITDATA,
+        payload: obj
+    }
+}
+
+export function addOneCategoryForChart(obj) {
+    return {
+        type: ADDONECATEGORYFORCHART,
         payload: obj
     }
 }
