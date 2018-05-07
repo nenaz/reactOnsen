@@ -8,6 +8,7 @@ import {
     CHANGECATEGORYSTATISTIC,
     DELETEACCOUNTFROMLIST,
     SETNEWFUNCTIONS,
+    ADDDATATOLIST,
 } from '../js/consts'
 
 export function changeAnimationState(value) {
@@ -69,6 +70,13 @@ export function changeCategoryStatistic(id) {
 export function setNewFunctions(obj) {
     return {
         type: SETNEWFUNCTIONS,
+        payload: obj
+    }
+}
+
+export function addDataToList(obj) {
+    return {
+        type: ADDDATATOLIST,
         payload: obj
     }
 }

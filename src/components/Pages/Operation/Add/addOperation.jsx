@@ -113,6 +113,7 @@ class AddOperation extends Component{
             amount: `${this.state.inputAmount}.${this.state.part}`,
             currency: 'RUB',
             data: Utils.nowDate(true),
+            date: Utils.nowDate(false, false, true),
             typeOperation: this.props.typeOperation,
             _id: Utils.getRandomId(),
             operCoord: {
@@ -139,7 +140,7 @@ class AddOperation extends Component{
             accountFromAmount: this.state.accountFromAmount * 1,
             typeOperation: this.props.typeOperation,
         }
-        debugger
+        // debugger
         if (this.props.typeOperation !== '2') {
             this.props.editAccountInList(updateObj)
             this.req.request('updateItem', updateObj)

@@ -86,6 +86,7 @@ class WaigetLastOperations extends Component{
 
     filterOperations() {
         let result = []
+        // debugger
         switch(this.state.filter) {
             case 'last5': result = this.props.operations.slice(0, 5)
                 this.setItems(result)

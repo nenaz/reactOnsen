@@ -9,17 +9,6 @@ class BalanceTitle extends Component{
         this.state ={}
     }
 
-    // componentDidMount() {
-        // debugger    
-        // const nowDay = new Date()
-        // const yesterday = new Date()
-        // yesterday.setDate(nowDay.getDate() - 1)
-        // const obj = this.props.operations.find(item => {
-        //     const dateItem = new Date(item.data.dateObj)
-        //     return nowDay.getTime() >  
-        // })
-    // }
-
     getTodayBalance() {
         const itemUp = this.props.operations.filter((item) => {
             return item.typeOperation === "1"

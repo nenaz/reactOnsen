@@ -67,6 +67,9 @@ export default class Requester {
                 case 'deleteAccount':
                     lName = 'deleteAccount'
                     break;
+                case 'getDataForChart':
+                    lName = 'getOperLastMonth'
+                    break;
                 default: lName = 'addOperation'
                     break;
             }

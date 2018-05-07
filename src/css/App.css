@@ -890,6 +890,11 @@
   align-items: center;
 }
 
+.page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetChart {
+  height: 250px;
+  background-color: #404040;
+}
+
 .page.page--material.nzPageNewItem .page__content.page--material__content {
   overflow: hidden;
 }
