@@ -8,6 +8,7 @@ export const CHANGECATEGORYSTATISTIC = 'changeCategoryStatictic'
 export const DELETEACCOUNTFROMLIST = 'deleteAccountFromList'
 export const SETNEWFUNCTIONS = 'setNewFunctions'
 export const ADDDATATOLIST = 'addDataToList'
+export const EDITDATA = 'editData'
 
 // export const SERVERURL = 'https://guarded-sea-48553.herokuapp.com/'
 export const SERVERURL = 'https://mongosever.herokuapp.com/'

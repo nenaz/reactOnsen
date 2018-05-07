@@ -12,7 +12,8 @@ import {
     changeAnimationState,
     addOperationToList,
     editAccountInList,
-    selectTypeOperation
+    selectTypeOperation,
+    editData
 } from '../../../../AC'
 import '../../../../css/App.css'
 import Utils from '../../../../js/utils'
@@ -129,6 +130,7 @@ class AddOperation extends Component{
             addObject.idTo = this.state.idTo
         }
         this.props.addOperationToList(addObject)
+        this.props.editData(addObject)
         this.req.request('addItem', addObject)
     }
 
@@ -140,7 +142,6 @@ class AddOperation extends Component{
             accountFromAmount: this.state.accountFromAmount * 1,
             typeOperation: this.props.typeOperation,
         }
-        // debugger
         if (this.props.typeOperation !== '2') {
             this.props.editAccountInList(updateObj)
             this.req.request('updateItem', updateObj)
@@ -411,5 +412,6 @@ export default connect((state) => ({
     changeAnimationState,
     addOperationToList,
     editAccountInList,
-    selectTypeOperation
+    selectTypeOperation,
+    editData
 })(AddOperation)

@@ -210,6 +210,7 @@ const finishDataFormatingForChart = (data) => {
             return row.value === item.id
         })
         item.label = res.title
+        item.catId = item.id
         item.id = res.title
         return item
     })

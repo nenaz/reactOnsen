@@ -41,7 +41,6 @@ const updateItem = (array, obj) => {
 }
 
 const deleteItem = (array, item) => {
-    // debugger
     const deleteItem = array.find(({it}) => ( item.idFrom ))
     const numItem = array.indexOf(deleteItem)
     return (array.slice(0, numItem)).concat(array.slice(numItem + 1))

@@ -9,6 +9,7 @@ import {
     DELETEACCOUNTFROMLIST,
     SETNEWFUNCTIONS,
     ADDDATATOLIST,
+    EDITDATA
 } from '../js/consts'
 
 export function changeAnimationState(value) {
@@ -77,6 +78,13 @@ export function setNewFunctions(obj) {
 export function addDataToList(obj) {
     return {
         type: ADDDATATOLIST,
+        payload: obj
+    }
+}
+
+export function editData(obj) {
+    return {
+        type: EDITDATA,
         payload: obj
     }
 }
