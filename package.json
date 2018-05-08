@@ -113,6 +113,7 @@
     "enzyme-to-json": "^3.3.3",
     "eslint": "^4.10.0",
     "jest": "^20.0.4",
+    "jsdom": "^11.10.0",
     "jwt-simple": "^0.5.1",
     "onsenui": "^2.8.1",
     "react-addons-test-utils": "^15.6.2",

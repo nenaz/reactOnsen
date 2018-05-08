@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link2 should handle the click event 1`] = `
+<a
+  href="mockUrl"
+  onClick={[Function]}
+>
+  mockTitle
+</a>
+`;
