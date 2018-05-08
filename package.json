@@ -58,14 +58,16 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test_2": "node scripts/test.js --env=jsdom",
+    "test": "jest"
   },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js"
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/test-setup.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
@@ -103,12 +105,20 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "babel-jest": "^20.0.3",
     "bcrypt": "^2.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-15": "^1.0.5",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.3",
     "eslint": "^4.10.0",
     "jest": "^20.0.4",
     "jwt-simple": "^0.5.1",
     "onsenui": "^2.8.1",
+    "react-addons-test-utils": "^15.6.2",
     "react-onsenui": "^1.9.0",
+    "react-test-renderer": "^16.3.2",
+    "redux-mock-store": "^1.5.1",
     "yandex-map-react": "^1.1.1"
   }
 }
