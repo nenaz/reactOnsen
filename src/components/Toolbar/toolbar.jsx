@@ -1,17 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-    // Page,
     Toolbar,
     ToolbarButton,
-    // Input,
-    // Select,
-    // Toast,
-    // Fab
 } from 'react-onsenui'
-import Icon from '../Icon'
-import { Link } from 'react-router-dom'
-import { ICONCANCEL } from '../../js/consts'
 
 class ToolbarC extends Component{
     constructor(props){
@@ -20,7 +12,6 @@ class ToolbarC extends Component{
     }
 
     render(){
-        // if ()
         return (
             <Toolbar style={{
                 position: 'relative'
@@ -31,11 +22,6 @@ class ToolbarC extends Component{
                 <div className="center">{this.props.title}</div>
                 <div className="right">
                     <ToolbarButton />
-                    {/*<Link to='/' style={{ textDecoration: 'none' }} onClick={this.props.handlerCanselClick}>
-                        <ToolbarButton ref='button'>
-                            <Icon iconBase64={ICONCANCEL} />
-                        </ToolbarButton>
-        </Link>*/}
                 </div>
             </Toolbar>
         )

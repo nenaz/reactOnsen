@@ -68,7 +68,7 @@ class OptionsPage extends Component{
 }
 
 OptionsPage.propTypes = {
-
+    route: PropTypes.object
 }
 
 export default OptionsPage

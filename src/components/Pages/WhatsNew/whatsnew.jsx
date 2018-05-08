@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {
     Button
 } from 'react-onsenui'
-import config from '../../../js/config'
 import Requester from '../../../js/requester'
 import { connect } from 'react-redux'
 import {

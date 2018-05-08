@@ -4,7 +4,6 @@ import {
   connect
 } from 'react-redux'
 import {
-  // ProgressCircular,
   Navigator
 } from 'react-onsenui'
 import '../css/App.css'
@@ -213,5 +212,3 @@ export default connect((state) => ({
   setNewFunctions,
   addDataToList
 })(App)
-
-// 

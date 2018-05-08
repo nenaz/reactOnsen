@@ -13,7 +13,6 @@ import {
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import Section from '../pageWidget'
-import About from '../About'
 import WhatsNew from '../WhatsNew'
 import Icon from '../../Icon';
 import { ICONMENU } from '../../../js/consts';
