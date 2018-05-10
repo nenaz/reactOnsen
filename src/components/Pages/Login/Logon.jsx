@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import {
-    // Button,
+    Switch,
     Input,
     Page,
     // Modal,
@@ -11,6 +11,7 @@ import {
 } from 'react-onsenui'
 import Requester from '../../../js/requester'
 import NewUser from './NewUser'
+import PassCode from '../PassCode';
 
 class Logon extends Component {
     constructor(props) {
@@ -23,6 +24,8 @@ class Logon extends Component {
             animButtonClassName: '',
             buttonText: 'Войти',
             disabledInputs: false,
+            checkedPassRadio: false,
+            checkPassClassName: ''
         }
 
         this.req = new Requester()
@@ -36,6 +39,15 @@ class Logon extends Component {
         this.goToNewUser = this.goToNewUser.bind(this)
         this.goToLogin = this.goToLogin.bind(this)
         this.onAnimationEnd = this.onAnimationEnd.bind(this)
+        this.handleChangePassCodeRadio = this.handleChangePassCodeRadio.bind(this)
+    }
+
+    componentDidMount() {
+        this.req.getLocal('localOptions').then((obj) => {
+            this.setState({
+                usePassCode: obj.usePassCode
+            })
+        })
     }
 
     handleUsernameChange(e) {
@@ -50,45 +62,51 @@ class Logon extends Component {
         if (!this.state.username && !this.state.password) {
             return false;
         }
-        const addObject = {
-            username: this.state.username,
-            password: this.state.password
+        if (!this.state.usePassCode && this.state.checkedPassRadio) {
+            this.setState({
+                checkPassClassName: 'setPassCodeAnim'
+            })
+        } else {
+            const addObject = {
+                username: this.state.username,
+                password: this.state.password
+            }
+            this.setState({
+                animButtonClassName: 'loading',
+                buttonText: '',
+                disabledInputs: true
+            // })
+            }, () => {
+                setTimeout(() => {
+                    this.req.send('authUser', 'POST', addObject).then(result => {
+                        if (result.auth) {
+                            this.setState({
+                                animButtonClassName: 'loading unLoad',
+                                username: '',
+                                password: '',
+                            }, () => {
+                                this.req.setLocal('localOptions', result.token, 'webToken')
+                                setTimeout(() => {
+                                    this.setState({
+                                        animButtonClassName: 'loading unLoad icon-checked',
+                                    }, () => {
+                                        this.props.changeLogonStatus(result.auth)
+                                    })
+                                }, 1000);
+                            })
+                        } else {
+                            this.setState({
+                                username: '',
+                                password: '',
+                                disabledInputs: false,
+                                animButtonClassName: '',
+                                buttonText: 'Войти',
+                            })
+                        }
+                    })
+                }, 1500)
+            })
         }
-        this.setState({
-            animButtonClassName: 'loading',
-            buttonText: '',
-            disabledInputs: true
-        // })
-        }, () => {
-            setTimeout(() => {
-                this.req.send('authUser', 'POST', addObject).then(result => {
-                    if (result.auth) {
-                        this.setState({
-                            animButtonClassName: 'loading unLoad',
-                            username: '',
-                            password: '',
-                        }, () => {
-                            this.req.setLocal('localOptions', result.token, 'webToken')
-                            setTimeout(() => {
-                                this.setState({
-                                    animButtonClassName: 'loading unLoad icon-checked',
-                                }, () => {
-                                    this.props.changeLogonStatus(result.auth)
-                                })
-                            }, 1000);
-                        })
-                    } else {
-                        this.setState({
-                            username: '',
-                            password: '',
-                            disabledInputs: false,
-                            animButtonClassName: '',
-                            buttonText: 'Войти',
-                        })
-                    }
-                })
-            }, 1500)
-        })
     }
     
     handleRegistretion() {
@@ -131,6 +149,15 @@ class Logon extends Component {
         }
     }
 
+    handleChangePassCodeRadio() {
+        const check = this.state.checkedPassRadio
+        // const 
+        this.setState({
+            checkedPassRadio: !check,
+            buttonText: check ? 'Войти' : 'Задать',
+        })
+    }
+
     render() {
         return (
             <Page
@@ -170,17 +197,49 @@ class Logon extends Component {
                             disabled={this.state.disabledInputs}
                         />
                     </section>
-                    <section className="nzLogonSectionButton">
-                        <button
-                            className={this.state.animButtonClassName}
-                            onClick={this.handleLogon}
+                    <section style={{
+                        display: 'flex'
+                    }}>
+                        <section style={{
+                            flexGrow: 1,
+                            textAlign: 'center',
+                        }}>
+                            <Switch
+                                checked={this.state.checkedPassRadio}
+                                onChange={this.handleChangePassCodeRadio}
+                            />
+                            <p
+                                style={{
+                                    position: 'relative',
+                                    fontSize: '12px',
+                                    margin: '0'
+                                }}
+                            >Pass code</p>
+                        </section>
+                        <section className="nzLogonSectionButton"
+                            style={{
+                                flexGrow: 10
+                            }}
                         >
-                            <span className="content">{this.state.buttonText}</span>
-                        </button>
-                        <ProgressCircular
-                            indeterminate
-                            className={`nzLogonSectionButtonCircular ${this.state.animButtonClassName}`}
-                        />
+                            <div className={this.state.checkPassClassName}
+                                style={{
+                                    backgroundColor: '#404040',
+                                    width: '225px'
+                                }}
+                            >
+                                <PassCode checkPassClassName={this.state.checkPassClassName}/>
+                                <button
+                                    className={this.state.animButtonClassName}
+                                    onClick={this.handleLogon}
+                                >
+                                    <span className="content">{this.state.buttonText}</span>
+                                </button>
+                                <ProgressCircular
+                                    indeterminate
+                                    className={`nzLogonSectionButtonCircular ${this.state.animButtonClassName}`}
+                                />
+                            </div>
+                        </section>
                     </section>
                     <section>
                         <div>

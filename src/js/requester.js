@@ -24,6 +24,7 @@ export default class Requester {
                 this.options = {
                     develop: DEVELOP,
                     connectDB: true,
+                    usePassCode: false,
                     urlConnectDB: (DEVELOP) ? SERVERURLLOCAL : SERVERURL,
                 }
                 this.setLocal('localOptions', this.options, null, true)
