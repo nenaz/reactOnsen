@@ -10,6 +10,7 @@ export const SETNEWFUNCTIONS = 'setNewFunctions'
 export const ADDDATATOLIST = 'addDataToList'
 export const EDITDATA = 'editData'
 export const ADDONECATEGORYFORCHART = 'addOneCategoryForChart'
+export const CHANGEPASSCODE = 'CHANGEPASSCODE'
 
 // export const SERVERURL = 'https://guarded-sea-48553.herokuapp.com/'
 export const SERVERURL = 'https://mongosever.herokuapp.com/'

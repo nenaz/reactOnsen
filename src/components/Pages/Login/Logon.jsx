@@ -4,14 +4,12 @@ import {
     Switch,
     Input,
     Page,
-    // Modal,
-    // Fab,
-    // Icon,
     ProgressCircular
 } from 'react-onsenui'
 import Requester from '../../../js/requester'
 import NewUser from './NewUser'
 import PassCode from '../PassCode';
+// import { connect } from 'react-redux'
 
 class Logon extends Component {
     constructor(props) {
@@ -40,12 +38,18 @@ class Logon extends Component {
         this.goToLogin = this.goToLogin.bind(this)
         this.onAnimationEnd = this.onAnimationEnd.bind(this)
         this.handleChangePassCodeRadio = this.handleChangePassCodeRadio.bind(this)
+        this.togglePassCodeBlock = this.togglePassCodeBlock.bind(this)
+        this.logonRequest = this.logonRequest.bind(this)
+        this.logonRequestWithPassCode = this.logonRequestWithPassCode.bind(this)
     }
 
     componentDidMount() {
         this.req.getLocal('localOptions').then((obj) => {
+            // const passCode = this.props.passCode
+            // debugger
             this.setState({
-                usePassCode: obj.usePassCode
+                usePassCode: obj.usePassCode,
+                checkedPassRadio: obj.usePassCode,
             })
         })
     }
@@ -59,58 +63,68 @@ class Logon extends Component {
     }
 
     handleLogon() {
-        if (!this.state.username && !this.state.password) {
+        const usePassCode = this.state.usePassCode
+        debugger
+        if (!usePassCode && !this.state.username && !this.state.password) {
             return false;
         }
-        if (!this.state.usePassCode && this.state.checkedPassRadio) {
-            this.setState({
-                checkPassClassName: 'setPassCodeAnim'
-            })
-        } else {
-            const addObject = {
+        if (!usePassCode && this.state.checkedPassRadio) {
+            this.togglePassCodeBlock(true)
+        } else if (!usePassCode && !this.state.checkedPassRadio) {
+            this.logonRequest()
+        } else if (usePassCode) {
+            this.logonRequestWithPassCode()
+        }
+    }
+
+    logonRequestWithPassCode() {
+        this.req.getLocal('localOptions').then((obj) => {
+            this.logonRequest(obj.userPassCode)
+        })
+    }
+
+    logonRequest(passCodeHash) {
+        const addObject = (passCodeHash)
+            ? passCodeHash
+            : {
                 username: this.state.username,
                 password: this.state.password
             }
-            this.setState({
-                animButtonClassName: 'loading',
-                buttonText: '',
-                disabledInputs: true
+        this.setState({
+            animButtonClassName: 'loading',
+            buttonText: '',
+            disabledInputs: true
             // })
-            }, () => {
-                setTimeout(() => {
-                    this.req.send('authUser', 'POST', addObject).then(result => {
-                        if (result.auth) {
-                            this.setState({
-                                animButtonClassName: 'loading unLoad',
-                                username: '',
-                                password: '',
-                            }, () => {
-                                this.req.setLocal('localOptions', result.token, 'webToken')
-                                setTimeout(() => {
-                                    this.setState({
-                                        animButtonClassName: 'loading unLoad icon-checked',
-                                    }, () => {
-                                        this.props.changeLogonStatus(result.auth)
-                                    })
-                                }, 1000);
-                            })
-                        } else {
-                            this.setState({
-                                username: '',
-                                password: '',
-                                disabledInputs: false,
-                                animButtonClassName: '',
-                                buttonText: 'Войти',
-                            })
-                        }
-                    })
-                }, 1500)
-            })
-        }
-    }
-    
-    handleRegistretion() {
-        
+        }, () => {
+            setTimeout(() => {
+                this.req.send('authUser', 'POST', addObject).then(result => {
+                    if (result.auth) {
+                        this.setState({
+                            animButtonClassName: 'loading unLoad',
+                            username: '',
+                            password: '',
+                        }, () => {
+                            this.req.setLocal('localOptions', result.token, 'webToken')
+                            setTimeout(() => {
+                                this.setState({
+                                    animButtonClassName: 'loading unLoad icon-checked',
+                                }, () => {
+                                    this.props.changeLogonStatus(result.auth)
+                                })
+                            }, 1000);
+                        })
+                    } else {
+                        this.setState({
+                            username: '',
+                            password: '',
+                            disabledInputs: false,
+                            animButtonClassName: '',
+                            buttonText: 'Войти',
+                        })
+                    }
+                })
+            }, 1500)
+        })
     }
 
     handleModalOpen() {
@@ -151,10 +165,17 @@ class Logon extends Component {
 
     handleChangePassCodeRadio() {
         const check = this.state.checkedPassRadio
-        // const 
+        this.req.setLocal('localOptions', !check, 'usePassCode')
         this.setState({
             checkedPassRadio: !check,
             buttonText: check ? 'Войти' : 'Задать',
+        })
+    }
+
+    togglePassCodeBlock(value) {
+        const className = value ? 'setPassCodeAnim' : ''
+        this.setState({
+            checkPassClassName: className
         })
     }
 
@@ -197,37 +218,21 @@ class Logon extends Component {
                             disabled={this.state.disabledInputs}
                         />
                     </section>
-                    <section style={{
-                        display: 'flex'
-                    }}>
-                        <section style={{
-                            flexGrow: 1,
-                            textAlign: 'center',
-                        }}>
+                    <section className="nzLogonPassCodeBlock">
+                        <section className="nzSwitchBlock">
                             <Switch
                                 checked={this.state.checkedPassRadio}
                                 onChange={this.handleChangePassCodeRadio}
                             />
-                            <p
-                                style={{
-                                    position: 'relative',
-                                    fontSize: '12px',
-                                    margin: '0'
-                                }}
-                            >Pass code</p>
+                            <p>Pass code</p>
                         </section>
-                        <section className="nzLogonSectionButton"
-                            style={{
-                                flexGrow: 10
-                            }}
-                        >
-                            <div className={this.state.checkPassClassName}
-                                style={{
-                                    backgroundColor: '#404040',
-                                    width: '225px'
-                                }}
-                            >
-                                <PassCode checkPassClassName={this.state.checkPassClassName}/>
+                        <section className="nzLogonSectionButton">
+                            <div className={`nzPC ${this.state.checkPassClassName}`}>
+                                {this.state.checkPassClassName &&
+                                    <PassCode
+                                        // handleLogon={this.handleLogon}
+                                        togglePassCodeBlock={this.togglePassCodeBlock}
+                                    />}
                                 <button
                                     className={this.state.animButtonClassName}
                                     onClick={this.handleLogon}
@@ -241,14 +246,14 @@ class Logon extends Component {
                             </div>
                         </section>
                     </section>
-                    <section>
+                    {/* <section>
                         <div>
                             <span>{this.props.errorLogonStatus}</span>
                         </div>
                         <div>
                             <span>{this.props.errorLogonText}</span>
                         </div>
-                    </section>
+                    </section> */}
                 </section>
             </Page>
         )
@@ -260,3 +265,6 @@ Logon.propTypes = {
 }
 
 export default Logon
+// export default connect((state) => ({
+//     passCode: state.changePassCode,
+// }))(Logon)

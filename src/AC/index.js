@@ -10,7 +10,8 @@ import {
     SETNEWFUNCTIONS,
     ADDDATATOLIST,
     EDITDATA,
-    ADDONECATEGORYFORCHART
+    ADDONECATEGORYFORCHART,
+    CHANGEPASSCODE
 } from '../js/consts'
 
 export function changeAnimationState(value) {
@@ -94,5 +95,12 @@ export function addOneCategoryForChart(obj) {
     return {
         type: ADDONECATEGORYFORCHART,
         payload: obj
+    }
+}
+
+export function changePassCode(value) {
+    return {
+        type: CHANGEPASSCODE,
+        payload: value
     }
 }

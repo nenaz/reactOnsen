@@ -105,8 +105,9 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "aws-sdk": "^2.238.1",
     "babel-jest": "^20.0.3",
-    "bcrypt": "^2.0.0",
+    "bcryptjs": "^2.4.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-15": "^1.0.5",
     "enzyme-adapter-react-16": "^1.1.1",

@@ -508,21 +508,48 @@
   padding: 10px;
 }
 
-.nzLogonSection section.nzLogonSectionButton {
-  text-align: center;
-  position: relative;
+.nzLogonSection section.nzLogonPassCodeBlock {
+  display: flex;
 }
 
-.nzLogonSection section.nzLogonSectionButton .setPassCodeAnim {
+.nzLogonSection section.nzLogonPassCodeBlock .nzSwitchBlock {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.nzLogonSection section.nzLogonPassCodeBlock .nzSwitchBlock p {
+  position: relative;
+  font-size: 12px;
+  margin: 0;
+}
+
+.nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton {
+  text-align: center;
+  position: relative;
+  flex-grow: 10;
+}
+
+.nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .nzPC {
+  background-color: #404040;
+  width: 225px;
+  animation: hidePassCodeSection 250ms linear forwards;
+}
+
+.nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .setPassCodeAnim {
   animation: showPassCodeSection 450ms linear forwards;
 }
 
-.nzLogonSection section.nzLogonSectionButton .setPassCodeAnim button {
-  transition: 300ms linear all;
+.nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .setPassCodeAnim span {
+  display: inline-block;
+  height: 20px;
+}
+
+.nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .setPassCodeAnim button {
+  transition: 450ms linear all;
   opacity: 0;
 }
 
-.nzLogonSection section.nzLogonSectionButton .setPassCodeAnim .nzButtonsPassCode ons-button {
+.nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .setPassCodeAnim .nzButtonsPassCode ons-button {
   color: #2979ff;
   border: 0;
   width: 33%;
@@ -530,7 +557,7 @@
   line-height: 50px;
 }
 
-.nzLogonSection section.nzLogonSectionButton .setPassCodeAnim .nzCountSymbols .nzCountSymbolsItem {
+.nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .setPassCodeAnim .nzCountSymbols .nzCountSymbolsItem {
   display: inline-block;
   background-color: #9ba3a6;
   width: 10px;
@@ -540,7 +567,7 @@
   margin: 0 3px;
 }
 
-.nzLogonSection section.nzLogonSectionButton .setPassCodeAnim .nzCountSymbols .nzCountSymbolsItem.active {
+.nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .setPassCodeAnim .nzCountSymbols .nzCountSymbolsItem.active {
   background-color: #23954e;
 }
 
@@ -633,8 +660,17 @@
   }
   100% {
     background-color: #404040;
-    height: 250px;
+    height: 282px;
     color: #2979ff;
+  }
+}
+
+@keyframes hidePassCodeSection {
+  0% {
+    height: 282px;
+  }
+  100% {
+    height: 42px;
   }
 }
 

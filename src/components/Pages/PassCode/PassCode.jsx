@@ -1,10 +1,13 @@
 import React, { Component} from 'react'
 import PropTypes from 'prop-types'
 import {
-    Button,
-    Input
+    Button
 } from 'react-onsenui'
 import CountSymbols from '../../CountSymbols'
+import Requester from '../../../js/requester'
+// import { connect } from 'react-redux'
+// import { changePassCode } from '../../../AC'
+import bcrypt from 'bcryptjs'
 
 class PassCode extends Component{
     constructor(props){
@@ -12,26 +15,51 @@ class PassCode extends Component{
         this.state ={
             value: '',
             count: 0,
+            passCode: '',
+            repeatePassCode: '',
+            helpText: 'Введите код'
         }
-
-        // this.numButtons = [["9", "8", "7"], ["6", "5", "4"], ["3", "2", "1"], ["C", "0", ","]]
-        this.numButtons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", " ", "0", "back"]
+        this.req = new Requester()
+        this.numButtons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "check", "0", "back"]
         this.renderItemNum = this.renderItemNum.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.handleOkClick = this.handleOkClick.bind(this)
     }
 
     handleClick(e) {
         const value = this.state.value
-        const count = this.state.count
-        const text = e.target.innerText
-        this.setState({
-            value: text
-                ? value + e.target.innerText
-                : value.substr(0, value.length - 1),
-            count: text
-                ? count + 1
-                : count - 1,
-        })
+        const symbol = e.target.innerText
+        const newText = symbol
+            ? value + symbol
+            : value.substr(0, value.length - 1)
+        const newLength = newText.length
+        if (newLength <= 6 && newLength >= 0) {
+            this.setState({
+                value: newText,
+                count: newLength,
+            })
+        }
+    }
+
+    handleOkClick() {
+        const value = this.state.value
+        if (!this.state.passCode) {
+            this.setState({
+                passCode: value,
+                value: '',
+                count: 0,
+                helpText: 'Повторите код'
+            })
+        } else {
+            const value = this.state.value
+            if (value === this.state.passCode) { 
+                bcrypt.hash(value, 10, (err, hash) => {
+                    this.req.setLocal('localOptions', hash, 'userPassCode')
+                    // this.props.handleLogon()
+                    this.props.togglePassCodeBlock()
+                })
+            }
+        }
     }
 
     renderItemNum() {
@@ -39,15 +67,21 @@ class PassCode extends Component{
             <div className="nzButtonsPassCode">
                 {this.numButtons.map((item, key) => {
                     let data = item;
+                    let func = this.handleClick
                     if (item === 'back') {
-                        data = <span className="icon-left-arrow"></span>
+                        data = <span className="icon-left-arrow" />
+                    }
+                    if (item === 'check') {
+                        data = <span
+                            className="icon-checked"
+                        />
+                        func = this.handleOkClick
                     }
                     return (
                         <Button
                             key={key}
                             modifier='outline'
-                            // className={cl}
-                            onClick={this.handleClick}
+                            onClick={func}
                         >{data}</Button>
                     )
                 })}
@@ -55,25 +89,28 @@ class PassCode extends Component{
         )
     }
 
-    render(){
-        if (this.props.checkPassClassName) {
-            return (
-                <section>
+    render() {
+        return (
+            <section>
+                <div>
                     <span>{this.state.value}</span>
                     <CountSymbols count={this.state.count} />
                     <section className="nzAddUserSection">
                         {this.renderItemNum()}
                     </section>
-                </section>
-            )
-        } else {
-            return <section />
-        }
+                    <span>{this.state.helpText}</span>
+                </div>
+            </section>
+        )
     }
 }
 
 PassCode.propTypes = {
     checkPassClassName: PropTypes.string,
+    togglePassCodeBlock: PropTypes.func.isRequired,
 }
 
 export default PassCode
+// export default connect(null, {
+//     changePassCode,
+// })(PassCode)
