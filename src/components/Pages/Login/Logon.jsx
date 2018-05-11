@@ -9,7 +9,6 @@ import {
 import Requester from '../../../js/requester'
 import NewUser from './NewUser'
 import PassCode from '../PassCode';
-// import { connect } from 'react-redux'
 
 class Logon extends Component {
     constructor(props) {
@@ -41,12 +40,11 @@ class Logon extends Component {
         this.togglePassCodeBlock = this.togglePassCodeBlock.bind(this)
         this.logonRequest = this.logonRequest.bind(this)
         this.logonRequestWithPassCode = this.logonRequestWithPassCode.bind(this)
+        this.generateLogonPage = this.generateLogonPage.bind(this)
     }
 
     componentDidMount() {
         this.req.getLocal('localOptions').then((obj) => {
-            // const passCode = this.props.passCode
-            // debugger
             this.setState({
                 usePassCode: obj.usePassCode,
                 checkedPassRadio: obj.usePassCode,
@@ -179,83 +177,100 @@ class Logon extends Component {
         })
     }
 
+    generateLogonPage() {
+        if(this.state.usePassCode) {
+            return (
+                <Page
+                    className={`logonForm ${this.props.className}`}
+                    onAnimationEnd={this.onAnimationEnd}
+                >
+                    <section className="nzLogonSection">
+                        <section>
+                            <Input
+                                value={this.state.username}
+                                onChange={this.handleUsernameChange}
+                                modifier='underbar material'
+                                float
+                                placeholder='Логин'
+                                disabled={this.state.disabledInputs}
+                            />
+                        </section>
+                    </section>
+                </Page>
+            )
+        } else {
+            return (
+                <Page
+                    className={`logonForm ${this.props.className}`}
+                    onAnimationEnd={this.onAnimationEnd}
+                >
+                    <section className={`nzLogonPageAddUser ${this.state.className}`}>
+                        <div className="nzAddUserButton">
+                            <span
+                                className="shape"
+                                onClick={this.handleNewUser}
+                            />
+                        </div>
+                        <NewUser />
+                    </section>
+                    <section className="nzLogonSection">
+                        <section>
+                            <Input
+                                value={this.state.username}
+                                onChange={this.handleUsernameChange}
+                                modifier='underbar material'
+                                float
+                                placeholder='Логин'
+                                disabled={this.state.disabledInputs}
+                            />
+                        </section>
+                        <section>
+                            <Input
+                                value={this.state.password}
+                                onChange={this.handlePasswordChange}
+                                modifier='underbar material'
+                                type='password'
+                                float
+                                placeholder='Пароль'
+                                disabled={this.state.disabledInputs}
+                            />
+                        </section>
+                        <section className="nzLogonPassCodeBlock">
+                            <section className="nzSwitchBlock">
+                                <Switch
+                                    checked={this.state.checkedPassRadio}
+                                    onChange={this.handleChangePassCodeRadio}
+                                />
+                                <p>Pass code</p>
+                            </section>
+                            <section className="nzLogonSectionButton">
+                                <div className={`nzPC ${this.state.checkPassClassName}`}>
+                                    {this.state.checkPassClassName &&
+                                        <PassCode
+                                            togglePassCodeBlock={this.togglePassCodeBlock}
+                                        />}
+                                    <button
+                                        className={this.state.animButtonClassName}
+                                        onClick={this.handleLogon}
+                                    >
+                                        <span className="content">{this.state.buttonText}</span>
+                                    </button>
+                                    <ProgressCircular
+                                        indeterminate
+                                        className={`nzLogonSectionButtonCircular ${this.state.animButtonClassName}`}
+                                    />
+                                </div>
+                            </section>
+                        </section>
+                    </section>
+                </Page>
+            )
+        }
+    }
+
     render() {
         return (
-            <Page
-                className={`logonForm ${this.props.className}`}
-                onAnimationEnd={this.onAnimationEnd}
-            >
-                <section className={`nzLogonPageAddUser ${this.state.className}`}>
-                    <div
-                        className="nzAddUserButton" 
-                    >
-                        <span
-                            className="shape"
-                            onClick={this.handleNewUser}
-                        />
-                    </div>
-                    <NewUser />
-                </section>
-                <section className="nzLogonSection">
-                    <section>
-                        <Input
-                            value={this.state.username}
-                            onChange={this.handleUsernameChange}
-                            modifier='underbar material'
-                            float
-                            placeholder='Логин'
-                            disabled={this.state.disabledInputs}
-                        />
-                    </section>
-                    <section>
-                        <Input
-                            value={this.state.password}
-                            onChange={this.handlePasswordChange}
-                            modifier='underbar material'
-                            type='password'
-                            float
-                            placeholder='Пароль'
-                            disabled={this.state.disabledInputs}
-                        />
-                    </section>
-                    <section className="nzLogonPassCodeBlock">
-                        <section className="nzSwitchBlock">
-                            <Switch
-                                checked={this.state.checkedPassRadio}
-                                onChange={this.handleChangePassCodeRadio}
-                            />
-                            <p>Pass code</p>
-                        </section>
-                        <section className="nzLogonSectionButton">
-                            <div className={`nzPC ${this.state.checkPassClassName}`}>
-                                {this.state.checkPassClassName &&
-                                    <PassCode
-                                        // handleLogon={this.handleLogon}
-                                        togglePassCodeBlock={this.togglePassCodeBlock}
-                                    />}
-                                <button
-                                    className={this.state.animButtonClassName}
-                                    onClick={this.handleLogon}
-                                >
-                                    <span className="content">{this.state.buttonText}</span>
-                                </button>
-                                <ProgressCircular
-                                    indeterminate
-                                    className={`nzLogonSectionButtonCircular ${this.state.animButtonClassName}`}
-                                />
-                            </div>
-                        </section>
-                    </section>
-                    {/* <section>
-                        <div>
-                            <span>{this.props.errorLogonStatus}</span>
-                        </div>
-                        <div>
-                            <span>{this.props.errorLogonText}</span>
-                        </div>
-                    </section> */}
-                </section>
-            </Page>
+            this.generateLogonPage()
         )
     }
 }
@@ -265,6 +280,3 @@ Logon.propTypes = {
 }
 
 export default Logon
-// export default connect((state) => ({
-//     passCode: state.changePassCode,
-// }))(Logon)
