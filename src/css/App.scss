@@ -604,6 +604,13 @@
         animation: processCircularHide 450ms linear forwards;
       }
     }
+    &.nzLogonWithPassCode{
+      padding: 0 10px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
   }
 }
 

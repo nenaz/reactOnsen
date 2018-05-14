@@ -654,6 +654,14 @@
   animation: processCircularHide 450ms linear forwards;
 }
 
+.nzLogonSection section.nzLogonWithPassCode {
+  padding: 0 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 @keyframes showPassCodeSection {
   0% {
     height: 42px;

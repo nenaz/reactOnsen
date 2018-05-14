@@ -185,15 +185,23 @@ class Logon extends Component {
                     onAnimationEnd={this.onAnimationEnd}
                 >
                     <section className="nzLogonSection">
-                        <section>
+                        <section className="nzLogonWithPassCode">
                             <Input
                                 value={this.state.username}
                                 onChange={this.handleUsernameChange}
                                 modifier='underbar material'
                                 float
-                                placeholder='Логин'
+                                placeholder='PassCode'
                                 disabled={this.state.disabledInputs}
+                                maxLength={6}
+                                type="password"
                             />
+                            <button
+                                className={this.state.animButtonClassName}
+                                onClick={this.handleLogon}
+                            >
+                                <span className="content">{this.state.buttonText}</span>
+                            </button>
                         </section>
                     </section>
                 </Page>
