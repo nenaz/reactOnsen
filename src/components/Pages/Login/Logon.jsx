@@ -48,6 +48,7 @@ class Logon extends Component {
             this.setState({
                 usePassCode: obj.usePassCode,
                 checkedPassRadio: obj.usePassCode,
+                // user
             })
         })
     }
