@@ -71,6 +71,9 @@ export default class Requester {
                 case 'getDataForChart':
                     lName = 'getOperLastMonth'
                     break;
+                case 'setPass':
+                    lName = 'setPass'
+                    break;
                 default: lName = 'addOperation'
                     break;
             }
@@ -107,7 +110,7 @@ export default class Requester {
             xhr.open(type, SERVERURLLOCAL + name, true);
             xhr.onprogress = (event) => {}
             xhr.setRequestHeader('Content-Type', 'application/json');
-            if (name !== 'newUser' && name !== 'authUser') {
+            if (name !== 'newUser' && name !== 'authUser' && name !== 'setPass') {
                 
                 xhr.setRequestHeader('Authorization', webToken);
             }

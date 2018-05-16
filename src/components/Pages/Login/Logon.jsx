@@ -41,6 +41,7 @@ class Logon extends Component {
         this.logonRequest = this.logonRequest.bind(this)
         this.logonRequestWithPassCode = this.logonRequestWithPassCode.bind(this)
         this.generateLogonPage = this.generateLogonPage.bind(this)
+        this.handlePasscodeChange = this.handlePasscodeChange.bind(this)
     }
 
     componentDidMount() {
@@ -48,7 +49,7 @@ class Logon extends Component {
             this.setState({
                 usePassCode: obj.usePassCode,
                 checkedPassRadio: obj.usePassCode,
-                // user
+                username: obj.username,
             })
         })
     }
@@ -63,7 +64,7 @@ class Logon extends Component {
 
     handleLogon() {
         const usePassCode = this.state.usePassCode
-        debugger
+        // debugger
         if (!usePassCode && !this.state.username && !this.state.password) {
             return false;
         }
@@ -71,24 +72,41 @@ class Logon extends Component {
             this.togglePassCodeBlock(true)
         } else if (!usePassCode && !this.state.checkedPassRadio) {
             this.logonRequest()
+        // }
         } else if (usePassCode) {
-            this.logonRequestWithPassCode()
+            // this.logonRequestWithPassCode()
+            this.logonRequest()
         }
     }
 
-    logonRequestWithPassCode() {
-        this.req.getLocal('localOptions').then((obj) => {
-            this.logonRequest(obj.userPassCode)
+    logonRequestWithPassCode(value) {
+        // this.req.getLocal('localOptions').then((obj) => {
+            // this.logonRequest(obj.userPassCode)
+        // })
+        this.req.setLocal('localOptions', this.state.username, 'username')
+        // this.req.request('setPass', {
+        //     passcode: value,
+        //     username: this.state.username,
+        //     password: this.state.password
+        // })
+        this.req.send('setPass', 'POST', {
+            passcode: value,
+            username: this.state.username,
+            password: this.state.password
+        }).then(result => {
+            window.location.reload()
         })
     }
 
-    logonRequest(passCodeHash) {
-        const addObject = (passCodeHash)
-            ? passCodeHash
-            : {
-                username: this.state.username,
-                password: this.state.password
-            }
+    logonRequest() {
+        const addObject = {
+            username: this.state.username,
+        }
+        if (this.state.passcode) {
+            addObject.passcode = this.state.passcode
+        } else {
+            addObject.password = this.state.password
+        }
         this.setState({
             animButtonClassName: 'loading',
             buttonText: '',
@@ -178,6 +196,10 @@ class Logon extends Component {
         })
     }
 
+    handlePasscodeChange(e) {
+        this.setState({ passcode: e.target.value })
+    }
+
     generateLogonPage() {
         if(this.state.usePassCode) {
             return (
@@ -188,8 +210,8 @@ class Logon extends Component {
                     <section className="nzLogonSection">
                         <section className="nzLogonWithPassCode">
                             <Input
-                                value={this.state.username}
-                                onChange={this.handleUsernameChange}
+                                value={this.state.passcode}
+                                onChange={this.handlePasscodeChange}
                                 modifier='underbar material'
                                 float
                                 placeholder='PassCode'
@@ -257,6 +279,7 @@ class Logon extends Component {
                                     {this.state.checkPassClassName &&
                                         <PassCode
                                             togglePassCodeBlock={this.togglePassCodeBlock}
+                                            logonRequestWithPassCode={this.logonRequestWithPassCode}
                                         />}
                                     <button
                                         className={this.state.animButtonClassName}

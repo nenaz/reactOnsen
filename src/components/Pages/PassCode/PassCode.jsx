@@ -52,12 +52,18 @@ class PassCode extends Component{
             })
         } else {
             const value = this.state.value
-            if (value === this.state.passCode) { 
-                bcrypt.hash(value, 10, (err, hash) => {
-                    this.req.setLocal('localOptions', hash, 'userPassCode')
+            if (value === this.state.passCode) {
+                this.props.logonRequestWithPassCode(value)
+                // bcrypt.hash(value, 10, (err, hash) => {
+                //     console.log(hash)
+                    // this.req.setLocal('localOptions', hash, 'userPassCode')
+                    // this.req.request('setPass', {
+                        // passcode: value
+                    // })
                     // this.props.handleLogon()
-                    this.props.togglePassCodeBlock()
-                })
+                    // this.props.togglePassCodeBlock()
+                    // window.location.reload()
+                // })
             }
         }
     }
@@ -108,6 +114,7 @@ class PassCode extends Component{
 PassCode.propTypes = {
     checkPassClassName: PropTypes.string,
     togglePassCodeBlock: PropTypes.func.isRequired,
+    logonRequestWithPassCode: PropTypes.func,
 }
 
 export default PassCode
