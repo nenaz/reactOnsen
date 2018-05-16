@@ -42,6 +42,7 @@ class Logon extends Component {
         this.logonRequestWithPassCode = this.logonRequestWithPassCode.bind(this)
         this.generateLogonPage = this.generateLogonPage.bind(this)
         this.handlePasscodeChange = this.handlePasscodeChange.bind(this)
+        this.handleRemovePassCode = this.handleRemovePassCode.bind(this)
     }
 
     componentDidMount() {
@@ -49,7 +50,11 @@ class Logon extends Component {
             this.setState({
                 usePassCode: obj.usePassCode,
                 checkedPassRadio: obj.usePassCode,
-                username: obj.username,
+            })
+            this.req.getLocal('localUserName').then((obj) => {
+                this.setState({
+                    username: obj,
+                })
             })
         })
     }
@@ -64,7 +69,6 @@ class Logon extends Component {
 
     handleLogon() {
         const usePassCode = this.state.usePassCode
-        // debugger
         if (!usePassCode && !this.state.username && !this.state.password) {
             return false;
         }
@@ -83,7 +87,7 @@ class Logon extends Component {
         // this.req.getLocal('localOptions').then((obj) => {
             // this.logonRequest(obj.userPassCode)
         // })
-        this.req.setLocal('localOptions', this.state.username, 'username')
+        this.req.setLocal('localUserName', this.state.username)
         // this.req.request('setPass', {
         //     passcode: value,
         //     username: this.state.username,
@@ -200,6 +204,17 @@ class Logon extends Component {
         this.setState({ passcode: e.target.value })
     }
 
+    handleRemovePassCode() {
+        this.setState({
+            usePassCode: false,
+            checkedPassRadio: false,
+            username: '',
+        }, () => {
+            this.req.setLocal('localUserName', '')
+            this.req.setLocal('localOptions', false, 'usePassCode')
+        })
+    }
+
     generateLogonPage() {
         if(this.state.usePassCode) {
             return (
@@ -219,12 +234,17 @@ class Logon extends Component {
                                 maxLength={6}
                                 type="password"
                             />
-                            <button
-                                className={this.state.animButtonClassName}
-                                onClick={this.handleLogon}
-                            >
-                                <span className="content">{this.state.buttonText}</span>
-                            </button>
+                                <button
+                                    className={this.state.animButtonClassName}
+                                    onClick={this.handleLogon}
+                                >
+                                    <span className="content">{this.state.buttonText}</span>
+                                </button>
+                            <div className="nzRemovePassCode">
+                                <span
+                                    onClick={this.handleRemovePassCode}
+                                >Сбросить код доступа</span>
+                            </div>
                         </section>
                     </section>
                 </Page>

@@ -510,6 +510,7 @@
 
 .nzLogonSection section.nzLogonPassCodeBlock {
   display: flex;
+  position: relative;
 }
 
 .nzLogonSection section.nzLogonPassCodeBlock .nzSwitchBlock {
@@ -531,12 +532,14 @@
 
 .nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .nzPC {
   background-color: #404040;
-  width: 225px;
+  width: 224px;
   animation: hidePassCodeSection 250ms linear forwards;
 }
 
 .nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .setPassCodeAnim {
-  animation: showPassCodeSection 450ms linear forwards;
+  animation: showPassCodeSection 500ms linear forwards;
+  position: relative;
+  overflow: hidden;
 }
 
 .nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .setPassCodeAnim span {
@@ -662,14 +665,28 @@
   justify-content: space-around;
 }
 
+.nzLogonSection section.nzLogonWithPassCode .nzRemovePassCode {
+  position: absolute;
+  top: 95%;
+  left: calc(50% - 150px);
+  color: #2979ff;
+  width: 300px;
+  text-align: center;
+}
+
 @keyframes showPassCodeSection {
   0% {
     height: 42px;
+    top: 0;
+    left: 0;
   }
   100% {
     background-color: #404040;
-    height: 282px;
+    height: 310px;
     color: #2979ff;
+    top: -170px;
+    height: 305px;
+    left: calc(50% - 132px);
   }
 }
 

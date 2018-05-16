@@ -8,7 +8,7 @@ export default class Requester {
     initialize(value) {
         if (localStorage) {
             if (!localStorage.hasOwnProperty('localUserName')) {
-                this.setLocal('localUserName', [], true)
+                this.setLocal('localUserName', '', null, true)
             }
             if (!localStorage.hasOwnProperty('localAccounts')) {
                 this.setLocal('localAccounts', [], true)
@@ -145,16 +145,21 @@ export default class Requester {
             localStorage.setItem(name, JSON.stringify(arr))
         } else {
             this.getLocal(name).then((arr) => {
-                if (arr) {
-                    if (nameField) {
-                        arr[nameField] = value
-                        if (nameField === 'token') {
-                            this.webToken = value
+                const type = typeof(arr)
+                switch(type) {
+                    case 'object':
+                        if (nameField) {
+                            arr[nameField] = value
+                            // if (nameField === 'webToken') {
+                            //     this.webToken = value
+                            // }
                         }
-                    } else {
-                        arr.push(value)
-                    }
-                    localStorage.setItem(name, JSON.stringify(arr))
+                        localStorage.setItem(name, JSON.stringify(arr))
+                        break
+                    case 'array': arr.push(value)
+                        localStorage.setItem(name, JSON.stringify(arr))
+                        break
+                    default: localStorage.setItem(name, JSON.stringify(value))
                 }
             })
         }
