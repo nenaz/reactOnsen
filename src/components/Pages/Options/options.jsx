@@ -49,14 +49,15 @@ class OptionsPage extends Component{
     render(){
         return (
             <Page renderToolbar={this.renderToolbar}>
-                <section>
-                    <div style={{
-                        color: 'white'
-                    }}>
-                        <span>Использовать удаленую БД для хранения данных?</span>
+                <section className="nzOptions">
+                    <div className="nzOptionsTextBlock">
+                        <span className="nzOptionsTextBlockELem">
+                            Использовать удаленую БД для хранения данных?
+                        </span>
                     </div>
-                    <div>
+                    <div className="nzOptionsSwitchBlock">
                         <Switch
+                            disabled
                             checked={this.state.checked}
                             onChange={this.handleChange}
                         />

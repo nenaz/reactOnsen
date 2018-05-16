@@ -786,6 +786,23 @@
   line-height: 56px;
 }
 
+.page.page--material .nzOptions {
+  display: flex;
+  height: 60px;
+  background-color: grey;
+  align-items: center;
+}
+
+.page.page--material .nzOptions .nzOptionsTextBlock {
+  color: white;
+  padding-left: 15px;
+}
+
+.page.page--material .nzOptions .nzOptionsSwitchBlock {
+  width: 25%;
+  text-align: center;
+}
+
 .page.page--material .nzWidgetSection {
   margin: 8px;
 }

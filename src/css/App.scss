@@ -741,6 +741,23 @@
       line-height: 56px;
     }
   }
+  .nzOptions{
+    display: flex;
+    height: 60px;
+    background-color: grey;
+    align-items: center;
+    .nzOptionsTextBlock{
+      color: white;
+      padding-left: 15px;
+      .nzOptionsTextBlockELem{
+
+      }
+    }
+    .nzOptionsSwitchBlock{
+      width: 25%;
+      text-align: center;
+    }
+  }
   .nzWidgetSection{
     margin: 8px;
     .nzWidgetBlock{

@@ -3,6 +3,7 @@ import {
     SERVERURLLOCAL,
     DEVELOP
 } from './consts'
+import config from './config'
 
 export default class Requester {
     initialize(value) {
@@ -104,10 +105,10 @@ export default class Requester {
 
     send(name, type, params) {
         const webToken = this.getWebToken()
+        const serverUrl = config.serverUrl
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
-            // xhr.open(type, SERVERURL + name, true);
-            xhr.open(type, SERVERURLLOCAL + name, true);
+            xhr.open(type, serverUrl + name, true);
             xhr.onprogress = (event) => {}
             xhr.setRequestHeader('Content-Type', 'application/json');
             if (name !== 'newUser' && name !== 'authUser' && name !== 'setPass') {
@@ -168,7 +169,6 @@ export default class Requester {
     getLocal(name) {
         return new Promise(function (resolve, reject) {
             console.log('getLocal = ' + name)
-            // return JSON.parse(localStorage.getItem(name))
             resolve(JSON.parse(localStorage.getItem(name)));
         })
     }
