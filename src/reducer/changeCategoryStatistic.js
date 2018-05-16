@@ -15,7 +15,7 @@ const changeTopOperations = (arr, id) => {
 
 export default (topOperations = LISTCATEGORY, action) => {
     const {type, payload} = action
-    switch(action) {
+    switch (type) {
         case CHANGECATEGORYSTATISTIC: return changeTopOperations(topOperations, payload)
         default: return topOperations
     }

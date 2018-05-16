@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-    Page,
     List,
     ListItem,
     Button,
-    Dialog
 } from 'react-onsenui'
 import Title from "../../Title";
 // import { LISTCATEGORY } from '../../js/consts'

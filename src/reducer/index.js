@@ -7,6 +7,7 @@ import changeAccountToEdit from './changeAccountToEdit'
 import changeCategoryStatistic from './changeCategoryStatistic'
 import updateNewFunctions from './updateNewFunctions'
 import redAddDataToList from './redAddDataToList'
+import changePassCode from './changePassCode'
 
 export default combineReducers({
     changeAnimationState,
@@ -16,5 +17,6 @@ export default combineReducers({
     changeAccountToEdit,
     changeCategoryStatistic,
     updateNewFunctions,
-    redAddDataToList
+    redAddDataToList,
+    changePassCode,
 })

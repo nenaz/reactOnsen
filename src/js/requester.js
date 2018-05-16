@@ -3,12 +3,13 @@ import {
     SERVERURLLOCAL,
     DEVELOP
 } from './consts'
+import config from './config'
 
 export default class Requester {
     initialize(value) {
         if (localStorage) {
             if (!localStorage.hasOwnProperty('localUserName')) {
-                this.setLocal('localUserName', [], true)
+                this.setLocal('localUserName', '', null, true)
             }
             if (!localStorage.hasOwnProperty('localAccounts')) {
                 this.setLocal('localAccounts', [], true)
@@ -24,6 +25,7 @@ export default class Requester {
                 this.options = {
                     develop: DEVELOP,
                     connectDB: true,
+                    usePassCode: false,
                     urlConnectDB: (DEVELOP) ? SERVERURLLOCAL : SERVERURL,
                 }
                 this.setLocal('localOptions', this.options, null, true)
@@ -70,6 +72,9 @@ export default class Requester {
                 case 'getDataForChart':
                     lName = 'getOperLastMonth'
                     break;
+                case 'setPass':
+                    lName = 'setPass'
+                    break;
                 default: lName = 'addOperation'
                     break;
             }
@@ -100,13 +105,13 @@ export default class Requester {
 
     send(name, type, params) {
         const webToken = this.getWebToken()
+        const serverUrl = config.serverUrl
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
-            // xhr.open(type, SERVERURL + name, true);
-            xhr.open(type, SERVERURLLOCAL + name, true);
+            xhr.open(type, serverUrl + name, true);
             xhr.onprogress = (event) => {}
             xhr.setRequestHeader('Content-Type', 'application/json');
-            if (name !== 'newUser' && name !== 'authUser') {
+            if (name !== 'newUser' && name !== 'authUser' && name !== 'setPass') {
                 
                 xhr.setRequestHeader('Authorization', webToken);
             }
@@ -141,16 +146,21 @@ export default class Requester {
             localStorage.setItem(name, JSON.stringify(arr))
         } else {
             this.getLocal(name).then((arr) => {
-                if (arr) {
-                    if (nameField) {
-                        arr[nameField] = value
-                        if (nameField === 'token') {
-                            this.webToken = value
+                const type = typeof(arr)
+                switch(type) {
+                    case 'object':
+                        if (nameField) {
+                            arr[nameField] = value
+                            // if (nameField === 'webToken') {
+                            //     this.webToken = value
+                            // }
                         }
-                    } else {
-                        arr.push(value)
-                    }
-                    localStorage.setItem(name, JSON.stringify(arr))
+                        localStorage.setItem(name, JSON.stringify(arr))
+                        break
+                    case 'array': arr.push(value)
+                        localStorage.setItem(name, JSON.stringify(arr))
+                        break
+                    default: localStorage.setItem(name, JSON.stringify(value))
                 }
             })
         }
@@ -159,7 +169,6 @@ export default class Requester {
     getLocal(name) {
         return new Promise(function (resolve, reject) {
             console.log('getLocal = ' + name)
-            // return JSON.parse(localStorage.getItem(name))
             resolve(JSON.parse(localStorage.getItem(name)));
         })
     }

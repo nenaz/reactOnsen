@@ -33,9 +33,6 @@ class Welcome extends Component {
                 this.fetch = false;
             })
         }
-        console.log(nextProps);
-        console.log(nextState);
-        
     }
 
     handleDismiss() {
