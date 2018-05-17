@@ -29,7 +29,7 @@ class Logon extends Component {
 
         // this.handlePasswordChange = this.handlePasswordChange.bind(this)
         // this.handleUsernameChange = this.handleUsernameChange.bind(this)
-        this.handleLogon = this.handleLogon.bind(this)
+        // this.handleLogon = this.handleLogon.bind(this)
         this.handleModalOpen = this.handleModalOpen.bind(this)
         this.handleModalClose = this.handleModalClose.bind(this)
         this.handleNewUser = this.handleNewUser.bind(this)
@@ -67,19 +67,19 @@ class Logon extends Component {
     //     this.setState({ password: e.target.value })
     // }
 
-    handleLogon() {
-        const usePassCode = this.state.usePassCode
-        if (!usePassCode && !this.state.username && !this.state.password) {
-            return false;
-        }
-        if (!usePassCode && this.state.checkedPassRadio) {
-            this.togglePassCodeBlock(true)
-        } else if (!usePassCode && !this.state.checkedPassRadio) {
-            this.logonRequest()
-        } else if (usePassCode) {
-            this.logonRequest()
-        }
-    }
+    // handleLogon() {
+    //     const usePassCode = this.state.usePassCode
+    //     if (!usePassCode && !this.state.username && !this.state.password) {
+    //         return false;
+    //     }
+    //     if (!usePassCode && this.state.checkedPassRadio) {
+    //         this.togglePassCodeBlock(true)
+    //     } else if (!usePassCode && !this.state.checkedPassRadio) {
+    //         this.logonRequest()
+    //     } else if (usePassCode) {
+    //         this.logonRequest()
+    //     }
+    // }
 
     logonRequestWithPassCode(value) {
         this.req.setLocal('localUserName', this.state.username)
@@ -92,50 +92,55 @@ class Logon extends Component {
         })
     }
 
-    logonRequest() {
-        const addObject = {
-            username: this.state.username,
-        }
-        if (this.state.passcode) {
-            addObject.passcode = this.state.passcode
-        } else {
-            addObject.password = this.state.password
-        }
+    logonRequest(logonObj) {
+        // const addObject = {
+        //     username: this.state.username,
+        // }
+        // if (this.state.passcode) {
+        //     addObject.passcode = this.state.passcode
+        // } else {
+        //     addObject.password = this.state.password
+        // }
         this.setState({
             animButtonClassName: 'loading',
             buttonText: '',
             disabledInputs: true
-        // })
-        }, () => {
-            setTimeout(() => {
-                this.req.send('authUser', 'POST', addObject).then(result => {
-                    if (result.auth) {
-                        this.setState({
-                            animButtonClassName: 'loading unLoad',
-                            username: '',
-                            password: '',
-                        }, () => {
-                            this.req.setLocal('localOptions', result.token, 'webToken')
-                            setTimeout(() => {
-                                this.setState({
-                                    animButtonClassName: 'loading unLoad icon-checked',
-                                }, () => {
-                                    this.props.changeLogonStatus(result.auth)
-                                })
-                            }, 1000);
-                        })
-                    } else {
-                        this.setState({
-                            username: '',
-                            password: '',
-                            disabledInputs: false,
-                            animButtonClassName: '',
-                            buttonText: 'Войти',
-                        })
-                    }
-                })
-            }, 1500)
         })
+        this.req.send('authUser', 'POST', logonObj).then(result => {
+            if (result.auth) {
+                this.props.changeLogonStatus(result.auth)
+            }
+        })
+        // }, () => {
+        //     setTimeout(() => {
+        //         this.req.send('authUser', 'POST', addObject).then(result => {
+        //             if (result.auth) {
+        //                 this.setState({
+        //                     animButtonClassName: 'loading unLoad',
+        //                     username: '',
+        //                     password: '',
+        //                 }, () => {
+        //                     this.req.setLocal('localOptions', result.token, 'webToken')
+        //                     setTimeout(() => {
+        //                         this.setState({
+        //                             animButtonClassName: 'loading unLoad icon-checked',
+        //                         }, () => {
+        //                             this.props.changeLogonStatus(result.auth)
+        //                         })
+        //                     }, 1000);
+        //                 })
+        //             } else {
+        //                 this.setState({
+        //                     username: '',
+        //                     password: '',
+        //                     disabledInputs: false,
+        //                     animButtonClassName: '',
+        //                     buttonText: 'Войти',
+        //                 })
+        //             }
+        //         })
+        //     }, 1500)
+        // })
     }
 
     handleModalOpen() {
@@ -213,7 +218,9 @@ class Logon extends Component {
             )
         } else {
             return (
-                <LogonLP />
+                <LogonLP
+                    changeLogonStatus={this.props.changeLogonStatus}
+                />
             )
         }
     }

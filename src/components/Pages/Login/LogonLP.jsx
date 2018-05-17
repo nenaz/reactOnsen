@@ -23,6 +23,8 @@ class LogonLP extends Component{
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
         this.handleUsernameChange = this.handleUsernameChange.bind(this)
         this.handleChangePassCodeRadio = this.handleChangePassCodeRadio.bind(this)
+        this.handleButtonClick = this.handleButtonClick.bind(this)
+        this.logonRequest = this.logonRequest.bind(this)
     }
 
     componentDidMount() {
@@ -53,6 +55,39 @@ class LogonLP extends Component{
         this.setState({
             checkedPassRadio: !check,
             buttonText: check ? 'Войти' : 'Задать',
+        })
+    }
+
+    handleButtonClick() {
+        const usePassCode = this.state.usePassCode
+        if (!usePassCode && !this.state.username && !this.state.password) {
+            return false;
+        }
+        if (!usePassCode && this.state.checkedPassRadio) {
+            this.togglePassCodeBlock(true)
+        } else if (!usePassCode && !this.state.checkedPassRadio) {
+            this.logonRequest({
+                username: this.state.username,
+                password: this.state.password,
+            })
+        } else if (usePassCode) {
+            this.logonRequest({
+                username: this.state.username,
+                passcode: this.state.passcode,
+            })
+        }
+    }
+
+    logonRequest(logonObj) {
+        this.setState({
+            animButtonClassName: 'loading',
+            buttonText: '',
+            disabledInputs: true
+        })
+        this.req.send('authUser', 'POST', logonObj).then(result => {
+            if (result.auth) {
+                this.props.changeLogonStatus(result.auth)
+            }
         })
     }
 
@@ -110,7 +145,7 @@ class LogonLP extends Component{
                                     />}
                                 <button
                                     className={this.state.animButtonClassName}
-                                    onClick={this.handleLogon}
+                                    onClick={this.handleButtonClick}
                                 >
                                     <span className="content">{this.state.buttonText}</span>
                                 </button>
@@ -128,7 +163,7 @@ class LogonLP extends Component{
 }
 
 LogonLP.propTypes = {
-
+    changeLogonStatus: PropTypes.func,
 }
 
 export default LogonLP
