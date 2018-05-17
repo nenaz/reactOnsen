@@ -1,0 +1,36 @@
+.nzLogonWithPassCode {
+  padding: 0 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.nzRemovePassCode {
+  position: absolute;
+  top: 95%;
+  left: calc(50% - 150px);
+  color: white;
+  width: 300px;
+  text-align: center;
+}
+
+button {
+  border: 0;
+  color: #404040;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  width: 100%;
+  background: #37474f;
+  height: 42px;
+}
+
+button .content {
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+button span {
+  color: white;
+}
+/*# sourceMappingURL=logonpc.css.map */

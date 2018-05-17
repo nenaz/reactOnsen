@@ -249,12 +249,6 @@
 }
 
 .nzLogonPageAddUser {
-  position: absolute;
-  background: #fff;
-  height: 170px;
-  border-radius: 15px;
-  width: calc(100% - 20px);
-  left: 10px;
   overflow: initial;
 }
 
@@ -496,12 +490,17 @@
   }
 }
 
-.nzLogonSection {
+.nzLogonSection,
+.nzLogonPageAddUser {
   padding: 10px;
   background: #fff;
   margin: 10px;
-  height: 150px;
+  height: 180px;
   border-radius: 15px;
+  position: absolute;
+  width: calc(100% - 20px);
+  top: calc(50% - 85px);
+  box-sizing: border-box;
 }
 
 .nzLogonSection section {
@@ -528,12 +527,17 @@
   text-align: center;
   position: relative;
   flex-grow: 10;
+  width: 224px;
 }
 
 .nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .nzPC {
   background-color: #404040;
-  width: 224px;
   animation: hidePassCodeSection 250ms linear forwards;
+}
+
+.nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .nzPC.loading {
+  display: inline-block;
+  animation: buttonSmall 500ms linear forwards;
 }
 
 .nzLogonSection section.nzLogonPassCodeBlock .nzLogonSectionButton .setPassCodeAnim {
@@ -611,7 +615,7 @@
 }
 
 .nzLogonSection section button.loading {
-  animation: buttonSmall 500ms linear forwards;
+  display: none;
 }
 
 .nzLogonSection section button.loading .content {
@@ -628,14 +632,6 @@
 
 .nzLogonSection section button.loading.unLoad.icon-checked:before {
   font-size: 25px;
-}
-
-.nzLogonSection section button:active {
-  outline: 0;
-}
-
-.nzLogonSection section button:focus {
-  outline: 0;
 }
 
 .nzLogonSection section .nzLogonSectionButtonCircular {
@@ -655,23 +651,6 @@
 
 .nzLogonSection section .nzLogonSectionButtonCircular.loading.unLoad {
   animation: processCircularHide 450ms linear forwards;
-}
-
-.nzLogonSection section.nzLogonWithPassCode {
-  padding: 0 10px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.nzLogonSection section.nzLogonWithPassCode .nzRemovePassCode {
-  position: absolute;
-  top: 95%;
-  left: calc(50% - 150px);
-  color: #2979ff;
-  width: 300px;
-  text-align: center;
 }
 
 @keyframes showPassCodeSection {
@@ -705,8 +684,6 @@
   }
   100% {
     width: 40px;
-    border-radius: 50%;
-    height: 40px;
     background: transparent;
   }
 }
@@ -1271,5 +1248,31 @@ html {
   top: 95%;
   left: calc(50% - 25px);
   color: white;
+}
+
+section button:active {
+  outline: 0;
+}
+
+section button:focus {
+  outline: 0;
+}
+
+section ons-input {
+  width: 100%;
+}
+
+section ons-input span,
+section ons-input span.text-input--material__label--active {
+  color: #404040;
+}
+
+section ons-input .text-input--material:focus {
+  background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
+}
+
+section ons-button {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  color: #404040;
 }
 /*# sourceMappingURL=App.css.map */
