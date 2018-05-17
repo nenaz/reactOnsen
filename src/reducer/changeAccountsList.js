@@ -28,11 +28,12 @@ const updateItem = (array, obj) => {
                     }
                 }
             } else {
-                item.amount = obj.amount
+                item.amount = obj.amount ? obj.amount : item.amount
                 item.accountName = (obj.accountName) ? obj.accountName : item.accountName
                 item.accountNumber = (obj.accountNumber) ? obj.accountNumber : item.accountNumber
                 item.accountDate = (obj.accountDate) ? obj.accountDate : item.accountDate
                 item.accountPeople = (obj.accountPeople) ? obj.accountPeople : item.accountPeople
+                item.consider = (obj.consider !== undefined) ? obj.consider : item.consider
             }
         }
         return item

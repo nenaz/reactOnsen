@@ -6,7 +6,8 @@ import {
     Input,
     Fab,
     BackButton,
-    AlertDialog
+    AlertDialog,
+    Switch
 } from 'react-onsenui'
 import { connect } from 'react-redux'
 import {
@@ -28,11 +29,14 @@ class EditAccount extends Component{
             accountName: '',
             placeholderAccountDate: props.accountToEdit.accountDate || 'Действителен до',
             placeholderAccountNumber: props.accountToEdit.accountNumber || 'Номер счета',
-            placeholderAccountPeople: this.props.accountToEdit.accountPeople || 'Имя владельца',
-            placeholderAccountName: this.props.accountToEdit.accountName || 'Название счета',
+            placeholderAccountPeople: props.accountToEdit.accountPeople || 'Имя владельца',
+            placeholderAccountName: props.accountToEdit.accountName || 'Название счета',
             amount: 0,
             alertDialogShown: false,
             update: false,
+            consider: props.accountToEdit.consider !== undefined
+                ? props.accountToEdit.consider
+                : true,
         }
         
         this.req = new Requester()
@@ -49,6 +53,7 @@ class EditAccount extends Component{
         this.handlerDeleteAccount = this.handlerDeleteAccount.bind(this)
         this.handlerToggleAlertDialog = this.handlerToggleAlertDialog.bind(this)
         this.validateForm = this.validateForm.bind(this)
+        this.handleChangeSwitch = this.handleChangeSwitch.bind(this)
     }
 
     validateForm() {
@@ -56,7 +61,8 @@ class EditAccount extends Component{
                 this.state.accountNumber ||
                 this.state.accountPeople ||
                 this.state.accountName ||
-                this.state.amount
+                this.state.amount ||
+                this.state.consider !== this.props.accountToEdit.consider
             )
             ? true
             : false
@@ -134,7 +140,10 @@ class EditAccount extends Component{
             accountDate: this.state.accountDate,
             accountNumber: this.state.accountNumber,
             accountPeople: this.state.accountPeople,
-            amount: this.state.amount,
+            consider: this.state.consider,
+        }
+        if (this.state.amount) {
+            updateObj.amount = this.state.amount
         }
         if (this.state.update) {
             this.props.editAccountInList(updateObj)
@@ -158,6 +167,15 @@ class EditAccount extends Component{
         })
     }
 
+    handleChangeSwitch(event) {
+        const check = event.target.checked
+        this.setState({
+            consider: !check,
+        }, () => {
+            this.validateForm()
+        })
+    }
+
     render() {
         return (
             <Page renderToolbar={this.renderToolbar}>
@@ -177,6 +195,7 @@ class EditAccount extends Component{
                             onChange={this.handleAmountChange}
                             modifier='underbar'
                             float
+                            type="number"
                             placeholder='Сумма'
                         />
                         <Input
@@ -203,6 +222,19 @@ class EditAccount extends Component{
                             float
                             placeholder={this.state.placeholderAccountPeople}
                         />
+                        <section className="nzOptions">
+                            <div className="nzOptionsTextBlock">
+                                <span className="nzOptionsTextBlockELem">
+                                    Не учитывать в общем балансе
+                                </span>
+                            </div>
+                            <div className="nzOptionsSwitchBlock">
+                                <Switch
+                                    checked={!this.state.consider}
+                                    onChange={this.handleChangeSwitch}
+                                />
+                            </div>
+                        </section>
                     </div>
                 </div>
                 <Fab

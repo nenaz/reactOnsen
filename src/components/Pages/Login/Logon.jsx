@@ -209,6 +209,7 @@ class Logon extends Component {
             usePassCode: false,
             checkedPassRadio: false,
             username: '',
+            passcode: '',
         }, () => {
             this.req.setLocal('localUserName', '')
             this.req.setLocal('localOptions', false, 'usePassCode')

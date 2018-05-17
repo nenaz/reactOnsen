@@ -13,7 +13,7 @@ class WidgetBalanceSection extends Component {
     allBalance() {
         let amount = 0
         this.props.changeAccountsList.map((item) => {
-            if (item.amount) {
+            if (item.amount && item.consider) {
                 amount += (item.amount * 1)
             }
             return item
