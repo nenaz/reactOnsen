@@ -273,8 +273,8 @@
       content: "";
       background: #fff;
       position: absolute;
-      top: 50%;
-      left: calc(50% - 8px);
+      top: calc(50% - 1px);
+      left: calc(50% - 9px);
     }
     span::after{
       height: 18px;
@@ -282,8 +282,8 @@
       content: "";
       background: #fff;
       position: absolute;
-      top: calc(50% - 8px);
-      left: 50%;
+      top: calc(50% - 9px);
+      left: calc(50% - 1px);
     }
   }
   .nzAddUserSection{
@@ -469,7 +469,7 @@
       display: flex;
       position: relative;
       .nzSwitchBlock{
-        flex-grow: 1;
+        flex-grow: 2;
         text-align: center;
         p{
           position: relative;
@@ -477,52 +477,49 @@
           margin: 0;
         }
       }
-      .nzLogonSectionButton{
-        text-align: center;
-        position: relative;
+      .nzPC{
         flex-grow: 10;
-        // top: -200%;
-        // left: calc(50% - 112px);
-        // position: absolute;
-        .nzPC{
-          background-color: #404040;
-          width: 224px;
-          // transition: 450ms linear all;
-          animation: hidePassCodeSection 250ms linear forwards;
+        background-color: #404040;
+        width: 224px;
+        animation: hidePassCodeSection 250ms linear forwards;
+      }
+    }
+    &.nzLogonSectionButton{
+      text-align: center;
+      position: relative;
+      flex-grow: 10;
+      .setPassCodeAnim{
+        animation: showPassCodeSection 500ms linear forwards;
+        position: relative;
+        overflow: hidden;
+        span{
+          display: inline-block;
+          height: 20px;
         }
-        .setPassCodeAnim{
-          animation: showPassCodeSection 500ms linear forwards;
-          position: relative;
-          overflow: hidden;
-          span{
+        button{
+          transition: 450ms linear all;
+          opacity: 0;
+        }
+        .nzButtonsPassCode{
+          ons-button{
+            color: #2979ff;
+            border: 0;
+            width: 33%;
+            height: 50px;
+            line-height: 50px;
+          }
+        }
+        .nzCountSymbols{
+          .nzCountSymbolsItem{
             display: inline-block;
-            height: 20px;
-          }
-          button{
-            transition: 450ms linear all;
-            opacity: 0;
-          }
-          .nzButtonsPassCode{
-            ons-button{
-              color: #2979ff;
-              border: 0;
-              width: 33%;
-              height: 50px;
-              line-height: 50px;
-            }
-          }
-          .nzCountSymbols{
-            .nzCountSymbolsItem{
-              display: inline-block;
-              background-color: #9ba3a6;
-              width: 10px;
-              height: 10px;
-              border-radius: 50%;
-              border: 1px solid #2c2c2c;
-              margin: 0 3px;
-              &.active{
-                background-color: #23954e;
-              }
+            background-color: #9ba3a6;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid #2c2c2c;
+            margin: 0 3px;
+            &.active{
+              background-color: #23954e;
             }
           }
         }

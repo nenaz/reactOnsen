@@ -295,25 +295,27 @@ class Logon extends Component {
                                 />
                                 <p>Pass code</p>
                             </section>
-                            <section className="nzLogonSectionButton">
-                                <div className={`nzPC ${this.state.checkPassClassName}`}>
-                                    {this.state.checkPassClassName &&
-                                        <PassCode
-                                            togglePassCodeBlock={this.togglePassCodeBlock}
-                                            logonRequestWithPassCode={this.logonRequestWithPassCode}
-                                        />}
-                                    <button
-                                        className={this.state.animButtonClassName}
-                                        onClick={this.handleLogon}
-                                    >
-                                        <span className="content">{this.state.buttonText}</span>
-                                    </button>
-                                    <ProgressCircular
-                                        indeterminate
-                                        className={`nzLogonSectionButtonCircular ${this.state.animButtonClassName}`}
-                                    />
-                                </div>
-                            </section>
+                            <div className={`nzPC`}>
+                                <button
+                                    // className={this.state.animButtonClassName}
+                                    onClick={this.handleLogon}
+                                >
+                                    <span className="content">{this.state.buttonText}</span>
+                                </button>
+                                <ProgressCircular
+                                    indeterminate
+                                    className={`nzLogonSectionButtonCircular ${this.state.animButtonClassName}`}
+                                />
+                            </div>
+                        </section>
+                        <section className="nzLogonSectionButton">
+                            <div className={`${this.state.checkPassClassName}`}>
+                                {this.state.checkPassClassName &&
+                                <PassCode
+                                    togglePassCodeBlock={this.togglePassCodeBlock}
+                                    logonRequestWithPassCode={this.logonRequestWithPassCode}
+                                />}
+                            </div>
                         </section>
                     </section>
                 </Page>
