@@ -115,6 +115,7 @@ export default class Requester {
                 
                 xhr.setRequestHeader('Authorization', webToken);
             }
+            xhr.timeout = 15000;
             xhr.onload = function () {
                 if (this.status === 200) {
                     resolve(JSON.parse(this.response));
@@ -131,6 +132,9 @@ export default class Requester {
                     reject(error);
                 }
             };
+            xhr.ontimeout = function () {
+                reject(new Error("Network Error"));
+            }
             xhr.onerror = function () {
                 reject(new Error("Network Error"));
             };

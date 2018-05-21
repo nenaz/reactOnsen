@@ -43,6 +43,7 @@ class Logon extends Component {
         this.generateLogonPage = this.generateLogonPage.bind(this)
         this.handlePasscodeChange = this.handlePasscodeChange.bind(this)
         this.handleRemovePassCode = this.handleRemovePassCode.bind(this)
+        this.handleClickCanselRequestButton = this.handleClickCanselRequestButton.bind(this)
     }
 
     componentDidMount() {
@@ -115,7 +116,7 @@ class Logon extends Component {
             animButtonClassName: 'loading',
             buttonText: '',
             disabledInputs: true
-            // })
+        // })
         }, () => {
             setTimeout(() => {
                 this.req.send('authUser', 'POST', addObject).then(result => {
@@ -130,7 +131,7 @@ class Logon extends Component {
                                 this.setState({
                                     animButtonClassName: 'loading unLoad icon-checked',
                                 }, () => {
-                                    this.props.changeLogonStatus(result.auth)
+                                    // this.props.changeLogonStatus(result.auth)
                                 })
                             }, 1000);
                         })
@@ -216,6 +217,10 @@ class Logon extends Component {
         })
     }
 
+    handleClickCanselRequestButton() {
+        this.req.abort()
+    }
+
     generateLogonPage() {
         if(this.state.usePassCode) {
             return (
@@ -257,7 +262,10 @@ class Logon extends Component {
                     onAnimationEnd={this.onAnimationEnd}
                 >
                     <section className={`nzLogonPageAddUser ${this.state.className}`}>
-                        <div className="nzAddUserButton">
+                        <div className={this.state.disabledInputs
+                                ? "nzAddUserButton nzDisable"
+                                : "nzAddUserButton"}
+                        >
                             <span
                                 className="shape"
                                 onClick={this.handleNewUser}
@@ -290,14 +298,19 @@ class Logon extends Component {
                         <section className="nzLogonPassCodeBlock">
                             <section className="nzSwitchBlock">
                                 <Switch
+                                    disabled={this.state.disabledInputs}
                                     checked={this.state.checkedPassRadio}
                                     onChange={this.handleChangePassCodeRadio}
                                 />
-                                <p>Pass code</p>
+                                <p
+                                    className={this.state.disabledInputs
+                                        ? "nzDisable"
+                                        : ""}
+                                >Pass code</p>
                             </section>
-                            <div className={`nzPC`}>
+                            <div className={`nzPC ${this.state.animButtonClassName}`}>
                                 <button
-                                    // className={this.state.animButtonClassName}
+                                    className={this.state.animButtonClassName}
                                     onClick={this.handleLogon}
                                 >
                                     <span className="content">{this.state.buttonText}</span>
@@ -318,6 +331,11 @@ class Logon extends Component {
                             </div>
                         </section>
                     </section>
+                    {/* <div className={this.state.disabledInputs
+                        ? "nzButtonCanselRequest request"
+                        : "nzButtonCanselRequest"}
+                        onClick={this.handleClickCanselRequestButton}
+                    >Отмена</div> */}
                 </Page>
             )
         }

@@ -251,13 +251,17 @@
   left: 10px;
   overflow: initial;
   .nzAddUserButton{
-    background-color: #22964f;
+    background-color: rgba(34, 150, 79, 1);
     width: 35px;
     height: 35px;
     border-radius: 50%;
     position: absolute;
     left: calc(100% - 30px);
     top: -5px;
+    &.nzDisable{
+      transform: opacity 250ms linear;
+      opacity: 0;
+    }
     span{
       width: 100%;
       height: 100%;
@@ -475,13 +479,19 @@
           position: relative;
           font-size: 12px;
           margin: 0;
+          &.nzDisable{
+            color: #afafaf;
+          }
         }
       }
       .nzPC{
         flex-grow: 10;
-        background-color: #404040;
         width: 224px;
         animation: hidePassCodeSection 250ms linear forwards;
+        &.loading{
+          text-align: center;
+          position: relative;
+        }
       }
     }
     &.nzLogonSectionButton{
@@ -566,11 +576,6 @@
     }
     button.loading{
       animation: buttonSmall 500ms linear forwards;
-      // transition: 500ms linear all;
-      // width: 42px;
-      // height: 42px;
-      // border: 2px solid #515854;
-      // border-radius: 50%;
       .content{
         animation-delay: 200ms;
         animation: buttonTextHide 300ms linear forwards;
@@ -595,16 +600,18 @@
       height: 42px;
       width: 42px;
       position: absolute;
-      top: 10px;
+      // top: 10px;
       text-align: center;
       left: calc(50% - 21px);
       opacity: 0;
-    }
-    .nzLogonSectionButtonCircular.loading{
-      animation: processCircularShow 450ms linear forwards;
-      animation-delay: 500ms;
-      &.unLoad{
-        animation: processCircularHide 450ms linear forwards;
+      display: none;
+      &.loading{
+        animation: processCircularShow 450ms linear forwards;
+        animation-delay: 500ms;
+        display: inline;
+        &.unLoad{
+          animation: processCircularHide 450ms linear forwards;
+        }
       }
     }
     &.nzLogonWithPassCode{
@@ -635,11 +642,11 @@
   }
   100% {
     background-color: #404040;
-    height: 310px;
+    // height: 310px;
     color: #2979ff;
     top: -170px;
     height: 305px;
-    left: calc(50% - 132px);
+    // left: calc(50% - 132px);
     // position: absolute;
     // position: relative;
   }
@@ -682,11 +689,14 @@
 /*********************************/
 /*********************************/
 @keyframes processCircularHide{
-  from {
+  0% {
     opacity: 1;
   }
-  to {
+  90% {
     opacity: 0;
+  }
+  100%{
+    display: none;
   }
 }
 @keyframes buttonColor{
@@ -1184,4 +1194,32 @@ html{
   top: 95%;
   left: calc(50% - 25px);
   color: white;
+}
+
+.nzButtonCanselRequest{
+  position: absolute;
+  z-index: 10;
+  color: #2979ff;
+  top: calc(100% - 50px);
+  display: inline-block;
+  height: 50px;
+  left: calc(50% - 50px);
+  width: 100px;
+  text-align: center;
+  opacity: 0;
+  line-height: 50px;
+  &.request{
+    opacity: 1;
+    transition: opacity 250ms linear;
+    animation: requestAnimation infinite 3s linear
+  }
+}
+
+@keyframes requestAnimation{
+  0%, 100%{
+    color: #2979ff;
+  }
+  50%{
+    color: #ffffff;
+  }
 }
