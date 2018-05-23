@@ -1,0 +1,57 @@
+.nzLogonPassCodeBlock {
+  text-align: center;
+  position: absolute;
+  flex-grow: 10;
+  width: 100%;
+  height: 100%;
+  background-color: #404040;
+}
+
+.nzLogonPassCodeBlock .setPassCodeAnim {
+  animation: showPassCodeSection 500ms linear forwards;
+  position: absolute;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.nzLogonPassCodeBlock .setPassCodeAnim .nzSpan {
+  display: inline-block;
+  padding: 5px 0;
+}
+
+.nzLogonPassCodeBlock .setPassCodeAnim button {
+  transition: 450ms linear all;
+  opacity: 0;
+}
+
+.nzLogonPassCodeBlock .setPassCodeAnim .nzButtonsPassCode ons-button {
+  color: white;
+  border: 0;
+  width: 32%;
+  height: 50px;
+  line-height: 50px;
+  background-color: #404040;
+  margin: 1px;
+}
+
+.nzLogonPassCodeBlock .setPassCodeAnim ons-button {
+  background-color: #404040;
+  width: calc(100% - 10px);
+  margin: 10px 5px 0;
+  color: white;
+}
+
+@keyframes showPassCodeSection {
+  0% {
+    height: 42px;
+    top: 0;
+    left: 0;
+  }
+  100% {
+    background-color: #2c2c2c;
+    color: white;
+    top: calc(50% - 150px);
+    height: 305px;
+  }
+}
+/*# sourceMappingURL=PassCode.css.map */

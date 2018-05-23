@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACI,eADW,CACX,mBAAmB,CAAA;EACf,OAAO,EAAE,YAAY;EAErB,gBAAgB,EAAE,OAAa;EAC/B,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,aAAa,EAAE,GAAG;EAClB,MAAM,EAAE,iBAAiB;EACzB,MAAM,EAAE,KAAK;CAIhB;;AAbL,AACI,eADW,CACX,mBAAmB,AASf,OAAQ,CAAA;EACJ,gBAAgB,EAAE,KAAK;CAC1B",
+    "sources": [
+        "CountSymbols.scss"
+    ],
+    "names": [],
+    "file": "CountSymbols.css"
+}

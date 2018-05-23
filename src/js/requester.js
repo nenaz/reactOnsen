@@ -12,15 +12,17 @@ export default class Requester {
                 this.setLocal('localUserName', '', null, true)
             }
             if (!localStorage.hasOwnProperty('localAccounts')) {
-                this.setLocal('localAccounts', [], true)
+                this.setLocal('localAccounts', [], null, true)
             }
             if (!localStorage.hasOwnProperty('localItems')) {
-                this.setLocal('localItems', [], true)
+                this.setLocal('localItems', [], null, true)
             }
             if (!localStorage.hasOwnProperty('localItemsStatistic')) {
-                this.setLocal('localItemsStatistic', [], true)
+                this.setLocal('localItemsStatistic', [], null, true)
             }
-            
+            if (!localStorage.hasOwnProperty('localDataForChart')) {
+                this.setLocal('localDataForChart', [], null, true)
+            }
             if (!localStorage.hasOwnProperty('localOptions')) {
                 this.options = {
                     develop: DEVELOP,
@@ -37,7 +39,7 @@ export default class Requester {
 
     request(name, object) {
         let lName = ''
-        const connectDB = JSON.parse(localStorage.getItem('localOptions')).connectDB 
+        const connectDB = JSON.parse(localStorage.getItem('localOptions')).connectDB
         if (connectDB) {
             switch (name) {
                 case 'updateAccounts':
@@ -198,8 +200,9 @@ export default class Requester {
 
     updateOption(name, value) {
         const optionsName = 'localOptions'
-        const arr = this.getLocal(optionsName)
-        arr[name] = value
-        localStorage.setItem(optionsName, JSON.stringify(arr))
+        this.getLocal(optionsName).then(arr => {
+            arr[name] = value
+            localStorage.setItem(optionsName, JSON.stringify(arr))
+        })
     }
 }

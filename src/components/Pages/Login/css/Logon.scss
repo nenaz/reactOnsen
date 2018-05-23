@@ -1,0 +1,70 @@
+.nzLogonSectionButton{
+    display: flex;
+    position: relative;
+    .nzSwitchBlock{
+        flex-grow: 2;
+        text-align: center;
+        p{
+            position: relative;
+            font-size: 12px;
+            margin: 0;
+            &.nzDisable{
+                color: #afafaf;
+            }
+        }
+    }
+    .nzPC{
+        flex-grow: 10;
+        width: 224px;
+        animation: hidePassCodeSection 250ms linear forwards;
+        &.loading{
+            text-align: center;
+            position: relative;
+        }
+    }
+}
+@keyframes hidePassCodeSection{
+  0% {
+    height: 282px;
+  }
+  100% {
+    height: 42px;
+  }
+}
+.nzLogonSectionButtonCircular{
+    height: 42px;
+    width: 42px;
+    position: absolute;
+    // top: 10px;
+    text-align: center;
+    left: calc(50% - 21px);
+    opacity: 0;
+    display: none;
+    &.loading{
+        animation: processCircularShow 450ms linear forwards;
+        animation-delay: 500ms;
+        display: inline;
+        &.unLoad{
+            animation: processCircularHide 450ms linear forwards;
+        }
+    }
+}
+@keyframes processCircularShow{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes processCircularHide{
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100%{
+    display: none;
+  }
+}

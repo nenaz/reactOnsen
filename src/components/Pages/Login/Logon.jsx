@@ -9,6 +9,7 @@ import {
 import Requester from '../../../js/requester'
 import NewUser from './NewUser'
 import PassCode from '../PassCode';
+import './css/Logon.css'
 
 class Logon extends Component {
     constructor(props) {
@@ -18,7 +19,9 @@ class Logon extends Component {
             password: '',
             modalOpen: false,
             className: '',
+            animBlockClassName: '',
             animButtonClassName: '',
+            animCircularClassName: '',
             buttonText: 'Войти',
             disabledInputs: false,
             checkedPassRadio: false,
@@ -51,6 +54,7 @@ class Logon extends Component {
             this.setState({
                 usePassCode: obj.usePassCode,
                 checkedPassRadio: obj.usePassCode,
+                connectDB: obj.connectDB,
             })
             this.req.getLocal('localUserName').then((obj) => {
                 this.setState({
@@ -114,6 +118,8 @@ class Logon extends Component {
         }
         this.setState({
             animButtonClassName: 'loading',
+            animBlockClassName: 'loading',
+            animCircularClassName: 'loading',
             buttonText: '',
             disabledInputs: true
         // })
@@ -123,6 +129,7 @@ class Logon extends Component {
                     if (result.auth) {
                         this.setState({
                             animButtonClassName: 'loading unLoad',
+                            animCircularClassName: 'loading unLoad',
                             username: '',
                             password: '',
                         }, () => {
@@ -130,8 +137,9 @@ class Logon extends Component {
                             setTimeout(() => {
                                 this.setState({
                                     animButtonClassName: 'loading unLoad icon-checked',
+                                    animCircularClassName: 'loading unLoad icon-checked',
                                 }, () => {
-                                    // this.props.changeLogonStatus(result.auth)
+                                    this.props.changeLogonStatus(result.auth)
                                 })
                             }, 1000);
                         })
@@ -141,6 +149,8 @@ class Logon extends Component {
                             password: '',
                             disabledInputs: false,
                             animButtonClassName: '',
+                            animBlockClassName: '',
+                            animCircularClassName: '',
                             buttonText: 'Войти',
                         })
                     }
@@ -261,18 +271,11 @@ class Logon extends Component {
                     className={`logonForm ${this.props.className}`}
                     onAnimationEnd={this.onAnimationEnd}
                 >
-                    <section className={`nzLogonPageAddUser ${this.state.className}`}>
-                        <div className={this.state.disabledInputs
-                                ? "nzAddUserButton nzDisable"
-                                : "nzAddUserButton"}
-                        >
-                            <span
-                                className="shape"
-                                onClick={this.handleNewUser}
-                            />
-                        </div>
-                        <NewUser />
-                    </section>
+                    <NewUser
+                        disabledInputs={this.state.disabledInputs}
+                        cssName={this.state.className}
+                        handleNewUser={this.handleNewUser}
+                    />
                     <section className="nzLogonSection">
                         <section>
                             <Input
@@ -295,7 +298,7 @@ class Logon extends Component {
                                 disabled={this.state.disabledInputs}
                             />
                         </section>
-                        <section className="nzLogonPassCodeBlock">
+                        <section className="nzLogonSectionButton">
                             <section className="nzSwitchBlock">
                                 <Switch
                                     disabled={this.state.disabledInputs}
@@ -308,7 +311,7 @@ class Logon extends Component {
                                         : ""}
                                 >Pass code</p>
                             </section>
-                            <div className={`nzPC ${this.state.animButtonClassName}`}>
+                            <div className={`nzPC ${this.state.animBlockClassName}`}>
                                 <button
                                     className={this.state.animButtonClassName}
                                     onClick={this.handleLogon}
@@ -317,25 +320,17 @@ class Logon extends Component {
                                 </button>
                                 <ProgressCircular
                                     indeterminate
-                                    className={`nzLogonSectionButtonCircular ${this.state.animButtonClassName}`}
+                                    className={`nzLogonSectionButtonCircular ${this.state.animCircularClassName}`}
                                 />
                             </div>
                         </section>
-                        <section className="nzLogonSectionButton">
-                            <div className={`${this.state.checkPassClassName}`}>
-                                {this.state.checkPassClassName &&
-                                <PassCode
-                                    togglePassCodeBlock={this.togglePassCodeBlock}
-                                    logonRequestWithPassCode={this.logonRequestWithPassCode}
-                                />}
-                            </div>
-                        </section>
                     </section>
-                    {/* <div className={this.state.disabledInputs
-                        ? "nzButtonCanselRequest request"
-                        : "nzButtonCanselRequest"}
-                        onClick={this.handleClickCanselRequestButton}
-                    >Отмена</div> */}
+                    {this.state.checkPassClassName &&
+                    <PassCode
+                        checkPassClassName={this.state.checkPassClassName}
+                        togglePassCodeBlock={this.togglePassCodeBlock}
+                        logonRequestWithPassCode={this.logonRequestWithPassCode}
+                    />}
                 </Page>
             )
         }

@@ -57,7 +57,7 @@ class OptionsPage extends Component{
                     </div>
                     <div className="nzOptionsSwitchBlock">
                         <Switch
-                            disabled
+                            // disabled
                             checked={this.state.checked}
                             onChange={this.handleChange}
                         />

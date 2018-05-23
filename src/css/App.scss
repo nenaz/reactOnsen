@@ -469,72 +469,6 @@
   height: 150px;
   border-radius: 15px;
   section{
-    &.nzLogonPassCodeBlock{
-      display: flex;
-      position: relative;
-      .nzSwitchBlock{
-        flex-grow: 2;
-        text-align: center;
-        p{
-          position: relative;
-          font-size: 12px;
-          margin: 0;
-          &.nzDisable{
-            color: #afafaf;
-          }
-        }
-      }
-      .nzPC{
-        flex-grow: 10;
-        width: 224px;
-        animation: hidePassCodeSection 250ms linear forwards;
-        &.loading{
-          text-align: center;
-          position: relative;
-        }
-      }
-    }
-    &.nzLogonSectionButton{
-      text-align: center;
-      position: relative;
-      flex-grow: 10;
-      .setPassCodeAnim{
-        animation: showPassCodeSection 500ms linear forwards;
-        position: relative;
-        overflow: hidden;
-        span{
-          display: inline-block;
-          height: 20px;
-        }
-        button{
-          transition: 450ms linear all;
-          opacity: 0;
-        }
-        .nzButtonsPassCode{
-          ons-button{
-            color: #2979ff;
-            border: 0;
-            width: 33%;
-            height: 50px;
-            line-height: 50px;
-          }
-        }
-        .nzCountSymbols{
-          .nzCountSymbolsItem{
-            display: inline-block;
-            background-color: #9ba3a6;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: 1px solid #2c2c2c;
-            margin: 0 3px;
-            &.active{
-              background-color: #23954e;
-            }
-          }
-        }
-      }
-    }
     padding: 10px;
     ons-input{
       width: 100%;
@@ -553,20 +487,11 @@
       border: 0;
       color: #404040;
       position: relative;
-      // display: inline-block;
-      // box-sizing: border-box;
-      // background-clip: padding-box;
-      // min-height: 36px;
-      // line-height: 36px;
-      // padding: 0;
       text-align: center;
       font-size: 14px;
       width: 100%;
-      // border: 2px solid #515854;
       background: #37474f;
-      // transition: transform 0.2s;
       height: 42px;
-      // top: calc(100% - 42px);
       .content{
         transition: opacity 0.3s, transform 0.3s;
       }
@@ -596,24 +521,6 @@
     button:focus{
       outline: 0;
     }
-    .nzLogonSectionButtonCircular{
-      height: 42px;
-      width: 42px;
-      position: absolute;
-      // top: 10px;
-      text-align: center;
-      left: calc(50% - 21px);
-      opacity: 0;
-      display: none;
-      &.loading{
-        animation: processCircularShow 450ms linear forwards;
-        animation-delay: 500ms;
-        display: inline;
-        &.unLoad{
-          animation: processCircularHide 450ms linear forwards;
-        }
-      }
-    }
     &.nzLogonWithPassCode{
       padding: 0 10px;
       height: 100%;
@@ -632,71 +539,20 @@
   }
 }
 
-
-@keyframes showPassCodeSection{
-  0% {
-    // position: relative;
-    height: 42px;
-    top: 0;
-    left: 0;
-  }
-  100% {
-    background-color: #404040;
-    // height: 310px;
-    color: #2979ff;
-    top: -170px;
-    height: 305px;
-    // left: calc(50% - 132px);
-    // position: absolute;
-    // position: relative;
-  }
-}
-@keyframes hidePassCodeSection{
-  0% {
-    height: 282px;
-  }
-  100% {
-    height: 42px;
-  }
-}
-
 /*********************************/
 @keyframes buttonSmall{
   0% {
-    // border-radius: 0px;
   }
   100% {
     width: 40px;
     border-radius: 50%;
     height: 40px;
     background: transparent;
-    // border: 2px solid #515854;
   }
 }
 @keyframes buttonTextHide{
   100% {
     opacity: 0;
-  }
-}
-@keyframes processCircularShow{
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/*********************************/
-/*********************************/
-@keyframes processCircularHide{
-  0% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 0;
-  }
-  100%{
-    display: none;
   }
 }
 @keyframes buttonColor{
@@ -768,7 +624,6 @@
   .nzWidgetSection{
     margin: 8px;
     .nzWidgetBlock{
-      // background-color: rgb(64,64,64);
       background-color: rgb(44,44,44);
       .nzWidgetMarginAll {
         margin: 8px;
@@ -1099,14 +954,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // background-color: url('../img/man-3083341_1280.bf8db6ad.jpg');
   .nzWelcomeSectionBlock{
-    // background-color: rgb(64,64,64);
-    // height: 40%;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // border-radius: 25px;
     text-align: center;
     color: white;
     font-size: 35px;
@@ -1119,9 +967,6 @@
         .text-input--material:focus{
           background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
         }
-        // imput:focus{
-        //   background-image: linear-gradient(#15a721, #d12305), linear-gradient(to top, transparent 1px, #afafaf 1px);
-        // }
       }
     }
   }
