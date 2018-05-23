@@ -23,6 +23,9 @@ export default class Requester {
             if (!localStorage.hasOwnProperty('localDataForChart')) {
                 this.setLocal('localDataForChart', [], null, true)
             }
+            if (!localStorage.hasOwnProperty('localWhatsNew')) {
+                this.setLocal('localWhatsNew', [], null, true)
+            }
             if (!localStorage.hasOwnProperty('localOptions')) {
                 this.options = {
                     develop: DEVELOP,
@@ -97,6 +100,12 @@ export default class Requester {
                     return this.getLocal(lName, object)
                 case 'getAccounts':
                     lName = 'localAccounts'
+                    return this.getLocal(lName, object)
+                case 'getDataForChart':
+                    lName = 'localDataForChart'
+                    return this.getLocal(lName, object)
+                case 'whatsnew':
+                    lName = 'localWhatsNew'
                     return this.getLocal(lName, object)
                 default: lName = 'localItems'
                     this.setLocal(lName, object)

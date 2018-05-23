@@ -29,7 +29,10 @@ class LeftMenu extends Component{
                 return (
                     <ListItem
                         key={row.name}
-                        onClick={() => { this.props.pushPage('options') } }
+                        onClick={() => {
+                            this.props.handleSelectLeftMenuItem()
+                            this.props.pushPage('options')
+                        }}
                     >
                         {row.text}
                     </ListItem>
