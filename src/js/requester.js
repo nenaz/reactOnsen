@@ -86,13 +86,18 @@ export default class Requester {
             return this.send(lName, 'POST', object)
         } else {
             switch (name) {
-                case 'updateAccounts': lName = 'localAccounts'
-                    this.setLocal(lName, object)
+                case 'updateAccounts':
+                    lName = 'localAccounts'
+                    // this.setLocal(lName, object)
+                    this.setLocal2(lName, object)
                     break;
-                case 'addAccount': lName = 'localAccounts'
-                    this.setLocal(lName, object)
+                case 'addAccount':
+                    lName = 'localAccounts'
+                    // this.setLocal(lName, object)
+                    this.setLocal2(lName, object)
                     break;
-                case 'updateItem': lName = 'localAccounts'
+                case 'updateItem':
+                    lName = 'localAccounts'
                     this.updateItem(lName, object)
                     break;
                 case 'getOperations':
@@ -107,6 +112,9 @@ export default class Requester {
                 case 'whatsnew':
                     lName = 'localWhatsNew'
                     return this.getLocal(lName, object)
+                case 'deleteAccount':
+                    lName = 'localAccounts'
+                    return this.setLocal(lName, object)
                 default: lName = 'localItems'
                     this.setLocal(lName, object)
                     break;
@@ -151,6 +159,32 @@ export default class Requester {
             };
             xhr.send(JSON.stringify(params));
         });
+    }
+
+    setLocal2(branch, value, nameField) {
+        this.getLocal(branch).then((arr) => {
+            if (arr.length !== undefined) {
+                if (arr.length) {
+                    let num = -1
+                    let count = 0
+                    arr.find((item, i) => {
+                        num = i
+                        return item._id === value.idFrom
+                    })
+                    // for (const field in value) {
+                    //     arr[num][field] = value[field]
+                    // }
+                    arr[num] = value
+                } else {
+                    arr.push(value)
+                }
+            } else if (typeof arr === 'object') {
+                arr[nameField] = value;
+            } else {
+                arr = value
+            }
+            localStorage.setItem(branch, JSON.stringify(arr))
+        })
     }
 
     setLocal(name, value, nameField, initialize) {
