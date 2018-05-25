@@ -8,6 +8,8 @@ import {
     Toolbar,
     ToolbarButton,
     Modal,
+    SpeedDial,
+    SpeedDialItem,
     Fab,
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
@@ -44,6 +46,7 @@ class MainPage extends Component{
         this.renderModal = this.renderModal.bind(this)
         this.handlerNotification = this.handlerNotification.bind(this)
         this.closeApp = this.closeApp.bind(this)
+        this.renderFixed = this.renderFixed.bind(this)
 
         this.count = 0
     }
@@ -146,12 +149,43 @@ class MainPage extends Component{
         // )
     }
 
+    renderFixed() {
+        return (
+            <SpeedDial position='bottom right'>
+                <Fab
+                    position='bottom right'
+                >
+                    <span className="icon-plus2"
+                        style={{
+                            lineHeight: '56px'
+                        }}
+                    />
+                </Fab>
+                <SpeedDialItem
+                    onClick={() => {
+                        this.pushPage('addOperation')
+                    }}
+                >
+                    <span className="icon-plus2"
+                        style={{
+                            lineHeight: '56px'
+                        }}
+                    />
+                </SpeedDialItem>
+                <SpeedDialItem>
+                    <span className="icon-qr-code-scan" />
+                </SpeedDialItem>
+            </SpeedDial>
+        );
+    }
+
     render(){
         return (
             <Page
                 className="nzPage"
                 renderToolbar={this.renderToolbar}
                 renderModal={this.renderModal}
+                // renderFixed={this.renderFixed}
             >
                 <Splitter>
                     <SplitterSide
@@ -184,7 +218,7 @@ class MainPage extends Component{
                         </Page>
                     </SplitterContent>
                 </Splitter>
-                {this.props.accountsLength && <Fab
+                {/* {this.props.accountsLength && <Fab
                     position='bottom right'
                     onClick={() => {
                         this.pushPage('addOperation')
@@ -195,7 +229,37 @@ class MainPage extends Component{
                             lineHeight: '56px'
                         }}
                     />
-                </Fab>}
+                </Fab>} */}
+                {this.props.accountsLength && <SpeedDial position='bottom right' className="nzSpeedDial">
+                    <Fab
+                        position='bottom right'
+                        style={{
+                            bottom: '0px',
+                            right: '0px',
+                        }}
+                    >
+                        <span className="icon-plus2"
+                            style={{
+                                lineHeight: '56px'
+                            }}
+                        />
+                    </Fab>
+                    <SpeedDialItem
+                        onClick={() => {
+                            this.pushPage('addOperation')
+                        }}
+                    >
+                        <span className="icon-plus2"
+                            style={{
+                                lineHeight: '56px'
+                            }}
+                        />
+                    </SpeedDialItem>
+                    <SpeedDialItem>
+                        <span className="icon-qr-code-scan" />
+                    </SpeedDialItem>
+                </SpeedDial>}
+                
                 <Modal isOpen={this.state.modalOpen} >
                     <WhatsNew handleModalClose={this.handleModalClose} />
                 </Modal>
