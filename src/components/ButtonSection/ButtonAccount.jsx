@@ -77,7 +77,8 @@ class ButtonAccount extends Component {
 }
 
 ButtonAccount.propTypes = {
-    pushPage: PropTypes.func
+    pushPage: PropTypes.func,
+    params: PropTypes.object,
 }
 
 export default connect(null, {

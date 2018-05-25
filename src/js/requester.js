@@ -88,17 +88,16 @@ export default class Requester {
             switch (name) {
                 case 'updateAccounts':
                     lName = 'localAccounts'
-                    // this.setLocal(lName, object)
-                    this.setLocal2(lName, object)
+                    this.setLocal2(lName, object, null, this.editAccountFields)
                     break;
                 case 'addAccount':
                     lName = 'localAccounts'
-                    // this.setLocal(lName, object)
                     this.setLocal2(lName, object)
                     break;
                 case 'updateItem':
                     lName = 'localAccounts'
-                    this.updateItem(lName, object)
+                    // this.updateItem(lName, object)
+                    this.setLocal2(lName, object, null, this.updateAccountFields)
                     break;
                 case 'getOperations':
                     lName = 'localItems'
@@ -161,20 +160,23 @@ export default class Requester {
         });
     }
 
-    setLocal2(branch, value, nameField) {
+    setLocal2(branch, value, nameField, callback) {
         this.getLocal(branch).then((arr) => {
             if (arr.length !== undefined) {
                 if (arr.length) {
                     let num = -1
-                    let count = 0
+                    // let count = 0
                     arr.find((item, i) => {
                         num = i
                         return item._id === value.idFrom
                     })
-                    // for (const field in value) {
-                    //     arr[num][field] = value[field]
-                    // }
-                    arr[num] = value
+                    if (num >= 0) { 
+                        if (typeof callback === 'function') {
+                            arr[num] = callback(arr[num], value)
+                        }
+                    } else {
+                        arr.push(value)    
+                    }
                 } else {
                     arr.push(value)
                 }
@@ -247,5 +249,23 @@ export default class Requester {
             arr[name] = value
             localStorage.setItem(optionsName, JSON.stringify(arr))
         })
+    }
+
+    editAccountFields(account, newValue) {
+        account.accountDate = newValue.accountDate ? newValue.accountDate : account.accountDate
+        account.accountNameFrom = newValue.accountNameFrom ? newValue.accountNameFrom : account.accountNameFrom
+        account.accountNumber = newValue.accountNumber ? newValue.accountNumber : account.accountNumber
+        account.accountPeople = newValue.accountPeople ? newValue.accountPeople : account.accountPeople
+        account.amount = newValue.amount ? newValue.amount : account.amount
+        account.consider = newValue.consider ? newValue.consider : account.consider
+        return account
+    }
+
+    updateAccountFields(account, newValue) {
+        const newAmount = newValue.typeOperation === '0'
+            ? (account.amount * 1) - (newValue.amount * 1)
+            : (account.amount * 1) + (newValue.amount * 1)
+        account.amount = newAmount
+        return account
     }
 }

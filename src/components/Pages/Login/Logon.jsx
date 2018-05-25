@@ -62,7 +62,7 @@ class Logon extends Component {
                     }, () => {
                         setTimeout(() => {
                             this.props.changeLogonStatus(true)
-                        }, 4000);
+                        }, 3500);
                     })
                 }
             })
