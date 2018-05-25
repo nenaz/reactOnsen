@@ -251,12 +251,16 @@ class MainPage extends Component{
                     >
                         <span className="icon-plus2"
                             style={{
-                                lineHeight: '56px'
+                                lineHeight: '40px'
                             }}
                         />
                     </SpeedDialItem>
                     <SpeedDialItem>
-                        <span className="icon-qr-code-scan" />
+                        <span className="icon-qr-code-scan"
+                            style={{
+                                lineHeight: '40px'
+                            }}
+                        />
                     </SpeedDialItem>
                 </SpeedDial>}
                 
