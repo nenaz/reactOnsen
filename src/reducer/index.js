@@ -8,6 +8,7 @@ import changeCategoryStatistic from './changeCategoryStatistic'
 import updateNewFunctions from './updateNewFunctions'
 import redAddDataToList from './redAddDataToList'
 import changePassCode from './changePassCode'
+import saveDataOfScan from './saveDataOfScan'
 
 export default combineReducers({
     changeAnimationState,
@@ -19,4 +20,5 @@ export default combineReducers({
     updateNewFunctions,
     redAddDataToList,
     changePassCode,
+    saveDataOfScan,
 })

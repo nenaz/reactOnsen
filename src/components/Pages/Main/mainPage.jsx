@@ -20,6 +20,8 @@ import Icon from '../../Icon';
 import { ICONMENU } from '../../../js/consts';
 import LeftMenu from '../../Menu/LeftMenu'
 import { connect } from 'react-redux'
+import Utils from '../../../js/utils'
+import { saveDataOfScan } from '../../../AC'
 
 class MainPage extends Component{
     constructor(props){
@@ -46,7 +48,7 @@ class MainPage extends Component{
         this.renderModal = this.renderModal.bind(this)
         this.handlerNotification = this.handlerNotification.bind(this)
         this.closeApp = this.closeApp.bind(this)
-        this.renderFixed = this.renderFixed.bind(this)
+        this.qrProcessing = this.qrProcessing.bind(this)
 
         this.count = 0
     }
@@ -149,34 +151,11 @@ class MainPage extends Component{
         // )
     }
 
-    renderFixed() {
-        return (
-            <SpeedDial position='bottom right'>
-                <Fab
-                    position='bottom right'
-                >
-                    <span className="icon-plus2"
-                        style={{
-                            lineHeight: '56px'
-                        }}
-                    />
-                </Fab>
-                <SpeedDialItem
-                    onClick={() => {
-                        this.pushPage('addOperation')
-                    }}
-                >
-                    <span className="icon-plus2"
-                        style={{
-                            lineHeight: '56px'
-                        }}
-                    />
-                </SpeedDialItem>
-                <SpeedDialItem>
-                    <span className="icon-qr-code-scan" />
-                </SpeedDialItem>
-            </SpeedDial>
-        );
+    qrProcessing() {
+        Utils.qrProcessing().then((resultScan) => {
+            this.props.saveDataOfScan(resultScan)
+            this.pushPage('addOperation')
+        })
     }
 
     render(){
@@ -255,7 +234,9 @@ class MainPage extends Component{
                             }}
                         />
                     </SpeedDialItem>
-                    <SpeedDialItem>
+                    <SpeedDialItem
+                        onClick={this.qrProcessing}
+                    >
                         <span className="icon-qr-code-scan"
                             style={{
                                 lineHeight: '40px'
@@ -280,4 +261,6 @@ MainPage.propTypes = {
 export default connect((state) => ({
     newFunctions: state.updateNewFunctions,
     accountsLength: state.changeAccountsList.length,
-}))(MainPage)
+}), {
+    saveDataOfScan,
+})(MainPage)
