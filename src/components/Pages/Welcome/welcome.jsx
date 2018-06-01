@@ -74,7 +74,6 @@ Welcome.propTypes = {
     errorLogonText: PropTypes.string,
 }
 
-Welcome.defaultProps = {
-}
+Welcome.defaultProps = {}
 
 export default Welcome

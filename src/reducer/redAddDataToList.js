@@ -32,11 +32,11 @@ const addOneCategoryForChart = (array, item) => {
 
 const editItem = (data, item) => {
     const newarray = _.map(data, (row) => {
-        const catId = item.categoryId[0] * 1
+        const catId = +item.categoryId[0]
         if (row.catId === catId) {
             if (item.typeOperation) {
                 if (item.typeOperation === '0') {
-                    row.value += item.amount * 1
+                    row.value += +item.amount
                 }
             }
         }

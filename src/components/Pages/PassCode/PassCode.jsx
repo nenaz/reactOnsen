@@ -5,9 +5,7 @@ import {
 } from 'react-onsenui'
 import CountSymbols from '../../CountSymbols'
 import Requester from '../../../js/requester'
-// import { connect } from 'react-redux'
-// import { changePassCode } from '../../../AC'
-import bcrypt from 'bcryptjs'
+import './css/PassCode.css'
 
 class PassCode extends Component{
     constructor(props){
@@ -17,10 +15,11 @@ class PassCode extends Component{
             count: 0,
             passCode: '',
             repeatePassCode: '',
-            helpText: 'Введите код'
+            helpText: 'Введите код',
+            canselText: 'Отмена'
         }
         this.req = new Requester()
-        this.numButtons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "check", "0", "back"]
+        this.numButtons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", " ", "0", "back"]
         this.renderItemNum = this.renderItemNum.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.handleOkClick = this.handleOkClick.bind(this)
@@ -37,6 +36,10 @@ class PassCode extends Component{
             this.setState({
                 value: newText,
                 count: newLength,
+            }, () => {
+                if (this.state.count === 6) {
+                    this.handleOkClick()
+                }
             })
         }
     }
@@ -77,12 +80,12 @@ class PassCode extends Component{
                     if (item === 'back') {
                         data = <span className="icon-left-arrow" />
                     }
-                    if (item === 'check') {
-                        data = <span
-                            className="icon-checked"
-                        />
-                        func = this.handleOkClick
-                    }
+                    // if (item === 'check') {
+                    //     data = <span
+                    //         className="icon-checked"
+                    //     />
+                        // func = this.handleOkClick
+                    // }
                     return (
                         <Button
                             key={key}
@@ -97,14 +100,22 @@ class PassCode extends Component{
 
     render() {
         return (
-            <section>
-                <div>
-                    <span>{this.state.value}</span>
+            <section className="nzLogonPassCodeBlock">
+                <div className={`${this.props.checkPassClassName}`}>
+                    {/* <span className="nzSpan">{this.state.value}</span> */}
+                    <div className="nzSpan">{this.state.helpText}</div>
                     <CountSymbols count={this.state.count} />
                     <section className="nzAddUserSection">
                         {this.renderItemNum()}
                     </section>
-                    <span>{this.state.helpText}</span>
+                    
+                    {/* <div className="nzSpan">{this.state.canselText}</div> */}
+                    <Button
+                        modifier='outline'
+                        onClick={() => {
+                            this.props.togglePassCodeBlock(false)
+                        }}
+                    >{this.state.canselText}</Button>
                 </div>
             </section>
         )

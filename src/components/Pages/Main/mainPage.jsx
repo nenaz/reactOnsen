@@ -8,6 +8,8 @@ import {
     Toolbar,
     ToolbarButton,
     Modal,
+    SpeedDial,
+    SpeedDialItem,
     Fab,
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
@@ -18,6 +20,8 @@ import Icon from '../../Icon';
 import { ICONMENU } from '../../../js/consts';
 import LeftMenu from '../../Menu/LeftMenu'
 import { connect } from 'react-redux'
+import Utils from '../../../js/utils'
+import { saveDataOfScan } from '../../../AC'
 
 class MainPage extends Component{
     constructor(props){
@@ -44,6 +48,8 @@ class MainPage extends Component{
         this.renderModal = this.renderModal.bind(this)
         this.handlerNotification = this.handlerNotification.bind(this)
         this.closeApp = this.closeApp.bind(this)
+        this.qrProcessing = this.qrProcessing.bind(this)
+        this.handleSpeedClick = this.handleSpeedClick.bind(this)
 
         this.count = 0
     }
@@ -146,12 +152,24 @@ class MainPage extends Component{
         // )
     }
 
+    qrProcessing() {
+        Utils.qrProcessing().then((resultScan) => {
+            this.props.saveDataOfScan(resultScan)
+            this.pushPage('addOperation')
+        })
+    }
+
+    handleSpeedClick() {
+        console.log('test')
+    }
+
     render(){
         return (
             <Page
                 className="nzPage"
                 renderToolbar={this.renderToolbar}
                 renderModal={this.renderModal}
+                // renderFixed={this.renderFixed}
             >
                 <Splitter>
                     <SplitterSide
@@ -184,18 +202,46 @@ class MainPage extends Component{
                         </Page>
                     </SplitterContent>
                 </Splitter>
-                {this.props.accountsLength && <Fab
+                {this.props.accountsLength && <SpeedDial
                     position='bottom right'
-                    onClick={() => {
-                        this.pushPage('addOperation')
-                    }}
+                    className="nzSpeedDial"
+                    onClick={this.handleSpeedClick}
                 >
-                    <span className="icon-plus2"
+                    <Fab
+                        position='bottom right'
                         style={{
-                            lineHeight: '56px'
+                            bottom: '0px',
+                            right: '0px',
                         }}
-                    />
-                </Fab>}
+                    >
+                        <span className="icon-plus2"
+                            style={{
+                                lineHeight: '56px'
+                            }}
+                        />
+                    </Fab>
+                    <SpeedDialItem
+                        onClick={() => {
+                            this.pushPage('addOperation')
+                        }}
+                    >
+                        <span className="icon-plus2"
+                            style={{
+                                lineHeight: '40px'
+                            }}
+                        />
+                    </SpeedDialItem>
+                    <SpeedDialItem
+                        onClick={this.qrProcessing}
+                    >
+                        <span className="icon-qr-code-scan"
+                            style={{
+                                lineHeight: '40px'
+                            }}
+                        />
+                    </SpeedDialItem>
+                </SpeedDial>}
+                
                 <Modal isOpen={this.state.modalOpen} >
                     <WhatsNew handleModalClose={this.handleModalClose} />
                 </Modal>
@@ -212,4 +258,6 @@ MainPage.propTypes = {
 export default connect((state) => ({
     newFunctions: state.updateNewFunctions,
     accountsLength: state.changeAccountsList.length,
-}))(MainPage)
+}), {
+    saveDataOfScan,
+})(MainPage)

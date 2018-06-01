@@ -49,45 +49,56 @@ class NewUser extends Component {
 
     render() {
         return (
-            <section className="nzAddUserSection">
-                <section>
-                    <Input
-                        value={this.state.username}
-                        onChange={this.handleUsernameChange}
-                        modifier='underbar material'
-                        float
-                        placeholder='Логин'
+            <section className={`nzLogonPageAddUser ${this.props.cssName}`}>
+                <div className={this.props.disabledInputs
+                    ? "nzAddUserButton nzDisable"
+                    : "nzAddUserButton"}
+                >
+                    <span
+                        className="shape"
+                        onClick={this.props.handleNewUser}
                     />
-                </section>
-                <section>
-                    <Input
-                        value={this.state.password}
-                        onChange={this.handlePasswordChange}
-                        modifier='underbar material'
+                </div>
+                <section className="nzAddUserSection">
+                    <section>
+                        <Input
+                            value={this.state.username}
+                            onChange={this.handleUsernameChange}
+                            modifier='underbar material'
+                            float
+                            placeholder='Логин'
+                        />
+                    </section>
+                    <section>
+                        <Input
+                            value={this.state.password}
+                            onChange={this.handlePasswordChange}
+                            modifier='underbar material'
+                            type='password'
+                            float
+                            placeholder='Пароль'
+                        />
+                    </section>
+                    <section>
+                        <Input
+                            value={this.state.confirmPassword}
+                            onChange={this.handleConfirmPassword}
+                            modifier='underbar material'
                         type='password'
-                        float
-                        placeholder='Пароль'
-                    />
-                </section>
-                <section>
-                    <Input
-                        value={this.state.confirmPassword}
-                        onChange={this.handleConfirmPassword}
-                        modifier='underbar material'
-                        type='password'
-                        float
-                        placeholder='Подтвердить пароль'
-                    />
-                </section>
-                <section>
-                    <Button
-                        label="Submit"
-                        primary={true}
-                        onClick={this.handleRegister}
-                        modifier='large outline'
-                    >
-                        <span>Зарегистрироваться</span>
-                    </Button>
+                            float
+                            placeholder='Подтвердить пароль'
+                        />
+                    </section>
+                    <section>
+                        <Button
+                            label="Submit"
+                            primary={true}
+                            onClick={this.handleRegister}
+                            modifier='large outline'
+                        >
+                            <span>Зарегистрироваться</span>
+                        </Button>
+                    </section>
                 </section>
             </section>
         )
@@ -95,7 +106,9 @@ class NewUser extends Component {
 }
 
 NewUser.propTypes = {
-    className: PropTypes.string,
+    cssName: PropTypes.string,
+    disabledInputs: PropTypes.bool,
+    handleNewUser: PropTypes.func,
 }
 
 export default NewUser

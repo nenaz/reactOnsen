@@ -12,15 +12,20 @@ export default class Requester {
                 this.setLocal('localUserName', '', null, true)
             }
             if (!localStorage.hasOwnProperty('localAccounts')) {
-                this.setLocal('localAccounts', [], true)
+                this.setLocal('localAccounts', [], null, true)
             }
             if (!localStorage.hasOwnProperty('localItems')) {
-                this.setLocal('localItems', [], true)
+                this.setLocal('localItems', [], null, true)
             }
             if (!localStorage.hasOwnProperty('localItemsStatistic')) {
-                this.setLocal('localItemsStatistic', [], true)
+                this.setLocal('localItemsStatistic', [], null, true)
             }
-            
+            if (!localStorage.hasOwnProperty('localDataForChart')) {
+                this.setLocal('localDataForChart', [], null, true)
+            }
+            if (!localStorage.hasOwnProperty('localWhatsNew')) {
+                this.setLocal('localWhatsNew', [], null, true)
+            }
             if (!localStorage.hasOwnProperty('localOptions')) {
                 this.options = {
                     develop: DEVELOP,
@@ -37,7 +42,7 @@ export default class Requester {
 
     request(name, object) {
         let lName = ''
-        const connectDB = JSON.parse(localStorage.getItem('localOptions')).connectDB 
+        const connectDB = JSON.parse(localStorage.getItem('localOptions')).connectDB
         if (connectDB) {
             switch (name) {
                 case 'updateAccounts':
@@ -81,14 +86,18 @@ export default class Requester {
             return this.send(lName, 'POST', object)
         } else {
             switch (name) {
-                case 'updateAccounts': lName = 'localAccounts'
-                    this.setLocal(lName, object)
+                case 'updateAccounts':
+                    lName = 'localAccounts'
+                    this.setLocal2(lName, object, null, this.editAccountFields)
                     break;
-                case 'addAccount': lName = 'localAccounts'
-                    this.setLocal(lName, object)
+                case 'addAccount':
+                    lName = 'localAccounts'
+                    this.setLocal2(lName, object)
                     break;
-                case 'updateItem': lName = 'localAccounts'
-                    this.updateItem(lName, object)
+                case 'updateItem':
+                    lName = 'localAccounts'
+                    // this.updateItem(lName, object)
+                    this.setLocal2(lName, object, null, this.updateAccountFields)
                     break;
                 case 'getOperations':
                     lName = 'localItems'
@@ -96,8 +105,17 @@ export default class Requester {
                 case 'getAccounts':
                     lName = 'localAccounts'
                     return this.getLocal(lName, object)
+                case 'getDataForChart':
+                    lName = 'localItems'
+                    return this.getLocal(lName, object)
+                case 'whatsnew':
+                    lName = 'localWhatsNew'
+                    return this.getLocal(lName, object)
+                case 'deleteAccount':
+                    lName = 'localAccounts'
+                    return this.setLocal(lName, object)
                 default: lName = 'localItems'
-                    this.setLocal(lName, object)
+                    this.setLocal2(lName, object)
                     break;
             }
         }
@@ -115,6 +133,7 @@ export default class Requester {
                 
                 xhr.setRequestHeader('Authorization', webToken);
             }
+            xhr.timeout = 15000;
             xhr.onload = function () {
                 if (this.status === 200) {
                     resolve(JSON.parse(this.response));
@@ -131,11 +150,55 @@ export default class Requester {
                     reject(error);
                 }
             };
+            xhr.ontimeout = function () {
+                reject(new Error("Network Error"));
+            }
             xhr.onerror = function () {
                 reject(new Error("Network Error"));
             };
             xhr.send(JSON.stringify(params));
         });
+    }
+
+    setLocal2(branch, value, nameField, callback) {
+        this.getLocal(branch).then((arr) => {
+            if (arr.length !== undefined) {
+                if (arr.length) {
+                    let num = -1
+                    if (value.idFrom) {
+                        arr.find((item, i) => {
+                            if (item._id === value.idFrom) {
+                                num = i
+                                return item
+                            }
+                            return item
+                        })
+                    } else if (value._id) {
+                        arr.find((item, i) => {
+                            if (item._id === value._id) {
+                                num = i
+                                return item
+                            }
+                            return item
+                        })
+                    }
+                    if (num >= 0) { 
+                        if (typeof callback === 'function') {
+                            arr[num] = callback(arr[num], value)
+                        }
+                    } else {
+                        arr.push(value)    
+                    }
+                } else {
+                    arr.push(value)
+                }
+            } else if (typeof arr === 'object') {
+                arr[nameField] = value;
+            } else {
+                arr = value
+            }
+            localStorage.setItem(branch, JSON.stringify(arr))
+        })
     }
 
     setLocal(name, value, nameField, initialize) {
@@ -194,8 +257,27 @@ export default class Requester {
 
     updateOption(name, value) {
         const optionsName = 'localOptions'
-        const arr = this.getLocal(optionsName)
-        arr[name] = value
-        localStorage.setItem(optionsName, JSON.stringify(arr))
+        this.getLocal(optionsName).then(arr => {
+            arr[name] = value
+            localStorage.setItem(optionsName, JSON.stringify(arr))
+        })
+    }
+
+    editAccountFields(account, newValue) {
+        account.accountDate = newValue.accountDate ? newValue.accountDate : account.accountDate
+        account.accountNameFrom = newValue.accountNameFrom ? newValue.accountNameFrom : account.accountNameFrom
+        account.accountNumber = newValue.accountNumber ? newValue.accountNumber : account.accountNumber
+        account.accountPeople = newValue.accountPeople ? newValue.accountPeople : account.accountPeople
+        account.amount = newValue.amount ? newValue.amount : account.amount
+        account.consider = newValue.consider ? newValue.consider : account.consider
+        return account
+    }
+
+    updateAccountFields(account, newValue) {
+        const newAmount = newValue.typeOperation === '0'
+            ? (account.amount * 1) - (newValue.amount * 1)
+            : (account.amount * 1) + (newValue.amount * 1)
+        account.amount = newAmount
+        return account
     }
 }

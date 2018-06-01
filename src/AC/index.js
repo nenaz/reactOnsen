@@ -11,7 +11,8 @@ import {
     ADDDATATOLIST,
     EDITDATA,
     ADDONECATEGORYFORCHART,
-    CHANGEPASSCODE
+    CHANGEPASSCODE,
+    SAVEDATAOFSCAN,
 } from '../js/consts'
 
 export function changeAnimationState(value) {
@@ -101,6 +102,13 @@ export function addOneCategoryForChart(obj) {
 export function changePassCode(value) {
     return {
         type: CHANGEPASSCODE,
+        payload: value
+    }
+}
+
+export function saveDataOfScan(value) {
+    return {
+        type: SAVEDATAOFSCAN,
         payload: value
     }
 }

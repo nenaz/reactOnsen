@@ -14,7 +14,8 @@ import {
     editAccountInList,
     selectTypeOperation,
     editData,
-    addOneCategoryForChart
+    addOneCategoryForChart,
+    saveDataOfScan,
 } from '../../../../AC'
 import '../../../../css/App.css'
 import Utils from '../../../../js/utils'
@@ -92,6 +93,18 @@ class AddOperation extends Component{
         const elem = document.getElementsByClassName('nzAmountTextBlock')[0]
         const width = elem.offsetWidth
         elem.style.maxWidth = width + 'px'
+        if (this.props.dataScanner) {
+            this.props.saveDataOfScan(null)
+            const data = this.props.dataScanner.text
+            const t1 = data.indexOf('&s=')
+            const t2 = data.indexOf('&fn=')
+            const count = Math.ceil(data.substring(t1 + 3, t2) * 1)
+            this.setState({
+                inputAmount: count,
+            }, () => {
+                this.props.saveDataOfScan(null)
+            })
+        }
     }
 
     handlerOkClick() {
@@ -359,7 +372,7 @@ class AddOperation extends Component{
 
     selectAddOrEditDataForChart(obj) {
         const res = this.props.dataForChart.find(function (item) {
-            return item.catId === obj.categoryId[0] * 1
+            return item.catId === +obj.categoryId[0]
         })
         if (res) {
             this.props.editData(obj)
@@ -422,6 +435,7 @@ export default connect((state) => ({
     changeAccountsList: state.changeAccountsList,
     typeOperation: state.changeTypeOperation,
     dataForChart: state.redAddDataToList,
+    dataScanner: state.saveDataOfScan || null,
 }), {
     changeAnimationState,
     addOperationToList,
@@ -429,4 +443,5 @@ export default connect((state) => ({
     selectTypeOperation,
     editData,
     addOneCategoryForChart,
+    saveDataOfScan,
 })(AddOperation)

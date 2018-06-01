@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,oBAAoB,CAAA;EAChB,OAAO,EAAE,MAAM;EACf,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,eAAe,EAAE,YAAY;CAUhC;;AAfD,AAMI,oBANgB,CAMhB,iBAAiB,CAAA;EACb,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,GAAG;EACR,IAAI,EAAE,iBAAiB;EAEvB,KAAK,EAAE,KAAK;EACZ,KAAK,EAAE,KAAK;EACZ,UAAU,EAAE,MAAM;CACrB",
+    "sources": [
+        "ResetPassCode.scss"
+    ],
+    "names": [],
+    "file": "ResetPassCode.css"
+}
