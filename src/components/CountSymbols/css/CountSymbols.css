@@ -1,0 +1,14 @@
+.nzCountSymbols .nzCountSymbolsItem {
+  display: inline-block;
+  background-color: #404040;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #2c2c2c;
+  margin: 0 3px;
+}
+
+.nzCountSymbols .nzCountSymbolsItem.active {
+  background-color: white;
+}
+/*# sourceMappingURL=CountSymbols.css.map */

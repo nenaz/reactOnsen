@@ -1,0 +1,17 @@
+.nzLogonWithPassCode {
+  padding: 0 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.nzLogonWithPassCode .nzRemovePassCode {
+  position: absolute;
+  top: 95%;
+  left: calc(50% - 150px);
+  color: white;
+  width: 300px;
+  text-align: center;
+}
+/*# sourceMappingURL=ResetPassCode.css.map */
