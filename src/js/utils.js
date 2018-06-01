@@ -1,4 +1,4 @@
-import { LISTCATEGORY } from './consts'
+import { LISTCATEGORY, COLORS } from './consts'
 
 const selectButtonsParams = (name) => {
     switch(name) {
@@ -248,6 +248,27 @@ const qrProcessing = () => {
     })
 }
 
+const formatingDataForChart = (data) => {
+    const fData = []
+    for (let i = 0; i < 10; i += 1) {
+        let sum = 0;
+        data.map(item => {
+            if (item.categoryId[0] * 1 === i && item.typeOperation === "0") {
+                sum += item.amount * 1
+            }
+            return item
+        })
+        if (sum) {
+            fData.push({
+                id: i,
+                value: sum,
+                color: COLORS['color' + i]
+            })
+        }
+    }
+    return fData
+}
+
 const utils = {
     selectButtonsParams,
     selectSectionsParams,
@@ -263,6 +284,7 @@ const utils = {
     findAccountDataOnId,
     finishDataFormatingForChart,
     qrProcessing,
+    formatingDataForChart,
 }
 
 export default utils

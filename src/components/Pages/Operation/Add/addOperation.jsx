@@ -372,7 +372,7 @@ class AddOperation extends Component{
 
     selectAddOrEditDataForChart(obj) {
         const res = this.props.dataForChart.find(function (item) {
-            return item.catId === obj.categoryId[0] * 1
+            return item.catId === +obj.categoryId[0]
         })
         if (res) {
             this.props.editData(obj)

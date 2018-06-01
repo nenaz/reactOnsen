@@ -4,7 +4,8 @@ import {
     Page,
     BackButton,
     Toolbar,
-    Switch
+    Switch,
+    AlertDialog,
 } from 'react-onsenui'
 import Requester from '../../../js/requester'
 
@@ -13,6 +14,7 @@ class OptionsPage extends Component{
         super(props)
         this.state ={
             checked: JSON.parse(localStorage.getItem('localOptions')).connectDB || false,
+            alertDialogShown: false,
         }
 
         this.req = new Requester()
@@ -20,6 +22,10 @@ class OptionsPage extends Component{
         this.handlerCanselClick = this.handlerCanselClick.bind(this)
         this.renderToolbar = this.renderToolbar.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.showAlertDialog = this.showAlertDialog.bind(this)
+        this.hideAlertDialog = this.hideAlertDialog.bind(this)
+        this.handleAlertDialogCancel = this.handleAlertDialogCancel.bind(this)
+        this.handleAlertDialogOk = this.handleAlertDialogOk.bind(this)
     }
 
     renderToolbar() {
@@ -38,12 +44,35 @@ class OptionsPage extends Component{
         this.props.navigator.popPage();
     }
 
-    handleChange(e) {
+    handleChange() {
+        // this.setState({
+        //     checked: e.target.checked
+        // }, () => {
+        //     // this.req.updateOption('connectDB', this.state.checked)
+        //     this.showAlertDialog()
+        // });
+        this.showAlertDialog()
+    }
+
+    showAlertDialog() {
+        this.setState({alertDialogShown: true })
+    }
+
+    hideAlertDialog() {
+        this.setState({ alertDialogShown: false })
+    }
+
+    handleAlertDialogCancel() {
+        this.hideAlertDialog()
+    }
+
+    handleAlertDialogOk(e) {
         this.setState({
             checked: e.target.checked
         }, () => {
             this.req.updateOption('connectDB', this.state.checked)
-        });
+        })
+        this.hideAlertDialog()
     }
 
     render(){
@@ -63,6 +92,22 @@ class OptionsPage extends Component{
                         />
                     </div>
                 </section>
+                <AlertDialog
+                    isOpen={this.state.alertDialogShown}
+                    isCancelable={false}>
+                    <div className='alert-dialog-title'>Внимание!</div>
+                    <div className='alert-dialog-content'>
+                        Вы действительно хотите откл
+                    </div>
+                    <div className='alert-dialog-footer'>
+                        <button onClick={this.handleAlertDialogCancel} className='alert-dialog-button'>
+                            Cancel
+                        </button>
+                        <button onClick={this.handleAlertDialogOk} className='alert-dialog-button'>
+                            Ok
+                        </button>
+                    </div>
+                </AlertDialog>
             </Page>
         )
     }

@@ -49,6 +49,7 @@ class MainPage extends Component{
         this.handlerNotification = this.handlerNotification.bind(this)
         this.closeApp = this.closeApp.bind(this)
         this.qrProcessing = this.qrProcessing.bind(this)
+        this.handleSpeedClick = this.handleSpeedClick.bind(this)
 
         this.count = 0
     }
@@ -158,6 +159,10 @@ class MainPage extends Component{
         })
     }
 
+    handleSpeedClick() {
+        console.log('test')
+    }
+
     render(){
         return (
             <Page
@@ -197,19 +202,11 @@ class MainPage extends Component{
                         </Page>
                     </SplitterContent>
                 </Splitter>
-                {/* {this.props.accountsLength && <Fab
+                {this.props.accountsLength && <SpeedDial
                     position='bottom right'
-                    onClick={() => {
-                        this.pushPage('addOperation')
-                    }}
+                    className="nzSpeedDial"
+                    onClick={this.handleSpeedClick}
                 >
-                    <span className="icon-plus2"
-                        style={{
-                            lineHeight: '56px'
-                        }}
-                    />
-                </Fab>} */}
-                {this.props.accountsLength && <SpeedDial position='bottom right' className="nzSpeedDial">
                     <Fab
                         position='bottom right'
                         style={{

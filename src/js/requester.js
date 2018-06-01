@@ -106,7 +106,7 @@ export default class Requester {
                     lName = 'localAccounts'
                     return this.getLocal(lName, object)
                 case 'getDataForChart':
-                    lName = 'localDataForChart'
+                    lName = 'localItems'
                     return this.getLocal(lName, object)
                 case 'whatsnew':
                     lName = 'localWhatsNew'
@@ -115,7 +115,7 @@ export default class Requester {
                     lName = 'localAccounts'
                     return this.setLocal(lName, object)
                 default: lName = 'localItems'
-                    this.setLocal(lName, object)
+                    this.setLocal2(lName, object)
                     break;
             }
         }
@@ -165,11 +165,23 @@ export default class Requester {
             if (arr.length !== undefined) {
                 if (arr.length) {
                     let num = -1
-                    // let count = 0
-                    arr.find((item, i) => {
-                        num = i
-                        return item._id === value.idFrom
-                    })
+                    if (value.idFrom) {
+                        arr.find((item, i) => {
+                            if (item._id === value.idFrom) {
+                                num = i
+                                return item
+                            }
+                            return item
+                        })
+                    } else if (value._id) {
+                        arr.find((item, i) => {
+                            if (item._id === value._id) {
+                                num = i
+                                return item
+                            }
+                            return item
+                        })
+                    }
                     if (num >= 0) { 
                         if (typeof callback === 'function') {
                             arr[num] = callback(arr[num], value)
