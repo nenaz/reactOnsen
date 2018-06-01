@@ -4,6 +4,7 @@ import {
     DEVELOP
 } from './consts'
 import config from './config'
+import Utils from './utils'
 
 export default class Requester {
     initialize(value) {
@@ -40,10 +41,10 @@ export default class Requester {
         }
     }
 
-    request(name, object) {
+    request(name, object, sync) {
         let lName = ''
         const connectDB = JSON.parse(localStorage.getItem('localOptions')).connectDB
-        if (connectDB) {
+        if (connectDB || sync) {
             switch (name) {
                 case 'updateAccounts':
                     // lName = 'updateAccountAmount'

@@ -6,18 +6,30 @@ import {
     Toolbar,
     Switch,
     AlertDialog,
+    Modal,
+    Checkbox,
 } from 'react-onsenui'
 import Requester from '../../../js/requester'
+import Sync from '../../../js/sync'
 
 class OptionsPage extends Component{
     constructor(props){
         super(props)
         this.state ={
             checked: JSON.parse(localStorage.getItem('localOptions')).connectDB || false,
-            alertDialogShown: false,
+            alertDialogShow: false,
+            isOpenModal: false,
+            sync: false,
+            alertDialogSyncShow: false,
+            syncText: '',
+            sync1: false,
+            sync2: false,
+            sync3: false,
+            sync4: false,
         }
 
         this.req = new Requester()
+        this.sync = new Sync()
 
         this.handlerCanselClick = this.handlerCanselClick.bind(this)
         this.renderToolbar = this.renderToolbar.bind(this)
@@ -26,6 +38,9 @@ class OptionsPage extends Component{
         this.hideAlertDialog = this.hideAlertDialog.bind(this)
         this.handleAlertDialogCancel = this.handleAlertDialogCancel.bind(this)
         this.handleAlertDialogOk = this.handleAlertDialogOk.bind(this)
+        this.handleAlertDialogSyncCancel = this.handleAlertDialogSyncCancel.bind(this)
+        this.handleAlertDialogSyncOk = this.handleAlertDialogSyncOk.bind(this)
+        this.showAlertDialogSync = this.showAlertDialogSync.bind(this)
     }
 
     renderToolbar() {
@@ -55,11 +70,11 @@ class OptionsPage extends Component{
     }
 
     showAlertDialog() {
-        this.setState({alertDialogShown: true })
+        this.setState({alertDialogShow: true })
     }
 
     hideAlertDialog() {
-        this.setState({ alertDialogShown: false })
+        this.setState({ alertDialogShow: false })
     }
 
     handleAlertDialogCancel() {
@@ -68,11 +83,31 @@ class OptionsPage extends Component{
 
     handleAlertDialogOk(e) {
         this.setState({
-            checked: e.target.checked
+            checked: e.target.checked,
+            alertDialogSyncShow: true,
+            // this.setState({ isOpen: false })
         }, () => {
-            this.req.updateOption('connectDB', this.state.checked)
+            // this.req.updateOption('connectDB', this.state.checked)
+            this.showAlertDialogSync()
         })
         this.hideAlertDialog()
+    }
+
+    showAlertDialogSync() {
+        this.setState({ alertDialogSyncShow: true })
+    }
+
+    handleAlertDialogSyncOk() {
+        this.setState({
+            isOpenModal: true,
+            alertDialogSyncShow: false,
+        }, () => {
+            this.sync.getAllDataFromServer()
+        })
+    }
+
+    handleAlertDialogSyncCancel() {
+        this.setState({ alertDialogSyncShow: false })
     }
 
     render(){
@@ -93,7 +128,7 @@ class OptionsPage extends Component{
                     </div>
                 </section>
                 <AlertDialog
-                    isOpen={this.state.alertDialogShown}
+                    isOpen={this.state.alertDialogShow}
                     isCancelable={false}>
                     <div className='alert-dialog-title'>Внимание!</div>
                     <div className='alert-dialog-content'>
@@ -108,6 +143,40 @@ class OptionsPage extends Component{
                         </button>
                     </div>
                 </AlertDialog>
+                <AlertDialog
+                    isOpen={this.state.alertDialogSyncShow}
+                    isCancelable={false}>
+                    <div className='alert-dialog-title'>Внимание!</div>
+                    <div className='alert-dialog-content'>
+                        Вы хотите провести синхронизацию данных с {this.state.syncText}
+                    </div>
+                    <div className='alert-dialog-footer'>
+                        <button onClick={this.handleAlertDialogSyncCancel} className='alert-dialog-button'>
+                            Cancel
+                        </button>
+                        <button onClick={this.handleAlertDialogSyncOk} className='alert-dialog-button'>
+                            Ok
+                        </button>
+                    </div>
+                </AlertDialog>
+                <Modal
+                    isOpen={this.state.isOpenModal}
+                >
+                    <div>
+                        <div className="nzSyncBlock">
+                            <span className="shapeNew" /><span className="nzSyncElemText">Счета</span>
+                        </div>
+                        <div className="nzSyncBlock">
+                            <span className="shapeNew" /><span className="nzSyncElemText">Операции</span>
+                        </div>
+                        <div className="nzSyncBlock">
+                            <span className="shapeNew" /><span className="nzSyncElemText">График</span>
+                        </div>
+                        <div className="nzSyncBlock">
+                            <span className="shapeNew" /><span className="nzSyncElemText">Уведомления</span>
+                        </div>
+                    </div>
+                </Modal>
             </Page>
         )
     }

@@ -145,9 +145,9 @@ class App extends Component {
       this.req.request('getDataForChart', {
         nowMonthDate: Utils.nowDate(false, true)
       }).then(data => {
-        const tt = Utils.formatingDataForChart(data)
-        resolve(tt)
-        this.props.addDataToList(tt)
+        // const tt = Utils.formatingDataForChart(data)
+        resolve(data)
+        this.props.addDataToList(data)
       })
     })
   }

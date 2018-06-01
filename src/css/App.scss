@@ -1053,3 +1053,56 @@ html{
     color: #ffffff;
   }
 }
+.nzSyncBlock{
+  display: flex;
+  text-align: left;
+  .nzSyncElemText{
+    line-height: 30px;
+    width: 50%;
+  }
+}
+.shapeNew{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  z-index: 1000000;
+  position: relative;
+  width: 50%;
+}
+.shapeNew::before{
+  width: 18px;
+  height: 2px;
+  content: "";
+  background: #fff;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(50% - 9px);
+  transition: all linear 250ms;
+}
+.shapeNew::after{
+  height: 2px;
+  width: 18px;
+  content: "";
+  background: #fff;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(50% - 9px);
+  transition: all linear 250ms;
+}
+
+.shapeNew{
+  &.anim::before{
+    width: 12px;
+    height: 2px;
+    top: calc(50% - -1px);
+    left: calc(50% - 14px);
+    transform: rotate(45deg);
+  }
+  &.anim::after{
+    height: 2px;
+    width: 22px;
+    top: calc(50% - 2px);
+    left: calc(50% - 7px);
+    transform: rotate(-45deg);
+  }
+}
