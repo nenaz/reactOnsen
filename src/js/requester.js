@@ -41,10 +41,10 @@ export default class Requester {
         }
     }
 
-    request(name, object, sync) {
+    request(name, object) {
         let lName = ''
         const connectDB = JSON.parse(localStorage.getItem('localOptions')).connectDB
-        if (connectDB || sync) {
+        if (connectDB) {
             switch (name) {
                 case 'updateAccounts':
                     // lName = 'updateAccountAmount'

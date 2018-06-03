@@ -1,6 +1,7 @@
 import Requester from './requester'
 import Utils from './utils'
 import config from './config'
+import _ from 'underscore'
 
 export default class Sync {
     initialize() {
@@ -8,41 +9,78 @@ export default class Sync {
         // this.allData = this.getAllDataFromServer()
     }
 
-    getAllDataFromServer() {
+    startSync() {
         Promise.all([
-            this.getAccounts(),
-            this.getOperations(),
-            this.getDataForChart(),
-            this.getNew(),
+            this.getAllDataFromServer(),
+            this.getAllDataFromLocalstorage()
         ]).then(values => {
-            console.log('test')
+            const obj = _.extend(values[1], values[0])
+            // const obj = _.extend(values[0], values[1])
         })
     }
 
-    getOperations() {
-        const req = new Requester()
+    getAllDataFromServer() {
         return new Promise((resolve, reject) => {
-            req.request('getOperations', {limit: 0}, true).then(result => {
-                resolve(result)
+            Promise.all([
+                this.getAccounts(true),
+                this.getOperations(true),
+                // this.getDataForChart(),
+                // this.getNew(),
+            ]).then(values => {
+                resolve(values)
             })
         })
     }
 
-    getAccounts() {
+    getAllDataFromLocalstorage() {
+        return new Promise((resolve, reject) => {
+            Promise.all([
+                this.getAccounts(),
+                this.getOperations(),
+                // this.getDataForChart(),
+                // this.getNew(),
+            ]).then(values => {
+                resolve(values)
+            })
+        })
+    }
+
+    getAccounts(server) {
         const req = new Requester()
         return new Promise((resolve, reject) => {
-            req.request('getAccounts', {}, true).then(result => {
-                resolve(result)
-            })
+            if (server) {
+                req.send('getAccounts', 'POST', {}).then(result => {
+                    resolve(result)
+                })
+            } else {
+                req.getLocal('localAccounts', {}).then(result => {
+                    resolve(result)
+                })
+            }
+        })
+    }
+ 
+    getOperations(server) {
+        const req = new Requester()
+        return new Promise((resolve, reject) => {
+            if (server) {
+                req.send('getOperations', 'POST', {limit: 0}).then(result => {
+                    resolve(result)
+                })
+            } else {
+                req.getLocal('localItems', {}).then(result => {
+                    resolve(result)
+                })
+            }
         })
     }
 
     getNew() {
         const req = new Requester()
         return new Promise((resolve, reject) => {
-            req.request('whatsnew', {
+            req.send('whatsnew', 'POST', {
                 version: config.version,
-            }, true).then(result => {
+            }).then(result => {
                 resolve(result)
             })
         })
@@ -51,9 +89,9 @@ export default class Sync {
     getDataForChart() {
         const req = new Requester()
         return new Promise((resolve, reject) => {
-            req.request('getDataForChart', {
+            req.send('getOperLastMonth', 'POST', {
                 nowMonthDate: Utils.nowDate(false, true)
-            }, true).then(data => {
+            }).then(data => {
                 // const tt = Utils.formatingDataForChart(data)
                 resolve(data)
             })

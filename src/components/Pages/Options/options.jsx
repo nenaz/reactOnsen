@@ -102,7 +102,7 @@ class OptionsPage extends Component{
             isOpenModal: true,
             alertDialogSyncShow: false,
         }, () => {
-            this.sync.getAllDataFromServer()
+            this.sync.startSync()
         })
     }
 
