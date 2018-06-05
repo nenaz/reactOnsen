@@ -157,7 +157,7 @@ class App extends Component {
       Promise.all([
         this.getAccounts(),
         this.getOperations(),
-        this.getDataForChart(),
+        // this.getDataForChart(),
         this.getNew(),
       ]).then(values => {
         this.setState({
