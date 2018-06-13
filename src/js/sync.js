@@ -3,25 +3,32 @@ import Utils from './utils'
 import config from './config'
 import _ from 'underscore'
 
-export default class Sync {
+class Sync {
     localObj = {}
     serverObj = {}
+    testItems = ['Accounts', 'Operations', 'ChartData', 'News']
+    localItems = ['localAccounts', 'localItems', 'localDataForChart', 'localWhatsNew']
     initialize() {
         // this.req = new Requester()
         // this.allData = this.getAllDataFromServer()
     }
 
     startSync() {
-        Promise.all([
-            this.getAllDataFromServer(),
-            this.getAllDataFromLocalstorage()
-        ]).then(values => {
-            const serverData = values[0]
-            const localData = values[1]
-            this.arrayToObject(this.serverObj, serverData)
-            this.arrayToObject(this.localObj, localData)
-            this.syncLocalAndServerData()
-            // const obj = _.extend(values[0], values[1])
+        return new Promise((resolve, reject) => {
+            Promise.all([
+                this.getAllDataFromServer(),
+                this.getAllDataFromLocalstorage()
+            ]).then(values => {
+                const serverData = values[0]
+                const localData = values[1]
+                this.backupDataBeforeSync(localData)
+                this.generateStatSync(serverData)
+                this.arrayToObject(this.serverObj, serverData)
+                this.arrayToObject(this.localObj, localData)
+                this.syncLocalAndServerData()
+                resolve(this.saveNewDataToBase())
+                // const obj = _.extend(values[0], values[1])
+            })
         })
     }
 
@@ -105,14 +112,14 @@ export default class Sync {
     }
 
     arrayToObject(glObj, arr) {
-        const m = ['Accounts', 'Operations', 'ChartData', 'News']
-        for (let i = 0; i < m.length; i += 1) {
-            glObj[m[i]] = arr[i] || [];
+        const testItems = this.testItems
+        for (let i = 0; i < testItems.length; i += 1) {
+            glObj[testItems[i]] = arr[i] || [];
         }
     }
 
     syncLocalAndServerData() {
-        const testItems = ['Accounts', 'Operations', 'ChartData', 'News']
+        const testItems = this.testItems
         for (let i = 0; i < testItems.length; i += 1) {
             let item = this.serverObj[testItems[i]]
             for (let j = 0; j < item.length; j += 1) {
@@ -126,6 +133,28 @@ export default class Sync {
                 }
             }
         }
-        console.log(this.localObj)
+    }
+
+    saveNewDataToBase() {
+        const testItems = this.testItems
+        const localItems = this.localItems
+        for (let i = 0; i < testItems.length; i += 1) {
+            localStorage.setItem(localItems[i], JSON.stringify(this.localObj[testItems[i]]))
+        }
+        return true;
+    }
+
+    backupDataBeforeSync(data) {
+        localStorage.setItem('localBackup', JSON.stringify(data))
+    }
+
+    generateStatSync(data) {
+        const stat = {
+            statAccount: data[0].length,
+            statOperations: data[1].length,
+        }
+        localStorage.setItem('localStat', JSON.stringify(stat))
     }
 }
+
+export default Sync

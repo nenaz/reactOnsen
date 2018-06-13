@@ -7,7 +7,7 @@ import {
     Switch,
     AlertDialog,
     Modal,
-    Checkbox,
+    Button,
 } from 'react-onsenui'
 import Requester from '../../../js/requester'
 import Sync from '../../../js/sync'
@@ -41,6 +41,7 @@ class OptionsPage extends Component{
         this.handleAlertDialogSyncCancel = this.handleAlertDialogSyncCancel.bind(this)
         this.handleAlertDialogSyncOk = this.handleAlertDialogSyncOk.bind(this)
         this.showAlertDialogSync = this.showAlertDialogSync.bind(this)
+        this.renderStatSync = this.renderStatSync.bind(this)
     }
 
     renderToolbar() {
@@ -87,7 +88,7 @@ class OptionsPage extends Component{
             alertDialogSyncShow: true,
             // this.setState({ isOpen: false })
         }, () => {
-            // this.req.updateOption('connectDB', this.state.checked)
+            this.req.updateOption('connectDB', this.state.checked)
             this.showAlertDialogSync()
         })
         this.hideAlertDialog()
@@ -102,12 +103,22 @@ class OptionsPage extends Component{
             isOpenModal: true,
             alertDialogSyncShow: false,
         }, () => {
-            this.sync.startSync()
+            this.sync.startSync().then(result => {
+                this.renderStatSync()
+            })
         })
     }
 
     handleAlertDialogSyncCancel() {
         this.setState({ alertDialogSyncShow: false })
+    }
+
+    renderStatSync() {
+        const stat = JSON.parse(localStorage.getItem('localStat'))
+        this.setState({
+            syncAccount: stat.statAccount ? 'anim' : '',
+            syncOperations: stat.statOperations ? 'anim' : '',
+        })
     }
 
     render(){
@@ -164,18 +175,21 @@ class OptionsPage extends Component{
                 >
                     <div>
                         <div className="nzSyncBlock">
-                            <span className="shapeNew" /><span className="nzSyncElemText">Счета</span>
+                            <span className={`shapeNew ${this.state.syncAccount}`} /><span className="nzSyncElemText">Счета</span>
                         </div>
                         <div className="nzSyncBlock">
-                            <span className="shapeNew" /><span className="nzSyncElemText">Операции</span>
+                            <span className={`shapeNew ${this.state.syncOperations}`} /><span className="nzSyncElemText">Операции</span>
                         </div>
                         <div className="nzSyncBlock">
-                            <span className="shapeNew" /><span className="nzSyncElemText">График</span>
+                            <span className={`shapeNew ${this.state.suncAccount}`} /><span className="nzSyncElemText">График</span>
                         </div>
                         <div className="nzSyncBlock">
-                            <span className="shapeNew" /><span className="nzSyncElemText">Уведомления</span>
+                            <span className={`shapeNew ${this.state.suncAccount}`} /><span className="nzSyncElemText">Уведомления</span>
                         </div>
                     </div>
+                    <Button className="nzSyncModalClose" onClick={() => this.setState({ isOpenModal: false })}>
+                        Close
+                    </Button>
                 </Modal>
             </Page>
         )

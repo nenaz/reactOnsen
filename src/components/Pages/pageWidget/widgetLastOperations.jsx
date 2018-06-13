@@ -117,12 +117,12 @@ class WaigetLastOperations extends Component{
                     dataSource={this.state.items}
                     renderRow={this.renderRow}
                 />
-                <Modal isOpen={this.state.modalOpen}>
+                {/* <Modal isOpen={this.state.modalOpen}>
                     <ShowOperDetails
                         _id={this.state._id}
                         handleHideModal={this.handleHideModal}
                     />
-                </Modal>
+                </Modal> */}
             </div>
         )
     }

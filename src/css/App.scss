@@ -1097,6 +1097,7 @@ html{
     top: calc(50% - -1px);
     left: calc(50% - 14px);
     transform: rotate(45deg);
+    background-color: green;
   }
   &.anim::after{
     height: 2px;
@@ -1104,5 +1105,13 @@ html{
     top: calc(50% - 2px);
     left: calc(50% - 7px);
     transform: rotate(-45deg);
+    background-color: green;
+  }
+}
+.modal__content{
+  .nzSyncModalClose{
+    position: absolute;
+    bottom: 30px;
+    left: calc(50% - 40px);
   }
 }

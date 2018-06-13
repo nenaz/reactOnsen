@@ -9,6 +9,7 @@ import updateNewFunctions from './updateNewFunctions'
 import redAddDataToList from './redAddDataToList'
 import changePassCode from './changePassCode'
 import saveDataOfScan from './saveDataOfScan'
+import updateStatusSync from './updateStatusSync'
 
 export default combineReducers({
     changeAnimationState,
@@ -21,4 +22,5 @@ export default combineReducers({
     redAddDataToList,
     changePassCode,
     saveDataOfScan,
+    updateStatusSync,
 })

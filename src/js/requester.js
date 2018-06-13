@@ -30,7 +30,7 @@ export default class Requester {
             if (!localStorage.hasOwnProperty('localOptions')) {
                 this.options = {
                     develop: DEVELOP,
-                    connectDB: true,
+                    connectDB: false,
                     usePassCode: false,
                     urlConnectDB: (DEVELOP) ? SERVERURLLOCAL : SERVERURL,
                 }
