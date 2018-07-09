@@ -134,9 +134,12 @@ class EditAccount extends Component{
     }
 
     editAccountInList() {
+        debugger
         const updateObj = {
             idFrom: this.props.accountToEdit._id,
+            _id: this.props.accountToEdit._id,
             accountNameFrom: this.state.accountName,
+            accountName: this.state.accountName || this.props.accountToEdit.accountName,
             accountDate: this.state.accountDate,
             accountNumber: this.state.accountNumber,
             accountPeople: this.state.accountPeople,

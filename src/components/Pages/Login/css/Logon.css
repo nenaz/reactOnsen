@@ -1,10 +1,14 @@
 .nzLogonSectionButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: relative;
 }
 
 .nzLogonSectionButton .nzSwitchBlock {
-  flex-grow: 2;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
   text-align: center;
 }
 
@@ -19,14 +23,26 @@
 }
 
 .nzLogonSectionButton .nzPC {
-  flex-grow: 10;
+  -webkit-box-flex: 10;
+      -ms-flex-positive: 10;
+          flex-grow: 10;
   width: 224px;
-  animation: hidePassCodeSection 250ms linear forwards;
+  -webkit-animation: hidePassCodeSection 250ms linear forwards;
+          animation: hidePassCodeSection 250ms linear forwards;
 }
 
 .nzLogonSectionButton .nzPC.loading {
   text-align: center;
   position: relative;
+}
+
+@-webkit-keyframes hidePassCodeSection {
+  0% {
+    height: 282px;
+  }
+  100% {
+    height: 42px;
+  }
 }
 
 @keyframes hidePassCodeSection {
@@ -49,13 +65,25 @@
 }
 
 .nzLogonSectionButtonCircular.loading {
-  animation: processCircularShow 450ms linear forwards;
-  animation-delay: 500ms;
+  -webkit-animation: processCircularShow 450ms linear forwards;
+          animation: processCircularShow 450ms linear forwards;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
   display: inline;
 }
 
 .nzLogonSectionButtonCircular.loading.unLoad {
-  animation: processCircularHide 450ms linear forwards;
+  -webkit-animation: processCircularHide 450ms linear forwards;
+          animation: processCircularHide 450ms linear forwards;
+}
+
+@-webkit-keyframes processCircularShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes processCircularShow {
@@ -64,6 +92,18 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes processCircularHide {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    display: none;
   }
 }
 

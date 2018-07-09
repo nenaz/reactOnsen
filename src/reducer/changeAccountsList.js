@@ -28,8 +28,10 @@ const updateItem = (array, obj) => {
                     }
                 }
             } else {
+                debugger
                 item.amount = obj.amount ? obj.amount : item.amount
                 item.accountName = (obj.accountName) ? obj.accountName : item.accountName
+                item.accountNameFrom = item.accountName
                 item.accountNumber = (obj.accountNumber) ? obj.accountNumber : item.accountNumber
                 item.accountDate = (obj.accountDate) ? obj.accountDate : item.accountDate
                 item.accountPeople = (obj.accountPeople) ? obj.accountPeople : item.accountPeople

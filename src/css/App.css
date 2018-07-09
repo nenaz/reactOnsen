@@ -3,7 +3,8 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  -webkit-animation: App-logo-spin infinite 20s linear;
+          animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
@@ -22,24 +23,40 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
+@-webkit-keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 
 /* ++ new page ++ */
 .exp-enter-right-to-left {
-  transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
   position: absolute;
   z-index: 15;
 }
 
 .exp-enter-right-to-left.exp-enter-active-right-to-left {
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: all 850ms ease-in-out;
   transition: all 850ms ease-in-out;
   position: absolute;
   z-index: 15;
@@ -48,13 +65,16 @@
 /* -- new page -- */
 /* ++ old page ++ */
 .exp-leave-right-to-left {
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
   position: absolute;
   z-index: 10;
 }
 
 .exp-leave-right-to-left.exp-leave-active-right-to-left {
-  transform: translate3d(0%, 0, 0);
+  -webkit-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+  -webkit-transition: all 850ms ease-in-out;
   transition: all 850ms ease-in-out;
   position: absolute;
   z-index: 10;
@@ -63,13 +83,16 @@
 /* -- old page -- */
 /* ++ new page ++ */
 .exp-enter-left-to-right {
-  transform: translate3d(0%, 0, 0);
+  -webkit-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
   position: absolute;
   z-index: 10;
 }
 
 .exp-enter-left-to-right.exp-enter-active-left-to-right {
-  transform: translate3d(0%, 0, 0);
+  -webkit-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+  -webkit-transition: all 850ms ease-in-out;
   transition: all 850ms ease-in-out;
   position: absolute;
   z-index: 10;
@@ -78,13 +101,16 @@
 /* -- new page -- */
 /* ++ old page ++ */
 .exp-leave-left-to-right {
-  transform: translate3d(0%, 0, 0);
+  -webkit-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
   position: absolute;
   z-index: 15;
 }
 
 .exp-leave-left-to-right.exp-leave-active-left-to-right {
-  transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+  -webkit-transition: all 850ms ease-in-out;
   transition: all 850ms ease-in-out;
   position: absolute;
   z-index: 15;
@@ -92,6 +118,8 @@
 
 /* -- old page -- */
 .nzKeyboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: absolute;
   width: 100%;
@@ -105,10 +133,17 @@
 
 .nzKeyboard .nzButtonsBlock1 .nzButtonRow {
   border-bottom: 1px solid #404040;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row-reverse;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
   height: 25%;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .nzKeyboard .nzButtonsBlock1 .nzButtonRow .nzButton {
@@ -133,8 +168,13 @@
 }
 
 .nzKeyboard .nzButtonsBlock2 .nzButtonCol {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .nzKeyboard .nzButtonsBlock2 .nzButtonCol .nzButton {
@@ -144,9 +184,13 @@
 }
 
 .nzTitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: #404040;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-bottom: 1px solid #2c2c2c;
   color: white;
 }
@@ -178,21 +222,34 @@
 }
 
 .nzAmountSection .nzAmountInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 70%;
   color: white;
 }
 
 .nzAmountSection .nzAmountInput .nzAmountItem {
-  flex-grow: 1;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   text-align: center;
 }
 
 .nzAmountSection .nzAmountInput .nzAmountItem.nzAmountTextBlock {
-  flex-grow: 3;
+  -webkit-box-flex: 3;
+      -ms-flex-positive: 3;
+          flex-grow: 3;
   text-align: right;
   min-width: 200px;
 }
@@ -202,9 +259,15 @@
 }
 
 .nzAmountSection .nzAmountSelect {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   height: 30%;
 }
 
@@ -243,9 +306,16 @@
 }
 
 .logonForm div.page__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .nzLogonPageAddUser {
@@ -281,7 +351,8 @@
 }
 
 .nzLogonPageAddUser .nzAddUserButton.nzDisable {
-  transform: opacity 250ms linear;
+  -webkit-transform: opacity 250ms linear;
+          transform: opacity 250ms linear;
   opacity: 0;
 }
 
@@ -289,7 +360,8 @@
   width: 100%;
   height: 100%;
   display: block;
-  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
   position: absolute;
   top: 0;
   right: 0;
@@ -349,63 +421,92 @@
 
 .nzLogonPageAddUser.nzNewUser {
   overflow: hidden;
-  animation: animHeight 500ms linear forwards;
-  animation-delay: 500ms;
+  -webkit-animation: animHeight 500ms linear forwards;
+          animation: animHeight 500ms linear forwards;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
 }
 
 .nzLogonPageAddUser.nzNewUser .nzAddUserButton {
   z-index: 1000;
-  animation: animUser 500ms linear forwards;
+  -webkit-animation: animUser 500ms linear forwards;
+          animation: animUser 500ms linear forwards;
 }
 
 .nzLogonPageAddUser.nzNewUser .nzAddUserButton span {
-  animation: animPlus 250ms linear forwards;
-  animation-delay: 500ms;
+  -webkit-animation: animPlus 250ms linear forwards;
+          animation: animPlus 250ms linear forwards;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
 }
 
 .nzLogonPageAddUser.nzNewUser .nzAddUserSection {
-  animation: animShowNewUserFields 500ms linear forwards;
-  animation-delay: 500ms;
+  -webkit-animation: animShowNewUserFields 500ms linear forwards;
+          animation: animShowNewUserFields 500ms linear forwards;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
 }
 
 .nzLogonPageAddUser.nzNoNewUser {
-  animation: noAnimHeight 500ms linear forwards;
+  -webkit-animation: noAnimHeight 500ms linear forwards;
+          animation: noAnimHeight 500ms linear forwards;
 }
 
 .nzLogonPageAddUser.nzNoNewUser .nzAddUserButton {
-  animation: noAnimUser 500ms linear forwards;
+  -webkit-animation: noAnimUser 500ms linear forwards;
+          animation: noAnimUser 500ms linear forwards;
 }
 
 .nzLogonPageAddUser.nzNoNewUser .nzAddUserButton span {
-  animation: noAnimPlus 250ms linear forwards;
+  -webkit-animation: noAnimPlus 250ms linear forwards;
+          animation: noAnimPlus 250ms linear forwards;
 }
 
 .nzLogonPageAddUser.nzNoNewUser .nzAddUserSection {
-  animation: noAnimShowNewUserFields 500ms linear forwards;
+  -webkit-animation: noAnimShowNewUserFields 500ms linear forwards;
+          animation: noAnimShowNewUserFields 500ms linear forwards;
 }
 
 /****** ******/
-@keyframes animUser {
+@-webkit-keyframes animUser {
   50% {
-    transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+    -webkit-transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+            transform: translate3d(calc(-50vw + 24px), 11vh, 0);
     width: 35px;
     height: 35px;
   }
   100% {
-    transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    -webkit-transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+            transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    width: 120vw;
+    height: 120vh;
+  }
+}
+@keyframes animUser {
+  50% {
+    -webkit-transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+            transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+    width: 35px;
+    height: 35px;
+  }
+  100% {
+    -webkit-transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+            transform: translate3d(calc(-105vw + 24px), -45vh, 0);
     width: 120vw;
     height: 120vh;
   }
 }
 
-@keyframes noAnimUser {
+@-webkit-keyframes noAnimUser {
   0% {
-    transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    -webkit-transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+            transform: translate3d(calc(-105vw + 24px), -45vh, 0);
     width: 120vw;
     height: 120vh;
   }
   50% {
-    transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+    -webkit-transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+            transform: translate3d(calc(-50vw + 24px), 11vh, 0);
     width: 35px;
     height: 35px;
   }
@@ -415,9 +516,29 @@
   }
 }
 
-@keyframes animPlus {
+@keyframes noAnimUser {
+  0% {
+    -webkit-transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+            transform: translate3d(calc(-105vw + 24px), -45vh, 0);
+    width: 120vw;
+    height: 120vh;
+  }
+  50% {
+    -webkit-transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+            transform: translate3d(calc(-50vw + 24px), 11vh, 0);
+    width: 35px;
+    height: 35px;
+  }
   100% {
-    transform: rotate(45deg);
+    left: calc(100% - 30px);
+    top: -5px;
+  }
+}
+
+@-webkit-keyframes animPlus {
+  100% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
     width: 50%;
     height: 50%;
     top: 15%;
@@ -425,16 +546,29 @@
   }
 }
 
-@keyframes noAnimPlus {
+@keyframes animPlus {
+  100% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    width: 50%;
+    height: 50%;
+    top: 15%;
+    right: -10%;
+  }
+}
+
+@-webkit-keyframes noAnimPlus {
   0% {
-    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
     width: 50%;
     height: 50%;
     top: 15%;
     right: -10%;
   }
   100% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
     width: 100%;
     height: 100%;
     top: 0;
@@ -442,9 +576,44 @@
   }
 }
 
+@keyframes noAnimPlus {
+  0% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    width: 50%;
+    height: 50%;
+    top: 15%;
+    right: -10%;
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
+}
+
+@-webkit-keyframes animHeight {
+  100% {
+    height: 210px;
+  }
+}
+
 @keyframes animHeight {
   100% {
     height: 210px;
+  }
+}
+
+@-webkit-keyframes noAnimHeight {
+  0% {
+    height: 210px;
+  }
+  100% {
+    height: 170px;
+    overflow: initial;
   }
 }
 
@@ -458,10 +627,28 @@
   }
 }
 
+@-webkit-keyframes animShowNewUserFields {
+  100% {
+    opacity: 1;
+    z-index: 11111;
+  }
+}
+
 @keyframes animShowNewUserFields {
   100% {
     opacity: 1;
     z-index: 11111;
+  }
+}
+
+@-webkit-keyframes noAnimShowNewUserFields {
+  0% {
+    opacity: 1;
+    z-index: 11111;
+  }
+  100% {
+    opacity: 0;
+    z-index: 0;
   }
 }
 
@@ -478,7 +665,8 @@
 
 /****** ******/
 .nzNotification {
-  animation: notif 2s infinite;
+  -webkit-animation: notif 2s infinite;
+          animation: notif 2s infinite;
   position: absolute;
   top: 17px;
   right: 16px;
@@ -492,12 +680,25 @@
   display: block;
 }
 
-@keyframes notif {
+@-webkit-keyframes notif {
   0%, 100% {
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
   50% {
-    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}
+
+@keyframes notif {
+  0%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
   }
 }
 
@@ -542,7 +743,10 @@
 }
 
 .nzLogonSection section button .content {
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+  transition: opacity 0.3s, -webkit-transform 0.3s;
   transition: opacity 0.3s, transform 0.3s;
+  transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
 }
 
 .nzLogonSection section button span {
@@ -550,19 +754,23 @@
 }
 
 .nzLogonSection section button.loading {
-  animation: buttonSmall 500ms linear forwards;
+  -webkit-animation: buttonSmall 500ms linear forwards;
+          animation: buttonSmall 500ms linear forwards;
 }
 
 .nzLogonSection section button.loading .content {
-  animation-delay: 200ms;
-  animation: buttonTextHide 300ms linear forwards;
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+  -webkit-animation: buttonTextHide 300ms linear forwards;
+          animation: buttonTextHide 300ms linear forwards;
 }
 
 .nzLogonSection section button.loading.unLoad {
   width: 42px;
   border-radius: 50%;
   height: 42px;
-  animation: buttonColor 550ms linear forwards;
+  -webkit-animation: buttonColor 550ms linear forwards;
+          animation: buttonColor 550ms linear forwards;
 }
 
 .nzLogonSection section button.loading.unLoad.icon-checked:before {
@@ -578,6 +786,16 @@
 }
 
 /*********************************/
+@-webkit-keyframes buttonSmall {
+  0% {
+  }
+  100% {
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    background: transparent;
+  }
+}
 @keyframes buttonSmall {
   0% {
   }
@@ -589,9 +807,21 @@
   }
 }
 
+@-webkit-keyframes buttonTextHide {
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes buttonTextHide {
   100% {
     opacity: 0;
+  }
+}
+
+@-webkit-keyframes buttonColor {
+  to {
+    background-color: #1d9650;
   }
 }
 
@@ -627,6 +857,8 @@
 }
 
 .localCategory ons-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -645,10 +877,14 @@
 }
 
 .page.page--material .nzOptions {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 60px;
   background-color: grey;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .page.page--material .nzOptions .nzOptionsTextBlock {
@@ -681,21 +917,33 @@
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   background-color: #2c2c2c;
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition .nzAccountButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   font-size: 10px;
   background-color: transparent;
   width: 33%;
   padding: 5px;
   border-radius: 2px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin: 1px 0;
   color: white;
   height: 85px;
@@ -708,13 +956,15 @@
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition .nzAccountButton.nzAnimaion {
   position: absolute;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
   width: 70px;
   height: 73px;
   z-index: 100000;
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzButtonsPosition .nzAccountButton.nzAnimaion.nzAnimaionNext {
+  -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
   width: 100vw;
   height: 100vh;
@@ -746,15 +996,27 @@
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzBalance .nzBalanceTitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   color: #fff;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzBalance .nzBalanceTitle .nzBalanceTitleRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzBalance .nzBalanceTitle .nzBalanceTitleRow .nzBalanceTitleColumn {
@@ -791,9 +1053,15 @@
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzBalance .nzBalanceData {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   text-shadow: 1px 1px 1px #b39595;
 }
 
@@ -848,13 +1116,23 @@
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._center {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._center ._centerTop {
-  flex-grow: 1;
-  justify-content: space-around;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -863,9 +1141,16 @@
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetLastOperations .nzWidgetLastOperationsList .nzWidgetLastOperationsListItem ._center ._centerBottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .page.page--material .nzWidgetSection .nzWidgetBlock .nzWidgetMarginAll .nzWidgetChart {
@@ -890,6 +1175,7 @@
 
 .page.page--material.nzPageNewItem .sectionClass {
   height: 50%;
+  -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
 
@@ -899,11 +1185,13 @@
 }
 
 .page.page--material.nzPageNewItem .sectionClass.sectionBlock.section1Class.transition {
-  transform: translateY(-105%);
+  -webkit-transform: translateY(-105%);
+          transform: translateY(-105%);
 }
 
 .page.page--material.nzPageNewItem .sectionClass.sectionBlock.section2Class.transition {
-  transform: translateY(105%);
+  -webkit-transform: translateY(105%);
+          transform: translateY(105%);
 }
 
 .page.page--material.nzPageNewItem .sectionClass.sectionCategory, .page.page--material.nzPageNewItem .sectionClass.sectionAccount {
@@ -964,15 +1252,21 @@
 .page.page--material .nzAddAccountPage .nzAccountPageInputBlock,
 .page.page--material .nzEditAccountPage .nzAccountPageInputBlock {
   margin: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .page.page--material .nzAddAccountPage .nzAccountPageInputBlock .nzNewAccountName,
 .page.page--material .nzAddAccountPage .nzAccountPageInputBlock .nzNewAmountValue,
 .page.page--material .nzEditAccountPage .nzAccountPageInputBlock .nzNewAccountName,
 .page.page--material .nzEditAccountPage .nzAccountPageInputBlock .nzNewAmountValue {
-  align-content: space-around;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
   margin: 10px;
 }
 
@@ -1029,9 +1323,16 @@
   margin: auto;
   height: 100vh;
   width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .nzWelcomeSection .nzWelcomeSectionBlock {
@@ -1082,11 +1383,13 @@
 .nzLoginPage,
 .nzWelcomeSectionBlock,
 .nzProgressWelcomePage {
+  -webkit-transition: 500ms linear all;
   transition: 500ms linear all;
 }
 
 .nzLoginPage {
-  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
 }
 
 .nzWelcomePage {
@@ -1094,21 +1397,25 @@
 }
 
 .nzWelcomePage.FadeOut {
-  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
   overflow: hidden;
 }
 
 .nzWelcomePage.FadeOut .nzWelcomeSectionBlock {
-  transform: translateX(250%);
+  -webkit-transform: translateX(250%);
+          transform: translateX(250%);
 }
 
 .nzWelcomePage.FadeOut .nzProgressWelcomePage {
-  transform: translateY(700%);
+  -webkit-transform: translateY(700%);
+          transform: translateY(700%);
   opacity: 0;
 }
 
 .nzLoginPage.FadeOut {
-  transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
 }
 
 html {
@@ -1147,8 +1454,19 @@ html {
 
 .nzButtonCanselRequest.request {
   opacity: 1;
+  -webkit-transition: opacity 250ms linear;
   transition: opacity 250ms linear;
-  animation: requestAnimation infinite 3s linear;
+  -webkit-animation: requestAnimation infinite 3s linear;
+          animation: requestAnimation infinite 3s linear;
+}
+
+@-webkit-keyframes requestAnimation {
+  0%, 100% {
+    color: #2979ff;
+  }
+  50% {
+    color: #ffffff;
+  }
 }
 
 @keyframes requestAnimation {
@@ -1161,6 +1479,8 @@ html {
 }
 
 .nzSyncBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   text-align: left;
 }
@@ -1187,6 +1507,7 @@ html {
   position: absolute;
   top: calc(50% - 1px);
   left: calc(50% - 9px);
+  -webkit-transition: all linear 250ms;
   transition: all linear 250ms;
 }
 
@@ -1198,6 +1519,7 @@ html {
   position: absolute;
   top: calc(50% - 1px);
   left: calc(50% - 9px);
+  -webkit-transition: all linear 250ms;
   transition: all linear 250ms;
 }
 
@@ -1206,7 +1528,8 @@ html {
   height: 2px;
   top: calc(50% - -1px);
   left: calc(50% - 14px);
-  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
   background-color: green;
 }
 
@@ -1215,7 +1538,8 @@ html {
   width: 22px;
   top: calc(50% - 2px);
   left: calc(50% - 7px);
-  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
   background-color: green;
 }
 

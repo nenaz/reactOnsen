@@ -4,7 +4,7 @@ import {
     DEVELOP
 } from './consts'
 import config from './config'
-import Utils from './utils'
+// import Utils from './utils'
 
 export default class Requester {
     initialize(value) {
@@ -162,6 +162,7 @@ export default class Requester {
     }
 
     setLocal2(branch, value, nameField, callback) {
+        debugger
         this.getLocal(branch).then((arr) => {
             if (arr.length !== undefined) {
                 if (arr.length) {
@@ -172,7 +173,7 @@ export default class Requester {
                                 num = i
                                 return item
                             }
-                            return item
+                            // return item
                         })
                     } else if (value._id) {
                         arr.find((item, i) => {
@@ -267,6 +268,7 @@ export default class Requester {
     editAccountFields(account, newValue) {
         account.accountDate = newValue.accountDate ? newValue.accountDate : account.accountDate
         account.accountNameFrom = newValue.accountNameFrom ? newValue.accountNameFrom : account.accountNameFrom
+        account.accountName = account.accountNameFrom
         account.accountNumber = newValue.accountNumber ? newValue.accountNumber : account.accountNumber
         account.accountPeople = newValue.accountPeople ? newValue.accountPeople : account.accountPeople
         account.amount = newValue.amount ? newValue.amount : account.amount

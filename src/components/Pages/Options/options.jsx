@@ -21,11 +21,20 @@ class OptionsPage extends Component{
             isOpenModal: false,
             sync: false,
             alertDialogSyncShow: false,
-            syncText: '',
+            // syncText: '',
             sync1: false,
             sync2: false,
             sync3: false,
             sync4: false,
+            switchText1: JSON.parse(localStorage.getItem('localOptions')).connectDB
+                ? 'локальное'
+                : 'серверное',
+            switchText21: JSON.parse(localStorage.getItem('localOptions')).connectDB
+                ? 'локальные'
+                : 'серверными',
+            switchText22: JSON.parse(localStorage.getItem('localOptions')).connectDB
+                ? 'серверные'
+                : 'локальными',
         }
 
         this.req = new Requester()
@@ -143,7 +152,7 @@ class OptionsPage extends Component{
                     isCancelable={false}>
                     <div className='alert-dialog-title'>Внимание!</div>
                     <div className='alert-dialog-content'>
-                        Вы действительно хотите откл
+                        Перейти на {this.state.switchText1} хранение данных?
                     </div>
                     <div className='alert-dialog-footer'>
                         <button onClick={this.handleAlertDialogCancel} className='alert-dialog-button'>
@@ -159,7 +168,7 @@ class OptionsPage extends Component{
                     isCancelable={false}>
                     <div className='alert-dialog-title'>Внимание!</div>
                     <div className='alert-dialog-content'>
-                        Вы хотите провести синхронизацию данных с {this.state.syncText}
+                        Хотите синхронизировать {this.state.switchText21} данные с {this.state.switchText22}
                     </div>
                     <div className='alert-dialog-footer'>
                         <button onClick={this.handleAlertDialogSyncCancel} className='alert-dialog-button'>
