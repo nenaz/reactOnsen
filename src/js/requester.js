@@ -162,7 +162,6 @@ export default class Requester {
     }
 
     setLocal2(branch, value, nameField, callback) {
-        debugger
         this.getLocal(branch).then((arr) => {
             if (arr.length !== undefined) {
                 if (arr.length) {
