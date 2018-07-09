@@ -43,13 +43,13 @@ class OptionsPage extends Component{
         this.handlerCanselClick = this.handlerCanselClick.bind(this)
         this.renderToolbar = this.renderToolbar.bind(this)
         this.handleChange = this.handleChange.bind(this)
-        this.showAlertDialog = this.showAlertDialog.bind(this)
-        this.hideAlertDialog = this.hideAlertDialog.bind(this)
+        // this.showAlertDialog = this.showAlertDialog.bind(this)
+        // this.hideAlertDialog = this.hideAlertDialog.bind(this)
         this.handleAlertDialogCancel = this.handleAlertDialogCancel.bind(this)
         this.handleAlertDialogOk = this.handleAlertDialogOk.bind(this)
         this.handleAlertDialogSyncCancel = this.handleAlertDialogSyncCancel.bind(this)
         this.handleAlertDialogSyncOk = this.handleAlertDialogSyncOk.bind(this)
-        this.showAlertDialogSync = this.showAlertDialogSync.bind(this)
+        // this.showAlertDialogSync = this.showAlertDialogSync.bind(this)
         this.renderStatSync = this.renderStatSync.bind(this)
     }
 
@@ -69,42 +69,40 @@ class OptionsPage extends Component{
         this.props.navigator.popPage();
     }
 
-    handleChange() {
-        // this.setState({
-        //     checked: e.target.checked
-        // }, () => {
-        //     // this.req.updateOption('connectDB', this.state.checked)
-        //     this.showAlertDialog()
-        // });
-        this.showAlertDialog()
+    handleChange(e) {
+        this.setState({
+            checked: e.target.checked,
+            alertDialogShow: true,
+        });
     }
 
-    showAlertDialog() {
-        this.setState({alertDialogShow: true })
-    }
+    // showAlertDialog() {
+    //     this.setState({alertDialogShow: true })
+    // }
 
-    hideAlertDialog() {
-        this.setState({ alertDialogShow: false })
-    }
+    // hideAlertDialog() {
+    //     this.setState({ alertDialogShow: false })
+    // }
 
     handleAlertDialogCancel() {
-        this.hideAlertDialog()
+        let checked = this.state.checked
+        this.setState({
+            checked: !checked,
+            alertDialogShow: false,
+        });
     }
 
     handleAlertDialogOk(e) {
         this.setState({
-            checked: e.target.checked,
+            // checked: e.target.checked,
             alertDialogSyncShow: true,
+            alertDialogShow: false,
             // this.setState({ isOpen: false })
         }, () => {
             this.req.updateOption('connectDB', this.state.checked)
-            this.showAlertDialogSync()
+            // this.showAlertDialogSync()
         })
-        this.hideAlertDialog()
-    }
-
-    showAlertDialogSync() {
-        this.setState({ alertDialogSyncShow: true })
+        // this.hideAlertDialog()
     }
 
     handleAlertDialogSyncOk() {
@@ -119,7 +117,9 @@ class OptionsPage extends Component{
     }
 
     handleAlertDialogSyncCancel() {
-        this.setState({ alertDialogSyncShow: false })
+        this.setState({
+            alertDialogSyncShow: false,
+        })
     }
 
     renderStatSync() {
