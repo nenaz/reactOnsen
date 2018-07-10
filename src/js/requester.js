@@ -163,7 +163,7 @@ export default class Requester {
 
     setLocal2(branch, value, nameField, callback) {
         this.getLocal(branch).then((arr) => {
-            if (arr && arr.length !== undefined) {
+            if (arr && arr.length !== undefined && typeof arr !== "string") {
                 if (arr.length) {
                     let num = -1
                     if (value.idFrom) {
@@ -172,7 +172,6 @@ export default class Requester {
                                 num = i
                                 return item
                             }
-                            // return item
                         })
                     } else if (value._id) {
                         arr.find((item, i) => {
@@ -215,9 +214,6 @@ export default class Requester {
                     case 'object':
                         if (nameField) {
                             arr[nameField] = value
-                            // if (nameField === 'webToken') {
-                            //     this.webToken = value
-                            // }
                         }
                         localStorage.setItem(name, JSON.stringify(arr))
                         break

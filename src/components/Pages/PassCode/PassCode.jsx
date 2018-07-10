@@ -15,8 +15,8 @@ class PassCode extends Component{
             count: 0,
             passCode: '',
             repeatePassCode: '',
-            helpText: 'Введите код',
-            canselText: 'Отмена'
+            helpText: 'Введите код доступа',
+            cancelText: 'Отмена'
         }
         this.req = new Requester()
         this.numButtons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", " ", "0", "back"]
@@ -46,7 +46,7 @@ class PassCode extends Component{
 
     handleOkClick() {
         const value = this.state.value
-        if (!this.state.passCode) {
+        if (!this.state.passCode && !this.props.hideCancelButton) {
             this.setState({
                 passCode: value,
                 value: '',
@@ -57,16 +57,9 @@ class PassCode extends Component{
             const value = this.state.value
             if (value === this.state.passCode) {
                 this.props.logonRequestWithPassCode(value)
-                // bcrypt.hash(value, 10, (err, hash) => {
-                //     console.log(hash)
-                    // this.req.setLocal('localOptions', hash, 'userPassCode')
-                    // this.req.request('setPass', {
-                        // passcode: value
-                    // })
-                    // this.props.handleLogon()
-                    // this.props.togglePassCodeBlock()
-                    // window.location.reload()
-                // })
+            }
+            if (this.props.hideCancelButton) {
+                this.props.handleLogon(value)
             }
         }
     }
@@ -80,12 +73,6 @@ class PassCode extends Component{
                     if (item === 'back') {
                         data = <span className="icon-left-arrow" />
                     }
-                    // if (item === 'check') {
-                    //     data = <span
-                    //         className="icon-checked"
-                    //     />
-                        // func = this.handleOkClick
-                    // }
                     return (
                         <Button
                             key={key}
@@ -100,22 +87,19 @@ class PassCode extends Component{
 
     render() {
         return (
-            <section className="nzLogonPassCodeBlock">
+            <section className={this.props.passCodeBlockStyle}>
                 <div className={`${this.props.checkPassClassName}`}>
-                    {/* <span className="nzSpan">{this.state.value}</span> */}
                     <div className="nzSpan">{this.state.helpText}</div>
                     <CountSymbols count={this.state.count} />
                     <section className="nzAddUserSection">
                         {this.renderItemNum()}
                     </section>
-                    
-                    {/* <div className="nzSpan">{this.state.canselText}</div> */}
-                    <Button
+                    {!this.props.hideCancelButton && <Button
                         modifier='outline'
                         onClick={() => {
                             this.props.togglePassCodeBlock(false)
                         }}
-                    >{this.state.canselText}</Button>
+                    >{this.state.cancelText}</Button>}
                 </div>
             </section>
         )
@@ -124,11 +108,10 @@ class PassCode extends Component{
 
 PassCode.propTypes = {
     checkPassClassName: PropTypes.string,
-    togglePassCodeBlock: PropTypes.func.isRequired,
+    togglePassCodeBlock: PropTypes.func,
     logonRequestWithPassCode: PropTypes.func,
+    passCodeBlockStyle: PropTypes.string,
+    hideCancelButton: PropTypes.bool,
 }
 
 export default PassCode
-// export default connect(null, {
-//     changePassCode,
-// })(PassCode)

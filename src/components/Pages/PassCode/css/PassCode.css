@@ -72,4 +72,40 @@
     height: 305px;
   }
 }
+
+.nzPassCodeInput {
+  text-align: center;
+  -webkit-box-flex: 10;
+      -ms-flex-positive: 10;
+          flex-grow: 10;
+  width: 100%;
+}
+
+.nzPassCodeInput .nzSpan {
+  display: inline-block;
+  padding: 5px 0;
+}
+
+.nzPassCodeInput button {
+  -webkit-transition: 450ms linear all;
+  transition: 450ms linear all;
+  opacity: 0;
+}
+
+.nzPassCodeInput .nzButtonsPassCode ons-button {
+  color: #fff;
+  border: 0;
+  width: 32%;
+  height: 50px;
+  line-height: 50px;
+  background-color: #404040;
+  margin: 1px;
+}
+
+.nzPassCodeInput ons-button {
+  background-color: #404040;
+  width: calc(100% - 10px);
+  margin: 10px 5px;
+  color: white;
+}
 /*# sourceMappingURL=PassCode.css.map */

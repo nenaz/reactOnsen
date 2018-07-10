@@ -94,7 +94,6 @@ class Logon extends Component {
             this.togglePassCodeBlock(true)
         } else if (!usePassCode && !this.state.checkedPassRadio) {
             this.logonRequest()
-        // }
         } else if (usePassCode) {
             this.setState({
                 passcode
@@ -105,16 +104,7 @@ class Logon extends Component {
     }
 
     logonRequestWithPassCode(value) {
-        // this.req.getLocal('localOptions').then((obj) => {
-            // this.logonRequest(obj.userPassCode)
-        // })
-        debugger
         this.req.setLocal2('localUserName', this.state.username)
-        // this.req.request('setPass', {
-        //     passcode: value,
-        //     username: this.state.username,
-        //     password: this.state.password
-        // })
         this.req.send('setPass', 'POST', {
             passcode: value,
             username: this.state.username,
@@ -139,7 +129,6 @@ class Logon extends Component {
             animCircularClassName: 'loading',
             buttonText: '',
             disabledInputs: true
-        // })
         }, () => {
             setTimeout(() => {
                 this.req.send('authUser', 'POST', addObject).then(result => {
@@ -327,6 +316,7 @@ class Logon extends Component {
                         checkPassClassName={this.state.checkPassClassName}
                         togglePassCodeBlock={this.togglePassCodeBlock}
                         logonRequestWithPassCode={this.logonRequestWithPassCode}
+                        passCodeBlockStyle="nzLogonPassCodeBlock"
                     />}
                     <Dialog
                         isOpen={this.state.authDialogShow}

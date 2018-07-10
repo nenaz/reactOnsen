@@ -1,12 +1,26 @@
-.nzLogonWithPassCode {
-  padding: 0 10px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.nzPassCodeSection {
+  padding: 10px;
+  background: #fff;
+  margin: 10px;
+  height: 295px;
+  border-radius: 15px;
 }
 
-.nzLogonWithPassCode .nzRemovePassCode {
+.nzPassCodeSection .nzLogonWithPassCode {
+  padding: 0 10px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.nzPassCodeSection .nzLogonWithPassCode .nzRemovePassCode {
   position: absolute;
   top: 95%;
   left: calc(50% - 150px);
