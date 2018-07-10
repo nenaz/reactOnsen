@@ -118,4 +118,24 @@
     display: none;
   }
 }
+
+.nzDialog {
+  text-align: center;
+  margin: 20px;
+}
+
+.nzDialog p:first-child {
+  opacity: .5;
+}
+
+.nzDialog button {
+  border: 0;
+  color: #fff;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  width: 100%;
+  background: #37474f;
+  height: 42px;
+}
 /*# sourceMappingURL=Logon.css.map */

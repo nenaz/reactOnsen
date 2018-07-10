@@ -68,3 +68,22 @@
     display: none;
   }
 }
+
+.nzDialog{
+  text-align: center;
+  margin: 20px;
+  p:first-child{
+    opacity: .5;
+  }
+  button{
+    border: 0;
+    // color: #404040;
+    color: #fff;
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    background: #37474f;
+    height: 42px;
+  }
+}

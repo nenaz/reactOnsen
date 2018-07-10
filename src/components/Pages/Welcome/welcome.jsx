@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-    Toast
-} from 'react-onsenui'
 import Logon from '../Login'
 import WelcomeScreeen from './welcomeScreen'
+
 
 class Welcome extends Component {
     constructor(props) {
@@ -55,14 +53,6 @@ class Welcome extends Component {
                     className={`nzLoginPage ${this.state.animationClass}`}
                     changeLogonStatus={this.props.changeLogonStatus}
                 />
-                <Toast isOpen={this.state.toastShown}>
-                    <div className="message">
-                        {this.props.errorLogonText}
-                    </div>
-                    <button onClick={this.handleDismiss}>
-                        Закрыть
-                    </button>
-                </Toast>
             </div>
         )
     }

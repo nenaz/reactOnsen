@@ -4,13 +4,14 @@ import {
     Switch,
     Input,
     Page,
-    ProgressCircular
+    ProgressCircular,
+    Dialog,
 } from 'react-onsenui'
 import Requester from '../../../js/requester'
 import NewUser from './NewUser'
 import PassCode from '../PassCode';
 import './css/Logon.css'
-import ResetPassCode from '../PassCode/ResetPassCode';
+import ResetPassCode from '../PassCode/ResetPassCode'
 
 class Logon extends Component {
     constructor(props) {
@@ -26,7 +27,8 @@ class Logon extends Component {
             buttonText: 'Войти',
             disabledInputs: false,
             checkedPassRadio: false,
-            checkPassClassName: ''
+            checkPassClassName: '',
+            authDialogShow: false,
         }
 
         this.req = new Requester()
@@ -47,6 +49,7 @@ class Logon extends Component {
         this.generateLogonPage = this.generateLogonPage.bind(this)
         this.handleRemovePassCode = this.handleRemovePassCode.bind(this)
         this.handleClickCanselRequestButton = this.handleClickCanselRequestButton.bind(this)
+        this.handleHideDialog = this.handleHideDialog.bind(this)
     }
 
     componentDidMount() {
@@ -165,6 +168,7 @@ class Logon extends Component {
                             animBlockClassName: '',
                             animCircularClassName: '',
                             buttonText: 'Войти',
+                            authDialogShow: true,
                         })
                     }
                 })
@@ -238,6 +242,12 @@ class Logon extends Component {
 
     handleClickCanselRequestButton() {
         this.req.abort()
+    }
+
+    handleHideDialog() {
+        this.setState({
+            authDialogShow: false,
+        })
     }
 
     generateLogonPage() {
@@ -317,6 +327,18 @@ class Logon extends Component {
                         togglePassCodeBlock={this.togglePassCodeBlock}
                         logonRequestWithPassCode={this.logonRequestWithPassCode}
                     />}
+                    <Dialog
+                        isOpen={this.state.authDialogShow}
+                        isCancelable={true}
+                        onCancel={this.handleHideDialog}
+                    >
+                        <div className="nzDialog">
+                            <p>Ошибка авторизации</p>
+                            <p>
+                                <button onClick={this.handleHideDialog}>Закрыть</button>
+                            </p>
+                        </div>
+                    </Dialog>
                 </Page>
             )
         }
