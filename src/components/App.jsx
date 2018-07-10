@@ -16,6 +16,7 @@ import EditAccount from './Pages/Account/Edit'
 import MainPage from './Pages/Main'
 import AddOperation from './Pages/Operation/Add'
 import OptionsPage from './Pages/Options';
+import ProfilePage from './Pages/Profile';
 import {
   addOperationToList,
   addAccountToList,
@@ -93,6 +94,13 @@ class App extends Component {
       )
       case 'options': return (
         <OptionsPage
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+      case 'profile': return (
+        <ProfilePage
           key={route.title}
           route={route}
           navigator={navigator}

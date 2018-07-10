@@ -37,6 +37,18 @@ class LeftMenu extends Component{
                         {row.text}
                     </ListItem>
                 )
+            case 'profile':
+                return (
+                    <ListItem
+                        key={row.name}
+                        onClick={() => {
+                            this.props.handleSelectLeftMenuItem()
+                            this.props.pushPage('profile')
+                        }}
+                    >
+                        {row.text}
+                    </ListItem>
+                )
             case 'exit':
                 return (
                     <ListItem

@@ -60,7 +60,7 @@ export const LEFTMENUITEMS = [
     { name: 'download', text: 'Скачать PDF' },
     { name: 'options', text: 'Настройки'},
     { name: 'about', text: 'О программе', onClick: this.handleModalOpen },
-    // { name: 'about', text: 'О программе'},
+    { name: 'profile', text: 'Редактировать профиль'},
     { name: 'exit', text: 'Выход', onClick: this.closeApp },
 ];
 
