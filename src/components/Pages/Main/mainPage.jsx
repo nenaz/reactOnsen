@@ -173,9 +173,6 @@ class MainPage extends Component{
             >
                 <Splitter>
                     <SplitterSide
-                        style={{
-                        borderRight: '1px solid rgba(212, 215, 216, 0.1)'
-                        }}
                         side='left'
                         width={200}
                         collapse={true}

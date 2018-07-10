@@ -588,6 +588,9 @@
       font-size: 28px;
       line-height: 56px;
     }
+    SplitterSide{
+      border-right: 1px solid rgba(212, 215, 216, 0.1);
+    }
   }
   .nzOptions{
     display: flex;

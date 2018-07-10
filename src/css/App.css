@@ -876,6 +876,10 @@
   line-height: 56px;
 }
 
+.page.page--material .nzPage SplitterSide {
+  border-right: 1px solid rgba(212, 215, 216, 0.1);
+}
+
 .page.page--material .nzOptions {
   display: -webkit-box;
   display: -ms-flexbox;

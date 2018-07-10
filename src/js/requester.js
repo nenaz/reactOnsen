@@ -163,7 +163,7 @@ export default class Requester {
 
     setLocal2(branch, value, nameField, callback) {
         this.getLocal(branch).then((arr) => {
-            if (arr.length !== undefined) {
+            if (arr && arr.length !== undefined) {
                 if (arr.length) {
                     let num = -1
                     if (value.idFrom) {
@@ -193,7 +193,7 @@ export default class Requester {
                 } else {
                     arr.push(value)
                 }
-            } else if (typeof arr === 'object') {
+            } else if (typeof arr === 'object' && arr !== null) {
                 arr[nameField] = value;
             } else {
                 arr = value

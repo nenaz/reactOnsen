@@ -108,7 +108,8 @@ class Logon extends Component {
         // this.req.getLocal('localOptions').then((obj) => {
             // this.logonRequest(obj.userPassCode)
         // })
-        this.req.setLocal('localUserName', this.state.username)
+        debugger
+        this.req.setLocal2('localUserName', this.state.username)
         // this.req.request('setPass', {
         //     passcode: value,
         //     username: this.state.username,
