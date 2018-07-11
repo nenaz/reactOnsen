@@ -27,6 +27,7 @@ import Requester from '../js/requester'
 import Welcome from './Pages/Welcome'
 import config from '../js/config'
 import Utils from '../js/utils'
+import AboutPage from './Pages/About'
 
 class App extends Component {
   constructor(props) {
@@ -94,6 +95,13 @@ class App extends Component {
       )
       case 'options': return (
         <OptionsPage
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+      case 'about': return (
+        <AboutPage
           key={route.title}
           route={route}
           navigator={navigator}

@@ -34,6 +34,74 @@ export const COLORS = {
     "color10": "hsl(56, 70%, 50%)",
 }
 
+export const DATAICONS = [
+    {
+        href1: "https://www.flaticon.com/authors/eleonor-wang",
+        title1: "Eleonor Wang",
+        
+    },
+    {
+        href1: "https://www.flaticon.com/authors/amit-jakhu",
+        title1: "Amit Jakhu",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/lyolya",
+        title1: "Lyolya",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/darius-dan",
+        title1: "Darius Dan",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/smashicons",
+        title1: "Smashicons",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/chris-veigt",
+        title1: "Chris Veigt",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/hadrien",
+        title1: "Hadrien",
+    },
+    {
+        href1: "http://www.freepik.com",
+        title1: "Lyolya",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/revicon",
+        title1: "Revicon",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/lucy-g",
+        title1: "Lucy G",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/cole-bemis",
+        title1: "Cole Bemis",
+    },
+    {
+        href1: "http://www.freepik.com",
+        title1: "Freepik",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/gregor-cresnar",
+        title1: "Gregor Cresnar",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/turkkub",
+        title1: "turkkub",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/srip",
+        title1: "srip",
+    },
+    {
+        href1: "https://www.flaticon.com/authors/eucalyp",
+        title1: "Eucalyp",
+    },
+]
+
 export const ICONMENU = "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUzIDUzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MyA1MzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxMjhweCIgaGVpZ2h0PSIxMjhweCI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTIsMTMuNWg0OWMxLjEwNCwwLDItMC44OTYsMi0ycy0wLjg5Ni0yLTItMkgyYy0xLjEwNCwwLTIsMC44OTYtMiwyUzAuODk2LDEzLjUsMiwxMy41eiIgZmlsbD0iIzAwMDAwMCIvPgoJCTxwYXRoIGQ9Ik0yLDI4LjVoNDljMS4xMDQsMCwyLTAuODk2LDItMnMtMC44OTYtMi0yLTJIMmMtMS4xMDQsMC0yLDAuODk2LTIsMlMwLjg5NiwyOC41LDIsMjguNXoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNMiw0My41aDQ5YzEuMTA0LDAsMi0wLjg5NiwyLTJzLTAuODk2LTItMi0ySDJjLTEuMTA0LDAtMiwwLjg5Ni0yLDJTMC44OTYsNDMuNSwyLDQzLjV6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="
 export const ICONCHECKING = "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MDYuODM0IDQwNi44MzQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQwNi44MzQgNDA2LjgzNDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxMjhweCIgaGVpZ2h0PSIxMjhweCI+Cjxwb2x5Z29uIHBvaW50cz0iMzg1LjYyMSw2Mi41MDcgMTQ2LjIyNSwzMDEuOTAxIDIxLjIxMywxNzYuODkxIDAsMTk4LjEwNCAxNDYuMjI1LDM0NC4zMjcgNDA2LjgzNCw4My43MiAiIGZpbGw9IiMwMDAwMDAiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="
 
