@@ -12,6 +12,9 @@ class ShowOperDetails extends Component{
 
         this.renderRowDetails = this.renderRowDetails.bind(this)
         this.getInfo = this.getInfo.bind(this)
+        this.getAccountName = this.getAccountName.bind(this)
+        this.getTypeOperation = this.getTypeOperation.bind(this)
+        this.getAccountAmount = this.getAccountAmount.bind(this)
     }
 
     renderRowDetails(row, index, obj) {
@@ -32,8 +35,36 @@ class ShowOperDetails extends Component{
         })
     }
 
+    getAccountName(accountId) {
+        const accountObj = this.props.accountsList.find((item, key) => {
+            return item._id === accountId
+        })
+        return accountObj.accountName
+    }
+
+    getAccountAmount(accountId) {
+        const accountObj = this.props.accountsList.find((item, key) => {
+            return item._id === accountId
+        })
+        return accountObj.amount
+    }
+
+    getTypeOperation(typeOperation) {
+        let type = ''
+        switch (typeOperation) {
+            case "1": type = 'Пополнение' 
+                break
+            case "2": type = 'Перевод'
+                break
+            default: type ='Списание'
+        }
+        return type
+    }
+
     render(){
         const objDeatil = this.getInfo()
+        // this.getAccountName(objDeatil.account)
+        // debugger
         return (
             <section style={{
                 margin: '15px',
@@ -42,12 +73,12 @@ class ShowOperDetails extends Component{
             }}>
                 {objDeatil && <YandexMap coord={objDeatil.operCoord} />}
                 {objDeatil && <List>
-                    <ListItem
+                    {/* <ListItem
                         key={0}
                         tapBackgroundColor="#0f0f0f"
                     >
                         <span>{`${OPERATIONDETAILS[0]}: ${objDeatil.operCoord.lat}-${objDeatil.operCoord.lon}`}</span>
-                    </ListItem>
+                    </ListItem> */}
                     <ListItem
                         key={1}
                         tapBackgroundColor="#0f0f0f"
@@ -58,20 +89,32 @@ class ShowOperDetails extends Component{
                         key={2}
                         tapBackgroundColor="#0f0f0f"
                     >
-                        <span>{`${OPERATIONDETAILS[2]}: ${objDeatil.amount}`}</span>
+                        <span>{`${OPERATIONDETAILS[2]}: ${this.getAccountName(objDeatil.account)}`}</span>
                     </ListItem>
                     <ListItem
                         key={3}
                         tapBackgroundColor="#0f0f0f"
                     >
-                        <span>{`${OPERATIONDETAILS[3]}: ${objDeatil.currency}`}</span>
+                        <span>{`${OPERATIONDETAILS[3]}: ${this.getTypeOperation(objDeatil.typeOperation)}`}</span>
+                    </ListItem>
+                    <ListItem
+                        key={4}
+                        tapBackgroundColor="#0f0f0f"
+                    >
+                        <span>{`${OPERATIONDETAILS[4]}: ${objDeatil.amount}`}</span>
+                    </ListItem>
+                    <ListItem
+                        key={5}
+                        tapBackgroundColor="#0f0f0f"
+                    >
+                        <span>{`${OPERATIONDETAILS[5]}: ${this.getAccountAmount(objDeatil.account)}`}</span>
                     </ListItem>
                 </List>}
                 <Button
                     onClick={this.props.handleHideModal}
                     modifier='quiet large'
                 >
-                    Close
+                    Закрыть
                 </Button>
             </section>
         )
@@ -84,5 +127,6 @@ ShowOperDetails.propTypes = {
 }
 
 export default connect((state) => ({
-    operations: state.changeLastOperations
+    operations: state.changeLastOperations,
+    accountsList: state.changeAccountsList
 }))(ShowOperDetails)

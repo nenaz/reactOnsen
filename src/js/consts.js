@@ -121,7 +121,7 @@ export const FILTERLIST = [{
     // },
 ];
 
-export const OPERATIONDETAILS = ['Место','Дата','Сумма', 'Валюта'];
+export const OPERATIONDETAILS = ['Место','Дата','Счет','Тип операции','Сумма', 'Остаток'];
 
 export const LEFTMENUITEMS = [
     { name: 'report', text: 'Отчет' },
