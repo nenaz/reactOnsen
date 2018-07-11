@@ -138,7 +138,7 @@ class Logon extends Component {
                             this.req.setLocal('localOptions', result.token, 'webToken')
                             setTimeout(() => {
                                 this.props.changeAuthButtonClassName('loading unLoad icon-checked')
-                                // this.props.changeLogonStatus(result.auth)
+                                this.props.changeLogonStatus(result.auth)
                             }, 1000);
                         })
                     } else {
