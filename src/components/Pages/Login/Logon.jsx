@@ -4,14 +4,16 @@ import {
     Switch,
     Input,
     Page,
-    ProgressCircular,
     Dialog,
 } from 'react-onsenui'
 import Requester from '../../../js/requester'
 import NewUser from './NewUser'
 import PassCode from '../PassCode';
 import './css/Logon.css'
-import ResetPassCode from '../PassCode/ResetPassCode'
+import InputPassCode from '../PassCode/ResetPassCode'
+import { connect } from 'react-redux'
+import { changeAuthButtonClassName } from '../../../AC'
+import LogonButton from './LogonButton'
 
 class Logon extends Component {
     constructor(props) {
@@ -21,9 +23,6 @@ class Logon extends Component {
             password: '',
             modalOpen: false,
             className: '',
-            animBlockClassName: '',
-            animButtonClassName: '',
-            animCircularClassName: '',
             buttonText: 'Войти',
             disabledInputs: false,
             checkedPassRadio: false,
@@ -123,40 +122,31 @@ class Logon extends Component {
         } else {
             addObject.password = this.state.password
         }
+        this.props.changeAuthButtonClassName('loading')
         this.setState({
-            animButtonClassName: 'loading',
-            animBlockClassName: 'loading',
-            animCircularClassName: 'loading',
             buttonText: '',
             disabledInputs: true
         }, () => {
             setTimeout(() => {
                 this.req.send('authUser', 'POST', addObject).then(result => {
                     if (result.auth) {
+                        this.props.changeAuthButtonClassName('loading unLoad')
                         this.setState({
-                            animButtonClassName: 'loading unLoad',
-                            animCircularClassName: 'loading unLoad',
                             username: '',
                             password: '',
                         }, () => {
                             this.req.setLocal('localOptions', result.token, 'webToken')
                             setTimeout(() => {
-                                this.setState({
-                                    animButtonClassName: 'loading unLoad icon-checked',
-                                    animCircularClassName: 'loading unLoad icon-checked',
-                                }, () => {
-                                    this.props.changeLogonStatus(result.auth)
-                                })
+                                this.props.changeAuthButtonClassName('loading unLoad icon-checked')
+                                // this.props.changeLogonStatus(result.auth)
                             }, 1000);
                         })
                     } else {
+                        this.props.changeAuthButtonClassName('')
                         this.setState({
                             username: '',
                             password: '',
                             disabledInputs: false,
-                            animButtonClassName: '',
-                            animBlockClassName: '',
-                            animCircularClassName: '',
                             buttonText: 'Войти',
                             authDialogShow: true,
                         })
@@ -243,7 +233,7 @@ class Logon extends Component {
     generateLogonPage() {
         if (this.state.usePassCode && this.state.connectDB) {
             return (
-                <ResetPassCode
+                <InputPassCode
                     username={this.state.username}
                     className={this.props.className}
                     handleLogon={this.handleLogon}
@@ -297,18 +287,12 @@ class Logon extends Component {
                                         : ""}
                                 >Pass code</p>
                             </section>
-                            <div className={`nzPC ${this.state.animBlockClassName}`}>
-                                <button
-                                    className={this.state.animButtonClassName}
-                                    onClick={this.handleLogon}
-                                >
-                                    <span className="content">{this.state.buttonText}</span>
-                                </button>
-                                <ProgressCircular
-                                    indeterminate
-                                    className={`nzLogonSectionButtonCircular ${this.state.animCircularClassName}`}
-                                />
-                            </div>
+                            <LogonButton
+                                buttonText={this.state.buttonText}
+                                logonFunc={this.handleLogon}
+                                blockClassName="nzPC"
+                                circularClassName="nzLogonSectionButtonCircular"
+                            />
                         </section>
                     </section>
                     {this.state.checkPassClassName &&
@@ -347,4 +331,6 @@ Logon.propTypes = {
     className: PropTypes.string,
 }
 
-export default Logon
+export default connect(null, {
+    changeAuthButtonClassName,
+})(Logon)

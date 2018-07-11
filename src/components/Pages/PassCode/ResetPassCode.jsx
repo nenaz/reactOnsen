@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types'
 import './css/ResetPassCode.css'
 import PassCode from './PassCode'
+import LogonButton from '../Login/LogonButton'
 
 class ResetPassCode extends Component{
     constructor(props){
@@ -31,6 +32,15 @@ class ResetPassCode extends Component{
                             passCodeBlockStyle="nzPassCodeInput"
                             hideCancelButton
                             handleLogon={this.props.handleLogon}
+                        />
+                        <LogonButton
+                            buttonText={this.state.buttonText}
+                            buttonStyle={{
+                                backgroundColor: '#fff',
+                            }}
+                            logonFunc={this.handleLogon}
+                            blockClassName="nzLogonButtonBlock"
+                            circularClassName="nzButtonCircular"
                         />
                         <div className="nzRemovePassCode">
                             <span

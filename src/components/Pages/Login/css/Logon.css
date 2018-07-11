@@ -29,6 +29,7 @@
   width: 224px;
   -webkit-animation: hidePassCodeSection 250ms linear forwards;
           animation: hidePassCodeSection 250ms linear forwards;
+  text-align: center;
 }
 
 .nzLogonSectionButton .nzPC.loading {
@@ -59,7 +60,7 @@
   width: 42px;
   position: absolute;
   text-align: center;
-  left: calc(50% - 21px);
+  left: calc(50% + 17px);
   opacity: 0;
   display: none;
 }

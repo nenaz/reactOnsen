@@ -10,6 +10,7 @@ import redAddDataToList from './redAddDataToList'
 import changePassCode from './changePassCode'
 import saveDataOfScan from './saveDataOfScan'
 import updateStatusSync from './updateStatusSync'
+import changeAuthButtonClassName from './changeAuthButtonClassName'
 
 export default combineReducers({
     changeAnimationState,
@@ -23,4 +24,5 @@ export default combineReducers({
     changePassCode,
     saveDataOfScan,
     updateStatusSync,
+    changeAuthButtonClassName,
 })

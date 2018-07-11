@@ -87,3 +87,54 @@
         color: white;
     }
 }
+
+.nzPassCodeBlockCircular{
+    position: relative;
+    .nzPassCodeCircular{
+        height: 42px;
+        width: 42px;
+        position: absolute;
+        text-align: center;
+        left: calc(50% - 21px);
+        top: -2px;
+        opacity: 0;
+        // display: none;
+        &.show{
+            animation: circularShow 550ms linear forwards;
+        }
+        &.hide{
+            animation: circularHide 550ms linear forwards;
+        }
+    }
+    .content{
+        width: 38px;
+        border-radius: 50%;
+        height: 38px;
+        display: inline-block;
+        line-height: 42px;
+        // background-color: #1d9650;
+        // opacity: 0;
+        &.icon-checked{
+            animation: buttonColor 550ms linear forwards;
+        }
+        &.icon-checked:before{
+            font-size: 25px;
+            color: #fff;
+        }
+    }
+}
+@keyframes circularShow{
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes circularHide{
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes buttonColor{
+  to {
+    background-color: #1d9650;
+  }
+}

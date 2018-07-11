@@ -13,6 +13,7 @@ import {
     ADDONECATEGORYFORCHART,
     CHANGEPASSCODE,
     SAVEDATAOFSCAN,
+    CHANGEAUTHBUTTONCLASSNAME,
 } from '../js/consts'
 
 export function changeAnimationState(value) {
@@ -110,5 +111,12 @@ export function saveDataOfScan(value) {
     return {
         type: SAVEDATAOFSCAN,
         payload: value
+    }
+}
+
+export function changeAuthButtonClassName(value) {
+    return {
+        type: CHANGEAUTHBUTTONCLASSNAME,
+        payload: value,
     }
 }

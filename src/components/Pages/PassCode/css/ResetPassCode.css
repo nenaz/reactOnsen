@@ -28,4 +28,9 @@
   width: 300px;
   text-align: center;
 }
+
+.nzPassCodeSection .nzLogonButtonBlock {
+  text-align: center;
+  height: 44px;
+}
 /*# sourceMappingURL=ResetPassCode.css.map */

@@ -17,6 +17,7 @@
         flex-grow: 10;
         width: 224px;
         animation: hidePassCodeSection 250ms linear forwards;
+        text-align: center;
         &.loading{
             text-align: center;
             position: relative;
@@ -37,7 +38,8 @@
     position: absolute;
     // top: 10px;
     text-align: center;
-    left: calc(50% - 21px);
+    // left: calc(50% - 21px);
+    left: calc(50% + 17px);
     opacity: 0;
     display: none;
     &.loading{

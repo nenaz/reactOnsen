@@ -1,7 +1,8 @@
 import React, { Component} from 'react'
 import PropTypes from 'prop-types'
 import {
-    Button
+    Button,
+    ProgressCircular,
 } from 'react-onsenui'
 import CountSymbols from '../../CountSymbols'
 import Requester from '../../../js/requester'
@@ -16,7 +17,8 @@ class PassCode extends Component{
             passCode: '',
             repeatePassCode: '',
             helpText: 'Введите код доступа',
-            cancelText: 'Отмена'
+            cancelText: 'Отмена',
+            circularAnimClass: '',
         }
         this.req = new Requester()
         this.numButtons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", " ", "0", "back"]
@@ -59,6 +61,10 @@ class PassCode extends Component{
                 this.props.logonRequestWithPassCode(value)
             }
             if (this.props.hideCancelButton) {
+                // let circularAnimClass = this.state.circularAnimClass
+                this.setState({
+                    circularAnimClass: 'show',
+                })
                 this.props.handleLogon(value)
             }
         }
@@ -94,12 +100,21 @@ class PassCode extends Component{
                     <section className="nzAddUserSection">
                         {this.renderItemNum()}
                     </section>
-                    {!this.props.hideCancelButton && <Button
+                    {!this.props.hideCancelButton &&
+                    <Button
                         modifier='outline'
                         onClick={() => {
                             this.props.togglePassCodeBlock(false)
                         }}
                     >{this.state.cancelText}</Button>}
+                    {/* {this.props.hideCancelButton &&
+                    <div className="nzPassCodeBlockCircular">
+                        <span className="content"></span>
+                        <ProgressCircular
+                            indeterminate
+                            className={`nzPassCodeCircular ${this.state.circularAnimClass}`}
+                        />
+                    </div>} */}
                 </div>
             </section>
         )

@@ -483,69 +483,69 @@
       border: 3px solid rgba(0, 0, 0, 0.1);
       color: rgb(64,64,64);
     }
-    button{
-      border: 0;
-      color: #404040;
-      position: relative;
-      text-align: center;
-      font-size: 14px;
-      width: 100%;
-      background: #37474f;
-      height: 42px;
-      .content{
-        transition: opacity 0.3s, transform 0.3s;
-      }
-      span{
-        color: white;
-      }
-    }
-    button.loading{
-      animation: buttonSmall 500ms linear forwards;
-      .content{
-        animation-delay: 200ms;
-        animation: buttonTextHide 300ms linear forwards;
-      }
-      &.unLoad{
-        width: 42px;
-        border-radius: 50%;
-        height: 42px;
-        animation: buttonColor 550ms linear forwards;
-        &.icon-checked:before{
-          font-size: 25px;
-        }
-      }
-    }
-    button:active{
-      outline: 0;
-    }
-    button:focus{
-      outline: 0;
-    }
+    // button{
+    //   border: 0;
+    //   color: #404040;
+    //   position: relative;
+    //   text-align: center;
+    //   font-size: 14px;
+    //   width: 100%;
+    //   background: #37474f;
+    //   height: 42px;
+    //   .content{
+    //     transition: opacity 0.3s, transform 0.3s;
+    //   }
+    //   span{
+    //     color: white;
+    //   }
+    // }
+    // button.loading{
+    //   animation: buttonSmall 500ms linear forwards;
+    //   .content{
+    //     animation-delay: 200ms;
+    //     animation: buttonTextHide 300ms linear forwards;
+    //   }
+    //   &.unLoad{
+    //     width: 42px;
+    //     border-radius: 50%;
+    //     height: 42px;
+    //     animation: buttonColor 550ms linear forwards;
+    //     &.icon-checked:before{
+    //       font-size: 25px;
+    //     }
+    //   }
+    // }
+    // button:active{
+    //   outline: 0;
+    // }
+    // button:focus{
+    //   outline: 0;
+    // }
   }
 }
 
-/*********************************/
-@keyframes buttonSmall{
-  0% {
-  }
-  100% {
-    width: 40px;
-    border-radius: 50%;
-    height: 40px;
-    background: transparent;
-  }
-}
-@keyframes buttonTextHide{
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes buttonColor{
-  to {
-    background-color: #1d9650;
-  }
-}
-/*********************************/
+// /*********************************/
+// @keyframes buttonSmall{
+//   0% {
+//   }
+//   100% {
+//     width: 40px;
+//     border-radius: 50%;
+//     height: 40px;
+//     background: transparent;
+//   }
+// }
+// @keyframes buttonTextHide{
+//   100% {
+//     opacity: 0;
+//   }
+// }
+// @keyframes buttonColor{
+//   to {
+//     background-color: #1d9650;
+//   }
+// }
+// /*********************************/
 
 .localIcon{
   height: 20px;

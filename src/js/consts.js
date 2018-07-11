@@ -13,6 +13,7 @@ export const ADDONECATEGORYFORCHART = 'addOneCategoryForChart'
 export const CHANGEPASSCODE = 'CHANGEPASSCODE'
 export const SAVEDATAOFSCAN = 'SAVEDATAOFSCAN'
 export const UPDATESTATUSSYNC = 'updateStatusSync'
+export const CHANGEAUTHBUTTONCLASSNAME = 'chnageAuthButtonClassName'
 
 // export const SERVERURL = 'https://guarded-sea-48553.herokuapp.com/'
 export const SERVERURL = 'https://mongosever.herokuapp.com/'
