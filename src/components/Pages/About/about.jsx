@@ -40,7 +40,7 @@ class About extends Component{
 
     renderRow(row, index) {
         return (
-            <ListItem key={index} modifier="nodivider">
+            <ListItem key={index}>
                 <div className='left'></div>
                 <div className='center'>
                     <div>{this.state.iconsMadeByText}
