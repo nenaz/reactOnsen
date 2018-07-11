@@ -59,6 +59,7 @@ class AddOperation extends Component{
             categoryId: '0-0',
             showProcess: false,
             modalOpen: false,
+            useGeo: JSON.parse(localStorage.getItem('localOptions')).useGeolocation || false,
         }
 
         this.req = new Requester()
@@ -110,7 +111,18 @@ class AddOperation extends Component{
         this.setState({
             modalOpen: true
         }, () => {
-            // this.Pos.getPositions().then((coord) => {
+            if (this.state.useGeo) {
+                this.Pos.getPositions().then((coord) => {
+                    this.addOperationToList({
+                        coords: {
+                            latitude: coord.coords.latitude,
+                            longitude: coord.coords.longitude,
+                        }
+                    })
+                    this.editAccountInList()
+                    this.handlerCanselClick()
+                })
+            } else {
                 this.addOperationToList({
                     coords: {
                         latitude: 54,
@@ -119,7 +131,7 @@ class AddOperation extends Component{
                 })
                 this.editAccountInList()
                 this.handlerCanselClick()
-            // })
+            }
         })
     }
 

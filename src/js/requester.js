@@ -33,6 +33,7 @@ export default class Requester {
                     connectDB: false,
                     usePassCode: false,
                     urlConnectDB: (DEVELOP) ? SERVERURLLOCAL : SERVERURL,
+                    useGeolocation: false,
                 }
                 this.setLocal('localOptions', this.options, null, true)
             }
