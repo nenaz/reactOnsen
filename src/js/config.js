@@ -3,7 +3,7 @@ import {
     SERVERURLLOCAL
 } from './consts'
 const config = {
-    version: '1.1.6',
+    version: '1.1.7',
     // serverUrl: SERVERURL,
     serverUrl: SERVERURLLOCAL,
 }

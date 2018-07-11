@@ -4,8 +4,6 @@ import {
     Input,
     Toast,
     Fab,
-    BackButton,
-    Toolbar
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
@@ -16,6 +14,7 @@ import {
 } from '../../../../AC'
 import Requester from '../../../../js/requester'
 import Utils from '../../../../js/utils'
+import ToolbarCustom from '../../../ToolbarCustom';
 
 class AddAccount extends Component{
     constructor(props){
@@ -114,14 +113,12 @@ class AddAccount extends Component{
     }
 
     renderToolbar() {
-        const backButton = this.props.route.hasBackButton
-            ? <BackButton onClick={this.handlerCanselClick}>Back</BackButton>
-            : null;
         return (
-            <Toolbar>
-                <div className='left'>{backButton}</div>
-                <div className='center'>{this.props.route.title}</div>
-            </Toolbar>
+            <ToolbarCustom
+                hasBackButton={this.props.route.hasBackButton}
+                title="Добавить счет"
+                handlerCanselClick={this.handlerCanselClick}
+            />
         )
     }
 

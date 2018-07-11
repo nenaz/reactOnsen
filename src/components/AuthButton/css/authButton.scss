@@ -1,0 +1,100 @@
+.nzButtonCircular{
+    height: 42px;
+    width: 42px;
+    position: absolute;
+    // top: 10px;
+    text-align: center;
+    left: calc(50% - 21px);
+    opacity: 0;
+    display: none;
+    &.loading{
+        animation: processCircularShow 450ms linear forwards;
+        animation-delay: 500ms;
+        display: inline;
+        &.unLoad{
+            animation: processCircularHide 450ms linear forwards;
+        }
+    }
+}
+@keyframes processCircularShow{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes processCircularHide{
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100%{
+    display: none;
+  }
+}
+
+button{
+    border: 0;
+    color: #404040;
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    background: #37474f;
+    height: 42px;
+    .content{
+        transition: opacity 0.3s, transform 0.3s;
+    }
+    span{
+        color: white;
+    }
+}
+button.loading{
+    animation: buttonSmall 500ms linear forwards;
+    .content{
+        animation-delay: 200ms;
+        animation: buttonTextHide 300ms linear forwards;
+    }
+    &.unLoad{
+        width: 42px;
+        border-radius: 50%;
+        height: 42px;
+        animation: buttonColor 550ms linear forwards;
+        &.icon-checked:before{
+            font-size: 25px;
+            color: #fff;
+        }
+    }
+}
+button:active{
+    outline: 0;
+}
+button:focus{
+    outline: 0;
+}
+
+/*********************************/
+@keyframes buttonSmall{
+  0% {
+  }
+  100% {
+    width: 42px;
+    border-radius: 50%;
+    height: 42px;
+    background: transparent;
+  }
+}
+@keyframes buttonTextHide{
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes buttonColor{
+  to {
+    background-color: #1d9650;
+  }
+}
+/*********************************/

@@ -2,8 +2,6 @@ import React, { Component} from 'react'
 import PropTypes from 'prop-types'
 import {
     Page,
-    BackButton,
-    Toolbar,
     Switch,
     AlertDialog,
     Modal,
@@ -11,6 +9,7 @@ import {
 } from 'react-onsenui'
 import Requester from '../../../js/requester'
 import Sync from '../../../js/sync'
+import ToolbarCustom from '../../ToolbarCustom'
 
 class OptionsPage extends Component{
     constructor(props){
@@ -54,14 +53,12 @@ class OptionsPage extends Component{
     }
 
     renderToolbar() {
-        const backButton = this.props.route.hasBackButton
-            ? <BackButton onClick={this.handlerCanselClick}>Back</BackButton>
-            : null;
         return (
-            <Toolbar>
-                <div className='left'>{backButton}</div>
-                <div className='center'>{this.props.route.title}</div>
-            </Toolbar>
+            <ToolbarCustom
+                hasBackButton={this.props.route.hasBackButton}
+                title="Настройки"
+                handlerCanselClick={this.handlerCanselClick}
+            />
         )
     }
 
@@ -76,14 +73,6 @@ class OptionsPage extends Component{
         });
     }
 
-    // showAlertDialog() {
-    //     this.setState({alertDialogShow: true })
-    // }
-
-    // hideAlertDialog() {
-    //     this.setState({ alertDialogShow: false })
-    // }
-
     handleAlertDialogCancel() {
         let checked = this.state.checked
         this.setState({
@@ -94,15 +83,11 @@ class OptionsPage extends Component{
 
     handleAlertDialogOk(e) {
         this.setState({
-            // checked: e.target.checked,
             alertDialogSyncShow: true,
             alertDialogShow: false,
-            // this.setState({ isOpen: false })
         }, () => {
             this.req.updateOption('connectDB', this.state.checked)
-            // this.showAlertDialogSync()
         })
-        // this.hideAlertDialog()
     }
 
     handleAlertDialogSyncOk() {
@@ -141,7 +126,6 @@ class OptionsPage extends Component{
                     </div>
                     <div className="nzOptionsSwitchBlock">
                         <Switch
-                            // disabled
                             checked={this.state.checked}
                             onChange={this.handleChange}
                         />

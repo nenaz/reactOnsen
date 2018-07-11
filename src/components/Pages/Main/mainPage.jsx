@@ -194,8 +194,8 @@ class MainPage extends Component{
                                 pushPage={this.pushPage}
                             />
                             <Section name="Balance" />
-                            <Section name="Chart" />
                             <Section name="LastOperations" />
+                            <Section name="Chart" />
                         </Page>
                     </SplitterContent>
                 </Splitter>

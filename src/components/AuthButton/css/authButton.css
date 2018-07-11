@@ -1,0 +1,168 @@
+.nzButtonCircular {
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  text-align: center;
+  left: calc(50% - 21px);
+  opacity: 0;
+  display: none;
+}
+
+.nzButtonCircular.loading {
+  -webkit-animation: processCircularShow 450ms linear forwards;
+          animation: processCircularShow 450ms linear forwards;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+  display: inline;
+}
+
+.nzButtonCircular.loading.unLoad {
+  -webkit-animation: processCircularHide 450ms linear forwards;
+          animation: processCircularHide 450ms linear forwards;
+}
+
+@-webkit-keyframes processCircularShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes processCircularShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes processCircularHide {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    display: none;
+  }
+}
+
+@keyframes processCircularHide {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    display: none;
+  }
+}
+
+button {
+  border: 0;
+  color: #404040;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  width: 100%;
+  background: #37474f;
+  height: 42px;
+}
+
+button .content {
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+  transition: opacity 0.3s, -webkit-transform 0.3s;
+  transition: opacity 0.3s, transform 0.3s;
+  transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
+}
+
+button span {
+  color: white;
+}
+
+button.loading {
+  -webkit-animation: buttonSmall 500ms linear forwards;
+          animation: buttonSmall 500ms linear forwards;
+}
+
+button.loading .content {
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+  -webkit-animation: buttonTextHide 300ms linear forwards;
+          animation: buttonTextHide 300ms linear forwards;
+}
+
+button.loading.unLoad {
+  width: 42px;
+  border-radius: 50%;
+  height: 42px;
+  -webkit-animation: buttonColor 550ms linear forwards;
+          animation: buttonColor 550ms linear forwards;
+}
+
+button.loading.unLoad.icon-checked:before {
+  font-size: 25px;
+  color: #fff;
+}
+
+button:active {
+  outline: 0;
+}
+
+button:focus {
+  outline: 0;
+}
+
+/*********************************/
+@-webkit-keyframes buttonSmall {
+  0% {
+  }
+  100% {
+    width: 42px;
+    border-radius: 50%;
+    height: 42px;
+    background: transparent;
+  }
+}
+@keyframes buttonSmall {
+  0% {
+  }
+  100% {
+    width: 42px;
+    border-radius: 50%;
+    height: 42px;
+    background: transparent;
+  }
+}
+
+@-webkit-keyframes buttonTextHide {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes buttonTextHide {
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes buttonColor {
+  to {
+    background-color: #1d9650;
+  }
+}
+
+@keyframes buttonColor {
+  to {
+    background-color: #1d9650;
+  }
+}
+
+/*********************************/
+/*# sourceMappingURL=authButton.css.map */

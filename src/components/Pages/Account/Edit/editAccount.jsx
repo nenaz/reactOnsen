@@ -2,10 +2,8 @@ import React, { Component} from 'react'
 import PropTypes from 'prop-types'
 import {
     Page,
-    Toolbar,
     Input,
     Fab,
-    BackButton,
     AlertDialog,
     Switch
 } from 'react-onsenui'
@@ -17,6 +15,7 @@ import {
 import Requester from '../../../../js/requester'
 import { ICONCHECKING } from '../../../../js/consts'
 import Icon from '../../../Icon'
+import ToolbarCustom from '../../../ToolbarCustom';
 
 
 class EditAccount extends Component{
@@ -117,14 +116,12 @@ class EditAccount extends Component{
     }
 
     renderToolbar() {
-        const backButton = this.props.route.hasBackButton
-            ? <BackButton onClick={this.handlerCanselClick}>Back</BackButton>
-            : null;
         return (
-            <Toolbar>
-                <div className='left'>{backButton}</div>
-                <div className='center'>{this.props.route.title}</div>
-            </Toolbar>
+            <ToolbarCustom
+                hasBackButton={this.props.route.hasBackButton}
+                title="Редактировать счет"
+                handlerCanselClick={this.handlerCanselClick}
+            />
         )
     }
 

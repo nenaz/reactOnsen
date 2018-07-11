@@ -1,11 +1,9 @@
 import React,{ Component} from 'react'
 import {
     Page,
-    Toolbar,
     Modal,
     ProgressCircular,
     Fab,
-    BackButton
 } from 'react-onsenui'
 import { connect } from 'react-redux'
 import {
@@ -27,6 +25,7 @@ import Icon from '../../../Icon'
 import SelectTypeOperation from '../../../SelectTypeOperation'
 import PageCategory from '../../Category'
 import PageAccount from '../../Account'
+import ToolbarCustom from '../../../ToolbarCustom'
 
 const COEFFICIENT = 0.46;
 // const FORMULA = `calc(1rem + ((1vw - ${this.generateAmountFontSize()}) * 20))`;
@@ -190,31 +189,28 @@ class AddOperation extends Component{
     }
 
     renderToolbar() {
-        const backButton = this.props.route.hasBackButton
-            ? <BackButton onClick={this.handleClick}>Back</BackButton>
-            : null;
         return (
-            <Toolbar>
-                <div className='left'>{backButton}</div>
-                <div className='center'>{this.props.route.title}</div>
-            </Toolbar>
+            <ToolbarCustom
+                hasBackButton={this.props.route.hasBackButton}
+                title="Новая операция"
+                handlerCanselClick={this.handleClick}
+            />
+        )
+    }
+
+    renderToolbarForSelect() {
+        return (
+            <ToolbarCustom
+                hasBackButton={this.props.route.hasBackButton}
+                title={this.props.route.title}
+                handlerCanselClick={this.handlerBackClick}
+                className="nzCatToolbar"
+            />
         )
     }
 
     handleClick() {
         this.props.navigator.popPage();
-    }
-
-    renderToolbarForSelect() {
-        const backButton = this.props.route.hasBackButton
-            ? <BackButton onClick={this.handlerBackClick}>Back</BackButton>
-            : null;
-        return (
-            <Toolbar className="nzCatToolbar">
-                <div className='left'>{backButton}</div>
-                <div className='center'>{this.props.route.title}</div>
-            </Toolbar>
-        )
     }
 
     handlerClickCalcButton(e) {
