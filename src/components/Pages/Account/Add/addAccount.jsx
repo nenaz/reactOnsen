@@ -9,7 +9,6 @@ import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import { connect } from 'react-redux'
 import {
-    changeAnimationState,
     addAccountToList
 } from '../../../../AC'
 import Requester from '../../../../js/requester'
@@ -193,6 +192,5 @@ class AddAccount extends Component{
 }
 
 export default connect(null, {
-    changeAnimationState,
     addAccountToList
 })(AddAccount)

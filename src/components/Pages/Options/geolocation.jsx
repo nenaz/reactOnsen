@@ -4,7 +4,6 @@ import {
     Switch,
     AlertDialog,
 } from 'react-onsenui'
-import Requester from '../../../js/requester'
 
 class Geolocation extends Component{
     constructor(props){
@@ -14,8 +13,6 @@ class Geolocation extends Component{
             alertDialogGeoShow: false,
             updateOptionName: 'useGeolocation',
         }
-
-        this.req = new Requester()
 
         this.handleSwitchChange = this.handleSwitchChange.bind(this)
         this.handleAlertDialogGeoCancel = this.handleAlertDialogGeoCancel.bind(this)
