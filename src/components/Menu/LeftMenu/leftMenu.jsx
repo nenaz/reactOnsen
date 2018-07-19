@@ -52,6 +52,30 @@ class LeftMenu extends Component{
                         {row.text}
                     </ListItem>
                 )
+            case 'operations':
+                return (
+                    <ListItem
+                        key={row.name}
+                        onClick={() => {
+                            this.props.handleSelectLeftMenuItem()
+                            this.props.pushPage('viewOperations')
+                        }}
+                    >
+                        {row.text}
+                    </ListItem>
+                )
+            case 'report':
+                return (
+                    <ListItem
+                        key={row.name}
+                        onClick={() => {
+                            this.props.handleSelectLeftMenuItem()
+                            this.props.pushPage('report')
+                        }}
+                    >
+                        {row.text}
+                    </ListItem>
+                )
             case 'exit':
                 return (
                     <ListItem

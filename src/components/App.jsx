@@ -28,6 +28,8 @@ import Welcome from './Pages/Welcome'
 import config from '../js/config'
 import Utils from '../js/utils'
 import AboutPage from './Pages/About'
+import ViewOperations from './Pages/Operation/View';
+import Report from './Pages/Report';
 
 class App extends Component {
   constructor(props) {
@@ -109,6 +111,20 @@ class App extends Component {
       )
       case 'profile': return (
         <ProfilePage
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+      case 'viewOperations': return (
+        <ViewOperations
+          key={route.title}
+          route={route}
+          navigator={navigator}
+        />
+      )
+      case 'report': return (
+        <Report
           key={route.title}
           route={route}
           navigator={navigator}

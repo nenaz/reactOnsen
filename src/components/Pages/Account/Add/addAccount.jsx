@@ -4,6 +4,7 @@ import {
     Input,
     Toast,
     Fab,
+    Switch,
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
@@ -171,6 +172,19 @@ class AddAccount extends Component{
                             placeholder="Имя владельца"
                         />
                     </div>
+                    <section className="nzOptions">
+                        <div className="nzOptionsTextBlock">
+                            <span className="nzOptionsTextBlockELem">
+                                Не учитывать в общем балансе
+                                </span>
+                        </div>
+                        <div className="nzOptionsSwitchBlock">
+                            <Switch
+                                checked={!this.state.consider}
+                                onChange={this.handleChangeSwitch}
+                            />
+                        </div>
+                    </section>
                 </div>
                 <Toast isOpen={this.state.toastShown}>
                     <div className="message">
