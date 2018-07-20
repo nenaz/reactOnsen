@@ -14,7 +14,9 @@ import {
 } from '../../../../AC'
 import Requester from '../../../../js/requester'
 import Utils from '../../../../js/utils'
-import ToolbarCustom from '../../../ToolbarCustom';
+import ToolbarCustom from '../../../ToolbarCustom'
+import Form from '../Form/form';
+
 
 class AddAccount extends Component{
     constructor(props){
@@ -42,6 +44,7 @@ class AddAccount extends Component{
         this.handleNumberChange = this.handleNumberChange.bind(this)
         this.handleDateChange = this.handleDateChange.bind(this)
         this.handlePeopleChange = this.handlePeopleChange.bind(this)
+        this.renderField = this.renderField.bind(this)
     }
 
     handlePeopleChange(e) {
@@ -85,6 +88,7 @@ class AddAccount extends Component{
     }
 
     handlerOkClick(e) {
+        debugger
         const addObject = {
             accountName: this.state.accountName,
             accountNumber: this.state.accountNumber,
@@ -95,8 +99,8 @@ class AddAccount extends Component{
             pname: 'AccountButton',
             _id: Utils.getRandomId()
         }
-        this.props.addAccountToList(addObject)
-        this.req.request('addAccount', addObject)
+        // this.props.addAccountToList(addObject)
+        // this.req.request('addAccount', addObject)
         this.handlerCanselClick()
     }
 
@@ -126,57 +130,27 @@ class AddAccount extends Component{
         this.props.navigator.popPage();
     }
 
+    renderField = ({ className, value, onChange, placeholder }) => (
+        <Input
+            className={className}
+            value={value}
+            // onChange={onChange}
+            modifier='underbar'
+            float
+            placeholder={placeholder}
+        />
+    );
+
     render(){
         return (
             <Page renderToolbar={this.renderToolbar}>
                 <div className="nzAddAccountPage">
-                    <div className="nzAccountPageInputBlock">
-                        <Input
-                            className="nzNewAccountName"
-                            value={this.state.accountName}
-                            onChange={this.handleAccountNameChange}
-                            modifier='underbar'
-                            float
-                            placeholder="Название счета"
-                        />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.amount}
-                            onChange={this.handleAmountChange}
-                            modifier='underbar'
-                            float
-                            placeholder="Начальное значение"
-                        />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.accountNumber}
-                            onChange={this.handleNumberChange}
-                            modifier='underbar'
-                            float
-                            placeholder="Номер счета"
-                        />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.accountDate}
-                            onChange={this.handleDateChange}
-                            modifier='underbar'
-                            float
-                            placeholder="Действителен до"
-                        />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.accountPeople}
-                            onChange={this.handlePeopleChange}
-                            modifier='underbar'
-                            float
-                            placeholder="Имя владельца"
-                        />
-                    </div>
+                    <Form />
                     <section className="nzOptions">
                         <div className="nzOptionsTextBlock">
                             <span className="nzOptionsTextBlockELem">
                                 Не учитывать в общем балансе
-                                </span>
+                            </span>
                         </div>
                         <div className="nzOptionsSwitchBlock">
                             <Switch
@@ -205,6 +179,11 @@ class AddAccount extends Component{
     }
 }
 
+// AddAccount = reduxForm({
+//     form: 'addAccount', // имя формы в state (state.form.post)
+// })(AddAccount);
+
 export default connect(null, {
     addAccountToList
 })(AddAccount)
+// export default AddAccount;
