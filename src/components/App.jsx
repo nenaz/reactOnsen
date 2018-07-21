@@ -3,9 +3,12 @@ import {
   Provider,
   connect
 } from 'react-redux'
+// import {
+//   Navigator
+// } from 'react-onsenui'
 import {
-  Navigator
-} from 'react-onsenui'
+  Page,
+} from 'framework7-react'
 import '../css/App.css'
 import '../css/style.css'
 import '../css/ionicons.css'
@@ -62,6 +65,16 @@ class App extends Component {
   // }
   componentWillMount() {
     this.req.initialize();
+    this.f7params = {
+      name: 'App',
+      id: 'com.app.test',
+      routes: [
+        {
+          path: '/',
+          component: Welcome,
+        }
+      ]
+    }
   }
 
   // componentDidMount() {
@@ -208,32 +221,39 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.render) {
-      return (
-        <Provider store={store}>
-          <Navigator
-            swipeable
-            renderPage={this.renderPage}
-            initialRoute={{
-              title: 'First page',
-              hasBackButton: false
-            }}
-            animation='slide'
-            animationOptions={{
-              duration: 0.3
-            }}
-          />
-        </Provider>
-      )
-    } else {
-      return (
+    // if (this.state.render) {
+    //   return (
+    //     <Provider store={store}>
+    //       <Navigator
+    //         swipeable
+    //         renderPage={this.renderPage}
+    //         initialRoute={{
+    //           title: 'First page',
+    //           hasBackButton: false
+    //         }}
+    //         animation='slide'
+    //         animationOptions={{
+    //           duration: 0.3
+    //         }}
+    //       />
+    //     </Provider>
+    //   )
+    // } else {
+    //   return (
+    //     <Welcome
+    //       changeLogonStatus={this.changeLogonStatus}
+    //       errorLogonText={this.state.errorLogonText}
+    //       errorLogonStatus={this.state.errorLogonStatus}
+    //     />
+    //   )
+    // }
+    return (
         <Welcome
           changeLogonStatus={this.changeLogonStatus}
           errorLogonText={this.state.errorLogonText}
           errorLogonStatus={this.state.errorLogonStatus}
         />
-      )
-    }
+    )
   }
 }
 
