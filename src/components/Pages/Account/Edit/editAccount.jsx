@@ -16,6 +16,8 @@ import Requester from '../../../../js/requester'
 import { ICONCHECKING } from '../../../../js/consts'
 import Icon from '../../../Icon'
 import ToolbarCustom from '../../../ToolbarCustom';
+import Form from '../Form/form'
+import OptionsItem from '../../../OptionsItem';
 
 
 class EditAccount extends Component{
@@ -181,60 +183,19 @@ class EditAccount extends Component{
             <Page renderToolbar={this.renderToolbar}>
                 <div className="nzEditAccountPage">
                     <div className="nzAccountPageInputBlock">
-                        <Input
-                            className="nzNewAccountName"
-                            value={this.state.accountName}
-                            onChange={this.handleAccountNameChange}
-                            modifier='underbar'
-                            float
-                            placeholder={this.state.placeholderAccountName}
+                        <Form
+                            editList={[
+                                this.props.accountToEdit.accountName,
+                                this.props.accountToEdit.accountNumber,
+                                this.props.accountToEdit.accountDate,
+                                this.props.accountToEdit.accountPeople,
+                            ]}
                         />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={String(this.state.amount)}
-                            onChange={this.handleAmountChange}
-                            modifier='underbar'
-                            float
-                            type="number"
-                            placeholder='Сумма'
+                        <OptionsItem
+                            title="Не учитывать в общем балансе"
+                            checked={!this.state.consider}
+                            handleChangeSwitch={this.handleChangeSwitch}
                         />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.accountNumber}
-                            onChange={this.handleNumberChange}
-                            modifier='underbar'
-                            float
-                            placeholder={this.state.placeholderAccountNumber}
-                        />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.accountDate}
-                            onChange={this.handleDateChange}
-                            modifier='underbar'
-                            float
-                            placeholder={this.state.placeholderAccountDate}
-                        />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.accountPeople}
-                            onChange={this.handlePeopleChange}
-                            modifier='underbar'
-                            float
-                            placeholder={this.state.placeholderAccountPeople}
-                        />
-                        <section className="nzOptions">
-                            <div className="nzOptionsTextBlock">
-                                <span className="nzOptionsTextBlockELem">
-                                    Не учитывать в общем балансе
-                                </span>
-                            </div>
-                            <div className="nzOptionsSwitchBlock">
-                                <Switch
-                                    checked={!this.state.consider}
-                                    onChange={this.handleChangeSwitch}
-                                />
-                            </div>
-                        </section>
                     </div>
                 </div>
                 <Fab

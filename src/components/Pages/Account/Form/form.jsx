@@ -3,79 +3,59 @@ import { Field, reduxForm } from 'redux-form';
 import {
     Input
 } from 'react-onsenui'
+import PropTypes from 'prop-types'
+import { listOfFields } from '../../../../js/consts'
 
-const renderField = (custStyle) => (
+const renderField = ({ input, custStyle }) => (
     <Input
         className={custStyle.className}
         modifier={custStyle.modifier}
-        float={custStyle.float}
+        float
         placeholder={custStyle.placeholder}
+        {...input}
     />
 );
 
-let Form = (props) => {
+const renderItem = (props, item, key) => {
+    const placeholder = (props.editList && props.editList[key])
+        ? props.editList[key]
+        : item.placeholder
     return (
-        <div className = "nzAccountPageInputBlock" >
-            <Field
-                name="accountName"
-                component={renderField}
-                type="text"
-                custStyle={{
-                    modifier: 'underbar',
-                    float: true,
-                    className: "nzNewAccountName",
-                    placeholder: "Название счета",
-                }}
-            />
-            <Field
-                name="amount"
-                component={renderField}
-                type="text"
-                custStyle={{
-                    modifier: 'underbar',
-                    float: false,
-                    className: "nzNewAmountValue",
-                    placeholder: "Начальное значение",
-                }}
-            />
-            <Field
-                name="accountNumber"
-                component={renderField}
-                className="nzNewAmountValue"
-                value={this.state.accountNumber}
-                // onChange={this.handleNumberChange}
-                placeholder="Номер счета"
-                type="text"
-                custStyle={{
-                    modifier: 'underbar',
-                    float: false,
-                    className: "nzNewAmountValue",
-                    placeholder: "Начальное значение",
-                }}
-            />
-            <Field
-                name="accountDate"
-                component={renderField}
-                className="nzNewAmountValue"
-                value={this.state.accountDate}
-                // onChange={this.handleDateChange}
-                placeholder="Действителен до"
-            />
-            <Field
-                name="accountPeople"
-                component={renderField}
-                className="nzNewAmountValue"
-                value={this.state.accountPeople}
-                // onChange={this.handlePeopleChange}
-                placeholder="Имя владельца"
-                type="text"
-            />
-        </div >
+        <Field
+            name={item.name}
+            component={renderField}
+            type="text"
+            custStyle={{
+                modifier: 'underbar',
+                className: item.className,
+                placeholder,
+            }}
+            key={key}
+        />
     )
 }
 
+let Form = (props) => {
+    return (
+        <div className="nzAccountPageInputBlock">
+            {props.listOfFields.map((item, key) => {
+                return renderItem(props, item, key)
+            })}
+        </div>
+    )
+}
+
+Form.propTypes = {
+    listOfFields: PropTypes.array.isRequired,
+    editList: PropTypes.array,
+}
+
+Form.defaultProps = {
+    listOfFields,
+}
+
 Form = reduxForm({
-    form: 'addAccount', // имя формы в state (state.form.post)
+    form: 'addAccount',
 })(Form);
 
 export default Form

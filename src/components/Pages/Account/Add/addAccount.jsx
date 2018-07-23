@@ -10,12 +10,13 @@ import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import { connect } from 'react-redux'
 import {
-    addAccountToList
+    addAccountToList,
 } from '../../../../AC'
 import Requester from '../../../../js/requester'
 import Utils from '../../../../js/utils'
 import ToolbarCustom from '../../../ToolbarCustom'
-import Form from '../Form/form';
+import Form from '../Form/form'
+import OptionsItem from '../../../OptionsItem'
 
 
 class AddAccount extends Component{
@@ -88,6 +89,7 @@ class AddAccount extends Component{
     }
 
     handlerOkClick(e) {
+        const { amount, accountDate } = {...this.props.form.addAccount.values}
         debugger
         const addObject = {
             accountName: this.state.accountName,
@@ -141,24 +143,21 @@ class AddAccount extends Component{
         />
     );
 
+    submit = values => {
+        // print the form values to the console
+        console.log(values)
+    }
+
     render(){
         return (
             <Page renderToolbar={this.renderToolbar}>
                 <div className="nzAddAccountPage">
                     <Form />
-                    <section className="nzOptions">
-                        <div className="nzOptionsTextBlock">
-                            <span className="nzOptionsTextBlockELem">
-                                Не учитывать в общем балансе
-                            </span>
-                        </div>
-                        <div className="nzOptionsSwitchBlock">
-                            <Switch
-                                checked={!this.state.consider}
-                                onChange={this.handleChangeSwitch}
-                            />
-                        </div>
-                    </section>
+                    <OptionsItem
+                        title="Не учитывать в общем балансе"
+                        checked={!this.state.consider}
+                        handleChangeSwitch={this.handleChangeSwitch}
+                    />
                 </div>
                 <Toast isOpen={this.state.toastShown}>
                     <div className="message">
@@ -183,7 +182,9 @@ class AddAccount extends Component{
 //     form: 'addAccount', // имя формы в state (state.form.post)
 // })(AddAccount);
 
-export default connect(null, {
+export default connect((state) => ({
+    form: state.form,
+}), {
     addAccountToList
 })(AddAccount)
 // export default AddAccount;
