@@ -1,4 +1,5 @@
 import { combineReducers } from "redux"
+import { reducer as formReducer } from 'redux-form'
 import changeAnimationState from './changeAnimationState'
 import changeAccountsList from './changeAccountsList'
 import changeLastOperations from './changeLastOperations'
@@ -25,4 +26,5 @@ export default combineReducers({
     saveDataOfScan,
     updateStatusSync,
     changeAuthButtonClassName,
+    form: formReducer,
 })

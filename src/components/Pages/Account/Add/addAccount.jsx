@@ -10,11 +10,14 @@ import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 import { connect } from 'react-redux'
 import {
-    addAccountToList
+    addAccountToList,
 } from '../../../../AC'
 import Requester from '../../../../js/requester'
 import Utils from '../../../../js/utils'
-import ToolbarCustom from '../../../ToolbarCustom';
+import ToolbarCustom from '../../../ToolbarCustom'
+import Form from '../Form/form'
+import OptionsItem from '../../../OptionsItem'
+
 
 class AddAccount extends Component{
     constructor(props){
@@ -42,6 +45,7 @@ class AddAccount extends Component{
         this.handleNumberChange = this.handleNumberChange.bind(this)
         this.handleDateChange = this.handleDateChange.bind(this)
         this.handlePeopleChange = this.handlePeopleChange.bind(this)
+        this.renderField = this.renderField.bind(this)
     }
 
     handlePeopleChange(e) {
@@ -85,6 +89,8 @@ class AddAccount extends Component{
     }
 
     handlerOkClick(e) {
+        const { amount, accountDate } = {...this.props.form.addAccount.values}
+        debugger
         const addObject = {
             accountName: this.state.accountName,
             accountNumber: this.state.accountNumber,
@@ -95,8 +101,8 @@ class AddAccount extends Component{
             pname: 'AccountButton',
             _id: Utils.getRandomId()
         }
-        this.props.addAccountToList(addObject)
-        this.req.request('addAccount', addObject)
+        // this.props.addAccountToList(addObject)
+        // this.req.request('addAccount', addObject)
         this.handlerCanselClick()
     }
 
@@ -126,65 +132,32 @@ class AddAccount extends Component{
         this.props.navigator.popPage();
     }
 
+    renderField = ({ className, value, onChange, placeholder }) => (
+        <Input
+            className={className}
+            value={value}
+            // onChange={onChange}
+            modifier='underbar'
+            float
+            placeholder={placeholder}
+        />
+    );
+
+    submit = values => {
+        // print the form values to the console
+        console.log(values)
+    }
+
     render(){
         return (
             <Page renderToolbar={this.renderToolbar}>
                 <div className="nzAddAccountPage">
-                    <div className="nzAccountPageInputBlock">
-                        <Input
-                            className="nzNewAccountName"
-                            value={this.state.accountName}
-                            onChange={this.handleAccountNameChange}
-                            modifier='underbar'
-                            float
-                            placeholder="Название счета"
-                        />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.amount}
-                            onChange={this.handleAmountChange}
-                            modifier='underbar'
-                            float
-                            placeholder="Начальное значение"
-                        />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.accountNumber}
-                            onChange={this.handleNumberChange}
-                            modifier='underbar'
-                            float
-                            placeholder="Номер счета"
-                        />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.accountDate}
-                            onChange={this.handleDateChange}
-                            modifier='underbar'
-                            float
-                            placeholder="Действителен до"
-                        />
-                        <Input
-                            className="nzNewAmountValue"
-                            value={this.state.accountPeople}
-                            onChange={this.handlePeopleChange}
-                            modifier='underbar'
-                            float
-                            placeholder="Имя владельца"
-                        />
-                    </div>
-                    <section className="nzOptions">
-                        <div className="nzOptionsTextBlock">
-                            <span className="nzOptionsTextBlockELem">
-                                Не учитывать в общем балансе
-                                </span>
-                        </div>
-                        <div className="nzOptionsSwitchBlock">
-                            <Switch
-                                checked={!this.state.consider}
-                                onChange={this.handleChangeSwitch}
-                            />
-                        </div>
-                    </section>
+                    <Form />
+                    <OptionsItem
+                        title="Не учитывать в общем балансе"
+                        checked={!this.state.consider}
+                        handleChangeSwitch={this.handleChangeSwitch}
+                    />
                 </div>
                 <Toast isOpen={this.state.toastShown}>
                     <div className="message">
@@ -205,6 +178,13 @@ class AddAccount extends Component{
     }
 }
 
-export default connect(null, {
+// AddAccount = reduxForm({
+//     form: 'addAccount', // имя формы в state (state.form.post)
+// })(AddAccount);
+
+export default connect((state) => ({
+    form: state.form,
+}), {
     addAccountToList
 })(AddAccount)
+// export default AddAccount;

@@ -34,6 +34,34 @@ export const COLORS = {
     "color10": "hsl(56, 70%, 50%)",
 }
 
+export const listOfFields = [
+    {
+        name: "accountName",
+        placeholder: "Название счета",
+        className: "nzNewAccountName",
+    },
+    {
+        name: "amount",
+        placeholder: "Начальное значение",
+        className: "nzNewAmountValue",
+    },
+    {
+        name: "accountNumber",
+        placeholder: "Номер счета",
+        className: "nzNewAmountValue",
+    },
+    {
+        name: "accountDate",
+        placeholder: "Действителен до",
+        className: "nzNewAmountValue",
+    },
+    {
+        name: "accountPeople",
+        placeholder: "Имя владельца",
+        className: "nzNewAmountValue",
+    },
+]
+
 export const DATAICONS = [
     {
         href1: "https://www.flaticon.com/authors/eleonor-wang",
