@@ -2,7 +2,6 @@ import React, { Component} from 'react'
 import PropTypes from 'prop-types'
 import {
     Button,
-    ProgressCircular,
 } from 'react-onsenui'
 import CountSymbols from '../../CountSymbols'
 import Requester from '../../../js/requester'

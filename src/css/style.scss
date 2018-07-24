@@ -35,6 +35,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-edit:before {
+  content: "\e90b";
+}
+.icon-qr-code-scan:before {
+  content: "\e90a";
+}
+.icon-qr-code:before {
+  content: "\e909";
+}
 .icon-transfer:before {
   content: "\e908";
 }
@@ -61,10 +70,4 @@
 }
 .icon-plus:before {
   content: "\e900";
-}
-.icon-qr-code:before {
-  content: "\e909";
-}
-.icon-qr-code-scan:before {
-  content: "\e90a";
 }

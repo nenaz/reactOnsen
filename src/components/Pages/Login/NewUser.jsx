@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
     Button,
-    Input
+    Input,
+    Modal,
 } from 'react-onsenui'
 import Requester from '../../../js/requester'
+/* global window */
 
 class NewUser extends Component {
     constructor(props) {
@@ -13,7 +15,8 @@ class NewUser extends Component {
             username: '',
             password: '',
             confirmPassword: '',
-            email: ''
+            email: '',
+            isRegisterOkOpen: false,
         }
 
         this.req = new Requester()
@@ -21,6 +24,7 @@ class NewUser extends Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
         this.handleConfirmPassword = this.handleConfirmPassword.bind(this)
         this.handleRegister = this.handleRegister.bind(this)
+        this.handleRestart = this.handleRestart.bind(this)
     }
 
     handleUsernameChange(e) {
@@ -41,10 +45,20 @@ class NewUser extends Component {
             password: this.state.password
         }
         this.req.send('newUser', 'POST', newUserObj).then(result => {
+            debugger
             if (result.token) {
                 this.req.setLocal('localOptions', result.token)
+            } else if (result._id && result.hash && result.username) {
+                this.setState({
+                    isRegisterOkOpen: true
+                })
             }
         })
+    }
+
+    handleRestart() {
+        // navigator.app.exitApp()
+        window.location.reload();
     }
 
     render() {
@@ -100,6 +114,18 @@ class NewUser extends Component {
                         </Button>
                     </section>
                 </section>
+                <Modal isOpen={this.state.isRegisterOkOpen}>
+                    <section style={{ margin: '16px' }}>
+                        <p style={{ opacity: 0.6 }}>
+                            Пользователь {this.state.username} создан
+                        </p>
+                        <p>
+                            <Button onClick={this.handleRestart}>
+                                Перезайти
+                            </Button>
+                        </p>
+                    </section>
+                </Modal>
             </section>
         )
     }
@@ -109,6 +135,7 @@ NewUser.propTypes = {
     cssName: PropTypes.string,
     disabledInputs: PropTypes.bool,
     handleNewUser: PropTypes.func,
+    // navigator: PropTypes.object.isRequired,
 }
 
 export default NewUser

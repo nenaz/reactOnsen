@@ -1,10 +1,8 @@
 import React,{ Component} from 'react'
 import {
     Page,
-    Input,
     Toast,
     Fab,
-    Switch,
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
@@ -45,7 +43,6 @@ class AddAccount extends Component{
         this.handleNumberChange = this.handleNumberChange.bind(this)
         this.handleDateChange = this.handleDateChange.bind(this)
         this.handlePeopleChange = this.handlePeopleChange.bind(this)
-        this.renderField = this.renderField.bind(this)
     }
 
     handlePeopleChange(e) {
@@ -89,20 +86,15 @@ class AddAccount extends Component{
     }
 
     handlerOkClick(e) {
-        const { amount, accountDate } = {...this.props.form.addAccount.values}
-        debugger
         const addObject = {
-            accountName: this.state.accountName,
-            accountNumber: this.state.accountNumber,
-            accountDate: this.state.accountDate,
-            accountPeople: this.state.accountPeople,
-            amount: this.state.amount,
+            ...this.props.form.addAccount.values,
             currency: 'RUB',
             pname: 'AccountButton',
             _id: Utils.getRandomId()
         }
-        // this.props.addAccountToList(addObject)
-        // this.req.request('addAccount', addObject)
+        debugger
+        this.props.addAccountToList(addObject)
+        this.req.request('addAccount', addObject)
         this.handlerCanselClick()
     }
 
@@ -130,22 +122,6 @@ class AddAccount extends Component{
 
     handlerCanselClick() {
         this.props.navigator.popPage();
-    }
-
-    renderField = ({ className, value, onChange, placeholder }) => (
-        <Input
-            className={className}
-            value={value}
-            // onChange={onChange}
-            modifier='underbar'
-            float
-            placeholder={placeholder}
-        />
-    );
-
-    submit = values => {
-        // print the form values to the console
-        console.log(values)
     }
 
     render(){
@@ -178,13 +154,8 @@ class AddAccount extends Component{
     }
 }
 
-// AddAccount = reduxForm({
-//     form: 'addAccount', // имя формы в state (state.form.post)
-// })(AddAccount);
-
 export default connect((state) => ({
     form: state.form,
 }), {
     addAccountToList
 })(AddAccount)
-// export default AddAccount;

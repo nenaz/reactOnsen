@@ -42,8 +42,10 @@ class ButtonAccount extends Component {
                 cardIcon = 'icon-wallet'
             } else if (this.props.params.accountNumber[0] === '4') {
                 cardIcon = 'icon-visa'
-            } else {
+            } else if (this.props.params.accountNumber[0] === '5') {
                 cardIcon = 'icon-mastercard'
+            } else {
+                cardIcon = 'icon-wallet'
             }
             return (
                 <span

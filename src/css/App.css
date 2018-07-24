@@ -447,6 +447,19 @@
           animation-delay: 500ms;
 }
 
+.nzLogonPageAddUser.nzNewUser .nzAddUserSection ons-input span {
+  color: white;
+}
+
+.nzLogonPageAddUser.nzNewUser .nzAddUserSection ons-input input {
+  color: white;
+}
+
+.nzLogonPageAddUser.nzNewUser .nzAddUserSection ons-button {
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
 .nzLogonPageAddUser.nzNoNewUser {
   -webkit-animation: noAnimHeight 500ms linear forwards;
           animation: noAnimHeight 500ms linear forwards;

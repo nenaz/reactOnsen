@@ -2,10 +2,8 @@ import React, { Component} from 'react'
 import PropTypes from 'prop-types'
 import {
     Page,
-    Input,
     Fab,
     AlertDialog,
-    Switch
 } from 'react-onsenui'
 import { connect } from 'react-redux'
 import {

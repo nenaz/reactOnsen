@@ -1,0 +1,25 @@
+.nzProgileListItem{
+    display: flex;
+    height: 60px;
+    background-color: grey;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid #2c2c2c;
+    padding: 0 0px 0 20px;
+}
+
+.nzProgileListItemLeft{
+    width: 75%;
+    ons-input{
+        width: 100%;
+    }
+}
+
+.nzProgileListItemRight{
+    width: 25%;
+    text-align: center;
+    .icon-edit{
+        font-size: 22px;
+        color: white;
+    }
+}

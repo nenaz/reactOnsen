@@ -15,7 +15,6 @@ class PageAccounts extends Component {
     }
 
     renderRow(row) {
-        debugger
         return (
             <ListItem
                 key={row._id}
