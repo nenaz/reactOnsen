@@ -351,9 +351,10 @@
 }
 
 .nzLogonPageAddUser .nzAddUserButton.nzDisable {
-  -webkit-transform: opacity 250ms linear;
-          transform: opacity 250ms linear;
-  opacity: 0;
+  -webkit-transition: all 250ms linear;
+  transition: all 250ms linear;
+  -webkit-transform: scale(0);
+          transform: scale(0);
 }
 
 .nzLogonPageAddUser .nzAddUserButton span {

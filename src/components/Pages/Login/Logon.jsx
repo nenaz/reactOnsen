@@ -28,6 +28,7 @@ class Logon extends Component {
             checkedPassRadio: false,
             checkPassClassName: '',
             authDialogShow: false,
+            errorText: '',
         }
 
         this.req = new Requester()
@@ -149,6 +150,9 @@ class Logon extends Component {
                             disabledInputs: false,
                             buttonText: 'Войти',
                             authDialogShow: true,
+                            errorText: result.status === 401
+                                ? 'Ошибка авторизации'
+                                : 'Ошибка тайм-аута',
                         })
                     }
                 })
@@ -308,7 +312,7 @@ class Logon extends Component {
                         onCancel={this.handleHideDialog}
                     >
                         <div className="nzDialog">
-                            <p>Ошибка авторизации</p>
+                            <p>{this.state.errorText}</p>
                             <p>
                                 <button onClick={this.handleHideDialog}>Закрыть</button>
                             </p>

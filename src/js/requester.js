@@ -145,7 +145,7 @@ export default class Requester {
                         statusText:  this.statusText,
                         status: this.status
                     }
-                    resolve(JSON.stringify(obj));
+                    resolve(obj);
                 } else {
                     var error = new Error(this.statusText);
                     error.code = this.status;
@@ -153,7 +153,12 @@ export default class Requester {
                 }
             };
             xhr.ontimeout = function () {
-                reject(new Error("Network Error"));
+                var obj = {
+                    result: false,
+                    statusText: "Time out error",
+                    status: this.status || 504,
+                }
+                resolve(obj);
             }
             xhr.onerror = function () {
                 reject(new Error("Network Error"));

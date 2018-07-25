@@ -259,8 +259,8 @@
     left: calc(100% - 30px);
     top: -5px;
     &.nzDisable{
-      transform: opacity 250ms linear;
-      opacity: 0;
+      transition: all 250ms linear;
+      transform: scale(0);
     }
     span{
       width: 100%;
