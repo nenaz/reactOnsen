@@ -123,7 +123,7 @@ export default class Requester {
         }
     }
 
-    send(name, type, params) {
+    send(name, type, params, dispatch) {
         const webToken = this.getWebToken()
         const serverUrl = config.serverUrl
         return new Promise(function (resolve, reject) {
@@ -139,6 +139,10 @@ export default class Requester {
             xhr.onload = function () {
                 if (this.status === 200) {
                     resolve(JSON.parse(this.response));
+                    // dispatch({
+                    //     type: params.actionName,
+                    //     data: this.response,
+                    // });
                 } else if (this.status === 401) {
                     var obj = {
                         result: false,

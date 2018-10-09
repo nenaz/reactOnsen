@@ -9,14 +9,8 @@ import {
 import '../css/App.css'
 import '../css/style.css'
 import '../css/ionicons.css'
-import DownloadPDF from './DownloadPDF'
-import store from '../store'
-import AddAccount from './Pages/Account/Add'
-import EditAccount from './Pages/Account/Edit'
-import MainPage from './Pages/Main'
-import AddOperation from './Pages/Operation/Add'
-import OptionsPage from './Pages/Options';
-import ProfilePage from './Pages/Profile';
+// import DownloadPDF from './DownloadPDF'
+import { store } from '../store'
 import {
   addOperationToList,
   addAccountToList,
@@ -27,9 +21,7 @@ import Requester from '../js/requester'
 import Welcome from './Pages/Welcome'
 import config from '../js/config'
 import Utils from '../js/utils'
-import AboutPage from './Pages/About'
-import ViewOperations from './Pages/Operation/View';
-import Report from './Pages/Report';
+import { RenderPage } from '../routes';
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +37,6 @@ class App extends Component {
     // this.connectDB = this.req.JSON.parse(localStorage.getItem('localOptions')).connectDB
     // this.connectDB = true
 
-    this.renderPage = this.renderPage.bind(this)
     this.getOperations = this.getOperations.bind(this)
     this.getAccounts = this.getAccounts.bind(this)
     this.changeLogonStatus = this.changeLogonStatus.bind(this)
@@ -62,83 +53,6 @@ class App extends Component {
   // }
   componentWillMount() {
     this.req.initialize();
-  }
-
-  // componentDidMount() {
-  //   Promise.all([this.getAccounts(), this.getOperations()]).then(values => {
-  //     this.setState({
-  //       render: true
-  //     })
-  //   })
-  // }
-
-  renderPage(route, navigator) {
-    switch (route.title) {
-      case 'addAccount': return (
-        <AddAccount
-          key={route.title}
-          route={route}
-          navigator={navigator}
-        />
-      )
-      case 'addOperation': return (
-        <AddOperation
-          key={route.title}
-          route={route}
-          navigator={navigator}
-        />
-      )
-      case 'editAccount': return (
-        <EditAccount
-          key={route.title}
-          route={route}
-          navigator={navigator}
-        />
-      )
-      case 'options': return (
-        <OptionsPage
-          key={route.title}
-          route={route}
-          navigator={navigator}
-        />
-      )
-      case 'about': return (
-        <AboutPage
-          key={route.title}
-          route={route}
-          navigator={navigator}
-        />
-      )
-      case 'profile': return (
-        <ProfilePage
-          key={route.title}
-          route={route}
-          navigator={navigator}
-        />
-      )
-      case 'viewOperations': return (
-        <ViewOperations
-          key={route.title}
-          route={route}
-          navigator={navigator}
-        />
-      )
-      case 'report': return (
-        <Report
-          key={route.title}
-          route={route}
-          navigator={navigator}
-        />
-      )
-      case 'download': return <DownloadPDF />
-      default: return (
-        <MainPage
-          key={route.title}
-          route={route}
-          navigator={navigator}
-        />
-      )
-    }
   }
 
   getOperations() {
@@ -213,7 +127,7 @@ class App extends Component {
         <Provider store={store}>
           <Navigator
             swipeable
-            renderPage={this.renderPage}
+            renderPage={RenderPage}
             initialRoute={{
               title: 'First page',
               hasBackButton: false

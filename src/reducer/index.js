@@ -11,7 +11,8 @@ import redAddDataToList from './redAddDataToList'
 import changePassCode from './changePassCode'
 import saveDataOfScan from './saveDataOfScan'
 import updateStatusSync from './updateStatusSync'
-import changeAuthButtonClassName from './changeAuthButtonClassName'
+import changeAuthButtonClassName from './changeAuthButtonClassName';
+import { logonReducer } from '@/pages/logon';
 
 export default combineReducers({
     changeAnimationState,
@@ -27,4 +28,5 @@ export default combineReducers({
     updateStatusSync,
     changeAuthButtonClassName,
     form: formReducer,
+    logonReducer,
 })

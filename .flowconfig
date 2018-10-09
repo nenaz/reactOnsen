@@ -1,0 +1,37 @@
+[ignore]
+.*/node_modules/.*
+.*/__test__/.*
+
+[include]
+
+[libs]
+./flow/
+./flow-typed/npm/
+
+[lints]
+
+[options]
+esproposal.decorators=ignore
+
+module.system.node.resolve_dirname=app
+module.system.node.resolve_dirname=flow
+
+module.name_mapper='.*\(.s?css\)' -> 'StubInterface'
+module.name_mapper='^.*\.png$' -> 'StubInterface'
+module.name_mapper='^.*\.jpe?g$' -> 'StubInterface'
+module.name_mapper='^.*\.svg$' -> 'StubInterface'
+
+module.name_mapper='^@' -> '<PROJECT_ROOT>/src'
+module.name_mapper='^@\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+
+module.system=haste
+
+module.file_ext=.js
+module.file_ext=.json
+module.file_ext=.jsx
+module.file_ext=.css
+module.file_ext=.scss
+
+suppress_comment=\\(.\\|\n\\)*\\$FlowIgnore
+
+[strict]

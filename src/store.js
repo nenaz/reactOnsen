@@ -1,8 +1,15 @@
-import { createStore, applyMiddleware } from 'redux'
-import reducer from './reducer'
-import logger from './middlewares/logger'
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import { compact } from 'lodash';
+import reducers from './reducer';
 
-const enhancer = applyMiddleware(logger)
-export const store = createStore(reducer, {}, enhancer)
+export const store = createStore(
+  reducers,
+  compose(
+    applyMiddleware(thunk),
+    // $FlowIgnore Can't type
+    ...compact([window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()]),
+  ),
+);
 
-window.store = store
+window.store = store;

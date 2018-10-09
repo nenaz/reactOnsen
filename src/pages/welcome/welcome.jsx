@@ -1,24 +1,29 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
 import {
   Page,
   ProgressCircular
 } from 'react-onsenui';
+import config from '../../js/config';
+import type { NavigatorType } from '@/global-types';
 
-export class Welcome extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      animationClass: '',
-    }
-    this.handleDismiss = this.handleDismiss.bind(this)
-    this.fetch = true;
-  }
+
+export class Welcome extends React.PureComponent<NavigatorType> {
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     animationClass: '',
+  //   }
+  //   this.handleDismiss = this.handleDismiss.bind(this)
+  //   this.fetch = true;
+  // }
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({
-        animationClass: 'FadeOut'
-      })
+      this.props.navigator.pushPage({
+        title: 'logon',
+        hasBackButton: false,
+      });
     }, 3000);
   }
 
@@ -41,7 +46,7 @@ export class Welcome extends Component {
         </section>
         <ProgressCircular indeterminate className="nzProgressWelcomePage" />
         <div className="nzVersion">
-          <span>v. {config.version}</span>
+          <span>sv. {config.version}</span>
         </div>
       </Page>
     )

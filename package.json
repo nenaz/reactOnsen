@@ -31,6 +31,7 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "jspdf": "^1.3.5",
+    "lodash": "^4.17.11",
     "md5": "^2.2.1",
     "mongodb": "^2.2.33",
     "oauth": "^0.9.15",
@@ -50,6 +51,8 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-form": "^7.4.2",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "underscore": "^1.8.3",
@@ -125,6 +128,7 @@
     "react-onsenui": "^1.9.0",
     "react-test-renderer": "^16.3.2",
     "redux-mock-store": "^1.5.1",
+    "sass-loader": "^7.1.0",
     "yandex-map-react": "^1.1.1"
   }
 }
