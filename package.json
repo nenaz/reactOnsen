@@ -44,12 +44,13 @@
     "react": "^16.1.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-chartjs": "^0.8.0",
-    "react-dev-utils": "^4.2.1",
+    "react-dev-utils": "^5.0.1",
     "react-dom": "^16.1.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-form": "^7.4.2",
+    "reselect": "^4.0.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "underscore": "^1.8.3",
@@ -103,6 +104,10 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      "transform-decorators-legacy",
+      "transform-class-properties"
     ]
   },
   "eslintConfig": {
@@ -111,6 +116,7 @@
   "devDependencies": {
     "aws-sdk": "^2.238.1",
     "babel-jest": "^20.0.3",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "bcryptjs": "^2.4.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-15": "^1.0.5",
@@ -125,6 +131,7 @@
     "react-onsenui": "^1.9.0",
     "react-test-renderer": "^16.3.2",
     "redux-mock-store": "^1.5.1",
+    "sass-loader": "^7.1.0",
     "yandex-map-react": "^1.1.1"
   }
 }

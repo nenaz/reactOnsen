@@ -12,7 +12,8 @@ import '../css/ionicons.css'
 import DownloadPDF from './DownloadPDF'
 import store from '../store'
 import AddAccount from './Pages/Account/Add'
-import EditAccount from './Pages/Account/Edit'
+// import EditAccount from './Pages/Account/Edit'
+import { EditAccount } from '@/pages/account/edit';
 import MainPage from './Pages/Main'
 import AddOperation from './Pages/Operation/Add'
 import OptionsPage from './Pages/Options';
@@ -43,7 +44,7 @@ class App extends Component {
 
     this.req = new Requester()
     // this.connectDB = this.req.JSON.parse(localStorage.getItem('localOptions')).connectDB
-    // this.connectDB = true
+    this.connectDB = true
 
     this.renderPage = this.renderPage.bind(this)
     this.getOperations = this.getOperations.bind(this)

@@ -59,15 +59,15 @@ class Logon extends Component {
                 checkedPassRadio: obj.usePassCode,
                 connectDB: obj.connectDB,
             }, () => {
-                if (!this.state.connectDB) {
-                    this.setState({
-                        disabledInputs: true,
-                    }, () => {
-                        setTimeout(() => {
-                            this.props.changeLogonStatus(true)
-                        }, 3500);
-                    })
-                }
+                // if (!this.state.connectDB) {
+                //     this.setState({
+                //         disabledInputs: true,
+                //     }, () => {
+                //         setTimeout(() => {
+                //             this.props.changeLogonStatus(true)
+                //         }, 3500);
+                //     })
+                // }
             })
             this.req.getLocal('localUserName').then((obj) => {
                 this.setState({
