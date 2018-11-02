@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
 import {
-  Page,
   Toast,
   Fab,
 } from 'react-onsenui'
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
-import { connect } from 'react-redux'
-import {
-  addAccountToList,
-} from '@/AC';
-import Requester from '../../../../js/requester'
-import Utils from '../../../../js/utils'
-import ToolbarCustom from '../../../ToolbarCustom'
-import Form from '../Form/form'
-import OptionsItem from '../../../OptionsItem'
+import Requester from '@/js/requester'
+import Utils from '@/js/utils'
+import ToolbarCustom from '@/components/ToolbarCustom';
+import Form from '@/components/Pages/Account/Form/form'
+import OptionsItem from '@/components/OptionsItem';
+import { Page } from '@/components/Page';
 
 
-class AddAccount extends Component {
+export class AddAccount extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -92,7 +88,6 @@ class AddAccount extends Component {
       pname: 'AccountButton',
       _id: Utils.getRandomId()
     }
-    debugger
     this.props.addAccountToList(addObject)
     this.req.request('addAccount', addObject)
     this.handlerCanselClick()
@@ -126,7 +121,7 @@ class AddAccount extends Component {
 
   render() {
     return (
-      <Page renderToolbar={this.renderToolbar}>
+      <Page>
         <div className="nzAddAccountPage">
           <Form />
           <OptionsItem
@@ -135,28 +130,21 @@ class AddAccount extends Component {
             handleChangeSwitch={this.handleChangeSwitch}
           />
         </div>
-        <Toast isOpen={this.state.toastShown}>
+        {/* <Toast isOpen={this.state.toastShown}>
           <div className="message">
             An error has occurred!
-                    </div>
+          </div>
           <button onClick={this.handleDismiss}>
             Dismiss
-                    </button>
-        </Toast>
-        <Fab
+          </button>
+        </Toast> */}
+        {/* <Fab
           position='bottom right'
           onClick={this.handlerOkClick}
         >
           <span className="icon-checked" />
-        </Fab>
+        </Fab> */}
       </Page>
     )
   }
-}
-
-export default connect((state) => ({
-  form: state.form,
-}), {
-  addAccountToList
-}
-)(AddAccount)
+};

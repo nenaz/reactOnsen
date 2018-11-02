@@ -11,7 +11,8 @@ import '../css/style.css'
 import '../css/ionicons.css'
 import DownloadPDF from './DownloadPDF'
 import store from '../store'
-import AddAccount from './Pages/Account/Add'
+// import AddAccount from './Pages/Account/Add'
+import { AccountPage } from '@/pages/account';
 // import EditAccount from './Pages/Account/Edit'
 import { EditAccount } from '@/pages/account/edit';
 import MainPage from './Pages/Main'
@@ -75,8 +76,8 @@ class App extends Component {
 
   renderPage(route, navigator) {
     switch (route.title) {
-      case 'addAccount': return (
-        <AddAccount
+      case 'AccountPage': return (
+        <AccountPage
           key={route.title}
           route={route}
           navigator={navigator}

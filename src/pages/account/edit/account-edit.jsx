@@ -1,7 +1,6 @@
 import * as React from 'react';
 // import PropTypes from 'prop-types'
 import {
-  Page,
   Fab,
   AlertDialog,
 } from 'react-onsenui'
@@ -16,6 +15,7 @@ import Icon from '@/components/Icon';
 import ToolbarCustom from '@/components/ToolbarCustom';
 import Form from '@/components/Pages/Account/Form/form';
 import OptionsItem from '@/components/OptionsItem';
+import { Page } from '@/components/Page';
 
 
 export class EditAccount extends React.PureComponent {

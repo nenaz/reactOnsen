@@ -32,7 +32,7 @@ class ButtonAccount extends Component {
                 <span
                     className="nzAccountButtonItem icon-plus"
                     onClick={() => {
-                        this.props.pushPage('addAccount')
+                        this.props.pushPage('AccountPage')
                     }}
                 />
             )
