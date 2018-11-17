@@ -11,7 +11,7 @@ import '../css/style.css'
 import '../css/ionicons.css'
 import DownloadPDF from './DownloadPDF'
 import store from '../store'
-// import AddAccount from './Pages/Account/Add'
+import { AccountAdd } from '@/pages/account/add';
 import { AccountPage } from '@/pages/account';
 // import EditAccount from './Pages/Account/Edit'
 import { EditAccount } from '@/pages/account/edit';

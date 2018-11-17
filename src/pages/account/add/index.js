@@ -1,1 +1,1 @@
-export { AddAccountController as AddAccount } from './account-add-controller';
+export { AccountAddController as AccountAdd } from './account-add-controller';
