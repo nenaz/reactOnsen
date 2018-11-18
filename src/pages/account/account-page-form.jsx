@@ -2,6 +2,7 @@ import * as React from 'react';
 import { reduxForm } from 'redux-form';
 import { ReduxFormTextInput } from '@/components/fields/text-input-field';
 import { listOfFields } from '@/js/consts';
+import { ACCOUNT_PAGE_FORM_NAME } from './account-page-constants';
 
 const renderField = (props, item, key) => (
   <ReduxFormTextInput
@@ -24,5 +25,5 @@ const AccountPage = (props) => {
 }
 
 export const AccountPageForm = reduxForm({
-  form: 'addAccount',
+  form: ACCOUNT_PAGE_FORM_NAME,
 })(AccountPage);

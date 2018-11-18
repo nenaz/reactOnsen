@@ -1,12 +1,13 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux';
+import { compact } from 'lodash';
+import thunk from 'redux-thunk';
 import reducer from '../reducer'
-import logger from '../middlewares/logger'
-// import updateRate from '../middlewares/updateOneRate'
+import { loggingMiddleware } from '../middlewares/logger'
 
-const enhancer = applyMiddleware(logger)
-const store = createStore(reducer, {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-
-//dev only
-window.store = store
-
-export default store
+export const store = createStore(
+  reducer,
+  compose(
+    applyMiddleware(thunk),
+    ...compact([window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()])
+  ),
+);

@@ -10,7 +10,7 @@ import '../css/App.css'
 import '../css/style.css'
 import '../css/ionicons.css'
 import DownloadPDF from './DownloadPDF'
-import store from '../store'
+import { store } from '../store'
 import { AccountAdd } from '@/pages/account/add';
 import { AccountPage } from '@/pages/account';
 // import EditAccount from './Pages/Account/Edit'

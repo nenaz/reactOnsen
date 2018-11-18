@@ -13,6 +13,8 @@ import saveDataOfScan from './saveDataOfScan'
 import updateStatusSync from './updateStatusSync'
 import changeAuthButtonClassName from './changeAuthButtonClassName'
 
+import { ACCOUNT_PAGE_STORE_KEY, AccountPageReducer } from '@/pages/account';
+
 export default combineReducers({
     changeAnimationState,
     changeAccountsList,
@@ -27,4 +29,5 @@ export default combineReducers({
     updateStatusSync,
     changeAuthButtonClassName,
     form: formReducer,
-})
+    [ACCOUNT_PAGE_STORE_KEY]: AccountPageReducer,
+});
